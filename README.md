@@ -32,4 +32,4 @@ struct iOS_ExampleApp: App {
 
 ## License
 
-SirioKitIOS is released under the BSD 3-Clause License [See LICENSE](https://github.com/INPS-it/SirioKitIOS/blob/main/LICENSE) for details.
+SirioKitIOS is released under the BSD 3-Clause License [See LICENSE](https://github.com/INPS-it/sirio-kit-iOS/blob/main/LICENSE) for details.
