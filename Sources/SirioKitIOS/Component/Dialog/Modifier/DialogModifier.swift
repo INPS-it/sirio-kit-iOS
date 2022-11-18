@@ -26,7 +26,7 @@ import SwiftUI
 public struct DialogModifier: ViewModifier {
     var isPresented: Binding<Bool>
     var type: DialogType
-    var title: String
+    var title: String?
     var subtitle: String?
     var textfield1: ObservableTextField
     var textfield2: ObservableTextField
@@ -40,7 +40,7 @@ public struct DialogModifier: ViewModifier {
     
     public init(isPresented: Binding<Bool>,
                 type: DialogType = .default,
-                title: String,
+                title: String?,
                 subtitle: String?,
                 textfield1: ObservableTextField = .init(),
                 textfield2: ObservableTextField = .init(),
@@ -50,7 +50,7 @@ public struct DialogModifier: ViewModifier {
                 actionSecondButton: (() -> Void)?,
                 onTapInfoAction: (() -> Void)?,
                 onTapCloseAction: (() -> Void)?,
-                isVisibleInfoIcon: Bool = true){
+                isVisibleInfoIcon: Bool){
         self.isPresented = isPresented
         self.type = type
         self.title = title
@@ -74,21 +74,19 @@ public struct DialogModifier: ViewModifier {
     
     @ViewBuilder private func dialogContent() -> some View {
         
-        GeometryReader { geometry in
-            if isPresented.wrappedValue {
-                Dialog(type: type,
-                       title: title,
-                       subtitle: subtitle,
-                       textfield1: textfield1,
-                       textfield2: textfield2,
-                       textFirstButton: textFirstButton,
-                       actionFirstButton: actionFirstButton,
-                       textSecondButton: textSecondButton,
-                       actionSecondButton: actionSecondButton,
-                       onTapInfo: onTapInfoAction,
-                       onTapClose: onTapCloseAction,
-                       isVisibleInfoIcon: isVisibleInfoIcon)
-            }
+        if isPresented.wrappedValue {
+            Dialog(type: type,
+                   title: title,
+                   subtitle: subtitle,
+                   textfield1: textfield1,
+                   textfield2: textfield2,
+                   textFirstButton: textFirstButton,
+                   actionFirstButton: actionFirstButton,
+                   textSecondButton: textSecondButton,
+                   actionSecondButton: actionSecondButton,
+                   onTapInfo: onTapInfoAction,
+                   onTapClose: onTapCloseAction,
+                   isVisibleInfoIcon: isVisibleInfoIcon)
         }
     }
 }

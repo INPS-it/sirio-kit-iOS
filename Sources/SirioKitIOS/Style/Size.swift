@@ -474,12 +474,11 @@ extension Size {
 extension Size {
     struct Dialog {
         static let maxHeight: CGFloat = UIScreen.main.bounds.height * 0.80 // 80% of the screen
-        static let spacing: CGFloat = 0
-        static let spacingLeading: CGFloat = 16
-        static let paddingTop: CGFloat = 16
+        static let noSpacing: CGFloat = 0
+        static let spacing: CGFloat = 16
         static let padding: CGFloat = 24
         static let cornerRadius: CGFloat = 16
-        
+
         struct InfoIcon {
             static let frame: CGFloat = 24
         }

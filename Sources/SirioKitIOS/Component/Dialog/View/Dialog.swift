@@ -28,7 +28,7 @@ public enum DialogType: CaseIterable {
 ///   - isVisibleInfoIcon: A boolean to show the info icon
 public struct Dialog: View {
     var type: DialogType
-    var title: String
+    var title: String?
     var subtitle: String?
     
     // TextField 1
@@ -55,7 +55,7 @@ public struct Dialog: View {
     @FocusState private var isTextField2Focused: Bool
     
     public init(type: DialogType = .default,
-                title: String,
+                title: String?,
                 subtitle: String?,
                 textfield1: ObservableTextField = .init(),
                 textfield2: ObservableTextField = .init(),
@@ -65,7 +65,7 @@ public struct Dialog: View {
                 actionSecondButton: (() -> Void)?,
                 onTapInfo: (() -> Void)?,
                 onTapClose: (() -> Void)?,
-                isVisibleInfoIcon: Bool = true){
+                isVisibleInfoIcon: Bool){
         self.type = type
         self.isVisibleInfoIcon = isVisibleInfoIcon
         self.title = title
@@ -113,73 +113,72 @@ public struct Dialog: View {
     }
     
     public var body: some View {
-        ZStack(alignment: .bottom) {
+        VStack(spacing: Size.Dialog.spacing) { // Blur view
             Color.clear
-            VStack(spacing: Size.Dialog.spacing) { // Blur view
-                Spacer()
-                
-                VStack(alignment: .leading, spacing: Size.Dialog.spacing) { // Dialog View
-                    VStack(spacing: Size.Dialog.spacing){ // Icons View
-                        HStack{ // Close
-                            Spacer()
-                            ButtonIconOnly(style: .ghost, size: .large, icon: .times, action: {
-                                onTapClose?()
-                            })
-                        }
-                        if let icon = icon, isVisibleInfoIcon {
-                            HStack(spacing: Size.Dialog.spacing){
-                                Button(action: {
-                                    onTapInfo?()
-                                    
-                                }, label: {
-                                    SirioIcon(icon: icon)
-                                        .frame(width: Size.Dialog.InfoIcon.frame,
-                                               height: Size.Dialog.InfoIcon.frame)
-                                        .foregroundColor(iconColor)
-                                })
+            
+            VStack(alignment: .leading, spacing: Size.Dialog.spacing) { // Dialog View
+                VStack(spacing: Size.Dialog.noSpacing){ // Icons View
+                    HStack { // Close
+                        Spacer()
+                        ButtonIconOnly(style: .ghost, size: .large, icon: .times, action: {
+                            onTapClose?()
+                        })
+                    }
+                    if let icon = icon, isVisibleInfoIcon {
+                        HStack(spacing: Size.Dialog.noSpacing){
+                            Button(action: {
+                                onTapInfo?()
                                 
-                                Spacer()
-                            }
+                            }, label: {
+                                SirioIcon(icon: icon)
+                                    .frame(width: Size.Dialog.InfoIcon.frame,
+                                           height: Size.Dialog.InfoIcon.frame)
+                                    .foregroundColor(iconColor)
+                            })
+                            
+                            Spacer()
                         }
                     }
+                }
+                
+                if let title = title {
+                    SirioText(text: title, typography: Typography.Dialog.title)
+                        .foregroundColor(Color.Dialog.title)
+                }
+                
+                ScrollView(showsIndicators: false, content: {
+                    SirioText(text: subtitle ?? "", typography: Typography.Dialog.subtitle)
+                        .foregroundColor(Color.Dialog.subtitle)
+                })
+                
+                ViewTextField(textfield: textfield1)
+                
+                ViewTextField(textfield: textfield2)
+                
+                VStack(spacing: Size.Dialog.spacing) {
+                    ViewButton(style: styleFirstButton,
+                               text: textFirstButton,
+                               action: {
+                        actionFirstButton?()
+                    })
                     
-                    VStack(alignment: .leading, spacing: Size.Dialog.spacingLeading){
-                        SirioText(text: title, typography: Typography.Dialog.title)
-                            .foregroundColor(Color.Dialog.title)
-                        
-                        ScrollView(showsIndicators: false, content: {
-                            SirioText(text: subtitle ?? "", typography: Typography.Dialog.subtitle)
-                                .foregroundColor(Color.Dialog.subtitle)
-                        })
-                        
-                        ViewTextField(textfield: textfield1)
-                        
-                        ViewTextField(textfield: textfield2)
-                        
-                        ViewButton(style: styleFirstButton,
-                                   text: textFirstButton,
-                                   action: {
-                            actionFirstButton?()
-                        })
-                        
-                        ViewButton(style: .ghost,
-                                   text: textSecondButton,
-                                   action: {
-                            actionSecondButton?()
-                        })
-                    } // VStack Title, subtitle, textfield etc..
-                    .padding(.top, Size.Dialog.paddingTop)
-                    
-                } // Dialog View
-                .frame(maxHeight: Size.Dialog.maxHeight)
-                .padding(Size.Dialog.padding)
-                .background(Color.Dialog.Background.default)
-                .cornerRadius(Size.Dialog.cornerRadius)
-                .fixedSize(horizontal: false, vertical: true)
-            } // Blur View
-            .background(Color.black.opacity(0.2))
-            .frame(height: UIScreen.main.bounds.height)
-        }
+                    ViewButton(style: .ghost,
+                               text: textSecondButton,
+                               action: {
+                        actionSecondButton?()
+                    })
+                }
+                
+            } // Dialog View
+            .frame(maxHeight: Size.Dialog.maxHeight)
+            .padding(Size.Dialog.padding)
+            .background(Color.Dialog.Background.default)
+            .cornerRadius(Size.Dialog.cornerRadius)
+            .fixedSize(horizontal: false, vertical: true)
+            
+        } // Blur View
+        .background(Color.black.opacity(0.2))
+        .frame(height: UIScreen.main.bounds.height)
         .edgesIgnoringSafeArea(.all)
     }
 }
@@ -211,11 +210,8 @@ struct ViewTextField: View {
            let placeholder = textfield.placeholder,
            let _ = textfield.text {
             VStack(alignment: .leading, spacing: Size.Dialog.spacing){
-                SirioText(text: label, typography: Typography.Dialog.textfield)
-                    .foregroundColor(Color.Dialog.TextField.text)
-                
                 SirioTextField(type: $textfield.type.toUnwrapped(defaultValue: .info),
-                               textInfo: nil,
+                               textInfo: label,
                                infoIcon: nil,
                                placeholder: placeholder,
                                text: $textfield.text.toUnwrapped(defaultValue: ""),
@@ -233,7 +229,7 @@ struct Dialog_Previews: PreviewProvider {
     static var previews: some View {
         Dialog(type: .warning,
                title: "Title",
-               subtitle: "Subtitle",
+               subtitle: .loremIpsum,
                textfield1: .init(type: .info,
                                  label: "Label",
                                  placeholder: "Placeholder",
