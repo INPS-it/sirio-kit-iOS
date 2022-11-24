@@ -20,7 +20,7 @@ public struct TabBar: View {
         self.items = items
         self._selectedIndex = selectedIndex
         
-        precondition(self.items.count <= 3 || self.items.count >= 5, "Enter from a minimum of 3 tabs to a maximum of 5")
+        precondition(self.items.count >= 3 || self.items.count <= 5, "Enter from a minimum of 3 tabs to a maximum of 5")
     }
     
     public var body: some View {

@@ -23,9 +23,9 @@ public enum SemanticTextField: String, CaseIterable {
 ///   - icon: The textfield icon
 ///   - helperText: The optionl text on bottom of text field
 ///   - isDisabled: Whether the component is disabled
-///   - isTextFieldDisabled: Whether only the textfield is disabled. For example use it for show picker.
+///   - isTextFieldDisabled: Whether only the textfield is disabled. For example use it for show picker
 ///   - onTapInfoAction: Callback that is executed when the info button is tapped
-///   - onTapTextFieldAction: Callback that is executed when the text field is tapped
+///   - onTapTextFieldAction: Callback that is executed when the text field is tapped. If the callback is provided the textfield is disabled to allow the action, normal behaviour otherwise
 public struct SirioTextField: View {
     @Binding var type: SemanticTextField
     var textInfo: String?
@@ -35,7 +35,6 @@ public struct SirioTextField: View {
     var icon: AwesomeIcon?
     var helperText: String?
     @Binding var isDisabled: Bool
-    var isTextFieldDisabled: Bool
     var onTapInfoAction: (() -> Void)?
     var onTapTextFieldAction: (() -> Void)?
     
@@ -50,7 +49,6 @@ public struct SirioTextField: View {
                 icon: AwesomeIcon?,
                 helperText: String?,
                 isDisabled: Binding<Bool> = .constant(false),
-                isTextFieldDisabled: Bool = false,
                 onTapInfoAction: (() -> Void)? = nil,
                 onTapTextFieldAction: (() -> Void)? = nil){
         self._type = type
@@ -61,7 +59,6 @@ public struct SirioTextField: View {
         self.icon = icon
         self.helperText = helperText
         self._isDisabled = isDisabled
-        self.isTextFieldDisabled = isTextFieldDisabled
         self.onTapInfoAction = onTapInfoAction
         self.onTapTextFieldAction = onTapTextFieldAction
     }
@@ -100,8 +97,8 @@ public struct SirioTextField: View {
                         .sirioFont(typography: Typography.TextField.text)
                         .foregroundColor(textFieldTextColor)
                         .focused($isFocused)
-                        .disabled(isTextFieldDisabled)
-                        .if(isTextFieldDisabled, transform: { view in
+                        .disabled(onTapTextFieldAction != nil)
+                        .if(onTapTextFieldAction != nil, transform: { view in
                             view.overlay(
                                 Button(action: {
                                     self.onTapTextFieldAction?()

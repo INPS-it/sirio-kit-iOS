@@ -71,8 +71,6 @@ public struct FileUpload: View {
                                     onTapChips: nil,
                                     onTapClose: {
                         if let index = uploads.firstIndex(of: item){
-                            // Remove current upload
-                            self.uploads.remove(at: index)
                             onRemoveUploadAction(index, item)
                         }
                     })
