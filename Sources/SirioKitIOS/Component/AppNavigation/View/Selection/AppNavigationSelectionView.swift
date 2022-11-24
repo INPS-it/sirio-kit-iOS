@@ -11,7 +11,7 @@ import SwiftUI
 
 /// A wrapper that hide the system navigation view and show the Sirio App Navigation Selection view and the screen content
 
-struct AppNavigationSelectionView<Content: View>: View {
+public struct AppNavigationSelectionView<Content: View>: View {
     
     private let content: Content
     

@@ -12,9 +12,9 @@
 ///   - name: The text of the tab
 ///   - hasBadge: A boolean to manage badge visibility
 public struct TabItemData {
-    let icon: AwesomeIcon
-    let name: String
-    let hasBadge: Bool
+    public let icon: AwesomeIcon
+    public let name: String
+    public let hasBadge: Bool
     
     public init(icon: AwesomeIcon, name: String, hasBadge: Bool = false){
         self.icon = icon

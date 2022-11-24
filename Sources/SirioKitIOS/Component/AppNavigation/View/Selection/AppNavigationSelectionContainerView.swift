@@ -11,7 +11,7 @@ import SwiftUI
 /// A container for Sirio App Navigation Selection
 
 
-struct AppNavigationSelectionContainerView<Content: View>: View {
+public struct AppNavigationSelectionContainerView<Content: View>: View {
     private let content: Content
    
     @State private var title: String = ""
@@ -19,11 +19,11 @@ struct AppNavigationSelectionContainerView<Content: View>: View {
     @State private var rightFirstItem: AppNavigationItemData? = nil
     @State private var rightSecondItem: AppNavigationItemData? = nil
 
-    init(@ViewBuilder content: () -> Content){
+    public init(@ViewBuilder content: () -> Content){
         self.content = content()
     }
     
-    var body: some View {
+    public var body: some View {
         VStack(spacing: 0) {
             AppNavigationSelectionBarView(title: title,
                                         leftItem: leftItem,
