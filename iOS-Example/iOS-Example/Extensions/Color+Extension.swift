@@ -10,5 +10,5 @@ import Foundation
 import SwiftUI
 
 extension Color {
-    static let colorBackground = Color.init("ColorBackground")
+    static let colorBackground = Color.white
 }
