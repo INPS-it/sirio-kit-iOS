@@ -14,8 +14,7 @@ struct AppNavigationLogoContainerView<Content: View>: View {
     let content: Content
     
     @State private var leftItem: AppNavigationItemData? = nil
-    @State private var rightFirstItem: AppNavigationItemData? = nil
-    @State private var rightSecondItem: AppNavigationItemData? = nil
+    @State private var rightItems: [AppNavigationItemData]? = nil
     
     init(@ViewBuilder content: () -> Content){
         self.content = content()
@@ -25,8 +24,7 @@ struct AppNavigationLogoContainerView<Content: View>: View {
         VStack(spacing: 0) {
             AppNavigationLogoBarView(
                                  leftItem: leftItem,
-                                 rightFirstItem: rightFirstItem,
-                                 rightSecondItem: rightSecondItem)
+                                 rightItems: rightItems)
             content
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
@@ -37,15 +35,9 @@ struct AppNavigationLogoContainerView<Content: View>: View {
             }
         )
         .onPreferenceChange(
-            AppNavigationRightFirstItemPreferenceKeys.self, perform: {
+            AppNavigationRightItemsPreferenceKeys.self, perform: {
                 value in
-                self.rightFirstItem = value
-            }
-        )
-        .onPreferenceChange(
-            AppNavigationRightSecondItemPreferenceKeys.self, perform: {
-                value in
-                self.rightSecondItem = value
+                self.rightItems = value
             }
         )
     }
@@ -62,8 +54,7 @@ struct AppNavigationLogoContainerView_Previews: PreviewProvider {
             }
             .setAppNavigationBarItems(
                 leftItem: .previewBack,
-                rightFirstItem: .previewUser,
-                rightSecondItem: .previewSearch)
+                rightItems: [.previewUser, .previewBell])
         })
     }
 }

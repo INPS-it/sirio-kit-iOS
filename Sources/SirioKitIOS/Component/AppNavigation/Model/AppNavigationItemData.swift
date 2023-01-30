@@ -6,13 +6,15 @@
 // SPDX-License-Identifier: BSD-3-Clause
 //
 
+import UIKit
 /// The model used for representation of an app navigation item
 /// - Parameters:
 ///   - icon: The icon of the item
 ///   - textProfile: A short text of the profile. Generally they are the initials of the first name and last name
 ///   - action: Callback that is executed when the item is tapped
 ///   - hasBadge: A boolean to manage the badge
-public struct AppNavigationItemData {    
+public struct AppNavigationItemData: Identifiable {
+    public var id = UUID()
     var icon: AwesomeIcon
     var textProfile: String
     var action: () -> Void

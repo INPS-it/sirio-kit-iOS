@@ -12,80 +12,80 @@ import SirioKitIOS
 
 struct ExampleAppNavigation: View {
     var body: some View {
-            List {
-                // LOGO
-                NavigationLink(destination: {
-                    VSchemeSwitcher {
-                        ExampleAppNavigationLogoView()
-                    }
-                    .navigationTitle("Logo")
-                    .background(Color.colorBackground)
-                }, label: {
-                    SirioText(text: "Logo", typography: .label_md_400)
-
-                })
+        List {
+            // LOGO
+            NavigationLink(destination: {
+                VSchemeSwitcher {
+                    ExampleAppNavigationLogoView()
+                }
+                .navigationTitle("Logo")
+                .background(Color.colorBackground)
+            }, label: {
+                SirioText(text: "Logo", typography: .label_md_400)
                 
-                // STANDARD TITLE
-                NavigationLink(destination: {
-                    VSchemeSwitcher {
-                        ExampleAppNavigationStandardTitleView()
-                    }
-                    .navigationTitle("Standard Title")
-                    .background(Color.colorBackground)
-                }, label: {
-                    SirioText(text: "Standard Title", typography: .label_md_400)
-                })
-
-                // LONG TITLE
-                NavigationLink(destination: {
-                    VSchemeSwitcher {
-                        ExampleAppNavigationLongTitleView()
-                    }
-                    .navigationTitle("Long Title")
-                    .background(Color.colorBackground)
-                }, label: {
-                    SirioText(text: "Long Title", typography: .label_md_400)
-                })
-
-                // BIG TITLE
-                NavigationLink(destination: {
-                    VSchemeSwitcher {
-                        ExampleAppNavigationBigTitleView()
-                    }
-                    .navigationTitle("Big Title")
-                    .background(Color.colorBackground)
-                }, label: {
-                    SirioText(text: "Big Title", typography: .label_md_400)
-                })
-                
-                // SELECTION
-                NavigationLink(destination: {
-                    VSchemeSwitcher {
-                        ExampleAppNavigationSelectionView()
-                    }
-                    .navigationTitle("Selection")
-                    .background(Color.colorBackground)
-                }, label: {
-                    SirioText(text: "Selection", typography: .label_md_400)
-                })
-
-                // SEARCH
-                NavigationLink(destination: {
-                    VSchemeSwitcher {
-                        ExampleAppNavigationSearchView()
-                    }
-                    .navigationTitle("Search")
-                    .background(Color.colorBackground)
-                    .onTapGesture {
-                        self.hideKeyboard()
-                    }
-                }, label: {
-                    SirioText(text: "Search", typography: .label_md_400)
-                })
-            }
-            .background(Color.colorBackground)
-            .navigationTitle("App Navigation")
-            .listStyle(GroupedListStyle())
+            })
+            
+            // STANDARD TITLE
+            NavigationLink(destination: {
+                VSchemeSwitcher {
+                    ExampleAppNavigationStandardTitleView()
+                }
+                .navigationTitle("Standard Title")
+                .background(Color.colorBackground)
+            }, label: {
+                SirioText(text: "Standard Title", typography: .label_md_400)
+            })
+            
+            // LONG TITLE
+            NavigationLink(destination: {
+                VSchemeSwitcher {
+                    ExampleAppNavigationLongTitleView()
+                }
+                .navigationTitle("Long Title")
+                .background(Color.colorBackground)
+            }, label: {
+                SirioText(text: "Long Title", typography: .label_md_400)
+            })
+            
+            // BIG TITLE
+            NavigationLink(destination: {
+                VSchemeSwitcher {
+                    ExampleAppNavigationBigTitleView()
+                }
+                .navigationTitle("Big Title")
+                .background(Color.colorBackground)
+            }, label: {
+                SirioText(text: "Big Title", typography: .label_md_400)
+            })
+            
+            // SELECTION
+            NavigationLink(destination: {
+                VSchemeSwitcher {
+                    ExampleAppNavigationSelectionView()
+                }
+                .navigationTitle("Selection")
+                .background(Color.colorBackground)
+            }, label: {
+                SirioText(text: "Selection", typography: .label_md_400)
+            })
+            
+            // SEARCH
+            NavigationLink(destination: {
+                VSchemeSwitcher {
+                    ExampleAppNavigationSearchView()
+                }
+                .navigationTitle("Search")
+                .background(Color.colorBackground)
+                .onTapGesture {
+                    self.hideKeyboard()
+                }
+            }, label: {
+                SirioText(text: "Search", typography: .label_md_400)
+            })
+        }
+        .background(Color.colorBackground)
+        .navigationTitle("App Navigation")
+        .listStyle(GroupedListStyle())
     }
 }
 
@@ -100,23 +100,21 @@ struct ExampleAppNavigationStandardTitleView: View {
         VStack(spacing: 4){
             AppNavigationStandardTitle(title: "Titolo pagina",
                                        leftItem: nil,
-                                       rightFirstItem: .previewBell,
-                                       rightSecondItem: .previewUser)
+                                       rightItems: [.previewUser, .previewBell])
             
             AppNavigationStandardTitle(title: "Titolo pagina",
-                                       leftItem: .init(icon: .angleLeft, action: {}),
-                                       rightFirstItem: .previewBell,
-                                       rightSecondItem: .previewUser)
+                                       leftItem: .previewBack,
+                                       rightItems: [.previewUser, .previewBell])
             
             AppNavigationStandardTitle(title: "Titolo pagina",
                                        leftItem: nil,
-                                       rightFirstItem: .previewBell,
-                                       rightSecondItem: .previewUserLogged)
+                                       rightItems: [.previewUserLogged, .previewBell])
+            
             
             AppNavigationStandardTitle(title: "Titolo pagina",
-                                       leftItem: .init(icon: .angleLeft, action: {}),
-                                       rightFirstItem: .previewBell,
-                                       rightSecondItem: .previewUserLogged)
+                                       leftItem: .previewBack,
+                                       rightItems: [.previewUserLogged, .previewBell])
+            
         }
     }
 }
@@ -128,23 +126,23 @@ struct ExampleAppNavigationLongTitleView: View {
             
             AppNavigationLongTitle(title: "Titolo pagina molto lungo \nsu due righe",
                                    leftItem: nil,
-                                   rightFirstItem: .previewBell,
-                                   rightSecondItem: .previewUser)
+                                   rightItems: [.previewUser, .previewBell])
+            
             
             AppNavigationLongTitle(title: "Titolo pagina molto lungo \nsu due righe",
-                                   leftItem: .init(icon: .angleLeft, action: {}),
-                                   rightFirstItem: .previewBell,
-                                   rightSecondItem: .previewUser)
+                                   leftItem: .previewBack,
+                                   rightItems: [.previewUser, .previewBell])
+            
             
             AppNavigationLongTitle(title: "Titolo pagina molto lungo \nsu due righe",
                                    leftItem: nil,
-                                   rightFirstItem: .previewBell,
-                                   rightSecondItem: .previewUserLogged)
+                                   rightItems: [.previewUserLogged, .previewBell])
+            
             
             AppNavigationLongTitle(title: "Titolo pagina molto lungo \nsu due righe",
-                                   leftItem: .init(icon: .angleLeft, action: {}),
-                                   rightFirstItem: .previewBell,
-                                   rightSecondItem: .previewUserLogged)
+                                   leftItem: .previewBack,
+                                   rightItems: [.previewUserLogged, .previewBell])
+            
         }
     }
 }
@@ -156,23 +154,21 @@ struct ExampleAppNavigationBigTitleView: View {
             
             AppNavigationBigTitle(title: "Titolo Grande",
                                   leftItem: nil,
-                                  rightFirstItem: .previewBell,
-                                  rightSecondItem: .previewUser)
+                                  rightItems: [.previewUser, .previewBell])
+            
             
             AppNavigationBigTitle(title: "Titolo Grande",
-                                  leftItem: .init(icon: .angleLeft, action: {}),
-                                  rightFirstItem: .previewBell,
-                                  rightSecondItem: .previewUser)
+                                  leftItem: .previewBack,
+                                  rightItems: [.previewUser, .previewBell])
+            
             
             AppNavigationBigTitle(title: "Titolo Grande",
                                   leftItem: nil,
-                                  rightFirstItem: .previewBell,
-                                  rightSecondItem: .previewUserLogged)
+                                  rightItems: [.previewUserLogged, .previewBell])
             
             AppNavigationBigTitle(title: "Titolo Grande",
-                                  leftItem: .init(icon: .angleLeft, action: {}),
-                                  rightFirstItem: .previewBell,
-                                  rightSecondItem: .previewUserLogged)
+                                  leftItem: .previewBack,
+                                  rightItems: [.previewUserLogged, .previewBell])
         }
     }
 }
@@ -181,14 +177,13 @@ struct ExampleAppNavigationSelectionView: View {
     var body: some View {
         VStack(spacing: 4){
             AppNavigationSelectionBarView(title: "Titolo pagina",
-                                        leftItem: .init(icon: .angleLeft, action: {}),
-                                          rightFirstItem: .previewTrash,
-                                          rightSecondItem: .previewDownload)
+                                          leftItem: .previewBack,
+                                          rightItems: [.previewDownload, .previewTrash])
             
             AppNavigationSelectionBarView(title: "1 Elemento Selezionato",
-                                        leftItem: .init(icon: .angleLeft, action: {}),
-                                          rightFirstItem: .previewTrash,
-                                          rightSecondItem: .previewDownload)
+                                          leftItem: .previewBack,
+                                          rightItems: [.previewDownload, .previewTrash])
+            
         }
     }
 }
@@ -199,10 +194,9 @@ struct ExampleAppNavigationSearchView: View {
     var body: some View {
         VStack(spacing: 4){
             AppNavigationSearchBarView(title: "Titolo pagina",
-                                           placeholder: "Ricerca...",
-                                           leftItem: nil,
-                                           rightFirstItem: .previewBell,
-                                           rightSecondItem: .previewUser)
+                                       placeholder: "Ricerca...",
+                                       leftItem: nil,
+                                       rightItems: [.previewUser, .previewBell])
             .environmentObject(searchEnv)
         }
     }
@@ -213,12 +207,10 @@ struct ExampleAppNavigationLogoView: View {
     var body: some View {
         VStack(spacing: 4){
             AppNavigationLogoBarView(leftItem: nil,
-                                     rightFirstItem: .previewBell,
-                                     rightSecondItem: .previewUser)
+                                     rightItems: [.previewUser, .previewBell])
             
             AppNavigationLogoBarView(leftItem: nil,
-                                     rightFirstItem: .previewBell,
-                                     rightSecondItem: .previewUserLogged)
+                                     rightItems: [.previewUserLogged, .previewBell])
         }
     }
 }

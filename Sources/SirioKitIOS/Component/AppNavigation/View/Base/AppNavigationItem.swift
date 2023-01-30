@@ -31,7 +31,7 @@ struct AppNavigationItem: View {
 struct AppNavigationItem_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            AppNavigationItem(item: AppNavigationItemData.previewUserLogged)
+            AppNavigationItem(item: AppNavigationItemData.previewBell)
                 .padding()
                 .colorScheme(.light)
             

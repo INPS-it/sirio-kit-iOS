@@ -11,23 +11,18 @@ import SwiftUI
 /// A standard app navigation with INPS logo at the center
 /// - Parameters:
 ///   - leftItem: An [AppNavigationItemData] with the content of the left item
-///   - rightFirstItem: An [AppNavigationItemData] with the content of the first right item
-///   - rightSecondItem: An [AppNavigationItemData] with the content of the second right item
+///   - rightItems: An array of [AppNavigationItemData] with the content of the right items
 
 public struct AppNavigationLogoBarView: View {
     @Environment(\.colorScheme) var colorScheme
     
     private var leftItem: AppNavigationItemData? = nil
-    private var rightFirstItem: AppNavigationItemData? = nil
-    private var rightSecondItem: AppNavigationItemData? = nil
+    private var rightItems: [AppNavigationItemData]? = nil
     
     public init(leftItem: AppNavigationItemData?,
-                rightFirstItem: AppNavigationItemData?,
-                rightSecondItem: AppNavigationItemData?){
-        
+                rightItems: [AppNavigationItemData]?){
         self.leftItem = leftItem
-        self.rightFirstItem = rightFirstItem
-        self.rightSecondItem = rightSecondItem
+        self.rightItems = rightItems
     }
     
     public var body: some View {
@@ -36,9 +31,11 @@ public struct AppNavigationLogoBarView: View {
             
             Spacer()
                         
-            AppNavigationItem(item: rightSecondItem)
-            
-            AppNavigationItem(item: rightFirstItem)
+            if let rightItems = rightItems {
+                ForEach(rightItems.prefix(2)) { item in
+                    AppNavigationItem(item: item)
+                }
+            }
         }
         .frame(height: Size.AppNavigation.height)
         .padding(.horizontal, Size.AppNavigation.paddingHorizontal)
@@ -51,13 +48,11 @@ struct AppNavigationLogoBarView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             AppNavigationLogoBarView(leftItem: .previewBack,
-                                     rightFirstItem: .previewUser,
-                                     rightSecondItem: .previewSearch)
+                                     rightItems: [.previewUser, .previewSearch])
             .padding(.vertical)
             .colorScheme(.light)
             AppNavigationLogoBarView(leftItem: .previewBack,
-                                     rightFirstItem: .previewUser,
-                                     rightSecondItem: .previewSearch)
+                                     rightItems: [.previewUser, .previewSearch])
             .padding(.vertical)
             .colorScheme(.dark)
         }

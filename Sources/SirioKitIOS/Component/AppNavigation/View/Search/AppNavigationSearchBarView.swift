@@ -13,8 +13,7 @@ import SwiftUI
 ///   - title: The title of navigation bar
 ///   - placeholder: The search bar placeholder
 ///   - leftItem: An [AppNavigationItemData] with the content of the left item
-///   - rightFirstItem: An [AppNavigationItemData] with the content of the first right item
-///   - rightSecondItem: An [AppNavigationItemData] with the content of the second right item
+///   - rightItems: An array of [AppNavigationItemData] with the content of the right items
 ///   - searchEnv: An object to manage the searchText
 
 public struct AppNavigationSearchBarView: View {
@@ -30,27 +29,23 @@ public struct AppNavigationSearchBarView: View {
     private var title: String
     private var placeholder: String
     private var leftItem: AppNavigationItemData?
-    private var rightFirstItem: AppNavigationItemData?
-    private var rightSecondItem: AppNavigationItemData?
+    private var rightItems: [AppNavigationItemData]?
     
     public init(title: String,
                 placeholder: String,
                 leftItem: AppNavigationItemData? = nil,
-                rightFirstItem: AppNavigationItemData? = nil,
-                rightSecondItem: AppNavigationItemData? = nil){
+                rightItems: [AppNavigationItemData]? = nil){
         self.title = title
         self.placeholder = placeholder
         self.leftItem = leftItem
-        self.rightFirstItem = rightFirstItem
-        self.rightSecondItem = rightSecondItem
+        self.rightItems = rightItems
     }
     
     public var body: some View {
         VStack(spacing: 0) {
             AppNavigationStandardTitle(title: title,
                                        leftItem: leftItem,
-                                       rightFirstItem: rightFirstItem,
-                                       rightSecondItem: rightSecondItem)
+                                       rightItems: rightItems)
             .colorScheme(.light)
             
             HStack(spacing: Size.AppNavigation.spacing) {
@@ -86,7 +81,7 @@ public struct AppNavigationSearchBarView: View {
             }
             .frame(height: Size.AppNavigation.Search.height + 2 * Size.AppNavigation.Search.border)
             .padding(.horizontal, Size.AppNavigation.Search.paddingHorizontal)
-
+            
             .border(borderColor, width: Size.AppNavigation.Search.border)
             .background(backgroundColor)
             
@@ -98,10 +93,9 @@ struct AppNavigationSearchBarView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             AppNavigationSearchBarView(title: "",
-                                           placeholder: "Placeholder search bar",
-                                           leftItem: nil,
-                                           rightFirstItem: .previewBell,
-                                           rightSecondItem: .previewUser)
+                                       placeholder: "Placeholder search bar",
+                                       leftItem: nil,
+                                       rightItems: [.previewBell, .previewUser])
             .environmentObject(SearchEnvironment())
         }
         .previewLayout(PreviewLayout.sizeThatFits)

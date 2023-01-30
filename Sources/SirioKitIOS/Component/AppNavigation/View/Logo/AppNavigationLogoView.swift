@@ -33,10 +33,10 @@ struct AppNavigationLogoView_Previews: PreviewProvider {
     static var previews: some View {
         AppNavigationLogoView {
             Color.gray.edgesIgnoringSafeArea(.all)
-        }.setAppNavigationBarItems(
-            leftItem: .previewBack,
-            rightFirstItem: .previewUser,
-            rightSecondItem: .previewSearch)
+                .setAppNavigationBarItems(
+                    leftItem: .previewBack,
+                    rightItems: [.previewUser, .previewSearch])
+        }
     }
 }
 

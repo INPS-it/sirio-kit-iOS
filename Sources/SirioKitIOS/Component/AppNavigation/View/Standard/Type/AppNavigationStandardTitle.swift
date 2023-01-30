@@ -13,25 +13,22 @@ public struct AppNavigationStandardTitle: View {
     
     private var title: String
     private var leftItem: AppNavigationItemData? = nil
-    private var rightFirstItem: AppNavigationItemData? = nil
-    private var rightSecondItem: AppNavigationItemData? = nil
+    private var rightItems: [AppNavigationItemData]? = nil
     
     public init(title: String,
                 leftItem: AppNavigationItemData?,
-                rightFirstItem: AppNavigationItemData?,
-                rightSecondItem: AppNavigationItemData?){
+                rightItems: [AppNavigationItemData]?){
         
         self.title = title
         self.leftItem = leftItem
-        self.rightFirstItem = rightFirstItem
-        self.rightSecondItem = rightSecondItem
+        self.rightItems = rightItems
     }
     
     public var body: some View {
         HStack(spacing: Size.AppNavigation.spacing) {
             AppNavigationItem(item: leftItem)
             
-            if let _ = rightSecondItem {
+            if let rightItems = rightItems, rightItems.count >= 2 {
                 AppNavigationItemEmpty()
             }
             
@@ -42,13 +39,14 @@ public struct AppNavigationStandardTitle: View {
                 .lineLimit(1)
             
             Spacer()
-                      
-            if let rightSecondItem = rightSecondItem {
-                AppNavigationItem(item: rightSecondItem)
+                 
+            if let rightItems = rightItems, !rightItems.isEmpty {
+                ForEach(rightItems.prefix(2)) { item in
+                    AppNavigationItem(item: item)
+                }
+            } else {
+                AppNavigationItemEmpty()
             }
-            
-            AppNavigationItem(item: rightFirstItem)
-            
         }
         .frame(height: Size.AppNavigation.height)
         .padding(.horizontal, Size.AppNavigation.paddingHorizontal)
@@ -60,16 +58,15 @@ struct AppNavigationStandardTitle_Previews: PreviewProvider {
     static var previews: some View {
         
         Group {
-            AppNavigationStandardTitle(title: "Pensami - Pensione a misura",
-                                       leftItem: .previewBack,
-                                       rightFirstItem: .previewUser,
-                                       rightSecondItem: nil)
-            .padding(.vertical)
-            .colorScheme(.light)
             AppNavigationStandardTitle(title: "Titolo pagina",
                                        leftItem: .previewBack,
-                                       rightFirstItem: .previewUser,
-                                       rightSecondItem: .previewSearch)
+                                       rightItems: [.previewUser, .previewSearch])
+            .padding(.vertical)
+            .colorScheme(.light)
+            
+            AppNavigationStandardTitle(title: "Titolo pagina",
+                                       leftItem: .previewBack,
+                                       rightItems: [.previewUser, .previewSearch])
             .padding(.vertical)
             .colorScheme(.dark)
         }

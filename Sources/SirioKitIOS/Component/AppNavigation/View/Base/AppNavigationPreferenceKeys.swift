@@ -38,23 +38,13 @@ struct AppNavigationLeftItemPreferenceKeys: PreferenceKey {
     }
 }
 
-/// App Navigation Bar - First right item
-struct AppNavigationRightFirstItemPreferenceKeys: PreferenceKey {
-    static var defaultValue: AppNavigationItemData? = nil
+/// App Navigation Bar - Right items (Max 2 items)
+struct AppNavigationRightItemsPreferenceKeys: PreferenceKey {
+    static var defaultValue: [AppNavigationItemData]? = nil
     
-    static func reduce(value: inout AppNavigationItemData?, nextValue: () -> AppNavigationItemData?) {
+    static func reduce(value: inout [AppNavigationItemData]?, nextValue: () -> [AppNavigationItemData]?) {
         value = nextValue()
     }
-}
-
-/// App Navigation Bar - Second right item
-struct AppNavigationRightSecondItemPreferenceKeys: PreferenceKey {
-    static var defaultValue: AppNavigationItemData? = nil
-    
-    static func reduce(value: inout AppNavigationItemData?, nextValue: () -> AppNavigationItemData?) {
-        value = nextValue()
-    }
-    
 }
 
 /// App Navigation Search Placeholder
@@ -79,36 +69,31 @@ extension View {
         self.preference(key: AppNavigationLeftItemPreferenceKeys.self, value: leftItem)
     }
     
-    private func appNavigationRightFirstItem(_ rightFirstItem: AppNavigationItemData?) -> some View {
-        self.preference(key: AppNavigationRightFirstItemPreferenceKeys.self, value: rightFirstItem)
+    private func appNavigationRightItems(_ rightItems: [AppNavigationItemData]?) -> some View {
+        self.preference(key: AppNavigationRightItemsPreferenceKeys.self, value: rightItems)
     }
     
-    private func appNavigationRightSecondItem(_ rightSecondItem: AppNavigationItemData?) -> some View {
-        self.preference(key: AppNavigationRightSecondItemPreferenceKeys.self, value: rightSecondItem)
-    }
-
     private func appNavigationSearchPlaceholder(_ value: String) -> some View {
         self.preference(key: AppNavigationSearchPlaceholderPreferenceKeys.self, value: value)
     }
     
-    /// This method sets items in navigation bar
-    public func setAppNavigationBarItems(leftItem: AppNavigationItemData?, rightFirstItem: AppNavigationItemData?, rightSecondItem: AppNavigationItemData?) -> some View {
+    /// This method set navigation bar items
+    public func setAppNavigationBarItems(leftItem: AppNavigationItemData?, rightItems: [AppNavigationItemData]?) -> some View {
         self.appNavigationLeftItem(leftItem)
-            .appNavigationRightFirstItem(rightFirstItem)
-            .appNavigationRightSecondItem(rightSecondItem)
+            .appNavigationRightItems(rightItems)
     }
     
-    /// This method sets title navigation bar
+    /// This method set title navigation bar
     public func setAppNavigationTitle(title: String) -> some View {
         self.appNavigationTitle(title)
     }
     
-    /// This method sets type of navigation bar (standard, long, big)
+    /// This method set type of navigation bar (standard, long, big)
     public func setAppNavigationType(type: AppNavigationType) -> some View {
         self.appNavigationType(type)
     }
     
-    /// This method sets placeholder of navigation bar Search
+    /// This method set placeholder of navigation bar search
     public func setAppNavigationSearchPlaceholder(placeholder: String) -> some View {
         self.appNavigationSearchPlaceholder(placeholder)
     }

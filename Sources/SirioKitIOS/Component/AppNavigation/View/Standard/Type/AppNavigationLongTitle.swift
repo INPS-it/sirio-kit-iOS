@@ -13,18 +13,15 @@ public struct AppNavigationLongTitle: View {
     
     private var title: String
     private var leftItem: AppNavigationItemData? = nil
-    private var rightFirstItem: AppNavigationItemData? = nil
-    private var rightSecondItem: AppNavigationItemData? = nil
+    private var rightItems: [AppNavigationItemData]? = nil
     
     public init(title: String,
                 leftItem: AppNavigationItemData?,
-                rightFirstItem: AppNavigationItemData?,
-                rightSecondItem: AppNavigationItemData?){
+                rightItems: [AppNavigationItemData]?){
         
         self.title = title
         self.leftItem = leftItem
-        self.rightFirstItem = rightFirstItem
-        self.rightSecondItem = rightSecondItem
+        self.rightItems = rightItems
     }
     
     public var body: some View {
@@ -34,10 +31,11 @@ public struct AppNavigationLongTitle: View {
                 
                 Spacer()
                             
-                AppNavigationItem(item: rightSecondItem)
-                
-                AppNavigationItem(item: rightFirstItem)
-            
+                if let rightItems = rightItems {
+                    ForEach(rightItems.prefix(2)) { item in
+                        AppNavigationItem(item: item)
+                    }
+                }
             }
             .frame(height: Size.AppNavigation.LongTitle.height)
             .padding(.horizontal, Size.AppNavigation.paddingHorizontal)
@@ -57,15 +55,13 @@ struct AppNavigationLongTitle_Previews: PreviewProvider {
         Group {
             AppNavigationLongTitle(title: "Titolo pagina molto molto molto lungo su due righe",
                                    leftItem: .previewBack,
-                                   rightFirstItem: .previewUser,
-                                   rightSecondItem: .previewSearch)
+                                   rightItems: [.previewUser, .previewSearch])
             .padding(.vertical)
             .colorScheme(.light)
         
             AppNavigationLongTitle(title: "Titolo pagina molto molto molto lungo su due righe",
                                    leftItem: .previewBack,
-                                   rightFirstItem: .previewUser,
-                                   rightSecondItem: .previewSearch)
+                                   rightItems: [.previewUser, .previewSearch])
             .padding(.vertical)
             .colorScheme(.dark)
         }

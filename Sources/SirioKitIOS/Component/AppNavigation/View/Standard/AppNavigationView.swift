@@ -9,7 +9,6 @@
 import SwiftUI
 
 /// A wrapper that hide the system navigation view and show the Sirio App Navigation view and the screen content
-
 public struct AppNavigationView<Content: View>: View {
     private let content: Content
     
@@ -34,8 +33,7 @@ struct AppNavigationView_Previews: PreviewProvider {
         AppNavigationView(content: {
             Color.gray.edgesIgnoringSafeArea(.all)
                 .setAppNavigationBarItems(leftItem: .previewBack,
-                                       rightFirstItem: .previewUser,
-                                       rightSecondItem: .previewSearch)
+                                       rightItems: [.previewUser, .previewSearch])
         })
     }
 }

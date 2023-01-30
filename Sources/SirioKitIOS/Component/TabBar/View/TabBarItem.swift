@@ -26,8 +26,8 @@ public struct TabBarItem: View {
     
     public var body: some View {
         VStack {
-            if orientationInfo.orientation == .landscape {
-                VStack {
+            if orientationInfo.orientation == .landscape && UIDevice.isIPad {
+                VStack(spacing: 0) {
                     Rectangle()
                         .fill(indicatorColor)
                         .frame(height: Size.TabBar.Item.Indicator.height)
@@ -35,7 +35,13 @@ public struct TabBarItem: View {
                         SirioIcon(icon: itemData.icon)
                             .frame(width: Size.TabBar.Item.Icon.frame, height: Size.TabBar.Item.Icon.frame)
                             .foregroundColor(iconColor)
-                            .overlay(itemData.hasBadge ? Badge() : nil)
+                            .if(itemData.hasBadge, transform: {
+                                $0.overlay(alignment: .topTrailing, content: {
+                                    Badge()
+                                        .padding(.top, Size.AppNavigation.Badge.paddingTop)
+                                        .padding(.trailing, Size.AppNavigation.Badge.paddingTrailing)
+                                })
+                            })
                             .padding(.leading, Size.TabBar.Item.Landscape.Icon.paddingLeading)
                             .padding(.trailing, Size.TabBar.Item.Landscape.Icon.paddingTrailing)
                             .padding(.top, Size.TabBar.Item.Landscape.Icon.paddingTop)
@@ -48,8 +54,7 @@ public struct TabBarItem: View {
                             .padding(.trailing, Size.TabBar.Item.Landscape.Text.paddingTrailing)
                     }
                 }
-                .frame(width: Size.TabBar.Item.Landscape.width, height: Size.TabBar.Item.Landscape.height)
-            } else if orientationInfo.orientation == .portrait {
+            } else {
                 VStack(spacing: 0) {
                     Rectangle()
                         .fill(indicatorColor)
@@ -58,7 +63,13 @@ public struct TabBarItem: View {
                     SirioIcon(icon: itemData.icon)
                         .frame(width: Size.TabBar.Item.Icon.frame, height: Size.TabBar.Item.Icon.frame)
                         .foregroundColor(iconColor)
-                        .overlay(itemData.hasBadge ? Badge() : nil)
+                        .if(itemData.hasBadge, transform: {
+                            $0.overlay(alignment: .topTrailing, content: {
+                                Badge()
+                                    .padding(.top, Size.AppNavigation.Badge.paddingTop)
+                                    .padding(.trailing, Size.AppNavigation.Badge.paddingTrailing)
+                            })
+                        })
                         .padding(.horizontal, Size.TabBar.Item.Portrait.Icon.paddingHorizontal)
                         .padding(.top, Size.TabBar.Item.Portrait.Icon.paddingTop)
                     
@@ -67,7 +78,6 @@ public struct TabBarItem: View {
                         .padding(.top, Size.TabBar.Item.Portrait.Text.paddingTop)
                         .padding(.bottom, Size.TabBar.Item.Portrait.Text.paddingBottom)
                 }
-                .frame(width: Size.TabBar.Item.Portrait.width, height: Size.TabBar.Item.Portrait.height)
             }
         }
     }

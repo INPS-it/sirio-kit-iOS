@@ -13,30 +13,24 @@ import SwiftUI
 ///   - type: The type of navigation
 ///   - title: The title of navigation
 ///   - leftitem: An [AppNavigationItemData] with the content of the left item
-///   - rightFirstItem: An [AppNavigationItemData] with the content of the first right item
-///   - rightSecondItem: An [AppNavigationItemData] with the content of the second right item
-
-
+///   - rightItems: An array of [AppNavigationItemData] with the content of the right items
 public struct AppNavigationBarView: View {
     @Environment(\.colorScheme) var colorScheme
     
     private var type: AppNavigationType
     private var title: String
     private var leftItem: AppNavigationItemData? = nil
-    private var rightFirstItem: AppNavigationItemData? = nil
-    private var rightSecondItem: AppNavigationItemData? = nil
+    private var rightItems: [AppNavigationItemData]? = nil
     
     public init(
         type: AppNavigationType,
         leftItem: AppNavigationItemData?,
         title: String,
-        rightFirstItem: AppNavigationItemData?,
-        rightSecondItem: AppNavigationItemData?){
+        rightItems: [AppNavigationItemData]?){
             self.type = type
             self.title = title
             self.leftItem = leftItem
-            self.rightFirstItem = rightFirstItem
-            self.rightSecondItem = rightSecondItem
+            self.rightItems = rightItems
         }
     
     public var body: some View {
@@ -45,18 +39,15 @@ public struct AppNavigationBarView: View {
         case .standard:
             AppNavigationStandardTitle(title: title,
                                        leftItem: leftItem,
-                                       rightFirstItem: rightFirstItem,
-                                       rightSecondItem: rightSecondItem)
+                                       rightItems: rightItems)
         case .long:
             AppNavigationLongTitle(title: title,
                                    leftItem: leftItem,
-                                   rightFirstItem: rightFirstItem,
-                                   rightSecondItem: rightSecondItem)
+                                   rightItems: rightItems)
         case .big:
             AppNavigationBigTitle(title: title,
                                   leftItem: leftItem,
-                                  rightFirstItem: rightFirstItem,
-                                  rightSecondItem: rightSecondItem)
+                                  rightItems: rightItems)
         }
     }
 }
@@ -67,15 +58,13 @@ struct AppNavigationBarView_Previews: PreviewProvider {
         Group {
             AppNavigationStandardTitle(title: "Titolo pagina",
                                        leftItem: .previewBack,
-                                       rightFirstItem: .previewUser,
-                                       rightSecondItem: .previewSearch)
+                                       rightItems: [.previewUser, .previewSearch])
             .padding(.vertical)
             .colorScheme(.light)
             
             AppNavigationStandardTitle(title: "Titolo pagina",
                                        leftItem: .previewBack,
-                                       rightFirstItem: .previewUser,
-                                       rightSecondItem: .previewSearch)
+                                       rightItems: [.previewUser, .previewSearch])
             .padding(.vertical)
             .colorScheme(.dark)
         }

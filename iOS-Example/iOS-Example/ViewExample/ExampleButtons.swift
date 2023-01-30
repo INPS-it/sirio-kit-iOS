@@ -29,7 +29,7 @@ struct ExampleButtons: View {
             }, label: {
                 SirioText(text: "Secondary", typography: .label_md_400)
             })
-
+            
             // Tertiary Light
             NavigationLink(destination: {
                 ButtonsPreview(type: "Tertiary Light", style: .tertiaryLight)
@@ -38,7 +38,7 @@ struct ExampleButtons: View {
             }, label: {
                 SirioText(text: "Tertiary Light", typography: .label_md_400)
             })
-
+            
             // Tertiary Dark
             NavigationLink(destination: {
                 ButtonsPreview(type: "Tertiary Dark", style: .tertiaryDark)
@@ -56,15 +56,15 @@ struct ExampleButtons: View {
             }, label: {
                 SirioText(text: "Danger", typography: .label_md_400)
             })
-
+            
             // Ghost
             NavigationLink(destination: {
                 ButtonsPreview(type: "Ghost", style: .ghost)
                     .navigationTitle("Ghost")
                     .background(Color.colorBackground)
-                .onTapGesture {
-                    self.hideKeyboard()
-                }
+                    .onTapGesture {
+                        self.hideKeyboard()
+                    }
             }, label: {
                 SirioText(text: "Ghost", typography: .label_md_400)
             })
@@ -81,38 +81,64 @@ struct ExampleButtons_Previews: PreviewProvider {
     }
 }
 
-struct TrilogyButtons: View {
+struct DoubleButtonsView: View {
     var style: SirioButtonStyle
     var size: SirioButtonSize
-    @State var isDisabled: Bool = true
     
     var body: some View {
-        HStack(spacing: 8){
+        VStack {
+            HStack(spacing: 8){
+                
+                ButtonTextOnly(style: style,
+                               size: size,
+                               text: "Text",
+                               isDisabled: .constant(false),
+                               action: {})
+                
+                ButtonTextOnly(style: style,
+                               size: size,
+                               text: "Text",
+                               isDisabled: .constant(true),
+                               action: {})
+                
+            }
             
-            ButtonTextOnly(style: style,
-                           size: size,
-                           text: "Text",
-                           isDisabled: $isDisabled,
-                           action: {})
+            HStack(spacing: 8){
+                
+                ButtonTextIcon(style: style,
+                               size: size,
+                               text: "Text",
+                               icon: .arrowRight,
+                               isDisabled: .constant(false),
+                               action: {})
+                
+                ButtonTextIcon(style: style,
+                               size: size,
+                               text: "Text",
+                               icon: .arrowRight,
+                               isDisabled: .constant(true),
+                               action: {})
+                
+            }
             
-            ButtonTextIcon(style: style,
-                           size: size,
-                           text: "Text",
-                           icon: .arrowRight,
-                           isDisabled: $isDisabled,
-                           action: {})
-            
-            ButtonIconOnly(style: style,
-                           size: size,
-                           icon: .arrowRight,
-                           isDisabled: $isDisabled,
-                           action: {})
-        }
-        .padding(.horizontal)
+            HStack(spacing: 8){
+                
+                ButtonIconOnly(style: style,
+                               size: size,
+                               icon: .arrowRight,
+                               isDisabled: .constant(false),
+                               action: {})
+                
+                ButtonIconOnly(style: style,
+                               size: size,
+                               icon: .arrowRight,
+                               isDisabled: .constant(true),
+                               action: {})
+                
+            }
+        }.padding(.horizontal, 8)
     }
 }
-
-
 
 struct ButtonsPreview: View {
     var type: String
@@ -125,8 +151,7 @@ struct ButtonsPreview: View {
                     SirioText(text: "\(size.rawValue.capitalized)" , typography: .label_md_400)
                         .padding()
                     
-                    TrilogyButtons(style: style, size: size, isDisabled: false)
-                    TrilogyButtons(style: style, size: size, isDisabled: true)
+                    DoubleButtonsView(style: style, size: size)
                 }
             })
             Spacer()

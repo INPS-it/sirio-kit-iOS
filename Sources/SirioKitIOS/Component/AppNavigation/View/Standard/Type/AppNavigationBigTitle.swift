@@ -13,18 +13,15 @@ public struct AppNavigationBigTitle: View {
     
     private var title: String
     private var leftItem: AppNavigationItemData? = nil
-    private var rightFirstItem: AppNavigationItemData? = nil
-    private var rightSecondItem: AppNavigationItemData? = nil
+    private var rightItems: [AppNavigationItemData]? = nil
+
     
     public init(title: String,
                 leftItem: AppNavigationItemData?,
-                rightFirstItem: AppNavigationItemData?,
-                rightSecondItem: AppNavigationItemData?){
-        
+                rightItems: [AppNavigationItemData]?){
         self.title = title
         self.leftItem = leftItem
-        self.rightFirstItem = rightFirstItem
-        self.rightSecondItem = rightSecondItem
+        self.rightItems = rightItems
     }
     
     public var body: some View {
@@ -34,10 +31,11 @@ public struct AppNavigationBigTitle: View {
                 
                 Spacer()
                 
-                AppNavigationItem(item: rightSecondItem)
-                
-                AppNavigationItem(item: rightFirstItem)
-                
+                if let rightItems = rightItems {
+                    ForEach(rightItems.prefix(2)) { item in
+                        AppNavigationItem(item: item)
+                    }
+                }
             }
             .frame(height: Size.AppNavigation.BigTitle.height)
             .padding(.horizontal, Size.AppNavigation.paddingHorizontal)
@@ -57,14 +55,12 @@ struct AppNavigationBigTitle_Previews: PreviewProvider {
         Group {
             AppNavigationBigTitle(title: "Titolo grande",
                                   leftItem: .previewBack,
-                                  rightFirstItem: .previewUser,
-                                  rightSecondItem: .previewSearch)
+                                  rightItems: [.previewUser, .previewSearch])
             .padding(.vertical)
             .colorScheme(.light)
             AppNavigationBigTitle(title: "Titolo grande",
                                   leftItem: .previewBack,
-                                  rightFirstItem: .previewUser,
-                                  rightSecondItem: .previewSearch)
+                                  rightItems: [.previewUser, .previewSearch])
             .padding(.vertical)
             .colorScheme(.dark)
         }

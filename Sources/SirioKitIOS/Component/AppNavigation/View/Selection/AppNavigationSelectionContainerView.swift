@@ -9,16 +9,13 @@
 import SwiftUI
 
 /// A container for Sirio App Navigation Selection
-
-
 public struct AppNavigationSelectionContainerView<Content: View>: View {
     private let content: Content
-   
+    
     @State private var title: String = ""
     @State private var leftItem: AppNavigationItemData? = nil
-    @State private var rightFirstItem: AppNavigationItemData? = nil
-    @State private var rightSecondItem: AppNavigationItemData? = nil
-
+    @State private var rightItems: [AppNavigationItemData]? = nil
+    
     public init(@ViewBuilder content: () -> Content){
         self.content = content()
     }
@@ -26,9 +23,8 @@ public struct AppNavigationSelectionContainerView<Content: View>: View {
     public var body: some View {
         VStack(spacing: 0) {
             AppNavigationSelectionBarView(title: title,
-                                        leftItem: leftItem,
-                                        rightFirstItem: rightFirstItem,
-                                        rightSecondItem: rightSecondItem)
+                                          leftItem: leftItem,
+                                          rightItems: rightItems)
             content
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
@@ -39,15 +35,9 @@ public struct AppNavigationSelectionContainerView<Content: View>: View {
             }
         )
         .onPreferenceChange(
-            AppNavigationRightFirstItemPreferenceKeys.self, perform: {
+            AppNavigationRightItemsPreferenceKeys.self, perform: {
                 value in
-                self.rightFirstItem = value
-            }
-        )
-        .onPreferenceChange(
-            AppNavigationRightSecondItemPreferenceKeys.self, perform: {
-                value in
-                self.rightSecondItem = value
+                self.rightItems = value
             }
         )
     }

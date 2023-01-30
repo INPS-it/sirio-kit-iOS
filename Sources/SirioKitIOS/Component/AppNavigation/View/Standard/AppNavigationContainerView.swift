@@ -16,8 +16,7 @@ public struct AppNavigationContainerView<Content: View>: View {
     @State private var type: AppNavigationType = .standard // Standard is default type
     @State private var title: String = ""
     @State private var leftItem: AppNavigationItemData? = nil
-    @State private var rightFirstItem: AppNavigationItemData? = nil
-    @State private var rightSecondItem: AppNavigationItemData? = nil
+    @State private var rightItems: [AppNavigationItemData]? = nil
     
     public init(@ViewBuilder content: () -> Content){
         self.content = content()
@@ -28,8 +27,7 @@ public struct AppNavigationContainerView<Content: View>: View {
             AppNavigationBarView(type: type,
                                  leftItem: leftItem,
                                  title: title,
-                                 rightFirstItem: rightFirstItem,
-                                 rightSecondItem: rightSecondItem)
+                                 rightItems: rightItems)
             content
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
@@ -52,15 +50,9 @@ public struct AppNavigationContainerView<Content: View>: View {
             }
         )
         .onPreferenceChange(
-            AppNavigationRightFirstItemPreferenceKeys.self, perform: {
+            AppNavigationRightItemsPreferenceKeys.self, perform: {
                 value in
-                self.rightFirstItem = value
-            }
-        )
-        .onPreferenceChange(
-            AppNavigationRightSecondItemPreferenceKeys.self, perform: {
-                value in
-                self.rightSecondItem = value
+                self.rightItems = value
             }
         )
     }
@@ -74,8 +66,7 @@ struct AppNavigationContainerView_Previews: PreviewProvider {
                 Text("Hello, world")
                     .foregroundColor(.white)
                     .setAppNavigationBarItems(leftItem: .previewBack,
-                                        rightFirstItem: .previewUser,
-                                        rightSecondItem: .previewSearch)
+                                              rightItems: [.previewUser, .previewSearch])
             }
         })
     }

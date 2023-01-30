@@ -12,26 +12,22 @@ import SwiftUI
 /// - Parameters:
 ///   - title: The title of navigation
 ///   - leftitem: An [AppNavigationItemData] with the content of the left item
-///   - rightFirstItem: An [AppNavigationItemData] with the content of the first right item
-///   - rightSecondItem: An [AppNavigationItemData] with the content of the second right item
+///   - rightItems: An array of [AppNavigationItemData] with the content of the right items
 
 public struct AppNavigationSelectionBarView: View {
     @Environment(\.colorScheme) var colorScheme
     
     private var title: String
     private var leftItem: AppNavigationItemData? = nil
-    private var rightFirstItem: AppNavigationItemData? = nil
-    private var rightSecondItem: AppNavigationItemData? = nil
+    private var rightItems: [AppNavigationItemData]? = nil
     
     public init(title: String,
                 leftItem: AppNavigationItemData?,
-                rightFirstItem: AppNavigationItemData?,
-                rightSecondItem: AppNavigationItemData?){
+                rightItems: [AppNavigationItemData]?){
         
         self.title = title
         self.leftItem = leftItem
-        self.rightFirstItem = rightFirstItem
-        self.rightSecondItem = rightSecondItem
+        self.rightItems = rightItems
     }
     
     public var body: some View {
@@ -45,12 +41,12 @@ public struct AppNavigationSelectionBarView: View {
             
             Spacer()
 
-            AppNavigationItem(item: rightSecondItem)
-                .colorScheme(colorScheme == .dark ? .light : .dark)
-            
-            AppNavigationItem(item: rightFirstItem)
-                .colorScheme(colorScheme == .dark ? .light : .dark)
-
+            if let rightItems = rightItems {
+                ForEach(rightItems.prefix(2)) { item in
+                    AppNavigationItem(item: item)
+                        .colorScheme(colorScheme == .dark ? .light : .dark)
+                }
+            }
         }
         
         .frame(height: Size.AppNavigation.height)
@@ -65,14 +61,13 @@ struct AppNavigationSelectionBarView_Previews: PreviewProvider {
         Group {
             AppNavigationSelectionBarView(title: "1 Elemento",
                                         leftItem: .previewBack,
-                                        rightFirstItem: .previewUser,
-                                        rightSecondItem: .previewBell)
+                                        rightItems: [.previewUser, .previewBell])
             .padding(.vertical)
             .colorScheme(.light)
             AppNavigationSelectionBarView(title: "1 Elemento",
                                         leftItem: .previewBack,
-                                        rightFirstItem: .previewUser,
-                                        rightSecondItem: .previewSearch)
+                                        rightItems: [.previewUser, .previewBell])
+
             .padding(.vertical)
             .colorScheme(.dark)
         }
