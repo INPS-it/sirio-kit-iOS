@@ -32,9 +32,9 @@ struct SirioButtonTextOnlyStyle: ButtonStyle {
                 Spacer()
             }
         }
-        .contentShape(Rectangle())
         .padding(.horizontal, paddingHorizontal)
         .padding(.vertical, paddingVertical)
+        .contentShape(Rectangle())
         .background(getSirioButtonBackgroundColor(style: style, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed))
         .cornerRadius(Size.Button.Border.cornerRadius)
         .overlay(

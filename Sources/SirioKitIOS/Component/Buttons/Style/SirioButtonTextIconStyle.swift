@@ -62,9 +62,9 @@ struct SirioButtonTextIconStyle: ButtonStyle {
                 Spacer()
             }
         }
-        .contentShape(Rectangle())
         .padding(.horizontal, paddingHorizontal)
         .padding(.vertical, paddingVertical)
+        .contentShape(Rectangle())
         .background(colorBackground)
         .cornerRadius(Size.Button.Border.cornerRadius)
         .overlay(
