@@ -13,15 +13,18 @@ import SwiftUI
 ///   - text: The label above the progress
 ///   - maxValue: The max value of the progress
 ///   - currentValue: The current progress value between 0 and [maxValue]
+///   - showPercentage: A boolean flag for show percentage
 public struct ProgressBar: View {
     private let text: String
     private let maxValue: CGFloat
     @Binding private var currentValue: CGFloat
+    private let showPercentage: Bool
 
-    public init(text: String, maxValue: CGFloat = 100, currentValue: Binding<CGFloat>){
+    public init(text: String, maxValue: CGFloat = 100, currentValue: Binding<CGFloat>, showPercentage: Bool = true){
         self.text = text
         self.maxValue = maxValue
         self._currentValue = currentValue
+        self.showPercentage = showPercentage
     }
     
     public var body: some View {
@@ -53,12 +56,14 @@ public struct ProgressBar: View {
             .frame(height: Size.ProgressBar.height)
             .padding(.trailing, Size.ProgressBar.padding)
             
-            HStack{
-                Spacer()
-                SirioText(text: percentage,
-                          typography: Typography.ProgressBar.number)
+            if showPercentage {
+                HStack{
+                    Spacer()
+                    SirioText(text: percentage,
+                              typography: Typography.ProgressBar.number)
 
-                .foregroundColor(Color.ProgressBar.Number.default)
+                    .foregroundColor(Color.ProgressBar.Number.default)
+                }
             }
         }
     }
