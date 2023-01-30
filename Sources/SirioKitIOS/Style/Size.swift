@@ -37,10 +37,9 @@ extension Size {
 // MARK: Badge
 extension Size {
     struct Badge {
-        static let circle: CGFloat = 8
+        static let circleWhite: CGFloat = 8
+        static let circleRed: CGFloat = 6
         static let border: CGFloat = 1.5
-        static let paddingTop: CGFloat = 3
-        static let overlay: CGFloat = 22
     }
 }
 
@@ -133,6 +132,11 @@ extension Size {
             static let border: CGFloat = 6
             static let item: CGFloat = 16
             static let paddingHorizontal: CGFloat = 16
+        }
+        
+        struct Badge {
+            static let paddingTop: CGFloat = 3
+            static let paddingTrailing: CGFloat = 1
         }
     }
 }

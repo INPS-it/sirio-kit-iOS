@@ -43,11 +43,6 @@ extension Color {
         
         static let background = StyleDictionaryColor.aliasBackgroundColorPrimaryLight0.color
         
-        struct Badge {
-            static let background = StyleDictionaryColor.globalSemanticAlert100.color
-            static let border = StyleDictionaryColor.globalPrimary000.color
-        }
-        
         struct Item {
             
             struct Text {
@@ -64,6 +59,15 @@ extension Color {
                 static let selected = StyleDictionaryColor.aliasInteractivePrimaryDefault.color
             }
         }
+    }
+}
+
+// MARK: BADGE
+extension Color {
+    
+    struct Badge {
+        static let background = StyleDictionaryColor.globalSemanticAlert100.color
+        static let border = StyleDictionaryColor.globalPrimary000.color
     }
 }
 

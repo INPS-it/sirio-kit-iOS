@@ -26,6 +26,13 @@ struct AppNavigationItemStyle: ButtonStyle {
                     SirioIcon(icon: item.icon)
                         .foregroundColor(iconColor)
                         .frame(width: Size.AppNavigation.Item.icon, height: Size.AppNavigation.Item.icon)
+                        .if(item.hasBadge, transform: {
+                            $0.overlay(alignment: .topTrailing, content: {
+                                Badge()
+                                    .padding(.top, Size.AppNavigation.Badge.paddingTop)
+                                    .padding(.trailing, Size.AppNavigation.Badge.paddingTrailing)
+                            })
+                        })
                 }
             }
             .frame(width: Size.AppNavigation.Item.area, height: Size.AppNavigation.Item.area)
