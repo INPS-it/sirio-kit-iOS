@@ -90,31 +90,44 @@ struct ExampleDialog_Previews: PreviewProvider {
 
 struct Dialog1: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @State var isPresented: Bool = true
+    @State var isPresented: Bool = false
     
     var body: some View {
         VStack {
             
-        }.dialog(isPresented: $isPresented,
-                 type: .default,
-                 title: "Titolo finestra di dialogo",
-                 subtitle: .loremIpsum,
-                 textfield1: .init(type: .info, label: "Label", placeholder: "Placeholder", text: ""),
-                 textfield2: .init(type: .info, label: "Label", placeholder: "Placeholder", text: ""),
-                 textFirstButton: "Text",
-                 actionFirstButton: nil,
-                 textSecondButton: "Text",
-                 actionSecondButton: nil,
-                 onTapInfoAction: nil,
-                 onTapCloseAction: {self.mode.wrappedValue.dismiss()},
-                 isVisibleInfoIcon: true)
+        }
+        .dialog(isPresented: $isPresented,
+                type: .default,
+                title: "Titolo finestra di dialogo",
+                subtitle: .loremIpsum,
+                textfield1: .init(type: .info, label: "Label", placeholder: "Placeholder", text: ""),
+                textfield2: .init(type: .info, label: "Label", placeholder: "Placeholder", text: ""),
+                textFirstButton: "Text",
+                actionFirstButton: nil,
+                textSecondButton: "Text",
+                actionSecondButton: nil,
+                onTapInfoAction: nil,
+                onTapCloseAction: {
+            self.isPresented = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.mode.wrappedValue.dismiss()
+            })
+        },
+                isVisibleInfoIcon: true)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.isPresented = true
+            })
+        }
     }
 }
 
 
+
+
 struct Dialog2: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @State var isPresented: Bool = true
+    @State var isPresented: Bool = false
     
     var body: some View {
         VStack {
@@ -130,14 +143,25 @@ struct Dialog2: View {
                  textSecondButton: "Text",
                  actionSecondButton: nil,
                  onTapInfoAction: nil,
-                 onTapCloseAction: {self.mode.wrappedValue.dismiss()},
+                 onTapCloseAction: {
+            self.isPresented = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.mode.wrappedValue.dismiss()
+            })
+        },
                  isVisibleInfoIcon: true)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.isPresented = true
+            })
+        }
     }
+    
 }
 
 struct Dialog3: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @State var isPresented: Bool = true
+    @State var isPresented: Bool = false
     
     var body: some View {
         VStack {
@@ -153,15 +177,26 @@ struct Dialog3: View {
                  textSecondButton: "Text",
                  actionSecondButton: nil,
                  onTapInfoAction: nil,
-                 onTapCloseAction: {self.mode.wrappedValue.dismiss()},
+                 onTapCloseAction: {
+            self.isPresented = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.mode.wrappedValue.dismiss()
+            })
+        },
                  isVisibleInfoIcon: true)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.isPresented = true
+            })
+        }
+        
     }
 }
 
 
 struct Dialog4: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @State var isPresented: Bool = true
+    @State var isPresented: Bool = false
     
     var body: some View {
         VStack {
@@ -177,14 +212,25 @@ struct Dialog4: View {
                  textSecondButton: "Text",
                  actionSecondButton: nil,
                  onTapInfoAction: nil,
-                 onTapCloseAction: {self.mode.wrappedValue.dismiss()},
+                 onTapCloseAction: {
+            self.isPresented = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.mode.wrappedValue.dismiss()
+            })
+        },
                  isVisibleInfoIcon: true)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.isPresented = true
+            })
+        }
+        
     }
 }
 
 struct Dialog5: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @State var isPresented: Bool = true
+    @State var isPresented: Bool = false
     
     var body: some View {
         VStack {
@@ -200,14 +246,25 @@ struct Dialog5: View {
                  textSecondButton: nil,
                  actionSecondButton: nil,
                  onTapInfoAction: nil,
-                 onTapCloseAction: {self.mode.wrappedValue.dismiss()},
+                 onTapCloseAction: {
+            self.isPresented = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.mode.wrappedValue.dismiss()
+            })
+        },
                  isVisibleInfoIcon: true)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.isPresented = true
+            })
+        }
+        
     }
 }
 
 struct DialogAlert: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @State var isPresented: Bool = true
+    @State var isPresented: Bool = false
     
     var body: some View {
         VStack {
@@ -223,14 +280,25 @@ struct DialogAlert: View {
                  textSecondButton: "Text",
                  actionSecondButton: nil,
                  onTapInfoAction: nil,
-                 onTapCloseAction: {self.mode.wrappedValue.dismiss()},
+                 onTapCloseAction: {
+            self.isPresented = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.mode.wrappedValue.dismiss()
+            })
+        },
                  isVisibleInfoIcon: true)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.isPresented = true
+            })
+        }
+        
     }
 }
 
 struct DialogWarning: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @State var isPresented: Bool = true
+    @State var isPresented: Bool = false
     
     var body: some View {
         VStack {
@@ -246,7 +314,18 @@ struct DialogWarning: View {
                  textSecondButton: "Text",
                  actionSecondButton: nil,
                  onTapInfoAction: nil,
-                 onTapCloseAction: {self.mode.wrappedValue.dismiss()},
+                 onTapCloseAction: {
+            self.isPresented = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.mode.wrappedValue.dismiss()
+            })
+        },
                  isVisibleInfoIcon: true)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.isPresented = true
+            })
+        }
+        
     }
 }

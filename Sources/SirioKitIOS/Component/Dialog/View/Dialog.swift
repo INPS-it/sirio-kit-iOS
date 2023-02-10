@@ -46,8 +46,8 @@ public struct Dialog: View {
     var actionSecondButton: (() -> Void)?
     
     // Action
-    var onTapInfo: (() -> Void)?
-    var onTapClose: (() -> Void)?
+    var onTapInfoAction: (() -> Void)?
+    var onTapCloseAction: (() -> Void)?
     
     var isVisibleInfoIcon: Bool
     
@@ -63,8 +63,8 @@ public struct Dialog: View {
                 actionFirstButton: (() -> Void)?,
                 textSecondButton: String?,
                 actionSecondButton: (() -> Void)?,
-                onTapInfo: (() -> Void)?,
-                onTapClose: (() -> Void)?,
+                onTapInfoAction: (() -> Void)?,
+                onTapCloseAction: (() -> Void)?,
                 isVisibleInfoIcon: Bool){
         self.type = type
         self.isVisibleInfoIcon = isVisibleInfoIcon
@@ -76,8 +76,8 @@ public struct Dialog: View {
         self.actionFirstButton = actionFirstButton
         self.textSecondButton = textSecondButton
         self.actionSecondButton = actionSecondButton
-        self.onTapInfo = onTapInfo
-        self.onTapClose = onTapClose
+        self.onTapInfoAction = onTapInfoAction
+        self.onTapCloseAction = onTapCloseAction
     }
     
     private var iconColor: Color {
@@ -121,13 +121,13 @@ public struct Dialog: View {
                     HStack { // Close
                         Spacer()
                         ButtonIconOnly(style: .ghost, size: .large, icon: .times, action: {
-                            onTapClose?()
+                            onTapCloseAction?()
                         })
                     }
                     if let icon = icon, isVisibleInfoIcon {
                         HStack(spacing: Size.Dialog.noSpacing){
                             Button(action: {
-                                onTapInfo?()
+                                onTapInfoAction?()
                                 
                             }, label: {
                                 SirioIcon(icon: icon)
@@ -242,8 +242,8 @@ struct Dialog_Previews: PreviewProvider {
                actionFirstButton: nil,
                textSecondButton: "Text",
                actionSecondButton: nil,
-               onTapInfo: nil,
-               onTapClose: nil,
+               onTapInfoAction: nil,
+               onTapCloseAction: nil,
                isVisibleInfoIcon: true)
     }
 }

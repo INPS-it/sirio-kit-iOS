@@ -212,13 +212,13 @@ extension Color {
         
         struct Text {
             static let dark = StyleDictionaryColor.aliasTextColorPrimaryLight0.color
-            static let light = StyleDictionaryColor.aliasTextColorPrimaryDark110.color // dovrebbe essere 0 ma non c'è
+            static let light = StyleDictionaryColor.aliasTextColorPrimaryDark110.color
             static let disabled = StyleDictionaryColor.aliasTextColorDisabled.color
         }
         
         struct Icon {
             static let dark = StyleDictionaryColor.aliasTextColorPrimaryLight0.color
-            static let light = StyleDictionaryColor.aliasTextColorPrimaryDark110.color // dovrebbe essere 0 ma non c'è
+            static let light = StyleDictionaryColor.aliasTextColorPrimaryDark110.color
             static let disabled = StyleDictionaryColor.aliasTextColorDisabled.color
         }
     }

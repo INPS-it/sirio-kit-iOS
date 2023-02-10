@@ -127,19 +127,20 @@ public extension View {
         onTapInfoAction: (() -> Void)? = nil,
         onTapCloseAction: (() -> Void)? = nil,
         isVisibleInfoIcon: Bool = true) -> some View {
-            return modifier(DialogModifier(isPresented: isPresented,
-                                           type: type,
-                                           title: title,
-                                           subtitle: subtitle,
-                                           textfield1: textfield1,
-                                           textfield2: textfield2,
-                                           textFirstButton: textFirstButton,
-                                           actionFirstButton: actionFirstButton,
-                                           textSecondButton: textSecondButton,
-                                           actionSecondButton: actionSecondButton,
-                                           onTapInfoAction: onTapInfoAction,
-                                           onTapCloseAction: onTapCloseAction,
-                                           isVisibleInfoIcon: isVisibleInfoIcon))
+            return modifier(ClearModifier(isPresented: isPresented, fullScreenContent: {
+                Dialog(type: type,
+                       title: title,
+                       subtitle: subtitle,
+                       textfield1: textfield1,
+                       textfield2: textfield2,
+                       textFirstButton: textFirstButton,
+                       actionFirstButton: actionFirstButton,
+                       textSecondButton: textSecondButton,
+                       actionSecondButton: actionSecondButton,
+                       onTapInfoAction: onTapInfoAction,
+                       onTapCloseAction: onTapCloseAction,
+                       isVisibleInfoIcon: isVisibleInfoIcon)
+            }))
         }
 }
 
