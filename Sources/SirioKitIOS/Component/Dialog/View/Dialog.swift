@@ -173,7 +173,7 @@ public struct Dialog: View {
             .frame(maxHeight: Size.Dialog.maxHeight)
             .padding(Size.Dialog.padding)
             .background(Color.Dialog.Background.default)
-            .cornerRadius(Size.Dialog.cornerRadius)
+            .cornerRadius(Size.Dialog.cornerRadius, corners: [.topLeft, .topRight])
             .fixedSize(horizontal: false, vertical: true)
             
         } // Blur View

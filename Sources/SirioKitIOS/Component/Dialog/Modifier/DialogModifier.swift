@@ -84,8 +84,8 @@ public struct DialogModifier: ViewModifier {
                    actionFirstButton: actionFirstButton,
                    textSecondButton: textSecondButton,
                    actionSecondButton: actionSecondButton,
-                   onTapInfo: onTapInfoAction,
-                   onTapClose: onTapCloseAction,
+                   onTapInfoAction: onTapInfoAction,
+                   onTapCloseAction: onTapCloseAction,
                    isVisibleInfoIcon: isVisibleInfoIcon)
         }
     }
