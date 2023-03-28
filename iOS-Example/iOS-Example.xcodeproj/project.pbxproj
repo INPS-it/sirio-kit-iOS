@@ -213,7 +213,7 @@
 			);
 			mainGroup = 7E7FB5D6284E05A100F80FC7;
 			packageReferences = (
-				7EE578C02907E33E00B1E259 /* XCRemoteSwiftPackageReference "sirio-kit-ios" */,
+				7EE578C02907E33E00B1E259 /* XCRemoteSwiftPackageReference "sirio-kit-iOS" */,
 			);
 			productRefGroup = 7E7FB5E0284E05A100F80FC7 /* Products */;
 			projectDirPath = "";
@@ -483,12 +483,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		7EE578C02907E33E00B1E259 /* XCRemoteSwiftPackageReference "sirio-kit-ios" */ = {
+		7EE578C02907E33E00B1E259 /* XCRemoteSwiftPackageReference "sirio-kit-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/INPS-it/sirio-kit-iOS/";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
+				minimumVersion = 5.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -496,7 +496,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		7EE578C12907E33E00B1E259 /* SirioKitIOS */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7EE578C02907E33E00B1E259 /* XCRemoteSwiftPackageReference "sirio-kit-ios" */;
+			package = 7EE578C02907E33E00B1E259 /* XCRemoteSwiftPackageReference "sirio-kit-iOS" */;
 			productName = SirioKitIOS;
 		};
 /* End XCSwiftPackageProductDependency section */

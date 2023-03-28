@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/INPS-it/sirio-kit-iOS/",
       "state" : {
-        "revision" : "ecfa78b3c066a85297bce43322453d824733d694",
-        "version" : "4.0.0"
+        "revision" : "a499ae6045607fc40683f9c7ed8c7cb92c88f666",
+        "version" : "5.0.0"
       }
     }
   ],
