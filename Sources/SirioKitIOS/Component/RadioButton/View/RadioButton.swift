@@ -14,20 +14,25 @@ import SwiftUI
 ///   - isChecked: Whether the radio button is checked
 ///   - isDisabled: Whether the radio button is disabled
 ///   - callback: Callback that is executed when the component is tapped
+///   - accessibilityLabel: A string that identifies the accessibility element
+
 public struct RadioButton: View {
     var text: String?
     @Binding var isChecked: Bool
     @Binding var isDisabled: Bool
     var callback: ((String?) -> ())?
+    var accessibilityLabel: String?
     
     public init(text: String?,
                 isChecked: Binding<Bool>,
                 isDisabled: Binding<Bool> = .constant(false),
-                callback: ((String?) -> ())?) {
+                callback: ((String?) -> ())?,
+                accessibilityLabel: String? = nil) {
         self.text = text
         self._isChecked = isChecked
         self._isDisabled = isDisabled
         self.callback = callback
+        self.accessibilityLabel = accessibilityLabel
     }
     
     public var body: some View {
@@ -44,6 +49,7 @@ public struct RadioButton: View {
         .buttonStyle(RadioButtonStyle(text: text,
                                       isChecked: isChecked,
                                       isDisabled: $isDisabled))
+        .setAccessibilityLabel(accessibilityLabel)
     }
     
     

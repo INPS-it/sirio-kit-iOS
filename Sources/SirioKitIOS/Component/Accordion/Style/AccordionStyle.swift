@@ -26,7 +26,7 @@ struct AccordionStyle: ButtonStyle {
                 
                 Spacer()
                 
-                SirioIcon(icon: isOpen ? .angleUp : .angleDown)
+                SirioIcon(data: .init(icon: isOpen ? .angleUp : .angleDown))
                     .frame(width: Size.Accordion.Icon.frame,
                            height: Size.Accordion.Icon.frame)
                     .foregroundColor(iconColor)

@@ -12,27 +12,32 @@ import SwiftUI
 /// - Parameters:
 ///   - style: The [SirioButtonStyle]
 ///   - size: The [SirioButtonSize]
-///   - icon: The button icon
+///   - iconData: The data for icon button
 ///   - isDisabled: Whether the button is disabled
 ///   - action: Callback that is executed when the button is tapped
+///   - accessibilityLabel: A string that identifies the accessibility element
+
 public struct ButtonIconOnly: View {
     
     private var style: SirioButtonStyle // primary, secondary...
     private var size: SirioButtonSize // large, medium, small
-    private var icon: AwesomeIcon
+    private var iconData: SirioIconData
     @Binding private var isDisabled: Bool
     private var action: () -> Void
+    private var accessibilityLabel: String?
     
     public init(style: SirioButtonStyle,
                 size: SirioButtonSize,
-                icon: AwesomeIcon,
+                iconData: SirioIconData,
                 isDisabled: Binding<Bool> = .constant(false),
-                action: @escaping () -> Void){
+                action: @escaping () -> Void,
+                accessibilityLabel: String? = nil){
         self.style = style
         self.size = size
-        self.icon = icon
+        self.iconData = iconData
         self._isDisabled = isDisabled
         self.action = action
+        self.accessibilityLabel = accessibilityLabel
     }
     
     public var body: some View {
@@ -43,7 +48,8 @@ public struct ButtonIconOnly: View {
             // Inside style
         })
         .disabled(isDisabled)
-        .buttonStyle(SirioButtonIconOnlyStyle(style: style, size: size, icon: icon, isDisabled: $isDisabled))
+        .buttonStyle(SirioButtonIconOnlyStyle(style: style, size: size, iconData: iconData, isDisabled: $isDisabled))
+        .setAccessibilityLabel(accessibilityLabel)
     }
 }
 
@@ -74,7 +80,7 @@ struct TrilogyButtonsIconOnly: View {
                 ForEach(SirioButtonSize.allCases, id: \.self, content: { size in
                     ButtonIconOnly(style: style,
                                    size: size,
-                                   icon: .arrowRight,
+                                   iconData: .init(icon: .arrowRight),
                                    isDisabled: .constant(false),
                                    action: {})
                 })
@@ -84,7 +90,7 @@ struct TrilogyButtonsIconOnly: View {
                 ForEach(SirioButtonSize.allCases, id: \.self, content: { size in
                     ButtonIconOnly(style: style,
                                    size: size,
-                                   icon: .arrowRight,
+                                   iconData: .init(icon: .arrowRight),
                                    isDisabled: .constant(true),
                                    action: {})
                 })

@@ -20,7 +20,7 @@ struct ChipsLabelIconStyle: ButtonStyle {
     
     func makeBody(configuration: Self.Configuration) -> some View {
         HStack(spacing: 8) {
-            SirioIcon(icon: icon)
+            SirioIcon(data: .init(icon: icon))
                 .frame(width: Size.Chips.Icon.frame, height: Size.Chips.Icon.frame)
                 .foregroundColor(getTextAndIconColor(configuration: configuration))
             SirioText(text: text, typography: Typography.Chips.style)

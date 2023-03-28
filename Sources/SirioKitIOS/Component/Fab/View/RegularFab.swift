@@ -20,6 +20,7 @@ public struct RegularFab: View {
     
     public var body: some View {
         CustomFab(data: data, size: Size.Fab.regular)
+            .setAccessibilityLabel(data.accessibilityLabel)
     }
 }
 

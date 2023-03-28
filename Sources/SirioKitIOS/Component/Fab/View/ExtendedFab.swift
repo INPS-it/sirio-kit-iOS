@@ -22,9 +22,10 @@ public struct ExtendedFab: View {
         Button(action: {
             data.action?()
         }, label: {
-            
+            // Inside Style
         })
         .buttonStyle(FabIconLabelStyle(data: data))
+        .setAccessibilityLabel(data.accessibilityLabel)
     }
 }
 

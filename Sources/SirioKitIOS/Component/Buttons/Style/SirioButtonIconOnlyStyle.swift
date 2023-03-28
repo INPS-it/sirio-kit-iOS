@@ -12,7 +12,7 @@ import SwiftUI
 struct SirioButtonIconOnlyStyle: ButtonStyle {
     var style: SirioButtonStyle
     var size: SirioButtonSize
-    var icon: AwesomeIcon
+    var iconData: SirioIconData
     @Binding var isDisabled: Bool
     @State var isHover = false
     @State var isPressed = false
@@ -20,7 +20,7 @@ struct SirioButtonIconOnlyStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         
         VStack {
-            SirioIcon(icon: icon)
+            SirioIcon(data: iconData)
                 .frame(width: iconFrame, height: iconFrame)
                 .foregroundColor(getSirioButtonIconColor(style: style, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed))
         }

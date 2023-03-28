@@ -13,7 +13,7 @@ struct SirioButtonTextIconStyle: ButtonStyle {
     var style: SirioButtonStyle
     var size: SirioButtonSize
     var text: String
-    var icon: AwesomeIcon
+    var iconData: SirioIconData
     @Binding var isDisabled: Bool
     var isFullSize: Bool
     @State var isHover = false
@@ -24,11 +24,11 @@ struct SirioButtonTextIconStyle: ButtonStyle {
     @State var colorBackground: Color
     @State var colorBorder: Color
     
-    init(style: SirioButtonStyle, size: SirioButtonSize, text: String, icon: AwesomeIcon, isDisabled: Binding<Bool>, isFullSize: Bool){
+    init(style: SirioButtonStyle, size: SirioButtonSize, text: String, iconData: SirioIconData, isDisabled: Binding<Bool>, isFullSize: Bool){
         self.style = style
         self.size = size
         self.text = text
-        self.icon = icon
+        self.iconData = iconData
         self._isDisabled = isDisabled
         self.isFullSize = isFullSize
         
@@ -54,7 +54,7 @@ struct SirioButtonTextIconStyle: ButtonStyle {
                 .lineLimit(1)
                 .foregroundColor(colorText)
             
-            SirioIcon(icon: icon)
+            SirioIcon(data: iconData)
                 .frame(width: iconFrame, height: iconFrame)
                 .foregroundColor(colorIcon)
 

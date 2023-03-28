@@ -108,14 +108,14 @@ struct DoubleButtonsView: View {
                 ButtonTextIcon(style: style,
                                size: size,
                                text: "Text",
-                               icon: .arrowRight,
+                               iconData: .init(icon: .arrowRight),
                                isDisabled: .constant(false),
                                action: {})
                 
                 ButtonTextIcon(style: style,
                                size: size,
                                text: "Text",
-                               icon: .arrowRight,
+                               iconData: .init(icon: .arrowRight),
                                isDisabled: .constant(true),
                                action: {})
                 
@@ -125,13 +125,13 @@ struct DoubleButtonsView: View {
                 
                 ButtonIconOnly(style: style,
                                size: size,
-                               icon: .arrowRight,
+                               iconData: .init(icon: .arrowRight),
                                isDisabled: .constant(false),
                                action: {})
                 
                 ButtonIconOnly(style: style,
                                size: size,
-                               icon: .arrowRight,
+                               iconData: .init(icon: .arrowRight),
                                isDisabled: .constant(true),
                                action: {})
                 

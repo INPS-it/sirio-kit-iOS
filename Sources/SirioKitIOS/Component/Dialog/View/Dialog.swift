@@ -26,6 +26,8 @@ public enum DialogType: CaseIterable {
 ///   - onTapInfo: Callback that is executed when the info button is tapped
 ///   - onTapClose: Callback that is executed when the close button is tapped
 ///   - isVisibleInfoIcon: A boolean to show the info icon
+///   - accessibilityLabelSubtitle: A string that identifies the subtitle accessibility element
+
 public struct Dialog: View {
     var type: DialogType
     var title: String?
@@ -51,6 +53,8 @@ public struct Dialog: View {
     
     var isVisibleInfoIcon: Bool
     
+    var accessibilityLabelSubtitle: String?
+    
     @FocusState private var isTextField1Focused: Bool
     @FocusState private var isTextField2Focused: Bool
     
@@ -65,7 +69,8 @@ public struct Dialog: View {
                 actionSecondButton: (() -> Void)?,
                 onTapInfoAction: (() -> Void)?,
                 onTapCloseAction: (() -> Void)?,
-                isVisibleInfoIcon: Bool){
+                isVisibleInfoIcon: Bool,
+                accessibilityLabelSubtitle: String? = nil){
         self.type = type
         self.isVisibleInfoIcon = isVisibleInfoIcon
         self.title = title
@@ -78,6 +83,7 @@ public struct Dialog: View {
         self.actionSecondButton = actionSecondButton
         self.onTapInfoAction = onTapInfoAction
         self.onTapCloseAction = onTapCloseAction
+        self.accessibilityLabelSubtitle = accessibilityLabelSubtitle
     }
     
     private var iconColor: Color {
@@ -120,7 +126,7 @@ public struct Dialog: View {
                 VStack(spacing: Size.Dialog.noSpacing){ // Icons View
                     HStack { // Close
                         Spacer()
-                        ButtonIconOnly(style: .ghost, size: .large, icon: .times, action: {
+                        ButtonIconOnly(style: .ghost, size: .large, iconData: .init(icon: .times), action: {
                             onTapCloseAction?()
                         })
                     }
@@ -130,7 +136,7 @@ public struct Dialog: View {
                                 onTapInfoAction?()
                                 
                             }, label: {
-                                SirioIcon(icon: icon)
+                                SirioIcon(data: .init(icon: icon))
                                     .frame(width: Size.Dialog.InfoIcon.frame,
                                            height: Size.Dialog.InfoIcon.frame)
                                     .foregroundColor(iconColor)
@@ -150,6 +156,7 @@ public struct Dialog: View {
                     SirioText(text: subtitle ?? "", typography: Typography.Dialog.subtitle)
                         .foregroundColor(Color.Dialog.subtitle)
                 })
+                .setAccessibilityLabel(accessibilityLabelSubtitle)
                 
                 ViewTextField(textfield: textfield1)
                 

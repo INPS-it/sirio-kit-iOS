@@ -16,6 +16,8 @@ import UIKit
 ///   - isDisabled: Whether the accordion is disabled
 ///   - isOpen: Whether the accordion is open
 ///   - onTapAccordion: Callback that is executed when the accordion is tapped
+///   - accessibilityLabel: A string that identifies the accessibility element
+
 public class AccordionData: Identifiable, ObservableObject {
     
     public var id = UUID()
@@ -24,17 +26,19 @@ public class AccordionData: Identifiable, ObservableObject {
     @Published public var isDisabled: Bool
     @Published public var isOpen: Bool
     private(set) var onTapAccordion: ((Bool) -> Void)?
-    
+    private(set) var accessibilityLabel: String?
+
     public init<Content>(text: String,
                          @ViewBuilder content: @escaping () -> Content,
                          isDisabled: Bool = false,
                          isOpen: Bool = false,
-                         onTapAccordion: ((Bool) -> Void)? = nil) where Content: View {
+                         onTapAccordion: ((Bool) -> Void)? = nil,
+                         accessibilityLabel: String? = nil) where Content: View {
         self.text = text
         self.content = AnyView(content())
         self.isDisabled = isDisabled
         self.isOpen = isOpen
         self.onTapAccordion = onTapAccordion
+        self.accessibilityLabel = accessibilityLabel
     }
-    
 }

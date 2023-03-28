@@ -35,7 +35,7 @@ struct TabStyle: ButtonStyle {
             
             HStack(spacing: Size.Tab.spacingHorizontal){
                 if let icon = item.icon {
-                    SirioIcon(icon: icon)
+                    SirioIcon(data: .init(icon: icon))
                         .frame(width: Size.Tab.Icon.frame, height: Size.Tab.Icon.frame)
                         .foregroundColor(iconColor)
                 }
@@ -62,7 +62,7 @@ struct TabStyle: ButtonStyle {
             
             HStack(spacing: Size.Tab.spacingHorizontal){
                 if let icon = item.icon {
-                    SirioIcon(icon: icon)
+                    SirioIcon(data: .init(icon: icon))
                         .frame(width: Size.Tab.Icon.frame, height: Size.Tab.Icon.frame)
                         .foregroundColor(iconColor)
                 }

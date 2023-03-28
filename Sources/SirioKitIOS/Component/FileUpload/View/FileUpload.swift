@@ -18,6 +18,7 @@ import SwiftUI
 ///   - uploads: The list of the uploaded files
 ///   - onUploadAction: Callback that is executed when the button upload is tapped
 ///   - onRemoveUploadAction: Callback that is executed when one file is removed
+
 public struct FileUpload: View {
     private var title: String
     private var subtitle: String
@@ -56,7 +57,7 @@ public struct FileUpload: View {
             ButtonTextIcon(style: .primary,
                            size: .large,
                            text: text,
-                           icon: icon,
+                           iconData: .init(icon: icon),
                            isDisabled: $isDisabled,
                            action: {
                 onUploadAction()

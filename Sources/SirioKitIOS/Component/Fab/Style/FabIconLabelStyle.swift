@@ -14,9 +14,9 @@ struct FabIconLabelStyle: ButtonStyle {
     var data: FabData
     @State var isHover = false
     
-    func makeBody(configuration: Self.Configuration) -> some View {        
+    func makeBody(configuration: Self.Configuration) -> some View {
         HStack(spacing: 0) {
-            SirioIcon(icon: data.icon)
+            SirioIcon(data: .init(icon: data.icon))
                 .foregroundColor(color)
                 .frame(width: Size.Fab.IconLabel.frame, height: Size.Fab.IconLabel.frame)
             

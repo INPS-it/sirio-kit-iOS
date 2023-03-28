@@ -17,7 +17,7 @@ struct FabOnlyIconStyle: ButtonStyle {
     
     func makeBody(configuration: Self.Configuration) -> some View {
         VStack {
-            SirioIcon(icon: data.icon)
+            SirioIcon(data: .init(icon: data.icon))
                 .foregroundColor(iconColor)
                 .frame(width: Size.Fab.OnlyIcon.frame, height: Size.Fab.OnlyIcon.frame)
             

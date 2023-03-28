@@ -12,6 +12,7 @@ import SwiftUI
 /// - Parameters:
 ///   - data: AccordionData model
 ///   - withBorder: A boolean to manage the borders
+
 struct BaseAccordion: View {
     @ObservedObject private var data: AccordionData
     private var withBorder: Bool
@@ -36,6 +37,7 @@ struct BaseAccordion: View {
                                           isOpen: data.isOpen,
                                           isDisabled: $data.isDisabled,
                                           withBorder: withBorder))
+            .setAccessibilityLabel(data.accessibilityLabel)
             
             if data.isOpen {
                 self.data.content
@@ -64,7 +66,7 @@ struct AccordionCommon_Previews: PreviewProvider {
                 SirioText(text: "Lorem ipsum", typography: .label_md_700)
                     .foregroundColor(.black)
                 
-            }))            
+            }))
             Spacer()
         }
         

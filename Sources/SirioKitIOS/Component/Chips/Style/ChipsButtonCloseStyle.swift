@@ -17,7 +17,7 @@ struct ChipsButtonCloseStyle: ButtonStyle {
     @State var isHover = false
     
     func makeBody(configuration: Self.Configuration) -> some View {
-        SirioIcon(icon: icon)
+        SirioIcon(data: .init(icon: icon))
             .frame(width: Size.Chips.Close.Icon.frame, height: Size.Chips.Close.Icon.frame)
             .padding(Size.Chips.Close.Icon.padding)
             .foregroundColor(getIconColor(configuration: configuration))

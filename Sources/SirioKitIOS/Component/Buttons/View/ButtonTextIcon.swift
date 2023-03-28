@@ -13,34 +13,39 @@ import SwiftUI
 ///   - style: The [SirioButtonStyle]
 ///   - size: The [SirioButtonSize]
 ///   - text: The button text
-///   - icon: The button icon
+///   - iconData: The data for icon button
 ///   - isDisabled: Whether the button is disabled
 ///   - isFullSize: Whether the button uses the maximum available space
 ///   - action: Callback that is executed when the button is tapped
+///   - accessibilityLabel: A string that identifies the accessibility element
+
 public struct ButtonTextIcon: View {
     
     private var style: SirioButtonStyle
     private var size: SirioButtonSize
     private var text: String
-    private var icon: AwesomeIcon
+    private var iconData: SirioIconData
     @Binding private var isDisabled: Bool
     private var isFullSize: Bool
     private var action: () -> Void
-    
+    private var accessibilityLabel: String?
+
     public init(style: SirioButtonStyle,
                 size: SirioButtonSize,
                 text: String,
-                icon: AwesomeIcon,
+                iconData: SirioIconData,
                 isDisabled: Binding<Bool> = .constant(false),
                 isFullSize: Bool = false,
-                action: @escaping () -> Void ){
+                action: @escaping () -> Void,
+                accessibilityLabel: String? = nil){
         self.style = style
         self.size = size
         self.text = text
-        self.icon = icon
+        self.iconData = iconData
         self._isDisabled = isDisabled
         self.isFullSize = isFullSize
         self.action = action
+        self.accessibilityLabel = accessibilityLabel
     }
     
     public var body: some View {
@@ -54,9 +59,10 @@ public struct ButtonTextIcon: View {
         .buttonStyle(SirioButtonTextIconStyle(style: style,
                                               size: size,
                                               text: text,
-                                              icon: icon,
+                                              iconData: iconData,
                                               isDisabled: $isDisabled,
                                               isFullSize: isFullSize))
+        .setAccessibilityLabel(accessibilityLabel)
     }
 }
 
@@ -89,7 +95,7 @@ struct TrilogyButtonsTextIcon: View {
                         ButtonTextIcon(style: style,
                                        size: size,
                                        text: "Text",
-                                       icon: .arrowRight,
+                                       iconData: .init(icon: .arrowRight),
                                        isDisabled: .constant(false),
                                        action: {})
                     })
@@ -100,7 +106,7 @@ struct TrilogyButtonsTextIcon: View {
                         ButtonTextIcon(style: style,
                                        size: size,
                                        text: "Text",
-                                       icon: .arrowRight,
+                                       iconData: .init(icon: .arrowRight),
                                        isDisabled: .constant(true),
                                        action: {})
                     })

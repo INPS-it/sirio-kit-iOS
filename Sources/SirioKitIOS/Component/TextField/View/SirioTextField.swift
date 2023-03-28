@@ -23,9 +23,14 @@ public enum SemanticTextField: String, CaseIterable {
 ///   - icon: The textfield icon
 ///   - helperText: The optionl text on bottom of text field
 ///   - isDisabled: Whether the component is disabled
+///   - isSecureText: Whether the textfield is secure
 ///   - isTextFieldDisabled: Whether only the textfield is disabled. For example use it for show picker
 ///   - onTapInfoAction: Callback that is executed when the info button is tapped
+///   - onTapIconAction: Callback that is executed when the icon button is tapped
 ///   - onTapTextFieldAction: Callback that is executed when the text field is tapped. If the callback is provided the textfield is disabled to allow the action, normal behaviour otherwise
+///   - accessibilityLabelInfo: A string that identifies the info accessibility element
+///   - accessibilityLabelIcon: A string that identifies the icon accessibility element
+
 public struct SirioTextField: View {
     @Binding var type: SemanticTextField
     var textInfo: String?
@@ -35,8 +40,12 @@ public struct SirioTextField: View {
     var icon: AwesomeIcon?
     var helperText: String?
     @Binding var isDisabled: Bool
+    @Binding var isSecureText: Bool
     var onTapInfoAction: (() -> Void)?
+    var onTapIconAction: (() -> Void)?
     var onTapTextFieldAction: (() -> Void)?
+    var accessibilityLabelInfo: String?
+    var accessibilityLabelIcon: String?
     
     @State private var isHover: Bool = false
     @FocusState private var isFocused: Bool
@@ -49,8 +58,12 @@ public struct SirioTextField: View {
                 icon: AwesomeIcon?,
                 helperText: String?,
                 isDisabled: Binding<Bool> = .constant(false),
+                isSecureText: Binding<Bool> = .constant(false),
                 onTapInfoAction: (() -> Void)? = nil,
-                onTapTextFieldAction: (() -> Void)? = nil){
+                onTapIconAction: (() -> Void)? = nil,
+                onTapTextFieldAction: (() -> Void)? = nil,
+                accessibilityLabelInfo: String? = nil,
+                accessibilityLabelIcon: String? = nil){
         self._type = type
         self.textInfo = textInfo
         self.infoIcon = infoIcon
@@ -59,8 +72,12 @@ public struct SirioTextField: View {
         self.icon = icon
         self.helperText = helperText
         self._isDisabled = isDisabled
+        self._isSecureText = isSecureText
         self.onTapInfoAction = onTapInfoAction
+        self.onTapIconAction = onTapIconAction
         self.onTapTextFieldAction = onTapTextFieldAction
+        self.accessibilityLabelInfo = accessibilityLabelInfo
+        self.accessibilityLabelIcon = accessibilityLabelIcon
     }
     
     public var body: some View {
@@ -76,11 +93,12 @@ public struct SirioTextField: View {
                     Button(action: {
                         onTapInfoAction?()
                     }, label: {
-                        SirioIcon(icon: infoIcon)
+                        SirioIcon(data: .init(icon: infoIcon))
                             .frame(width: Size.SirioTextField.Icon.frame1,
                                    height: Size.SirioTextField.Icon.frame1)
                             .foregroundColor(infoIconColor)
                     })
+                    .setAccessibilityLabel(accessibilityLabelInfo)
                 }
             }
             
@@ -93,30 +111,52 @@ public struct SirioTextField: View {
                             .lineLimit(1)
                     }
                     
-                    TextField("", text: $text)
-                        .sirioFont(typography: Typography.TextField.text)
-                        .foregroundColor(textFieldTextColor)
-                        .focused($isFocused)
-                        .disabled(onTapTextFieldAction != nil)
-                        .if(onTapTextFieldAction != nil, transform: { view in
-                            view.overlay(
-                                Button(action: {
-                                    self.onTapTextFieldAction?()
-                                },
-                                       label: {
-                                           Color.clear
-                                       })
-                            )
-                        })
+                    if isSecureText {
+                        SecureField("", text: $text)
+                            .sirioFont(typography: Typography.TextField.text)
+                            .foregroundColor(textFieldTextColor)
+                            .focused($isFocused)
+                            .disabled(onTapTextFieldAction != nil)
+                            .if(onTapTextFieldAction != nil, transform: { view in
+                                view.overlay(
+                                    Button(action: {
+                                        self.onTapTextFieldAction?()
+                                    },
+                                           label: {
+                                               Color.clear
+                                           })
+                                )
+                            })
+                    } else {
+                        TextField("", text: $text)
+                            .sirioFont(typography: Typography.TextField.text)
+                            .foregroundColor(textFieldTextColor)
+                            .focused($isFocused)
+                            .disabled(onTapTextFieldAction != nil)
+                            .if(onTapTextFieldAction != nil, transform: { view in
+                                view.overlay(
+                                    Button(action: {
+                                        self.onTapTextFieldAction?()
+                                    },
+                                           label: {
+                                               Color.clear
+                                           })
+                                )
+                            })
+                    }
                 }
                 
                 Spacer()
                 
                 if let icon = icon {
-                    SirioIcon(icon: icon)
+                    SirioIcon(data: .init(icon: icon))
                         .frame(width: Size.SirioTextField.Icon.frame2,
                                height: Size.SirioTextField.Icon.frame2)
                         .foregroundColor(iconColor)
+                        .onTapGesture {
+                            self.onTapIconAction?()
+                        }
+                        .setAccessibilityLabel(accessibilityLabelIcon)
                 }
             }
             .padding(.horizontal, Size.SirioTextField.paddingHorizontal)

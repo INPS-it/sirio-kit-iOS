@@ -32,7 +32,7 @@ public struct TabBarItem: View {
                         .fill(indicatorColor)
                         .frame(height: Size.TabBar.Item.Indicator.height)
                     HStack(spacing: 0){
-                        SirioIcon(icon: itemData.icon)
+                        SirioIcon(data: .init(icon: itemData.icon))
                             .frame(width: Size.TabBar.Item.Icon.frame, height: Size.TabBar.Item.Icon.frame)
                             .foregroundColor(iconColor)
                             .if(itemData.hasBadge, transform: {
@@ -60,7 +60,7 @@ public struct TabBarItem: View {
                         .fill(indicatorColor)
                         .frame(height: Size.TabBar.Item.Indicator.height)
                     
-                    SirioIcon(icon: itemData.icon)
+                    SirioIcon(data: .init(icon: itemData.icon))
                         .frame(width: Size.TabBar.Item.Icon.frame, height: Size.TabBar.Item.Icon.frame)
                         .foregroundColor(iconColor)
                         .if(itemData.hasBadge, transform: {
@@ -80,6 +80,7 @@ public struct TabBarItem: View {
                 }
             }
         }
+        .setAccessibilityLabel(itemData.accessibilityLabel)
     }
 }
 

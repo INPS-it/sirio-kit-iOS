@@ -14,6 +14,10 @@ import SwiftUI
 ///   - numberOfPages: The total number of pages to handle
 ///   - paginationViewModel: An observable object which manages the logic of the component
 ///   - isDisabled: Whether the component allow page changes
+///   - accessibilityLabelLeftButton: A string that identifies the left button accessibility element
+///   - accessibilityLabelTile: A string that identifies the tile accessibility element
+///   - accessibilityLabelRightButton: A string that identifies the right button accessibility element
+
 public struct Pagination: View {
     @Binding var selectedPage: Int
     var numberOfPages: Int
@@ -21,15 +25,23 @@ public struct Pagination: View {
     @Binding var isDisabled: Bool // All component
     @State private var isDisabledButtonLeft: Bool = false // Left button
     @State private var isDisabledButtonRight: Bool = false // Right button
+    var accessibilityLabelLeftButton: String?
+    var accessibilityLabelTile: String?
+    var accessibilityLabelRightButton: String?
 
     public init(selectedPage: Binding<Int>,
                 numberOfPages: Int,
-                isDisabled: Binding<Bool> = .constant(false)){
+                isDisabled: Binding<Bool> = .constant(false),
+                accessibilityLabelLeftButton: String? = nil,
+                accessibilityLabelTile: String? = nil,
+                accessibilityLabelRightButton: String? = nil){
         self._selectedPage = selectedPage
         self.numberOfPages = numberOfPages
         self._isDisabled = isDisabled
         self.paginationViewModel = PaginationViewModel(selectedPage: selectedPage.wrappedValue, numberOfPages: numberOfPages)
-        
+        self.accessibilityLabelLeftButton = accessibilityLabelLeftButton
+        self.accessibilityLabelTile = accessibilityLabelTile
+        self.accessibilityLabelRightButton = accessibilityLabelRightButton
     }
     
     public var body: some View {
@@ -37,13 +49,13 @@ public struct Pagination: View {
             HStack {
                 ButtonIconOnly(style: .ghost,
                                size: .large,
-                               icon: .angleLeft,
+                               iconData: .init(icon: .angleLeft),
                                isDisabled: $isDisabledButtonLeft,
                                action: {
                     if selectedPage > 0 {
                         selectedPage -= 1
                     }
-                })
+                }, accessibilityLabel: accessibilityLabelLeftButton)
 
                 Spacer()
                 
@@ -63,7 +75,7 @@ public struct Pagination: View {
                                     if !isDisabled && selectedPage != current {
                                         self.selectedPage = current
                                     }
-                                })
+                                }, accessibilityLabel: accessibilityLabelTile)
                             }
                         }
                     }
@@ -76,13 +88,13 @@ public struct Pagination: View {
                 
                 ButtonIconOnly(style: .ghost,
                                size: .large,
-                               icon: .angleRight,
+                               iconData: .init(icon: .angleRight),
                                isDisabled: $isDisabledButtonRight,
                                action: {
                     if selectedPage < numberOfPages - 1{
                         selectedPage += 1
                     }
-                })
+                }, accessibilityLabel: accessibilityLabelRightButton)
             }
             .padding(.horizontal, Size.Pagination.paddingHorizontal)
         }

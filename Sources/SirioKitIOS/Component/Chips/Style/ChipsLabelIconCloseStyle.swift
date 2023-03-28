@@ -15,24 +15,26 @@ struct ChipsLabelIconCloseStyle: ButtonStyle {
     var icon: AwesomeIcon
     @Binding var isDisabled: Bool
     var onTapClose: (() -> Void)?
-
+    var accessibilityLabelText: String?
+    var accessibilityLabelClose: String?
     @State var isHover = false
     
     func makeBody(configuration: Self.Configuration) -> some View {
         HStack(spacing: 8) {
-            
-            SirioIcon(icon: icon)
+            SirioIcon(data: .init(icon: icon))
                 .frame(width: Size.Chips.Icon.frame, height: Size.Chips.Icon.frame)
                 .foregroundColor(getIconColor(configuration: configuration))
             
             SirioText(text: text, typography: Typography.Chips.style)
                 .foregroundColor(getTextColor(configuration: configuration))
                 .lineLimit(1)
+                .setAccessibilityLabel(accessibilityLabelText)
             
             ChipsButtonClose(isDisabled: $isDisabled, action: {
                 onTapClose?()
             })
             .frame(width: Size.Chips.Close.Button.frame, height: Size.Chips.Close.Button.frame)
+            .setAccessibilityLabel(accessibilityLabelClose)
         }
         .padding(.leading, Size.Chips.paddingLeading)
         .padding(.trailing, Size.Chips.paddingTrailing)

@@ -11,15 +11,19 @@
 ///   - icon: The icon of the tab
 ///   - name: The text of the tab
 ///   - hasBadge: A boolean to manage badge visibility
+///   - accessibilityLabel: A string that identifies the accessibility element
+
 public struct TabItemData {
     public let icon: AwesomeIcon
     public let name: String
     public let hasBadge: Bool
+    public let accessibilityLabel: String?
     
-    public init(icon: AwesomeIcon, name: String, hasBadge: Bool = false){
+    public init(icon: AwesomeIcon, name: String, hasBadge: Bool = false, accessibilityLabel: String? = nil){
         self.icon = icon
         self.name = name
         self.hasBadge = hasBadge
+        self.accessibilityLabel = accessibilityLabel
     }
     
     static let preview = TabItemData(icon: .bell, name: "Notifications", hasBadge: true)

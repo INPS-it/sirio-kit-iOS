@@ -15,6 +15,7 @@ import SwiftUI
 ///   - subtitle: The subtitle of the notification
 ///   - onCloseAction: Callback that is executed when the close button is tapped
 ///   - onTapAction: Callback that is executed when the notification is tapped
+
 public struct NotificationInline: View {
     var type: NotificationType
     var title: String
@@ -52,7 +53,7 @@ public struct NotificationInline: View {
                 
                 Spacer()
                 
-                SirioIcon(icon: .times)
+                SirioIcon(data: .init(icon: .times))
                     .frame(width: Size.Notification.Inline.Icon.Right.frame, height: Size.Notification.Inline.Icon.Right.frame)
                     .foregroundColor(Color.Notification.Inline.Icon.default)
                     .onTapGesture {
@@ -67,6 +68,7 @@ public struct NotificationInline: View {
         .onTapGesture {
             self.onTapAction?()
         }
+        .setAccessibilityLabel(title + subtitle)
     }
 }
 

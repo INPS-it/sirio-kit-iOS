@@ -11,6 +11,7 @@ import SwiftUI
 /// Displays collapsible content panels for presenting information in a limited amount of space
 /// - Parameters:
 ///   - data: The content of the component
+
 public struct Accordion: View {
     private var data: AccordionData
     

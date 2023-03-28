@@ -63,6 +63,7 @@ public struct AppNavigationSearchBarView: View {
                         .lineLimit(1)
                         .focused($isTextFieldFocused)
                         .colorScheme(.light)
+                        .autocorrectionDisabled()
                 }
                 
                 Spacer()
@@ -74,7 +75,7 @@ public struct AppNavigationSearchBarView: View {
                         isTextFieldFocused = true
                     }
                 }, label: {
-                    SirioIcon(icon: searchEnv.text.isEmpty ? AwesomeIcon.search : AwesomeIcon.times)
+                    SirioIcon(data: .init(icon: searchEnv.text.isEmpty ? AwesomeIcon.search : AwesomeIcon.times))
                         .foregroundColor(iconColor)
                         .frame(width: Size.AppNavigation.Search.item, height: Size.AppNavigation.Search.item)
                 })

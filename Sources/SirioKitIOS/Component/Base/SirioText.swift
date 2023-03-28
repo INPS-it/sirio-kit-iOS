@@ -13,17 +13,26 @@ import SwiftUI
 ///   - text: The string to show
 ///   - typography: The text typography
 ///   - isUnderlined: A boolean to underline text
+///   - accessibilityLabel: A string that identifies the accessibility element
+
 public struct SirioText: View {
     private var text: String
     private var typography: Typography
     private var isUnderlined: Bool
-    
+    private var accessibilityLabel: String?
+
     public init(text: String,
                 typography: Typography,
-                isUnderlined: Bool = false){
+                isUnderlined: Bool = false,
+                accessibilityLabel: String? = nil){
+#if targetEnvironment(simulator)
+        // Execute code only intended for the simulator or Previews
+        Fonts.registerFonts()
+#endif
         self.text = text
         self.typography = typography
         self.isUnderlined = isUnderlined
+        self.accessibilityLabel = accessibilityLabel
     }
     
     public var body: some View {
@@ -32,6 +41,8 @@ public struct SirioText: View {
                 $0.underline()
             }
             .sirioFont(typography: typography)
+            .dynamicTypeSize(.medium ... .xxLarge)
+            .setAccessibilityLabel(accessibilityLabel)
     }
 }
 

@@ -132,11 +132,14 @@ extension Color {
                 
                 struct Profile { // Item Profile
                     
-                    static let background = StyleDictionaryColor.aliasOverlay25Primary000.color
+                    struct Background {
+                        static let light = StyleDictionaryColor.globalLightPrimary50.color
+                        static let dark = StyleDictionaryColor.globalDarkPrimary115.color
+                    }
                     
                     struct Text {
                         static let light = StyleDictionaryColor.aliasInteractivePrimaryDefault.color
-                        static let dark = StyleDictionaryColor.aliasInteractiveAccentDefault.color
+                        static let dark = StyleDictionaryColor.aliasInteractivePrimary000Default.color
                     }
                 }
             }

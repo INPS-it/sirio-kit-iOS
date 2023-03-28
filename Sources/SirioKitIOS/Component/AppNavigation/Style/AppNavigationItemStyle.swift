@@ -23,7 +23,7 @@ struct AppNavigationItemStyle: ButtonStyle {
                         .lineLimit(1)
                     
                 } else {
-                    SirioIcon(icon: item.icon)
+                    SirioIcon(data: .init(icon: item.icon))
                         .foregroundColor(iconColor)
                         .frame(width: Size.AppNavigation.Item.icon, height: Size.AppNavigation.Item.icon)
                         .if(item.hasBadge, transform: {
@@ -57,11 +57,10 @@ struct AppNavigationItemStyle: ButtonStyle {
         if item.isUserLogged && configuration.isPressed {
             return backgroundColor
         } else if item.isUserLogged {
-            return Color.AppNavigation.Default.Item.Profile.background
+            return iconBackgroundColor
         }
         return backgroundColor
     }
-    
 }
 
 extension AppNavigationItemStyle {
@@ -106,11 +105,11 @@ extension AppNavigationItemStyle {
     private var iconBackgroundColor: Color {
         switch colorScheme {
         case .light:
-            return Color.AppNavigation.Default.Item.Profile.background
+            return Color.AppNavigation.Default.Item.Profile.Background.light
         case .dark:
-            return Color.AppNavigation.Default.Item.Profile.background
+            return Color.AppNavigation.Default.Item.Profile.Background.dark
         @unknown default:
-            return Color.AppNavigation.Default.Item.Profile.background
+            return Color.AppNavigation.Default.Item.Profile.Background.light
         }
     }
 }

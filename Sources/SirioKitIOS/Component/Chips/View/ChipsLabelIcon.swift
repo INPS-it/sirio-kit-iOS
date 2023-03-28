@@ -14,20 +14,25 @@ import SwiftUI
 ///   - icon: The icon at the start of the chip
 ///   - isDisabled: Whether the chip is isDisabled
 ///   - selectedType: Manages the activation of the chips
+///   - accessibilityLabel: A string that identifies the accessibility element
+
 public struct ChipsLabelIcon: View {
     private var text: String
     private var icon: AwesomeIcon
     @Binding private var selectedType: String?
     @Binding private var isDisabled: Bool
-    
+    private var accessibilityLabel: String?
+
     public init(text: String,
                 icon: AwesomeIcon,
                 selectedType: Binding<String?>,
-                isDisabled: Binding<Bool> = .constant(false)){
+                isDisabled: Binding<Bool> = .constant(false),
+                accessibilityLabel: String? = nil){
         self.text = text
         self.icon = icon
         self._selectedType = selectedType
         self._isDisabled = isDisabled
+        self.accessibilityLabel = accessibilityLabel
     }
     
     public var body: some View {
@@ -43,6 +48,7 @@ public struct ChipsLabelIcon: View {
                                          icon: self.icon,
                                          isActive: self.text == self.selectedType,
                                          isDisabled: self.$isDisabled))
+        .setAccessibilityLabel(accessibilityLabel)
     }
 }
 

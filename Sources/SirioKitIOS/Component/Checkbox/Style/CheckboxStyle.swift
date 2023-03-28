@@ -37,7 +37,7 @@ struct CheckboxStyle: ButtonStyle {
     }
     
     private var checked: some View {
-        SirioIcon(icon: .check)
+        SirioIcon(data: .init(icon: .check))
             .frame(width: Size.Checkbox.frameChecked, height: Size.Checkbox.frameChecked, alignment: .center)
             .foregroundColor(colorShape)
     }

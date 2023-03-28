@@ -16,6 +16,8 @@ import SwiftUI
 ///   - isDisabled: Whether the button is disabled
 ///   - isFullSize: Whether the button uses the maximum available space
 ///   - action: Callback that is executed when the button is tapped
+///   - accessibilityLabel: A string that identifies the accessibility element
+
 public struct ButtonTextOnly: View {
     
     private var style: SirioButtonStyle
@@ -24,19 +26,22 @@ public struct ButtonTextOnly: View {
     @Binding private var isDisabled: Bool
     private var isFullSize: Bool
     private var action: () -> Void
-    
+    private var accessibilityLabel: String?
+
     public init(style: SirioButtonStyle,
                 size: SirioButtonSize,
                 text: String,
                 isDisabled: Binding<Bool> = .constant(false),
                 isFullSize: Bool = false,
-                action: @escaping () -> Void ){
+                action: @escaping () -> Void,
+                accessibilityLabel: String? = nil){
         self.style = style
         self.size = size
         self.text = text
         self._isDisabled = isDisabled
         self.isFullSize = isFullSize
         self.action = action
+        self.accessibilityLabel = accessibilityLabel
     }
     
     public var body: some View {
@@ -52,6 +57,7 @@ public struct ButtonTextOnly: View {
                                               text: text,
                                               isDisabled: $isDisabled,
                                               isFullSize: isFullSize))
+        .setAccessibilityLabel(accessibilityLabel)
     }
 }
 

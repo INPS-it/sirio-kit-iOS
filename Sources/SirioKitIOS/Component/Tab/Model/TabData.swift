@@ -13,15 +13,19 @@ import Foundation
 ///   - icon: The icon of the item
 ///   - text: The label of the item
 ///   - isDisabled: Whether the tab is disabled
+///   - accessibilityLabel: A string that identifies the accessibility element
+
 public class TabData: ObservableObject {
     @Published var icon: AwesomeIcon?
     @Published var text: String
     @Published var isDisabled: Bool
+    var accessibilityLabel: String?
     
-    public init(icon: AwesomeIcon?, text: String, isDisabled: Bool = false){
+    public init(icon: AwesomeIcon?, text: String, isDisabled: Bool = false, accessibilityLabel: String? = nil){
         self.icon = icon
         self.text = text
         self.isDisabled = isDisabled
+        self.accessibilityLabel = accessibilityLabel
     }
         
     static func previewInps() -> [TabData] {

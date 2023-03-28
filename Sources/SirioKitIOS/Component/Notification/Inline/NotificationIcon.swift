@@ -11,12 +11,13 @@ import SwiftUI
 /// The icon used for the notification component
 /// - Parameters:
 ///   - type: The type of notification
+
 struct NotificationIcon: View {
     var type: NotificationType
     
     var body: some View {
         VStack {
-            SirioIcon(icon: icon)
+            SirioIcon(data: .init(icon: icon))
                 .frame(width: Size.Notification.Inline.Icon.Left.frame, height: Size.Notification.Inline.Icon.Left.frame)
                 .foregroundColor(Color.Notification.Inline.Icon.default)
         }

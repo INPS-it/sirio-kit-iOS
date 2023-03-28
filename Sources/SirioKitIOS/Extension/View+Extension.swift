@@ -156,6 +156,7 @@ extension View {
     }
 }
 
+
 private struct SizePreferenceKey: PreferenceKey {
     static var defaultValue: CGSize = .zero
     static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
@@ -164,5 +165,15 @@ private struct SizePreferenceKey: PreferenceKey {
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape(RoundedCorner(radius: radius, corners: corners))
+    }
+}
+
+public extension View {
+    func setAccessibilityLabel(_ label: String?) -> some View {
+        if let label = label {
+            return AnyView(self.accessibilityLabel(label))
+        } else {
+            return AnyView(self)
+        }
     }
 }

@@ -43,6 +43,7 @@ public struct Tab: View {
         }).buttonStyle(TabStyle(isSelected: isSelected,
                                 position: position,
                                 item: item))
+        .setAccessibilityLabel(item.accessibilityLabel)
     }
 }
 

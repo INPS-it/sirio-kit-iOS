@@ -13,17 +13,22 @@ import SwiftUI
 ///   - text: The optional toggle string
 ///   - isOn: Whether the toggle is active
 ///   - isDisabled: Whether the toggle is disabled
+///   - accessibilityLabel: A string that identifies the accessibility element
+
 public struct SirioToggle: View {
     var text: String?
     @Binding var isOn: Bool
     @Binding var isDisabled: Bool
-    
+    var accessibilityLabel: String?
+
     public init(text: String? = nil,
                 isOn: Binding<Bool>,
-                isDisabled: Binding<Bool> = .constant(false)){
+                isDisabled: Binding<Bool> = .constant(false),
+                accessibilityLabel: String? = nil){
         self.text = text
         self._isOn = isOn
         self._isDisabled = isDisabled
+        self.accessibilityLabel = accessibilityLabel
     }
     
     public var body: some View {
@@ -40,6 +45,7 @@ public struct SirioToggle: View {
         .buttonStyle(SirioToggleStyle(text: text,
                                       isOn: isOn,
                                       isDisabled: $isDisabled))
+        .setAccessibilityLabel(accessibilityLabel)
     }
 }
 

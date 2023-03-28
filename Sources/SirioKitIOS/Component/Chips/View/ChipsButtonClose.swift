@@ -12,6 +12,7 @@ import SwiftUI
 /// - Parameters:
 ///   - isDisabled: Whether the button is disabled
 ///   - action: Callback that is executed when the button is tapped
+
 struct ChipsButtonClose: View {
     @Binding var isDisabled: Bool
     var action: (() -> Void)?

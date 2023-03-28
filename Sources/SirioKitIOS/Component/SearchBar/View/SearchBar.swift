@@ -132,7 +132,7 @@ public struct SearchBar: View {
                         searchText = ""
                     }
                 }, label: {
-                    SirioIcon(icon: AwesomeIcon.times)
+                    SirioIcon(data: .init(icon: .times))
                         .foregroundColor(Color.SearchBar.Button.Icon.clear)
                         .frame(width: Size.SearchBar.Icon.frame, height: Size.SearchBar.Icon.frame)
                 })
@@ -147,7 +147,7 @@ public struct SearchBar: View {
                 }
             }, label: {
                 VStack {
-                    SirioIcon(icon: AwesomeIcon.search)
+                    SirioIcon(data: .init(icon: .search))
                         .foregroundColor(Color.SearchBar.Button.Icon.search)
                         .frame(width: Size.SearchBar.Icon.frame, height: Size.SearchBar.Icon.frame)
                 }

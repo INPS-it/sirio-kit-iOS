@@ -14,11 +14,14 @@ import SwiftUI
 ///   - isSelected: A boolean for selection
 ///   - isDisabled: Whether the tile is disabled
 ///   - action: Callback that is executed when the tile is tapped
+///   - accessibilityLabel: A string that identifies the accessibility element
+
 struct PaginationTile: View {
     var number: Int
     var isSelected: Bool
     var isDisabled: Bool = false
     var action: (() -> Void)?
+    var accessibilityLabel: String?
     
     var body: some View {
         Button(action: {
@@ -32,6 +35,7 @@ struct PaginationTile: View {
         .buttonStyle(PaginationTileStyle(number: number,
                                            isSelected: isSelected,
                                            isDisabled: isDisabled && isSelected)) // If is disabled and not selected it is blocked
+        .setAccessibilityLabel(accessibilityLabel)
     }
 }
 

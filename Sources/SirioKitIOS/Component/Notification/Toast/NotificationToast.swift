@@ -17,6 +17,7 @@ import SwiftUI
 ///   - textButton: The button text
 ///   - onCloseAction: Callback that is executed when the close button is tapped
 ///   - onTapAction: Callback that is executed when the notification is tapped
+
 public struct NotificationToast: View {
     var type: NotificationType
     var title: String
@@ -48,7 +49,7 @@ public struct NotificationToast: View {
             
             VStack(alignment: .leading, spacing: Size.Notification.Toast.spacing) {
                 HStack() {
-                    SirioIcon(icon: icon)
+                    SirioIcon(data: .init(icon: icon))
                         .frame(width: Size.Notification.Toast.Icon.Left.frame, height: Size.Notification.Toast.Icon.Left.frame)
                         .foregroundColor(Color.Notification.Toast.Icon.default)
                     
@@ -57,7 +58,7 @@ public struct NotificationToast: View {
                     Button(action: {
                         onTapCloseAction?()
                     }, label: {
-                        SirioIcon(icon: .times)
+                        SirioIcon(data: .init(icon: .times))
                             .frame(width: Size.Notification.Toast.Icon.Left.frame, height: Size.Notification.Toast.Icon.Right.frame)
                             .foregroundColor(Color.Notification.Toast.Icon.default)
                     })
