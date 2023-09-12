@@ -8,6 +8,7 @@ struct OptionsStyle: ButtonStyle {
         HStack {
             SirioText(text: text, typography: .label_md_400)
                 .foregroundColor(getTextColor(configuration: configuration))
+                .lineLimit(2)
             Spacer()
         }
         .padding(.horizontal, Size.SearchBar.Options.paddingHorizontal)

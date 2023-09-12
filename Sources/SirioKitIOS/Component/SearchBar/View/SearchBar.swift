@@ -145,6 +145,7 @@ public struct SearchBar: View {
                     self.isFocused = false
                     onQueryAdded?(searchText)
                 }
+                onTapSearch?()
             }, label: {
                 VStack {
                     SirioIcon(data: .init(icon: .search))
