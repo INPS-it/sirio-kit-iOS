@@ -83,7 +83,7 @@ extension Size {
             struct Portrait {
                 static let width: CGFloat = 49
                 static let height: CGFloat = 49
-
+                
                 struct Icon {
                     static let paddingTop: CGFloat = 4
                     static let paddingHorizontal: CGFloat = 13
@@ -194,7 +194,7 @@ extension Size {
             
             struct Button {
                 static let frame: CGFloat = 24
-
+                
             }
         }
     }
@@ -362,7 +362,7 @@ extension Size {
             static let spacingVertical: CGFloat = 4
             static let paddingVertical: CGFloat = 8
             static let paddingHorizontal: CGFloat = 16
-
+            
             struct Icon {
                 
                 struct Left {
@@ -381,7 +381,7 @@ extension Size {
             static let paddingVertical: CGFloat = 26
             static let paddingHorizontal: CGFloat = 24
             static let spacing: CGFloat = 0
-
+            
             
             struct Rectangle {
                 static let frame: CGFloat = 18
@@ -401,7 +401,7 @@ extension Size {
                 static let paddingTitleTop: CGFloat = 24
                 static let paddingSubtitleTop: CGFloat = 8
                 static let paddingButtonTop: CGFloat = 24
-
+                
             }
         }
     }
@@ -487,7 +487,7 @@ extension Size {
         static let spacing: CGFloat = 16
         static let padding: CGFloat = 24
         static let cornerRadius: CGFloat = 16
-
+        
         struct InfoIcon {
             static let frame: CGFloat = 24
         }
@@ -500,7 +500,7 @@ extension Size {
         static let spacing: CGFloat = 0
         static let paddingHorizontal: CGFloat = 8
         static let height: CGFloat = 74
-
+        
         struct Button {
             static let width: CGFloat = 38
             static let height: CGFloat = 44
@@ -510,6 +510,50 @@ extension Size {
         struct Dots {
             static let height: CGFloat = 44
             static let width: CGFloat = 48
+        }
+    }
+}
+
+// MARK: Card
+extension Size {
+    struct Card {
+        struct Editorial {
+            static let spacing: CGFloat = 16
+            static let paddingHorizontal: CGFloat = 16
+            static let paddingBottom: CGFloat = 16
+            static let paddingTop: CGFloat = 24
+            static let spacingItems: CGFloat = 60
+            static let cornerRadius: CGFloat = 4
+            static let imageHeight: CGFloat = 220
+
+            struct Item {
+                static let width: CGFloat = 16
+                static let height: CGFloat = 16
+            }
+            
+            struct Icon {
+                static let width: CGFloat = 32
+                static let height: CGFloat = 32
+            }
+        }
+        
+        struct Process {
+            static let spacing: CGFloat = 16
+            static let paddingVertical: CGFloat = 16
+            static let paddingHorizontal: CGFloat = 16
+            static let titleHeight: CGFloat = 74
+            static let bodyHeight: CGFloat = 98
+            static let cornerRadius: CGFloat = 4
+            
+            struct Item {
+                static let width: CGFloat = 16
+                static let height: CGFloat = 16
+            }
+            
+            struct Icon {
+                static let width: CGFloat = 32
+                static let height: CGFloat = 32
+            }
         }
     }
 }

@@ -891,3 +891,70 @@ extension Color {
         }
     }
 }
+
+// MARK: Card
+extension Color {
+    struct Card {
+        struct Generic {
+            struct Text {
+                static let date = StyleDictionaryColor.globalSecondary100.color
+            }
+        }
+        
+        struct Editorial {
+            struct Background {
+                static let `default` = StyleDictionaryColor.aliasTextColorPrimaryLight0.color
+            }
+            
+            struct Text {
+                static let title = StyleDictionaryColor.aliasInteractivePrimaryDefault.color
+                static let subtitle = StyleDictionaryColor.globalSecondary100.color
+                static let body = StyleDictionaryColor.globalSecondary100.color
+                static let signature = StyleDictionaryColor.globalSecondary100.color
+            }
+            
+            struct Icon {
+                static let `default` = StyleDictionaryColor.globalSecondary100.color
+            }
+            
+            struct Item {
+                static let `default` = StyleDictionaryColor.aliasInteractivePrimaryDefault.color
+            }
+        }
+        
+        struct Process {
+            struct Background {
+                static let light = StyleDictionaryColor.aliasTextColorPrimaryLight0.color
+                static let dark = StyleDictionaryColor.globalDarkPrimary120.color
+            }
+            
+            struct Text {
+                
+                struct Date {
+                    static let light = StyleDictionaryColor.globalSecondary100.color
+                    static let dark = StyleDictionaryColor.globalLightPrimary40.color
+                }
+                
+                struct Title {
+                    static let light = StyleDictionaryColor.globalSecondary100.color
+                    static let dark = StyleDictionaryColor.globalLightPrimary40.color
+                }
+                
+                struct Body {
+                    static let light = StyleDictionaryColor.globalSecondary100.color
+                    static let dark = StyleDictionaryColor.globalLightPrimary40.color
+                }
+            }
+            
+            struct Icon {
+                static let light = StyleDictionaryColor.globalSecondary100.color
+                static let dark = StyleDictionaryColor.globalLightPrimary40.color
+            }
+            
+            struct Item {
+                static let light = StyleDictionaryColor.aliasInteractivePrimaryDefault.color
+                static let dark = StyleDictionaryColor.aliasInteractiveAccentDefault.color
+            }
+        }
+    }
+}
