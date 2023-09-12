@@ -292,15 +292,16 @@ extension Color {
         struct Background {
             static let gray =  StyleDictionaryColor.aliasInteractiveSecondaryDefault.color
             static let blue =  StyleDictionaryColor.aliasInteractivePrimaryDefault.color
-            static let red =  StyleDictionaryColor.aliasInteractiveRedDefault.color
-            static let orange =  StyleDictionaryColor.globalSemanticWarning100.color
-            static let green =  StyleDictionaryColor.globalSemanticSuccesso100.color
+            static let red =  StyleDictionaryColor.aliasInteractiveAlertDefault.color
+            static let orange =  StyleDictionaryColor.globalSemanticWarning80.color
+            static let green =  StyleDictionaryColor.globalSemanticSuccess100.color
             static let white =  StyleDictionaryColor.aliasBackgroundColorPrimaryLight0.color
         }
         
         struct Text {
-            static let light =  StyleDictionaryColor.aliasTextColorPrimaryLight0.color
-            static let dark =  StyleDictionaryColor.aliasInteractiveSecondaryDefault.color
+            static let `default` =  StyleDictionaryColor.aliasTextColorPrimaryLight0.color
+            static let secondary =  StyleDictionaryColor.aliasInteractiveSecondaryDefault.color
+            static let dark =  StyleDictionaryColor.aliasTextColorSecondaryDark130.color
         }
     }
 }
@@ -596,10 +597,10 @@ extension Color {
         struct Danger {
             
             struct Background {
-                static let state: ColorState = .init(default: StyleDictionaryColor.aliasInteractiveRedDefault.color,
+                static let state: ColorState = .init(default: StyleDictionaryColor.aliasInteractiveAlertDefault.color,
                                                      disabled: StyleDictionaryColor.aliasBackgroundColorDisabled.color,
-                                                     hover: StyleDictionaryColor.aliasInteractiveRedHover.color,
-                                                     pressed: StyleDictionaryColor.aliasInteractiveRedPressed.color)
+                                                     hover: StyleDictionaryColor.aliasInteractiveAlertHover.color,
+                                                     pressed: StyleDictionaryColor.aliasInteractiveAlertPressed.color)
             }
             
             struct Icon {
@@ -659,7 +660,7 @@ extension Color {
                     static let alert = StyleDictionaryColor.globalSemanticAlert100.color
                     static let info = StyleDictionaryColor.globalSemanticInfo100.color
                     static let warning = StyleDictionaryColor.globalSemanticWarning100.color
-                    static let success = StyleDictionaryColor.globalSemanticSuccesso100.color
+                    static let success = StyleDictionaryColor.globalSemanticSuccess100.color
                 }
             }
             
@@ -680,7 +681,7 @@ extension Color {
                     static let alert = StyleDictionaryColor.globalSemanticAlert100.color
                     static let info = StyleDictionaryColor.globalSemanticInfo100.color
                     static let warning = StyleDictionaryColor.globalSemanticWarning100.color
-                    static let success = StyleDictionaryColor.globalSemanticSuccesso100.color
+                    static let success = StyleDictionaryColor.globalSemanticSuccess100.color
                 }
             }
             

@@ -44,6 +44,7 @@ public struct Typography {
     public enum FontFamily: String {
         case RobotoMono = "Roboto Mono"
         case TitilliumWeb = "Titillium Web"
+        case Lora = "Lora"
     }
     
     public enum FontWeight: String {
@@ -66,17 +67,17 @@ public extension Typography {
     static let label_md_700: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                  fontSize: StyleDictionarySize.globalFontSize04.cgFloat,
                                                  fontWeight: StyleDictionaryTypography.globalFontWeights700,
-                                                 lineHeight: StyleDictionarySize.globalLineHeights01.cgFloat)
+                                                 lineHeight: StyleDictionarySize.globalLineHeights04.cgFloat)
     
     static let label_md_600: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                fontSize: StyleDictionarySize.globalFontSize04.cgFloat,
                                                fontWeight: StyleDictionaryTypography.globalFontWeights600,
-                                               lineHeight: StyleDictionarySize.globalLineHeights01.cgFloat)
+                                               lineHeight: StyleDictionarySize.globalLineHeights04.cgFloat)
 
     static let label_md_400: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                fontSize: StyleDictionarySize.globalFontSize04.cgFloat,
                                                fontWeight: StyleDictionaryTypography.globalFontWeights400,
-                                               lineHeight: StyleDictionarySize.globalLineHeights01.cgFloat)
+                                               lineHeight: StyleDictionarySize.globalLineHeights04.cgFloat)
     
     static let h4_md: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                             fontSize: StyleDictionarySize.globalFontSize07.cgFloat,
@@ -96,7 +97,7 @@ public extension Typography {
     static let label_md_number_400: Typography = Typography.init(fontFamily: StyleDictionaryTypography.globalFontFamily03,
                                                                fontSize: StyleDictionarySize.globalFontSize04.cgFloat,
                                                                fontWeight: StyleDictionaryTypography.globalFontWeights400,
-                                                               lineHeight: StyleDictionarySize.globalLineHeights01.cgFloat)
+                                                               lineHeight: StyleDictionarySize.globalLineHeights04.cgFloat)
     
     static let ios_tabbar_label_xs: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                           fontSize: StyleDictionarySize.aliasLabelXsSize02.cgFloat,
@@ -112,7 +113,7 @@ public extension Typography {
     static let app_navigation_title_xl: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                           fontSize: StyleDictionarySize.globalLineHeights04.cgFloat,
                                                           fontWeight: StyleDictionaryTypography.globalFontWeights600,
-                                                          lineHeight: StyleDictionarySize.globalLineHeights07.cgFloat)
+                                                          lineHeight: StyleDictionarySize.globalLineHeights06.cgFloat)
     
     static let placeholder_md_400: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                fontSize: StyleDictionarySize.globalFontSize04.cgFloat,
@@ -123,6 +124,21 @@ public extension Typography {
                                                fontSize: StyleDictionarySize.globalFontSize04.cgFloat,
                                                fontWeight: StyleDictionaryTypography.globalFontWeights400,
                                                lineHeight: StyleDictionarySize.globalLineHeights01.cgFloat)
+    
+    static let link_h4_md_01: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+                                               fontSize: StyleDictionarySize.globalFontSize07.cgFloat,
+                                               fontWeight: StyleDictionaryTypography.globalFontWeights700,
+                                               lineHeight: StyleDictionarySize.globalLineHeights07.cgFloat)
+
+    static let h6_md: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+                                               fontSize: StyleDictionarySize.globalFontSize05.cgFloat,
+                                               fontWeight: StyleDictionaryTypography.globalFontWeights600,
+                                               lineHeight: StyleDictionarySize.globalLineHeights05.cgFloat)
+    
+    static let signature_p_md_02: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily02,
+                                               fontSize: StyleDictionarySize.globalFontSize04.cgFloat,
+                                               fontWeight: StyleDictionaryTypography.globalFontWeights700I,
+                                               lineHeight: StyleDictionarySize.globalLineHeights04.cgFloat)
 }
 
 // MARK: Fab
@@ -281,5 +297,28 @@ public extension Typography {
     struct Pagination {
         static let number: Typography = .label_md_number_400
         static let dots: Typography = .label_md_number_400
+    }
+}
+
+
+// MARK: Card
+public extension Typography {
+    struct Card {
+        static let date: Typography = Typography.init(fontFamily: StyleDictionaryTypography.globalFontFamily03,
+                                                      fontSize: StyleDictionarySize.globalFontSize03.cgFloat,
+                                                      fontWeight: StyleDictionaryTypography.globalFontWeights500,
+                                                      lineHeight: StyleDictionarySize.globalLineHeights03.cgFloat)
+        
+        struct Editorial {
+            static let title: Typography = .link_h4_md_01
+            static let subtitle: Typography = .h6_md
+            static let body: Typography = .p_md_01
+            static let signature: Typography = .signature_p_md_02
+        }
+        
+        struct Process {
+            static let title: Typography = .h4_md
+            static let body: Typography = .p_md_01
+        }
     }
 }

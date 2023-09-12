@@ -16,6 +16,10 @@ public struct Fonts {
             registerFont(bundle: .module, fontName: $0.rawValue, fontExtension: "ttf")
         }
         
+        Fonts.Lora.allCases.forEach {
+            registerFont(bundle: .module, fontName: $0.rawValue, fontExtension: "ttf")
+        }
+        
         Fonts.RobotoMono.allCases.forEach {
             registerFont(bundle: .module, fontName: $0.rawValue, fontExtension: "ttf")
         }
@@ -39,6 +43,17 @@ public extension Fonts {
         case italic = "Titillium Web Italic"
         case semiBold = "Titillium Web SemiBold"
         case bold = "Titillium Web Bold"
+    }
+    
+    enum Lora: String, CaseIterable {
+        case boldItalic = "Lora Bold Italic"
+        case bold = "Lora Bold"
+        case mediumItalic = "Lora Medium Italic"
+        case italic = "Lora Italic"
+        case medium = "Lora Medium"
+        case regular = "Lora Regular"
+        case semiboldItalic = "Lora SemiBold Italic"
+        case semibold = "Lora SemiBold"
     }
     
     enum RobotoMono: String, CaseIterable {

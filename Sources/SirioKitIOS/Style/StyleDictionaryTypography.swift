@@ -4,7 +4,7 @@
 //
 
 // Do not edit directly
-// Generated on Tue, 21 Mar 2023 14:55:26 GMT
+// Generated on Thu, 07 Sep 2023 13:34:37 GMT
 
 
 import UIKit
@@ -24,6 +24,7 @@ public enum StyleDictionaryTypography {
     public static let aliasLinkFontWeight700 = Typography.FontWeight.Bold
     public static let aliasPFontWeight400 = Typography.FontWeight.Regular
     public static let globalFontFamily01 = Typography.FontFamily.TitilliumWeb
+    public static let globalFontFamily02 = Typography.FontFamily.Lora
     public static let globalFontFamily03 = Typography.FontFamily.RobotoMono
     public static let globalFontWeights300 = Typography.FontWeight.Light
     public static let globalFontWeights300I = Typography.FontWeight.LightItalic

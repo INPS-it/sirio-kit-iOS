@@ -39,7 +39,14 @@ public struct Tag: View {
 
 extension Tag {
     private var textColor: Color {
-        return type == .white ? Color.Tag.Text.dark : Color.Tag.Text.light
+        switch type {
+        case .white:
+            return Color.Tag.Text.secondary
+        case .orange:
+            return Color.Tag.Text.dark
+        default:
+            return Color.Tag.Text.default
+        }
     }
     
     private var backgroundColor: Color {
