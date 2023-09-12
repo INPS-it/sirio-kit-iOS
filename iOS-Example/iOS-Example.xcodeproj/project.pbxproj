@@ -25,6 +25,7 @@
 		7E7FB606284E095A00F80FC7 /* ExampleFab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB5FF284E095A00F80FC7 /* ExampleFab.swift */; };
 		7E7FB609284E099700F80FC7 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB608284E099700F80FC7 /* Color+Extension.swift */; };
 		7E7FB60B284E09C100F80FC7 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB60A284E09C100F80FC7 /* View+Extension.swift */; };
+		7E8A11792AB09104003D26DD /* ExampleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A11782AB09104003D26DD /* ExampleCard.swift */; };
 		7E94CC1E284F488F00AEADC9 /* ExampleToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94CC1D284F488F00AEADC9 /* ExampleToggle.swift */; };
 		7E94CC20284F78F200AEADC9 /* ExampleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94CC1F284F78F200AEADC9 /* ExampleSlider.swift */; };
 		7EA2E88328606914001FE093 /* ExampleButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA2E88128606359001FE093 /* ExampleButtons.swift */; };
@@ -61,6 +62,7 @@
 		7E7FB5FF284E095A00F80FC7 /* ExampleFab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleFab.swift; sourceTree = "<group>"; };
 		7E7FB608284E099700F80FC7 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		7E7FB60A284E09C100F80FC7 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		7E8A11782AB09104003D26DD /* ExampleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCard.swift; sourceTree = "<group>"; };
 		7E94CC1D284F488F00AEADC9 /* ExampleToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleToggle.swift; sourceTree = "<group>"; };
 		7E94CC1F284F78F200AEADC9 /* ExampleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSlider.swift; sourceTree = "<group>"; };
 		7EA2E88128606359001FE093 /* ExampleButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleButtons.swift; sourceTree = "<group>"; };
@@ -129,9 +131,11 @@
 		7E7FB5F8284E095A00F80FC7 /* ViewExample */ = {
 			isa = PBXGroup;
 			children = (
+				7E43935828F99AEC00FBE17D /* Example.swift */,
 				7E7FB5FB284E095A00F80FC7 /* ExampleAccordion.swift */,
 				7E7FB5F9284E095A00F80FC7 /* ExampleAppNavigation.swift */,
 				7EA2E88128606359001FE093 /* ExampleButtons.swift */,
+				7E8A11782AB09104003D26DD /* ExampleCard.swift */,
 				7ED0E580284E4CAB001574D5 /* ExampleCheckBox.swift */,
 				7E7FB5FA284E095A00F80FC7 /* ExampleChips.swift */,
 				7EE5EAF62897FDC9000EC224 /* ExampleDialog.swift */,
@@ -149,7 +153,6 @@
 				7ED0D0AE2881A1BB00553662 /* ExampleTextField.swift */,
 				7E94CC1D284F488F00AEADC9 /* ExampleToggle.swift */,
 				7E7FB5FC284E095A00F80FC7 /* SchemeSwitcher.swift */,
-				7E43935828F99AEC00FBE17D /* Example.swift */,
 			);
 			path = ViewExample;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				7EE5EAF72897FDC9000EC224 /* ExampleDialog.swift in Sources */,
 				7E7FB601284E095A00F80FC7 /* ExampleChips.swift in Sources */,
 				7E43935928F99AEC00FBE17D /* Example.swift in Sources */,
+				7E8A11792AB09104003D26DD /* ExampleCard.swift in Sources */,
 				7ED0E57F284E4119001574D5 /* ExampleRadioButton.swift in Sources */,
 				7EAF97BA2861CAA500B90534 /* ExampleFileUpload.swift in Sources */,
 				7E1C91E82891371F008FE477 /* UIColor+Extension.swift in Sources */,
@@ -487,8 +491,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/INPS-it/sirio-kit-iOS/";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

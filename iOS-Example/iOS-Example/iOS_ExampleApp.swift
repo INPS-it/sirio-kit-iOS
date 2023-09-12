@@ -8,18 +8,25 @@
 
 import SwiftUI
 import SirioKitIOS
+import SDWebImageSVGCoder
 
 @main
 struct iOS_ExampleApp: App {
     
     init() {
-        // Register fonts from library
-        Fonts.registerFonts()
+        setDependencies()
     }
     
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
+    }
+    
+    func setDependencies() {
+        // Register fonts from library
+        Fonts.registerFonts()
+        // Svg Coder
+        SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
     }
 }

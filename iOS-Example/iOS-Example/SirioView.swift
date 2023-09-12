@@ -35,6 +35,12 @@ struct SirioView: View {
                     })
                     
                     NavigationLink(destination: {
+                        ExampleCard()
+                    }, label: {
+                        SirioText(text: "Card", typography: .label_md_400)
+                    })
+                    
+                    NavigationLink(destination: {
                         ExampleCheckBox()
                     }, label: {
                         SirioText(text: "CheckBox", typography: .label_md_400)
@@ -69,16 +75,16 @@ struct SirioView: View {
                     }, label: {
                         SirioText(text: "Notification", typography: .label_md_400)
                     })
+                }
+                
+                Group {
                     
                     NavigationLink(destination: {
                         ExamplePagination()
                     }, label: {
                         SirioText(text: "Pagination", typography: .label_md_400)
                     })
-                }
-                
-                
-                Group {
+                    
                     NavigationLink(destination: {
                         ExampleProgressBar()
                     }, label: {
