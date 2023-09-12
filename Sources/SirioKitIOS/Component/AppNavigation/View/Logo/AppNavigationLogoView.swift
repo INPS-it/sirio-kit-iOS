@@ -37,7 +37,6 @@ struct AppNavigationLogoView_Previews: PreviewProvider {
                     leftItem: .previewBack,
                     rightItems: [.previewUser, .previewSearch])
         }
+        .preferredColorScheme(.dark)
     }
 }
-
-

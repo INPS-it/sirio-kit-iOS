@@ -117,6 +117,11 @@ extension Size {
             static let maxHeight: CGFloat = 30
         }
         
+        struct LogoInps125 { // App Navigation Logo INPS 125
+            static let maxWidth: CGFloat = 90
+            static let maxHeight: CGFloat = 32
+        }
+        
         struct LongTitle { // App Navigation Long/Big Title
             static let height: CGFloat = 48
             static let textHeight: CGFloat = 54

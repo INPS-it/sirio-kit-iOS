@@ -12,15 +12,28 @@ import SwiftUI
 struct AppNavigationLogoInps: View {
     @Environment(\.colorScheme) var colorScheme
 
+    let isDefaultLogo = false
+    
     var body: some View {
-        Image("logo_inps", bundle: .module)
-            .resizable()
-            .renderingMode(.template)
-            .foregroundColor(iconColor)
-            .aspectRatio(contentMode: .fit)
-            .frame(maxWidth: Size.AppNavigation.LogoInps.maxWidth,
-                   maxHeight: Size.AppNavigation.LogoInps.maxHeight,
-                   alignment: .center)
+        
+        if isDefaultLogo { // Default INPS logo
+            Image(Assets.default.rawValue, bundle: .module)
+                .resizable()
+                .renderingMode(.template)
+                .foregroundColor(iconColor)
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: Size.AppNavigation.LogoInps.maxWidth,
+                       maxHeight: Size.AppNavigation.LogoInps.maxHeight,
+                       alignment: .center)
+        } else { // Logo INPS 125
+            Image(colorScheme == .light ? Assets.light.rawValue : Assets.dark.rawValue, bundle: .module)
+                .resizable()
+                .foregroundColor(.none)
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: Size.AppNavigation.LogoInps125.maxWidth,
+                       maxHeight: Size.AppNavigation.LogoInps125.maxHeight,
+                       alignment: .center)
+        }
     }
 }
 
