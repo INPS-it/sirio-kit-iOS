@@ -491,8 +491,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/INPS-it/sirio-kit-iOS/";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
