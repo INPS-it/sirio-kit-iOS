@@ -1,7 +1,7 @@
 //
 // View+Extension.swift
 //
-// SPDX-FileCopyrightText: 2023 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2024 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -175,5 +175,11 @@ public extension View {
         } else {
             return AnyView(self)
         }
+    }
+}
+
+extension View {
+    func dismissKeyboard() -> some View {
+        return modifier(DismissKeyboardModifier())
     }
 }

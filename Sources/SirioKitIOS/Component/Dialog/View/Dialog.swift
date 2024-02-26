@@ -1,7 +1,7 @@
 //
 // Dialog.swift
 //
-// SPDX-FileCopyrightText: 2023 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2024 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -182,11 +182,11 @@ public struct Dialog: View {
             .background(Color.Dialog.Background.default)
             .cornerRadius(Size.Dialog.cornerRadius, corners: [.topLeft, .topRight])
             .fixedSize(horizontal: false, vertical: true)
-            
         } // Blur View
         .background(Color.black.opacity(0.2))
         .frame(height: UIScreen.main.bounds.height)
         .edgesIgnoringSafeArea(.all)
+        .dismissKeyboard()
     }
 }
 

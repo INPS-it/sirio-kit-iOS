@@ -1,7 +1,7 @@
 //
 // Size.swift
 //
-// SPDX-FileCopyrightText: 2023 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2024 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -113,13 +113,8 @@ extension Size {
         }
         
         struct LogoInps { // App Navigation Logo INPS
-            static let maxWidth: CGFloat = 38
-            static let maxHeight: CGFloat = 30
-        }
-        
-        struct LogoInps125 { // App Navigation Logo INPS 125
-            static let maxWidth: CGFloat = 90
-            static let maxHeight: CGFloat = 32
+            static let maxWidth: CGFloat = 108
+            static let maxHeight: CGFloat = 39
         }
         
         struct LongTitle { // App Navigation Long/Big Title

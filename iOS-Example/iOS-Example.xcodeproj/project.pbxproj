@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,7 @@
 		7E8A11792AB09104003D26DD /* ExampleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A11782AB09104003D26DD /* ExampleCard.swift */; };
 		7E94CC1E284F488F00AEADC9 /* ExampleToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94CC1D284F488F00AEADC9 /* ExampleToggle.swift */; };
 		7E94CC20284F78F200AEADC9 /* ExampleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94CC1F284F78F200AEADC9 /* ExampleSlider.swift */; };
+		7E9CFEDD2B8CA9F10084F8AC /* SirioKitIOS in Frameworks */ = {isa = PBXBuildFile; productRef = 7E9CFEDC2B8CA9F10084F8AC /* SirioKitIOS */; };
 		7EA2E88328606914001FE093 /* ExampleButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA2E88128606359001FE093 /* ExampleButtons.swift */; };
 		7EAF97B82861C9B400B90534 /* ExampleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAF97B72861C9B400B90534 /* ExampleProgressBar.swift */; };
 		7EAF97BA2861CAA500B90534 /* ExampleFileUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAF97B92861CAA500B90534 /* ExampleFileUpload.swift */; };
@@ -36,7 +37,6 @@
 		7ED0E57F284E4119001574D5 /* ExampleRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED0E57E284E4119001574D5 /* ExampleRadioButton.swift */; };
 		7ED0E581284E4CAB001574D5 /* ExampleCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED0E580284E4CAB001574D5 /* ExampleCheckBox.swift */; };
 		7EE2188E286F187F0042D288 /* ExampleNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE2188D286F187F0042D288 /* ExampleNotification.swift */; };
-		7EE578C22907E33E00B1E259 /* SirioKitIOS in Frameworks */ = {isa = PBXBuildFile; productRef = 7EE578C12907E33E00B1E259 /* SirioKitIOS */; };
 		7EE5EAF72897FDC9000EC224 /* ExampleDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE5EAF62897FDC9000EC224 /* ExampleDialog.swift */; };
 		7EE5EAF928980092000EC224 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE5EAF828980092000EC224 /* String+Extension.swift */; };
 /* End PBXBuildFile section */
@@ -82,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EE578C22907E33E00B1E259 /* SirioKitIOS in Frameworks */,
+				7E9CFEDD2B8CA9F10084F8AC /* SirioKitIOS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,7 +185,7 @@
 			);
 			name = "iOS-Example";
 			packageProductDependencies = (
-				7EE578C12907E33E00B1E259 /* SirioKitIOS */,
+				7E9CFEDC2B8CA9F10084F8AC /* SirioKitIOS */,
 			);
 			productName = "iOS-Example";
 			productReference = 7E7FB5DF284E05A100F80FC7 /* SirioKit.app */;
@@ -216,7 +216,7 @@
 			);
 			mainGroup = 7E7FB5D6284E05A100F80FC7;
 			packageReferences = (
-				7EE578C02907E33E00B1E259 /* XCRemoteSwiftPackageReference "sirio-kit-iOS" */,
+				7E9CFEDB2B8CA9F10084F8AC /* XCLocalSwiftPackageReference ".." */,
 			);
 			productRefGroup = 7E7FB5E0284E05A100F80FC7 /* Products */;
 			projectDirPath = "";
@@ -399,7 +399,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202211020;
+				CURRENT_PROJECT_VERSION = 202402260;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS-Example/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -416,7 +416,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0.0;
+				MARKETING_VERSION = 7.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = it.inps.sirio;
 				PRODUCT_NAME = SirioKit;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -434,7 +434,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202211020;
+				CURRENT_PROJECT_VERSION = 202402260;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS-Example/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -451,7 +451,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0.0;
+				MARKETING_VERSION = 7.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = it.inps.sirio;
 				PRODUCT_NAME = SirioKit;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -486,21 +486,16 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		7EE578C02907E33E00B1E259 /* XCRemoteSwiftPackageReference "sirio-kit-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/INPS-it/sirio-kit-iOS/";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		7E9CFEDB2B8CA9F10084F8AC /* XCLocalSwiftPackageReference ".." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ..;
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7EE578C12907E33E00B1E259 /* SirioKitIOS */ = {
+		7E9CFEDC2B8CA9F10084F8AC /* SirioKitIOS */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7EE578C02907E33E00B1E259 /* XCRemoteSwiftPackageReference "sirio-kit-iOS" */;
 			productName = SirioKitIOS;
 		};
 /* End XCSwiftPackageProductDependency section */

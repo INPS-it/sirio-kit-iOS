@@ -1,7 +1,7 @@
 //
 // AppNavigationLogoInps.swift
 //
-// SPDX-FileCopyrightText: 2023 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2024 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -12,42 +12,18 @@ import SwiftUI
 struct AppNavigationLogoInps: View {
     @Environment(\.colorScheme) var colorScheme
 
-    let isDefaultLogo = false
-    
     var body: some View {
-        
-        if isDefaultLogo { // Default INPS logo
-            Image(Assets.default.rawValue, bundle: .module)
-                .resizable()
-                .renderingMode(.template)
-                .foregroundColor(iconColor)
-                .aspectRatio(contentMode: .fit)
-                .frame(maxWidth: Size.AppNavigation.LogoInps.maxWidth,
-                       maxHeight: Size.AppNavigation.LogoInps.maxHeight,
-                       alignment: .center)
-        } else { // Logo INPS 125
-            Image(colorScheme == .light ? Assets.light.rawValue : Assets.dark.rawValue, bundle: .module)
-                .resizable()
-                .foregroundColor(.none)
-                .aspectRatio(contentMode: .fit)
-                .frame(maxWidth: Size.AppNavigation.LogoInps125.maxWidth,
-                       maxHeight: Size.AppNavigation.LogoInps125.maxHeight,
-                       alignment: .center)
-        }
+        Image(icon.rawValue, bundle: .module)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .padding()
+            .frame(maxWidth: Size.AppNavigation.LogoInps.maxWidth,
+                   maxHeight: Size.AppNavigation.LogoInps.maxHeight,
+                   alignment: .center)
     }
-}
-
-extension AppNavigationLogoInps {
     
-    private var iconColor: Color {
-        switch colorScheme {
-        case .light:
-            return Color.AppNavigation.LogoInps.light
-        case .dark:
-            return Color.AppNavigation.LogoInps.dark
-        @unknown default:
-            return Color.AppNavigation.LogoInps.light
-        }
+    private var icon: Assets.Logo {
+        return colorScheme == .light ? Assets.Logo.light : Assets.Logo.dark
     }
 }
 
@@ -57,10 +33,11 @@ struct AppNavigationLogoInps_Previews: PreviewProvider {
             AppNavigationLogoInps()
                 .padding()
                 .colorScheme(.light)
+            
             AppNavigationLogoInps()
                 .padding()
-                .colorScheme(.dark)
                 .background(Color.black)
+                .colorScheme(.dark)
         }
         .previewLayout(PreviewLayout.sizeThatFits)
     }

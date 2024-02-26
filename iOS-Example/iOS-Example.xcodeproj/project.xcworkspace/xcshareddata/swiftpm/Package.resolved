@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
-        "revision" : "6e844d19679c9e0833ccc363d7f5a7c5f0c5f5d7",
-        "version" : "5.18.1"
+        "revision" : "73b9397cfbd902f606572964055464903b1d84c6",
+        "version" : "5.19.0"
       }
     },
     {
@@ -23,17 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI",
       "state" : {
-        "revision" : "e837c37d45449fbd3b4745c10c5b5274e73edead",
-        "version" : "2.2.3"
-      }
-    },
-    {
-      "identity" : "sirio-kit-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/INPS-it/sirio-kit-iOS/",
-      "state" : {
-        "branch" : "main",
-        "revision" : "80b02ce751c771d0ea21603e498615b2e1443d8d"
+        "revision" : "261b6cec35686d2dc192b809ab50742b4502a73b",
+        "version" : "2.2.6"
       }
     }
   ],

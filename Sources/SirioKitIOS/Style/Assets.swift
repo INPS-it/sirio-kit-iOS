@@ -1,15 +1,18 @@
 //
 // Assets.swift
 //
-// SPDX-FileCopyrightText: 2023 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2024 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
 
 import Foundation
 
-public enum Assets: String {
-    case `default` = "logo_inps"
-    case light = "logo_inps_125_light"
-    case dark = "logo_inps_125_dark"
+public struct Assets {
+    
+    public enum Logo: String {
+        case light = "INPS_logotipo_positivo_colore_RGB"
+        case dark = "INPS_logotipo_negativo_colore_RGB"
+    }
+    
 }
