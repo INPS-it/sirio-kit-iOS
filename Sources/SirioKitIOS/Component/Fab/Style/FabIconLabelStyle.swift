@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// A struct to manage the Fab with icon and label
+// A struct that defines the style for FabIconLabel component
 struct FabIconLabelStyle: ButtonStyle {
     @Environment(\.colorScheme) var colorScheme
     var data: FabData

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// A struct to manage single Tile style
+// A struct that defines the style for PaginationTile component
 struct PaginationTileStyle: ButtonStyle {
     var number: Int
     var isSelected: Bool

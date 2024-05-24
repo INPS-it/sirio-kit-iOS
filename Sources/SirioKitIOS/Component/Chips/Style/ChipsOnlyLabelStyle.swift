@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// A struct to manage the Chips with label only style
+// A struct that defines the style for ChipsOnlyLabel component
 struct ChipsOnlyLabelStyle: ButtonStyle {
     @Environment(\.colorScheme) var colorScheme
     var text: String

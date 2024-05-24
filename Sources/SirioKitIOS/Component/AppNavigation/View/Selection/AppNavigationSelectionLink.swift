@@ -8,8 +8,7 @@
 
 import SwiftUI
 
-/// A struct to manage navigation for Sirio App Navigation Selection
-
+// A struct that defines the navigation for AppNavigationSelection component
 public struct AppNavigationSelectionLink<Label, Destination> : View where Label : View, Destination : View {
     
     private let destination: Destination

@@ -8,8 +8,7 @@
 
 import SwiftUI
 
-/// A struct to manage navigation for app navigation with INPS logo
-
+// A struct that defines the navigation for AppNavigationLogo
 public struct AppNavigationLogoLink<Label, Destination> : View where Label : View, Destination : View {
     
     private let destination: Destination

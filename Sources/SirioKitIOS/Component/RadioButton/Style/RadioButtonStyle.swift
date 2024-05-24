@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// A struct to manage RadioButton style
+// A struct that defines the style for RadioButton component
 struct RadioButtonStyle: ButtonStyle {
     @Environment(\.colorScheme) var colorScheme
     var text: String?

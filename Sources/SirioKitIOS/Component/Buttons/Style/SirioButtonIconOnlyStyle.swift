@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// A struct to manage the Sirio button icon only style
+// A struct that defines the style for ButtonIconOnly component
 struct SirioButtonIconOnlyStyle: ButtonStyle {
     var style: SirioButtonStyle
     var size: SirioSize

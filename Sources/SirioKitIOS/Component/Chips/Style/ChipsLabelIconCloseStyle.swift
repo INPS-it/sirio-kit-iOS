@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// A struct to manage the Chips with label, icon and close button style
+// A struct that defines the style for ChipsLabelIconClose component
 struct ChipsLabelIconCloseStyle: ButtonStyle {
     @Environment(\.colorScheme) var colorScheme
     var text: String

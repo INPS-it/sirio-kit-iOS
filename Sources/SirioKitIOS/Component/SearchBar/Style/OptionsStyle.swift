@@ -1,6 +1,6 @@
 import SwiftUI
 
-// A struct to manage Options style (Search bar suggestions)
+// A struct that defines the style for Options component (Search bar suggestions)
 struct OptionsStyle: ButtonStyle {
     var text: String
         

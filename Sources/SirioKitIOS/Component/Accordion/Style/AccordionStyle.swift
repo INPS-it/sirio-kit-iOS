@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// A struct to manage the Accordion style
+// A struct that defines the style for Accordion component
 struct AccordionStyle: ButtonStyle {
     @Environment(\.colorScheme) var colorScheme
     var text: String

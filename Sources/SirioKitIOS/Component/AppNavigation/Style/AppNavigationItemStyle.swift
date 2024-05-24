@@ -8,8 +8,7 @@
 
 import SwiftUI
 
-// A struct to manage AppNavigation style
-
+// A struct that defines the style for AppNavigation component
 struct AppNavigationItemStyle: ButtonStyle {
     @Environment(\.colorScheme) var colorScheme
     var item: AppNavigationItemData?

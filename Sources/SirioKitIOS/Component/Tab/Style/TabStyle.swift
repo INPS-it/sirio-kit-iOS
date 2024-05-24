@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// A struct to manage single tab style
+// A struct that defines the style for Tab component
 struct TabStyle: ButtonStyle {
     var isSelected: Bool
     var position: Position

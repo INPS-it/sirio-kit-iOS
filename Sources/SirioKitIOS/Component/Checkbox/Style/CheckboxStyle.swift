@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// A struct to manage the Checkbox style
+// A struct that defines the style for Checkbox component
 struct CheckboxStyle: ButtonStyle {
     @Environment(\.colorScheme) var colorScheme
     var text: String?
