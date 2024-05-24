@@ -10,6 +10,9 @@
 		7E1C91E82891371F008FE477 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C91E72891371F008FE477 /* UIColor+Extension.swift */; };
 		7E321194289BB0F200FFB256 /* ExamplePagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E321193289BB0F200FFB256 /* ExamplePagination.swift */; };
 		7E3F3F67288FE387008FF13D /* ExampleSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3F3F66288FE387008FF13D /* ExampleSearchBar.swift */; };
+		7E42780B2C009536000DB886 /* ExampleCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E42780A2C009536000DB886 /* ExampleCarousel.swift */; };
+		7E42780D2C009547000DB886 /* ExampleTextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E42780C2C009547000DB886 /* ExampleTextArea.swift */; };
+		7E42780F2C009554000DB886 /* ExampleHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E42780E2C009554000DB886 /* ExampleHero.swift */; };
 		7E7FB5E3284E05A100F80FC7 /* iOS_ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB5E2284E05A100F80FC7 /* iOS_ExampleApp.swift */; };
 		7E7FB5E7284E05A100F80FC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E7FB5E6284E05A100F80FC7 /* Assets.xcassets */; };
 		7E7FB5EA284E05A100F80FC7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E7FB5E9284E05A100F80FC7 /* Preview Assets.xcassets */; };
@@ -44,6 +47,9 @@
 		7E1C91E72891371F008FE477 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		7E321193289BB0F200FFB256 /* ExamplePagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplePagination.swift; sourceTree = "<group>"; };
 		7E3F3F66288FE387008FF13D /* ExampleSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSearchBar.swift; sourceTree = "<group>"; };
+		7E42780A2C009536000DB886 /* ExampleCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCarousel.swift; sourceTree = "<group>"; };
+		7E42780C2C009547000DB886 /* ExampleTextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTextArea.swift; sourceTree = "<group>"; };
+		7E42780E2C009554000DB886 /* ExampleHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleHero.swift; sourceTree = "<group>"; };
 		7E541EC22859CF8E002DBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7E7FB5DF284E05A100F80FC7 /* SirioKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SirioKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E7FB5E2284E05A100F80FC7 /* iOS_ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_ExampleApp.swift; sourceTree = "<group>"; };
@@ -150,6 +156,9 @@
 				7ED0D0AE2881A1BB00553662 /* ExampleTextField.swift */,
 				7E94CC1D284F488F00AEADC9 /* ExampleToggle.swift */,
 				7E7FB5FC284E095A00F80FC7 /* SchemeSwitcher.swift */,
+				7E42780A2C009536000DB886 /* ExampleCarousel.swift */,
+				7E42780C2C009547000DB886 /* ExampleTextArea.swift */,
+				7E42780E2C009554000DB886 /* ExampleHero.swift */,
 			);
 			path = ViewExample;
 			sourceTree = "<group>";
@@ -242,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E7FB606284E095A00F80FC7 /* ExampleFab.swift in Sources */,
+				7E42780B2C009536000DB886 /* ExampleCarousel.swift in Sources */,
 				7E7FB603284E095A00F80FC7 /* SchemeSwitcher.swift in Sources */,
 				7E7FB5F4284E085600F80FC7 /* ContentView.swift in Sources */,
 				7EAF97B82861C9B400B90534 /* ExampleProgressBar.swift in Sources */,
@@ -252,6 +262,7 @@
 				7E8A11792AB09104003D26DD /* ExampleCard.swift in Sources */,
 				7ED0E57F284E4119001574D5 /* ExampleRadioButton.swift in Sources */,
 				7EAF97BA2861CAA500B90534 /* ExampleFileUpload.swift in Sources */,
+				7E42780D2C009547000DB886 /* ExampleTextArea.swift in Sources */,
 				7E1C91E82891371F008FE477 /* UIColor+Extension.swift in Sources */,
 				7E7FB602284E095A00F80FC7 /* ExampleAccordion.swift in Sources */,
 				7E7FB600284E095A00F80FC7 /* ExampleAppNavigation.swift in Sources */,
@@ -265,6 +276,7 @@
 				7EE5EAF928980092000EC224 /* String+Extension.swift in Sources */,
 				7E94CC1E284F488F00AEADC9 /* ExampleToggle.swift in Sources */,
 				7ED0D0AF2881A1BB00553662 /* ExampleTextField.swift in Sources */,
+				7E42780F2C009554000DB886 /* ExampleHero.swift in Sources */,
 				7E94CC20284F78F200AEADC9 /* ExampleSlider.swift in Sources */,
 				7E7FB609284E099700F80FC7 /* Color+Extension.swift in Sources */,
 				7E7FB60B284E09C100F80FC7 /* View+Extension.swift in Sources */,

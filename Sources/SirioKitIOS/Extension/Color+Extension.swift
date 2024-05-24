@@ -989,3 +989,73 @@ extension Color {
         }
     }
 }
+
+// MARK: SirioTextArea
+extension Color {
+    struct SirioTextArea {
+        
+        struct Text {
+            static let hover = StyleDictionaryColor.specificDataEntryLabelColorHover.color
+            static let disabled = StyleDictionaryColor.aliasTextColorDisabled.color
+            static let error = StyleDictionaryColor.specificDataEntryBorderColorError.color
+            static let success = StyleDictionaryColor.specificDataEntryBorderColorSuccess.color
+            static let `default` = StyleDictionaryColor.specificDataEntryLabelColorValued.color
+            static let placeholder = StyleDictionaryColor.specificDataEntryPlaceholderColorDefault.color
+        }
+        
+        struct Background {
+            static let `default` = Color.clear
+            static let disabled = StyleDictionaryColor.aliasBackgroundColorDisabled.color
+        }
+        
+        struct Border {
+            static let hover = StyleDictionaryColor.specificDataEntryBorderColorHover.color
+            static let disabled = StyleDictionaryColor.aliasBackgroundColorDisabled.color
+            static let error = StyleDictionaryColor.specificDataEntryBorderColorError.color
+            static let success = StyleDictionaryColor.specificDataEntryBorderColorSuccess.color
+            static let `default` = StyleDictionaryColor.specificDataEntryLabelColorDefault.color
+        }
+        
+        struct InfoIcon {
+            static let hover = StyleDictionaryColor.aliasInteractiveSecondaryDefault.color
+            static let disabled = StyleDictionaryColor.aliasTextColorDisabled.color
+            static let `default` = StyleDictionaryColor.globalSemanticInfo100.color
+            static let error = StyleDictionaryColor.specificDataEntryBorderColorError.color
+            static let success = StyleDictionaryColor.specificDataEntryBorderColorSuccess.color
+        }
+        
+        struct Icon {
+            static let hover = StyleDictionaryColor.aliasInteractivePrimaryHover.color
+            static let disabled = StyleDictionaryColor.aliasTextColorDisabled.color
+            static let error = StyleDictionaryColor.specificDataEntryBorderColorError.color
+            static let success = StyleDictionaryColor.specificDataEntryBorderColorSuccess.color
+            static let `default` = StyleDictionaryColor.aliasInteractiveSecondaryDefault.color
+        }
+    }
+}
+
+// MARK: Hero
+extension Color {
+    struct Hero {
+        static let title = StyleDictionaryColor.globalDarkPrimary115.color
+        static let subtitle = StyleDictionaryColor.aliasTextColorSecondaryDark100.color
+        static let text = StyleDictionaryColor.aliasTextColorSecondaryDark100.color
+        static let background = StyleDictionaryColor.aliasBackgroundColorPrimaryLight0.color
+        static let divider = StyleDictionaryColor.aliasTextColorPrimaryLight50.color
+    }
+}
+
+// MARK: Carousel
+extension Color {
+    struct Carousel {
+        struct Dot {
+            static let selected = StyleDictionaryColor.aliasInteractivePrimaryDefault.color
+            static let unselected = StyleDictionaryColor.aliasInteractiveSecondaryDefault.color
+        }
+        
+        struct Background {
+            static let light = StyleDictionaryColor.aliasBackgroundColorPrimaryLight0.color
+            static let medium = StyleDictionaryColor.aliasBackgroundColorPrimaryLight40.color
+        }
+    }
+}

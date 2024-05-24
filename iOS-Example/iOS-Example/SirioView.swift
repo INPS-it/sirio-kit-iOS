@@ -39,6 +39,12 @@ struct SirioView: View {
                 })
                 
                 NavigationLink(destination: {
+                    ExampleCarousel()
+                }, label: {
+                    SirioText(text: "Carousel", typography: .label_md_400)
+                })
+                
+                NavigationLink(destination: {
                     ExampleCheckBox()
                 }, label: {
                     SirioText(text: "CheckBox", typography: .label_md_400)
@@ -69,11 +75,17 @@ struct SirioView: View {
                 })
                 
                 NavigationLink(destination: {
+                    ExampleHero()
+                }, label: {
+                    SirioText(text: "Hero", typography: .label_md_400)
+                })
+                
+                NavigationLink(destination: {
                     ExampleNotification()
                 }, label: {
                     SirioText(text: "Notification", typography: .label_md_400)
                 })
-                                
+                
                 NavigationLink(destination: {
                     ExamplePagination()
                 }, label: {
@@ -120,6 +132,12 @@ struct SirioView: View {
                     ExampleTag()
                 }, label: {
                     SirioText(text: "Tag", typography: .label_md_400)
+                })
+                
+                NavigationLink(destination: {
+                    ExampleTextArea()
+                }, label: {
+                    SirioText(text: "TextArea", typography: .label_md_400)
                 })
                 
                 NavigationLink(destination: {

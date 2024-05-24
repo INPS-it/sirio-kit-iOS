@@ -553,3 +553,47 @@ extension Size {
         }
     }
 }
+
+// MARK: TextArea
+extension Size {
+    public struct TextArea {
+        public static let spacing: CGFloat = 8
+        public static let paddingHorizontalPlaceholder: CGFloat = 4
+        public static let paddingVerticalPlaceholder: CGFloat = 10
+        public static let paddingHorizontal: CGFloat = 12
+        public static let paddingVertical: CGFloat = 4
+        public static let paddingVerticalTextEditor: CGFloat = 6
+        public static let height: CGFloat = 120
+        public static let cornerRadius: CGFloat = 4
+        public static let lineWidth: CGFloat = 1
+        
+        public struct Icon {
+            public static let frame1: CGFloat = 16
+            public static let frame2: CGFloat = 16
+        }
+    }
+}
+
+// MARK: Hero
+extension Size {
+    public struct Hero {
+        public static let paddingTop: CGFloat = 32
+        public static let spacing: CGFloat = 0
+    }
+}
+
+// MARK: Carousel
+extension Size {
+    public struct Carousel {
+        public static let frame: CGFloat = 10
+        
+        public struct Indicator {
+            public static let height: CGFloat = 14
+            public static let defaultWidth: CGFloat = 14
+            public static let currentIndexWidth: CGFloat = 28
+            public static let paddingHorizontal: CGFloat = 100
+            public static let spacing: CGFloat = 15
+            public static let trailingSpace: CGFloat = 80
+        }
+    }
+}
