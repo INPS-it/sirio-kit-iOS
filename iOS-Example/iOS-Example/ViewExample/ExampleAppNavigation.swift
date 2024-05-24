@@ -89,10 +89,8 @@ struct ExampleAppNavigation: View {
     }
 }
 
-struct ExampleAppNavigation_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleAppNavigation()
-    }
+#Preview {
+    ExampleAppNavigation()
 }
 
 struct ExampleAppNavigationStandardTitleView: View {

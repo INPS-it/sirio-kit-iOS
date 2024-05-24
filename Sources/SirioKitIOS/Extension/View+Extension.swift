@@ -112,6 +112,9 @@ public extension View {
     ///   - onTapInfo: The action on tap info button.
     ///   - onTapClose: The action on tap close button.
     ///   - isVisibleInfoIcon: The boolean for show or hide info icon.
+    ///   - accessibilityLabelInfoIcon: A string that identifies the info icon accessibility element
+    ///   - accessibilityLabelSubtitle: A string that identifies the subtitle accessibility element
+    ///   - accessibilityLabelButtonClose: A string that identifies the button close accessibility element
     /// - Returns: Either the original `View` or the notification toast `View` if isPresented  is `true`.
     func dialog(
         isPresented: Binding<Bool>,
@@ -126,7 +129,10 @@ public extension View {
         actionSecondButton: (() -> Void)? = nil,
         onTapInfoAction: (() -> Void)? = nil,
         onTapCloseAction: (() -> Void)? = nil,
-        isVisibleInfoIcon: Bool = true) -> some View {
+        isVisibleInfoIcon: Bool = true,
+        accessibilityLabelInfoIcon: String? = nil,
+        accessibilityLabelSubtitle: String? = nil,
+        accessibilityLabelButtonClose: String? = nil) -> some View {
             return modifier(ClearModifier(isPresented: isPresented, fullScreenContent: {
                 Dialog(type: type,
                        title: title,
@@ -139,7 +145,10 @@ public extension View {
                        actionSecondButton: actionSecondButton,
                        onTapInfoAction: onTapInfoAction,
                        onTapCloseAction: onTapCloseAction,
-                       isVisibleInfoIcon: isVisibleInfoIcon)
+                       isVisibleInfoIcon: isVisibleInfoIcon,
+                       accessibilityLabelInfoIcon: accessibilityLabelInfoIcon,
+                       accessibilityLabelSubtitle: accessibilityLabelSubtitle,
+                       accessibilityLabelButtonClose: accessibilityLabelButtonClose)
             }))
         }
 }
@@ -179,7 +188,20 @@ public extension View {
 }
 
 extension View {
+    func textEditorBackground (_ content: Color) -> some View {
+        if #available(iOS 16.0, *) {
+            return self.scrollContentBackground(.hidden)
+                .background(content)
+        } else {
+            UITextView.appearance().backgroundColor = .clear
+            return self.background (content)
+        }
+    }
+}
+
+extension View {
     func dismissKeyboard() -> some View {
         return modifier(DismissKeyboardModifier())
     }
 }
+

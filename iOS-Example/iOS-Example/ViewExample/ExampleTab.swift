@@ -37,11 +37,10 @@ struct ExampleTab: View {
     }
 }
 
-struct ExampleTab_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleTab()
-    }
+#Preview {
+    ExampleTab()
 }
+
 
 // Tab Single
 struct ExampleTabSingle: View {

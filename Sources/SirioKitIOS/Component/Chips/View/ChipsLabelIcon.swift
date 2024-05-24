@@ -52,17 +52,14 @@ public struct ChipsLabelIcon: View {
     }
 }
 
-struct ChipsLabelIcon_Preview: PreviewProvider {
-    static var previews: some View {
-        ChipsLabelIcon_2()
-    }
-}
 
-
-struct ChipsLabelIcon_2 : View {
+struct ChipsLabelIconTestView : View {
     @State private var selectedType: String? = "Type"
     
     var body: some View {
         ChipsLabelIcon(text: "Chips", icon: .check, selectedType: $selectedType)
     }
+}
+#Preview {
+    ChipsLabelIconTestView()
 }

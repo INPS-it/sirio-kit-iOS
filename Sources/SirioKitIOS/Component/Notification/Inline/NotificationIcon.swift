@@ -52,13 +52,11 @@ struct NotificationIcon: View {
     }
 }
 
-struct NotificationImage_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack(spacing: 10) {
-            NotificationIcon(type: .alert)
-            NotificationIcon(type: .info)
-            NotificationIcon(type: .warning)
-            NotificationIcon(type: .success)
-        }
+#Preview {
+    VStack(spacing: 10) {
+        NotificationIcon(type: .alert)
+        NotificationIcon(type: .info)
+        NotificationIcon(type: .warning)
+        NotificationIcon(type: .success)
     }
 }

@@ -67,8 +67,6 @@ struct ExampleFileUpload: View {
     }
 }
 
-struct ExampleFileUpload_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleFileUpload()
-    }
+#Preview {
+    ExampleFileUpload()
 }

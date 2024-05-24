@@ -75,15 +75,13 @@ struct ExampleButtons: View {
     }
 }
 
-struct ExampleButtons_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleButtons()
-    }
+#Preview {
+    ExampleButtons()
 }
 
 struct DoubleButtonsView: View {
     var style: SirioButtonStyle
-    var size: SirioButtonSize
+    var size: SirioSize
     
     var body: some View {
         VStack {
@@ -146,7 +144,7 @@ struct ButtonsPreview: View {
     
     var body: some View {
         ScrollView(showsIndicators: false){
-            ForEach(SirioButtonSize.allCases, id: \.self, content: { size in
+            ForEach(SirioSize.allCases, id: \.self, content: { size in
                 VStack(spacing: 8){
                     SirioText(text: "\(size.rawValue.capitalized)" , typography: .label_md_400)
                         .padding()

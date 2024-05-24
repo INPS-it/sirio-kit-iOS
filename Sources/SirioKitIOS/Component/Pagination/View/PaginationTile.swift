@@ -39,8 +39,6 @@ struct PaginationTile: View {
     }
 }
 
-struct PaginationTile_Previews: PreviewProvider {
-    static var previews: some View {
-        PaginationTile(number: 1, isSelected: true, isDisabled: false, action: nil)
-    }
+#Preview {
+    PaginationTile(number: 1, isSelected: true, isDisabled: false, action: nil)
 }

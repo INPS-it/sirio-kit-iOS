@@ -24,21 +24,22 @@ struct AppNavigationItem: View {
             item?.action()
         }, label: {
             
-        }).buttonStyle(AppNavigationItemStyle(item: item))
+        })
+        .buttonStyle(AppNavigationItemStyle(item: item))
+        .setAccessibilityLabel(item?.accessibilityLabel)
+        .accessibilityHidden(item == nil)
     }
 }
 
-struct AppNavigationItem_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            AppNavigationItem(item: AppNavigationItemData.previewBell)
-                .padding()
-                .colorScheme(.light)
-            
-            AppNavigationItem(item: AppNavigationItemData.previewUser)
-                .padding()
-                .colorScheme(.light)
-        }
-        .previewLayout(PreviewLayout.sizeThatFits)
+#Preview {
+    Group {
+        AppNavigationItem(item: AppNavigationItemData.previewBell)
+            .padding()
+            .colorScheme(.light)
+        
+        AppNavigationItem(item: AppNavigationItemData.previewUser)
+            .padding()
+            .colorScheme(.light)
     }
+    .previewLayout(PreviewLayout.sizeThatFits)
 }

@@ -43,18 +43,16 @@ struct AppNavigationLogoContainerView<Content: View>: View {
     }
 }
 
-struct AppNavigationLogoContainerView_Previews: PreviewProvider {
-    static var previews: some View {
-        AppNavigationLogoContainerView(content: {
-            ZStack {
-                Color.green.edgesIgnoringSafeArea(.all)
-                Text("Hello, world")
-                    .foregroundColor(.white)
-                
-            }
-            .setAppNavigationBarItems(
-                leftItem: .previewBack,
-                rightItems: [.previewUser, .previewBell])
-        })
-    }
+#Preview {
+    AppNavigationLogoContainerView(content: {
+        ZStack {
+            Color.green.edgesIgnoringSafeArea(.all)
+            Text("Hello, world")
+                .foregroundColor(.white)
+            
+        }
+        .setAppNavigationBarItems(
+            leftItem: .previewBack,
+            rightItems: [.previewUser, .previewBell])
+    })
 }

@@ -24,17 +24,15 @@ public struct SmallFab: View {
     }
 }
 
-struct SmallFab_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            SmallFab(data: .init(icon: .plus, action: {}))
-                .padding()
-                .colorScheme(.light)
-            
-            SmallFab(data: .init(icon: .plus, action: {}))
-                .padding()
-                .colorScheme(.dark)
-        }
-        .previewLayout(PreviewLayout.sizeThatFits)
+#Preview {
+    Group {
+        SmallFab(data: .init(icon: .plus, action: {}))
+            .padding()
+            .colorScheme(.light)
+        
+        SmallFab(data: .init(icon: .plus, action: {}))
+            .padding()
+            .colorScheme(.dark)
     }
+    .previewLayout(PreviewLayout.sizeThatFits)
 }

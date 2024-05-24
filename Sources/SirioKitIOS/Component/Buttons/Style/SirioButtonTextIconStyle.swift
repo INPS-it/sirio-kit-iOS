@@ -11,7 +11,7 @@ import SwiftUI
 // A struct to manage the Sirio button with text and icon style
 struct SirioButtonTextIconStyle: ButtonStyle {
     var style: SirioButtonStyle
-    var size: SirioButtonSize
+    var size: SirioSize
     var text: String
     var iconData: SirioIconData
     @Binding var isDisabled: Bool
@@ -24,7 +24,7 @@ struct SirioButtonTextIconStyle: ButtonStyle {
     @State var colorBackground: Color
     @State var colorBorder: Color
     
-    init(style: SirioButtonStyle, size: SirioButtonSize, text: String, iconData: SirioIconData, isDisabled: Binding<Bool>, isFullSize: Bool){
+    init(style: SirioButtonStyle, size: SirioSize, text: String, iconData: SirioIconData, isDisabled: Binding<Bool>, isFullSize: Bool){
         self.style = style
         self.size = size
         self.text = text
@@ -33,14 +33,14 @@ struct SirioButtonTextIconStyle: ButtonStyle {
         self.isFullSize = isFullSize
         
         // Set default color by state
-        self.colorText = isDisabled.wrappedValue ? self.style.text.disabled : self.style.text.default
-        self.colorIcon = isDisabled.wrappedValue ? self.style.icon.disabled : self.style.icon.default
-        self.colorBackground = isDisabled.wrappedValue ? self.style.background.disabled : self.style.background.default
+        self._colorText = State(initialValue: isDisabled.wrappedValue ? self.style.text.disabled : self.style.text.default)
+        self._colorIcon = State(initialValue: isDisabled.wrappedValue ? self.style.icon.disabled : self.style.icon.default)
+        self._colorBackground = State(initialValue: isDisabled.wrappedValue ? self.style.background.disabled : self.style.background.default)
         
         if let border = self.style.border {
-            self.colorBorder = isDisabled.wrappedValue ? border.disabled : border.default
+            self._colorBorder = State(initialValue: isDisabled.wrappedValue ? border.disabled : border.default)
         } else {
-            self.colorBorder = .clear
+            self._colorBorder = State(initialValue: .clear)
         }
     }
     

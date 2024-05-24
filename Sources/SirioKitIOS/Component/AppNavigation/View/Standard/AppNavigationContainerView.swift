@@ -58,16 +58,14 @@ public struct AppNavigationContainerView<Content: View>: View {
     }
 }
 
-struct AppNavigationContainerView_Previews: PreviewProvider {
-    static var previews: some View {
-        AppNavigationContainerView(content: {
-            ZStack {
-                Color.green.edgesIgnoringSafeArea(.all)
-                Text("Hello, world")
-                    .foregroundColor(.white)
-                    .setAppNavigationBarItems(leftItem: .previewBack,
-                                              rightItems: [.previewUser, .previewSearch])
-            }
-        })
-    }
+#Preview {
+    AppNavigationContainerView(content: {
+        ZStack {
+            Color.green.edgesIgnoringSafeArea(.all)
+            Text("Hello, world")
+                .foregroundColor(.white)
+                .setAppNavigationBarItems(leftItem: .previewBack,
+                                          rightItems: [.previewUser, .previewSearch])
+        }
+    })
 }

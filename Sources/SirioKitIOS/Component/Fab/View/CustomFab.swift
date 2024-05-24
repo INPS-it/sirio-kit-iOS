@@ -27,17 +27,15 @@ struct CustomFab: View {
     }
 }
 
-struct CustomFab_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            CustomFab(data: .init(icon: .plus, action: {}), size: Size.Fab.small)
-                .padding()
-                .colorScheme(.light)
-            
-            CustomFab(data: .init(icon: .plus, action: {}), size: Size.Fab.regular)
-                .padding()
-                .colorScheme(.dark)
-        }
-        .previewLayout(PreviewLayout.sizeThatFits)
+#Preview {
+    Group {
+        CustomFab(data: .init(icon: .plus, action: {}), size: Size.Fab.small)
+            .padding()
+            .colorScheme(.light)
+        
+        CustomFab(data: .init(icon: .plus, action: {}), size: Size.Fab.regular)
+            .padding()
+            .colorScheme(.dark)
     }
+    .previewLayout(PreviewLayout.sizeThatFits)
 }

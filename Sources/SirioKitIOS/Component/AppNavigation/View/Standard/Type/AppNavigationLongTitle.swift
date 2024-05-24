@@ -50,25 +50,6 @@ public struct AppNavigationLongTitle: View {
     }
 }
 
-struct AppNavigationLongTitle_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            AppNavigationLongTitle(title: "Titolo pagina molto molto molto lungo su due righe",
-                                   leftItem: .previewBack,
-                                   rightItems: [.previewUser, .previewSearch])
-            .padding(.vertical)
-            .colorScheme(.light)
-        
-            AppNavigationLongTitle(title: "Titolo pagina molto molto molto lungo su due righe",
-                                   leftItem: .previewBack,
-                                   rightItems: [.previewUser, .previewSearch])
-            .padding(.vertical)
-            .colorScheme(.dark)
-        }
-        .previewLayout(PreviewLayout.sizeThatFits)
-    }
-}
-
 extension AppNavigationLongTitle {
     
     private var backgroundColor: Color {
@@ -92,4 +73,20 @@ extension AppNavigationLongTitle {
             return Color.AppNavigation.Default.Text.light
         }
     }
+}
+#Preview {
+    Group {
+        AppNavigationLongTitle(title: "Titolo pagina molto molto molto lungo su due righe",
+                               leftItem: .previewBack,
+                               rightItems: [.previewUser, .previewSearch])
+        .padding(.vertical)
+        .colorScheme(.light)
+    
+        AppNavigationLongTitle(title: "Titolo pagina molto molto molto lungo su due righe",
+                               leftItem: .previewBack,
+                               rightItems: [.previewUser, .previewSearch])
+        .padding(.vertical)
+        .colorScheme(.dark)
+    }
+    .previewLayout(PreviewLayout.sizeThatFits)
 }

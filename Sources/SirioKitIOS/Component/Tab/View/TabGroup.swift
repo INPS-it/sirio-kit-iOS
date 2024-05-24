@@ -63,9 +63,6 @@ struct ExampleTabGroup: View {
     }
 }
 
-struct TabGroup_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleTabGroup()
-    }
+#Preview {
+    ExampleTabGroup()
 }
-

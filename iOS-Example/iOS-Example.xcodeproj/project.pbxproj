@@ -10,7 +10,6 @@
 		7E1C91E82891371F008FE477 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C91E72891371F008FE477 /* UIColor+Extension.swift */; };
 		7E321194289BB0F200FFB256 /* ExamplePagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E321193289BB0F200FFB256 /* ExamplePagination.swift */; };
 		7E3F3F67288FE387008FF13D /* ExampleSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3F3F66288FE387008FF13D /* ExampleSearchBar.swift */; };
-		7E43935928F99AEC00FBE17D /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E43935828F99AEC00FBE17D /* Example.swift */; };
 		7E7FB5E3284E05A100F80FC7 /* iOS_ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB5E2284E05A100F80FC7 /* iOS_ExampleApp.swift */; };
 		7E7FB5E7284E05A100F80FC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E7FB5E6284E05A100F80FC7 /* Assets.xcassets */; };
 		7E7FB5EA284E05A100F80FC7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E7FB5E9284E05A100F80FC7 /* Preview Assets.xcassets */; };
@@ -45,7 +44,6 @@
 		7E1C91E72891371F008FE477 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		7E321193289BB0F200FFB256 /* ExamplePagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplePagination.swift; sourceTree = "<group>"; };
 		7E3F3F66288FE387008FF13D /* ExampleSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSearchBar.swift; sourceTree = "<group>"; };
-		7E43935828F99AEC00FBE17D /* Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
 		7E541EC22859CF8E002DBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7E7FB5DF284E05A100F80FC7 /* SirioKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SirioKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E7FB5E2284E05A100F80FC7 /* iOS_ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_ExampleApp.swift; sourceTree = "<group>"; };
@@ -131,7 +129,6 @@
 		7E7FB5F8284E095A00F80FC7 /* ViewExample */ = {
 			isa = PBXGroup;
 			children = (
-				7E43935828F99AEC00FBE17D /* Example.swift */,
 				7E7FB5FB284E095A00F80FC7 /* ExampleAccordion.swift */,
 				7E7FB5F9284E095A00F80FC7 /* ExampleAppNavigation.swift */,
 				7EA2E88128606359001FE093 /* ExampleButtons.swift */,
@@ -252,7 +249,6 @@
 				7E7FB605284E095A00F80FC7 /* ExampleTabBar.swift in Sources */,
 				7EE5EAF72897FDC9000EC224 /* ExampleDialog.swift in Sources */,
 				7E7FB601284E095A00F80FC7 /* ExampleChips.swift in Sources */,
-				7E43935928F99AEC00FBE17D /* Example.swift in Sources */,
 				7E8A11792AB09104003D26DD /* ExampleCard.swift in Sources */,
 				7ED0E57F284E4119001574D5 /* ExampleRadioButton.swift in Sources */,
 				7EAF97BA2861CAA500B90534 /* ExampleFileUpload.swift in Sources */,

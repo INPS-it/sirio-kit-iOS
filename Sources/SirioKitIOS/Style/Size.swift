@@ -15,83 +15,83 @@ public struct Size {
 
 // MARK: Fab
 extension Size {
-    struct Fab {
-        static let small: CGFloat = 40
-        static let regular: CGFloat = 56
+    public struct Fab {
+        public static let small: CGFloat = 40
+        public static let regular: CGFloat = 56
         
-        struct IconLabel {
-            static let frame: CGFloat = 16
-            static let paddingLeading: CGFloat = 8
-            static let paddingHorizontal: CGFloat = 42
-            static let paddingVertical: CGFloat = 16
-            static let cornerRadius: CGFloat = 27
+        public struct IconLabel {
+            public static let frame: CGFloat = 16
+            public static let paddingLeading: CGFloat = 8
+            public static let paddingHorizontal: CGFloat = 42
+            public static let paddingVertical: CGFloat = 16
+            public static let cornerRadius: CGFloat = 27
         }
         
-        struct OnlyIcon {
-            static let frame: CGFloat = 22
-            static let cornerRadius: CGFloat = 50
+        public struct OnlyIcon {
+            public static let frame: CGFloat = 22
+            public static let cornerRadius: CGFloat = 50
         }
     }
 }
 
 // MARK: Badge
 extension Size {
-    struct Badge {
-        static let circleWhite: CGFloat = 8
-        static let circleRed: CGFloat = 6
-        static let border: CGFloat = 1.5
+    public struct Badge {
+        public static let circleWhite: CGFloat = 8
+        public static let circleRed: CGFloat = 6
+        public static let border: CGFloat = 1.5
     }
 }
 
 // MARK: Tab Bar - Tab Bar Item
 extension Size {
     
-    struct TabBar {
-        static let height: CGFloat = 49 // frame
+    public struct TabBar {
+        public static let height: CGFloat = 49 // frame
         
-        struct Item {
+        public struct Item {
             
             // Both orientation
-            struct Indicator {
-                static let height: CGFloat = 3
+            public struct Indicator {
+                public static let height: CGFloat = 3
             }
             
-            struct Icon {
-                static let frame: CGFloat = 22
+            public struct Icon {
+                public static let frame: CGFloat = 22
             }
             
             // Landscape
-            struct Landscape {
-                static let width: CGFloat = 100
-                static let height: CGFloat = 49
+            public struct Landscape {
+                public static let width: CGFloat = 100
+                public static let height: CGFloat = 49
                 
-                struct Icon {
-                    static let paddingTop: CGFloat = 16
-                    static let paddingBottom: CGFloat = 14
-                    static let paddingLeading: CGFloat = 24
-                    static let paddingTrailing: CGFloat = 5
+                public struct Icon {
+                    public static let paddingTop: CGFloat = 16
+                    public static let paddingBottom: CGFloat = 14
+                    public static let paddingLeading: CGFloat = 24
+                    public static let paddingTrailing: CGFloat = 5
                 }
                 
-                struct Text {
-                    static let paddingTop: CGFloat = 19
-                    static let paddingBottom: CGFloat = 18
-                    static let paddingTrailing: CGFloat = 11
+                public struct Text {
+                    public static let paddingTop: CGFloat = 19
+                    public static let paddingBottom: CGFloat = 18
+                    public static let paddingTrailing: CGFloat = 11
                 }
             }
             
             // Portrait
-            struct Portrait {
-                static let width: CGFloat = 49
-                static let height: CGFloat = 49
+            public struct Portrait {
+                public static let width: CGFloat = 49
+                public static let height: CGFloat = 49
                 
-                struct Icon {
-                    static let paddingTop: CGFloat = 4
-                    static let paddingHorizontal: CGFloat = 13
+                public struct Icon {
+                    public static let paddingTop: CGFloat = 4
+                    public static let paddingHorizontal: CGFloat = 13
                 }
                 
-                struct Text {
-                    static let paddingTop: CGFloat = 4
-                    static let paddingBottom: CGFloat = 4
+                public struct Text {
+                    public static let paddingTop: CGFloat = 4
+                    public static let paddingBottom: CGFloat = 4
                 }
             }
         }
@@ -101,42 +101,42 @@ extension Size {
 
 // MARK: App Navigation
 extension Size {
-    struct AppNavigation {
+    public struct AppNavigation {
         
-        static let height: CGFloat = 44
-        static let paddingHorizontal: CGFloat = 8
-        static let spacing: CGFloat = 16
+        public static let height: CGFloat = 44
+        public static let paddingHorizontal: CGFloat = 8
+        public static let spacing: CGFloat = 16
         
-        struct Item { // App Navigation Item
-            static let icon: CGFloat = 24
-            static let area: CGFloat = 38
+        public struct Item { // App Navigation Item
+            public static let icon: CGFloat = 24
+            public static let area: CGFloat = 38
         }
         
-        struct LogoInps { // App Navigation Logo INPS
-            static let maxWidth: CGFloat = 108
-            static let maxHeight: CGFloat = 39
+        public struct LogoInps { // App Navigation Logo INPS
+            public static let maxWidth: CGFloat = 108
+            public static let maxHeight: CGFloat = 39
         }
         
-        struct LongTitle { // App Navigation Long/Big Title
-            static let height: CGFloat = 48
-            static let textHeight: CGFloat = 54
+        public struct LongTitle { // App Navigation Long/Big Title
+            public static let height: CGFloat = 48
+            public static let textHeight: CGFloat = 54
         }
         
-        struct BigTitle {
-            static let height: CGFloat = 48
-            static let textHeight: CGFloat = 54
+        public struct BigTitle {
+            public static let height: CGFloat = 48
+            public static let textHeight: CGFloat = 54
         }
         
-        struct Search { // App Navigation Search
-            static let height: CGFloat = 32
-            static let border: CGFloat = 6
-            static let item: CGFloat = 16
-            static let paddingHorizontal: CGFloat = 16
+        public struct Search { // App Navigation Search
+            public static let height: CGFloat = 32
+            public static let border: CGFloat = 6
+            public static let item: CGFloat = 16
+            public static let paddingHorizontal: CGFloat = 16
         }
         
-        struct Badge {
-            static let paddingTop: CGFloat = 3
-            static let paddingTrailing: CGFloat = 1
+        public struct Badge {
+            public static let paddingTop: CGFloat = 3
+            public static let paddingTrailing: CGFloat = 1
         }
     }
 }
@@ -144,51 +144,51 @@ extension Size {
 // MARK: Tag
 extension Size {
     
-    struct Tag {
-        static let paddingHorizontal: CGFloat = 16
-        static let paddingVertical: CGFloat = 4
-        static let cornerRadius: CGFloat = 100
+    public struct Tag {
+        public static let paddingHorizontal: CGFloat = 16
+        public static let paddingVertical: CGFloat = 4
+        public static let cornerRadius: CGFloat = 100
     }
 }
 
 // MARK: Accordion
 extension Size {
-    struct Accordion {
-        static let borderWidth: CGFloat = 1
-        static let sectionHeight: CGFloat = 64
-        static let paddingHorizontal: CGFloat = 16
-        static let paddingContent: CGFloat = 16
+    public struct Accordion {
+        public static let borderWidth: CGFloat = 1
+        public static let sectionHeight: CGFloat = 64
+        public static let paddingHorizontal: CGFloat = 16
+        public static let paddingContent: CGFloat = 16
         
-        struct Icon {
-            static let frame: CGFloat = 16
+        public struct Icon {
+            public static let frame: CGFloat = 16
         }
     }
 }
 
 // MARK: Chips
 extension Size {
-    struct Chips {
-        static let height: CGFloat = 32
-        static let borderWidth: CGFloat = 2
-        static let paddingVertical: CGFloat = 4
-        static let paddingHorizontal: CGFloat = 16
-        static let paddingLeading: CGFloat = 16
-        static let paddingTrailing: CGFloat = 4
-        static let cornerRadius: CGFloat = 100
-        static let cornerRadiusOverlay: CGFloat = 25
+    public struct Chips {
+        public static let height: CGFloat = 32
+        public static let borderWidth: CGFloat = 2
+        public static let paddingVertical: CGFloat = 4
+        public static let paddingHorizontal: CGFloat = 16
+        public static let paddingLeading: CGFloat = 16
+        public static let paddingTrailing: CGFloat = 4
+        public static let cornerRadius: CGFloat = 100
+        public static let cornerRadiusOverlay: CGFloat = 25
         
-        struct Icon {
-            static let frame: CGFloat = 16
+        public struct Icon {
+            public static let frame: CGFloat = 16
         }
         
-        struct Close {
-            struct Icon {
-                static let frame: CGFloat = 14
-                static let padding: CGFloat = 5
+        public struct Close {
+            public struct Icon {
+                public static let frame: CGFloat = 14
+                public static let padding: CGFloat = 5
             }
             
-            struct Button {
-                static let frame: CGFloat = 24
+            public struct Button {
+                public static let frame: CGFloat = 24
                 
             }
         }
@@ -197,205 +197,206 @@ extension Size {
 
 // MARK: RadioButton
 extension Size {
-    struct RadioButton {
-        static let padding: CGFloat = 0
-        static let touchArea: CGFloat = 44
-        static let circleDefault: CGFloat = 24
-        static let circleChecked: CGFloat = 14
-        static let border: CGFloat = 1
+    public struct RadioButton {
+        public static let spacing: CGFloat = 10
+        public static let touchArea: CGFloat = 44
+        public static let circleDefault: CGFloat = 24
+        public static let circleChecked: CGFloat = 14
+        public static let border: CGFloat = 1
+        public static let radius: CGFloat = 100
     }
 }
 
 // MARK: Checkbox
 extension Size {
-    struct Checkbox {
-        static let padding: CGFloat = 0
-        static let touchArea: CGFloat = 44
-        static let frameDefault: CGFloat = 24
-        static let frameChecked: CGFloat = 14
-        static let border: CGFloat = 1
-        static let cornerRadius: CGFloat = 4
+    public struct Checkbox {
+        public static let padding: CGFloat = 0
+        public static let touchArea: CGFloat = 44
+        public static let frameDefault: CGFloat = 24
+        public static let frameChecked: CGFloat = 14
+        public static let border: CGFloat = 1
+        public static let cornerRadius: CGFloat = 4
     }
 }
 
 // MARK: Toggle
 extension Size {
-    struct Toggle {
+    public struct Toggle {
         
-        static let spacing: CGFloat = 12
-        static let horizontalTouchArea: CGFloat = 44
-        static let verticalTouchArea: CGFloat = 44
-        static let cornerRadius: CGFloat = 16
-        static let width: CGFloat = 54
-        static let height: CGFloat = 26
-        static let border: CGFloat = 1
-        static let circle: CGFloat = 18
-        static let circleOffset: CGFloat = 14
+        public static let spacing: CGFloat = 12
+        public static let horizontalTouchArea: CGFloat = 44
+        public static let verticalTouchArea: CGFloat = 44
+        public static let cornerRadius: CGFloat = 16
+        public static let width: CGFloat = 54
+        public static let height: CGFloat = 26
+        public static let border: CGFloat = 1
+        public static let circle: CGFloat = 18
+        public static let circleOffset: CGFloat = 14
     }
 }
 
 // MARK: Slider
 extension Size {
-    struct Slider {
-        static let horizontalSpacing: CGFloat = 10
-        static let spacingVertical: CGFloat = 6
+    public struct Slider {
+        public static let horizontalSpacing: CGFloat = 10
+        public static let spacingVertical: CGFloat = 6
         
-        struct TextField {
-            static let width: CGFloat = 60
-            static let height: CGFloat = 48
-            static let border: CGFloat = 1
-            static let cornerRadius: CGFloat = 4
+        public struct TextField {
+            public static let width: CGFloat = 60
+            public static let height: CGFloat = 48
+            public static let border: CGFloat = 1
+            public static let cornerRadius: CGFloat = 4
         }
     }
 }
 
 // MARK: ProgressBar
 extension Size {
-    struct ProgressBar {
-        static let height: CGFloat = 9
-        static let gradientHeight: CGFloat = 6
-        static let paddingHorizontal: CGFloat = 2
-        static let offset: CGFloat = 1.5
-        static let padding: CGFloat = 4
+    public struct ProgressBar {
+        public static let height: CGFloat = 9
+        public static let gradientHeight: CGFloat = 6
+        public static let paddingHorizontal: CGFloat = 2
+        public static let offset: CGFloat = 1.5
+        public static let padding: CGFloat = 4
     }
 }
 
 // MARK: FileUpload
 extension Size {
-    struct FileUpload {
-        static let paddingHorizontal: CGFloat = 42
-        static let paddingVertical: CGFloat = 16
-        static let padding: CGFloat = 8
-        static let cornerRadius: CGFloat = 4
-        static let spacing: CGFloat = 8
+    public struct FileUpload {
+        public static let paddingHorizontal: CGFloat = 42
+        public static let paddingVertical: CGFloat = 16
+        public static let padding: CGFloat = 8
+        public static let cornerRadius: CGFloat = 4
+        public static let spacing: CGFloat = 8
         
-        struct Icon {
-            static let frame: CGFloat = 16
-            //static let paddingLeading: CGFloat = 8
+        public struct Icon {
+            public static let frame: CGFloat = 16
+            //public static let paddingLeading: CGFloat = 8
         }
     }
 }
 
 // MARK: Button (SirioButton)
 extension Size {
-    struct Button {
-        static let padding: CGFloat = 8
+    public struct Button {
+        public static let padding: CGFloat = 8
         
-        struct Large {
-            struct Icon {
-                static let frame: CGFloat = 16
-                static let paddingHorizontal: CGFloat = 17
-                static let paddingVertical: CGFloat = 16
+        public struct Large {
+            public struct Icon {
+                public static let frame: CGFloat = 16
+                public static let paddingHorizontal: CGFloat = 17
+                public static let paddingVertical: CGFloat = 16
             }
             
-            struct TextIcon {
-                static let frame: CGFloat = 16
-                static let paddingHorizontal: CGFloat = 42
-                static let paddingVertical: CGFloat = 16
+            public struct TextIcon {
+                public static let frame: CGFloat = 16
+                public static let paddingHorizontal: CGFloat = 42
+                public static let paddingVertical: CGFloat = 16
             }
             
-            struct Text {
-                static let frame: CGFloat = 16
-                static let paddingHorizontal: CGFloat = 42
-                static let paddingVertical: CGFloat = 16
+            public struct Text {
+                public static let frame: CGFloat = 16
+                public static let paddingHorizontal: CGFloat = 42
+                public static let paddingVertical: CGFloat = 16
             }
         }
         
-        struct Medium {
-            struct Icon {
-                static let frame: CGFloat = 16
-                static let paddingHorizontal: CGFloat = 13
-                static let paddingVertical: CGFloat = 12
+        public struct Medium {
+            public struct Icon {
+                public static let frame: CGFloat = 16
+                public static let paddingHorizontal: CGFloat = 13
+                public static let paddingVertical: CGFloat = 12
             }
             
-            struct TextIcon {
-                static let frame: CGFloat = 16
-                static let paddingHorizontal: CGFloat = 40
-                static let paddingVertical: CGFloat = 12
+            public struct TextIcon {
+                public static let frame: CGFloat = 16
+                public static let paddingHorizontal: CGFloat = 40
+                public static let paddingVertical: CGFloat = 12
             }
             
-            struct Text {
-                static let frame: CGFloat = 16
-                static let paddingHorizontal: CGFloat = 40
-                static let paddingVertical: CGFloat = 12
+            public struct Text {
+                public static let frame: CGFloat = 16
+                public static let paddingHorizontal: CGFloat = 40
+                public static let paddingVertical: CGFloat = 12
             }
         }
         
-        struct Small {
-            struct Icon {
-                static let frame: CGFloat = 12
-                static let paddingHorizontal: CGFloat = 10
-                static let paddingVertical: CGFloat = 10
+        public struct Small {
+            public struct Icon {
+                public static let frame: CGFloat = 12
+                public static let paddingHorizontal: CGFloat = 10
+                public static let paddingVertical: CGFloat = 10
             }
             
-            struct TextIcon {
-                static let frame: CGFloat = 12
-                static let paddingHorizontal: CGFloat = 24
-                static let paddingVertical: CGFloat = 8
+            public struct TextIcon {
+                public static let frame: CGFloat = 12
+                public static let paddingHorizontal: CGFloat = 24
+                public static let paddingVertical: CGFloat = 8
             }
             
-            struct Text {
-                static let frame: CGFloat = 12
-                static let paddingHorizontal: CGFloat = 24
-                static let paddingVertical: CGFloat = 8
+            public struct Text {
+                public static let frame: CGFloat = 12
+                public static let paddingHorizontal: CGFloat = 24
+                public static let paddingVertical: CGFloat = 8
             }
         }
         
-        struct Border {
-            static let cornerRadius: CGFloat = 4
-            static let width: CGFloat = 2
+        public struct Border {
+            public static let cornerRadius: CGFloat = 4
+            public static let width: CGFloat = 2
         }
     }
 }
 
 // MARK: Notification Inline & Toast
 extension Size {
-    struct Notification {
+    public struct Notification {
         
-        struct Inline {
-            static let heigth: CGFloat = 68
-            static let spacingVertical: CGFloat = 4
-            static let paddingVertical: CGFloat = 8
-            static let paddingHorizontal: CGFloat = 16
+        public struct Inline {
+            public static let heigth: CGFloat = 68
+            public static let spacingVertical: CGFloat = 4
+            public static let paddingVertical: CGFloat = 8
+            public static let paddingHorizontal: CGFloat = 16
             
-            struct Icon {
+            public struct Icon {
                 
-                struct Left {
-                    static let frame: CGFloat = 24
-                    static let containerHeight: CGFloat = 68
-                    static let containerWidth: CGFloat = 68
+                public struct Left {
+                    public static let frame: CGFloat = 24
+                    public static let containerHeight: CGFloat = 68
+                    public static let containerWidth: CGFloat = 68
                 }
                 
-                struct Right {
-                    static let frame: CGFloat = 14
+                public struct Right {
+                    public static let frame: CGFloat = 14
                 }
             }
         }
         
-        struct Toast {
-            static let paddingVertical: CGFloat = 26
-            static let paddingHorizontal: CGFloat = 24
-            static let spacing: CGFloat = 0
+        public struct Toast {
+            public static let paddingVertical: CGFloat = 26
+            public static let paddingHorizontal: CGFloat = 24
+            public static let spacing: CGFloat = 0
             
             
-            struct Rectangle {
-                static let frame: CGFloat = 18
+            public struct Rectangle {
+                public static let frame: CGFloat = 18
             }
             
-            struct Icon {
-                struct Left {
-                    static let frame: CGFloat = 24
+            public struct Icon {
+                public struct Left {
+                    public static let frame: CGFloat = 24
                 }
                 
-                struct Right {
-                    static let frame: CGFloat = 14
+                public struct Right {
+                    public static let frame: CGFloat = 14
                 }
             }
             
-            struct Text {
-                static let paddingTitleTop: CGFloat = 24
-                static let paddingSubtitleTop: CGFloat = 8
-                static let paddingButtonTop: CGFloat = 24
+            public struct Text {
+                public static let paddingTitleTop: CGFloat = 24
+                public static let paddingSubtitleTop: CGFloat = 8
+                public static let paddingButtonTop: CGFloat = 24
                 
             }
         }
@@ -404,150 +405,150 @@ extension Size {
 
 // MARK: SirioTextField
 extension Size {
-    struct SirioTextField {
-        static let spacing: CGFloat = 8
+    public struct SirioTextField {
+        public static let spacing: CGFloat = 8
         
-        static let paddingHorizontal: CGFloat = 16
-        static let height: CGFloat = 48
-        static let cornerRadius: CGFloat = 4
-        static let borderWidth: CGFloat = 1
+        public static let paddingHorizontal: CGFloat = 16
+        public static let height: CGFloat = 48
+        public static let cornerRadius: CGFloat = 4
+        public static let borderWidth: CGFloat = 1
         
-        struct Icon {
-            static let frame1: CGFloat = 14
-            static let frame2: CGFloat = 16
+        public struct Icon {
+            public static let frame1: CGFloat = 14
+            public static let frame2: CGFloat = 16
         }
     }
 }
 
 // MARK: Tab
 extension Size {
-    struct Tab {
+    public struct Tab {
         
-        static let spacingVertical: CGFloat = 0
-        static let spacingHorizontal: CGFloat = 8
-        static let spacingHorizontalGroupTop: CGFloat = 2
-        static let spacingHorizontalGroupBottom: CGFloat = 0
-        static let paddingHorizontal: CGFloat = 32
-        static let paddingHorizontalWithIcon: CGFloat = 20
-        static let height: CGFloat = 44
+        public static let spacingVertical: CGFloat = 0
+        public static let spacingHorizontal: CGFloat = 8
+        public static let spacingHorizontalGroupTop: CGFloat = 2
+        public static let spacingHorizontalGroupBottom: CGFloat = 0
+        public static let paddingHorizontal: CGFloat = 32
+        public static let paddingHorizontalWithIcon: CGFloat = 20
+        public static let height: CGFloat = 44
         
-        struct Rectangle {
-            static let height: CGFloat = 4
-            static let cornerRadius: CGFloat = 0
+        public struct Rectangle {
+            public static let height: CGFloat = 4
+            public static let cornerRadius: CGFloat = 0
         }
         
-        struct Icon {
-            static let frame: CGFloat = 16
+        public struct Icon {
+            public static let frame: CGFloat = 16
         }
     }
 }
 
 // MARK: SearchBar
 extension Size {
-    struct SearchBar {
-        static let height: CGFloat = 48
-        static let spacingVertical: CGFloat = 8
-        static let spacingHorizontal: CGFloat = 16
-        static let paddingLeading: CGFloat = 16
-        static let cornerRadius: CGFloat = 4
-        static let lineWidth: CGFloat = 1
+    public struct SearchBar {
+        public static let height: CGFloat = 48
+        public static let spacingVertical: CGFloat = 8
+        public static let spacingHorizontal: CGFloat = 16
+        public static let paddingLeading: CGFloat = 16
+        public static let cornerRadius: CGFloat = 4
+        public static let lineWidth: CGFloat = 1
         
-        struct Icon {
-            static let frame: CGFloat = 16
+        public struct Icon {
+            public static let frame: CGFloat = 16
         }
         
-        struct ButtonSearch {
-            static let height: CGFloat = 48
-            static let width: CGFloat = 50
+        public struct ButtonSearch {
+            public static let height: CGFloat = 48
+            public static let width: CGFloat = 50
         }
         
-        struct Chips {
-            static let padding: CGFloat = 8
+        public struct Chips {
+            public static let padding: CGFloat = 8
         }
         
-        struct Options {
-            static let spacing: CGFloat = 0
-            static let paddingHorizontal: CGFloat = 15
-            static let paddingVertical: CGFloat = 16
-            static let maxHeight: CGFloat = 194
+        public struct Options {
+            public static let spacing: CGFloat = 0
+            public static let paddingHorizontal: CGFloat = 15
+            public static let paddingVertical: CGFloat = 16
+            public static let maxHeight: CGFloat = 194
         }
     }
 }
 
 // MARK: Dialog
 extension Size {
-    struct Dialog {
-        static let maxHeight: CGFloat = UIScreen.main.bounds.height * 0.80 // 80% of the screen
-        static let noSpacing: CGFloat = 0
-        static let spacing: CGFloat = 16
-        static let padding: CGFloat = 24
-        static let cornerRadius: CGFloat = 16
+    public struct Dialog {
+        public static let maxHeight: CGFloat = UIScreen.main.bounds.height * 0.80 // 80% of the screen
+        public static let noSpacing: CGFloat = 0
+        public static let spacing: CGFloat = 16
+        public static let padding: CGFloat = 24
+        public static let cornerRadius: CGFloat = 16
         
-        struct InfoIcon {
-            static let frame: CGFloat = 24
+        public struct InfoIcon {
+            public static let frame: CGFloat = 24
         }
     }
 }
 
 // MARK: Pagination
 extension Size {
-    struct Pagination {
-        static let spacing: CGFloat = 0
-        static let paddingHorizontal: CGFloat = 8
-        static let height: CGFloat = 74
+    public struct Pagination {
+        public static let spacing: CGFloat = 0
+        public static let paddingHorizontal: CGFloat = 8
+        public static let height: CGFloat = 74
         
-        struct Button {
-            static let width: CGFloat = 38
-            static let height: CGFloat = 44
-            static let cornerRadius: CGFloat = 4
+        public struct Button {
+            public static let width: CGFloat = 38
+            public static let height: CGFloat = 44
+            public static let cornerRadius: CGFloat = 4
         }
         
-        struct Dots {
-            static let height: CGFloat = 44
-            static let width: CGFloat = 48
+        public struct Dots {
+            public static let height: CGFloat = 44
+            public static let width: CGFloat = 48
         }
     }
 }
 
 // MARK: Card
 extension Size {
-    struct Card {
-        struct Editorial {
-            static let spacing: CGFloat = 16
-            static let paddingHorizontal: CGFloat = 16
-            static let paddingBottom: CGFloat = 16
-            static let paddingTop: CGFloat = 24
-            static let spacingItems: CGFloat = 60
-            static let cornerRadius: CGFloat = 4
-            static let imageHeight: CGFloat = 220
+    public struct Card {
+        public struct Editorial {
+            public static let spacing: CGFloat = 16
+            public static let paddingHorizontal: CGFloat = 16
+            public static let paddingBottom: CGFloat = 16
+            public static let paddingTop: CGFloat = 24
+            public static let spacingItems: CGFloat = 60
+            public static let cornerRadius: CGFloat = 4
+            public static let imageHeight: CGFloat = 220
 
-            struct Item {
-                static let width: CGFloat = 16
-                static let height: CGFloat = 16
+            public struct Item {
+                public static let width: CGFloat = 16
+                public static let height: CGFloat = 16
             }
             
-            struct Icon {
-                static let width: CGFloat = 32
-                static let height: CGFloat = 32
+            public struct Icon {
+                public static let width: CGFloat = 32
+                public static let height: CGFloat = 32
             }
         }
         
-        struct Process {
-            static let spacing: CGFloat = 16
-            static let paddingVertical: CGFloat = 16
-            static let paddingHorizontal: CGFloat = 16
-            static let titleHeight: CGFloat = 74
-            static let bodyHeight: CGFloat = 98
-            static let cornerRadius: CGFloat = 4
+        public struct Process {
+            public static let spacing: CGFloat = 16
+            public static let paddingVertical: CGFloat = 16
+            public static let paddingHorizontal: CGFloat = 16
+            public static let bodyHeight: CGFloat = 98
+            public static let cornerRadius: CGFloat = 4
             
-            struct Item {
-                static let width: CGFloat = 16
-                static let height: CGFloat = 16
+            public struct Item {
+                public static let padding: CGFloat = 10
+                public static let width: CGFloat = 48
+                public static let height: CGFloat = 48
             }
             
-            struct Icon {
-                static let width: CGFloat = 32
-                static let height: CGFloat = 32
+            public struct Icon {
+                public static let width: CGFloat = 32
+                public static let height: CGFloat = 32
             }
         }
     }

@@ -103,8 +103,6 @@ struct TestFileUpload: View {
     }
 }
 
-struct FileUpload_Previews: PreviewProvider {
-    static var previews: some View {
-        TestFileUpload()
-    }
+#Preview {
+    TestFileUpload()
 }

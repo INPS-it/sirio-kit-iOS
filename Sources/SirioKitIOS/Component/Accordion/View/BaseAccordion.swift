@@ -52,24 +52,20 @@ struct BaseAccordion: View {
     }
 }
 
-
-struct AccordionCommon_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            BaseAccordion(data: .init(text: "Accordion Item #1", content: {
-                SirioText(text: .loremIpsum, typography: .label_md_700)
-            }, onTapAccordion: { isOpen in
-                
-            }))
+#Preview {
+    VStack {
+        BaseAccordion(data: .init(text: "Accordion Item #1", content: {
+            SirioText(text: .loremIpsum, typography: .label_md_700)
+        }, onTapAccordion: { isOpen in
             
-            BaseAccordion(data: .init(text: "Accordion Item #1", content: {
-                SirioText(text: "Lorem ipsum", typography: .label_md_700)
-                    .foregroundColor(.black)
-                
-            }))
-            Spacer()
-        }
+        }))
         
+        BaseAccordion(data: .init(text: "Accordion Item #1", content: {
+            SirioText(text: "Lorem ipsum", typography: .label_md_700)
+                .foregroundColor(.black)
+            
+        }))
+        
+        Spacer()
     }
 }
-

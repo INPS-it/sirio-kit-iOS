@@ -62,8 +62,6 @@ struct ExampleFab: View {
     }
 }
 
-struct ExampleFab_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleFab()
-    }
+#Preview {
+    ExampleFab()
 }

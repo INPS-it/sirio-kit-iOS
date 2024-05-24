@@ -38,8 +38,6 @@ struct ExampleSearchBar: View {
     }
 }
 
-struct ExampleSearchBar_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleSearchBar()
-    }
+#Preview {
+    ExampleSearchBar()
 }

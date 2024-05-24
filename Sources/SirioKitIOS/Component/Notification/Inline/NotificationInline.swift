@@ -72,14 +72,11 @@ public struct NotificationInline: View {
     }
 }
 
-struct NotificationInline_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack(spacing: 10) {
-            NotificationInline(type: .alert, title: "Error title", subtitle: "Lorem ipsum dolor sit amet")
-            NotificationInline(type: .info, title: "Informative title", subtitle: "Lorem ipsum dolor sit amet")
-            NotificationInline(type: .warning, title: "Warning title", subtitle: "Lorem ipsum dolor sit amet")
-            NotificationInline(type: .success, title: "Success title", subtitle: "Lorem ipsum dolor sit amet")
-        }
+#Preview {
+    VStack(spacing: 10) {
+        NotificationInline(type: .alert, title: "Error title", subtitle: "Lorem ipsum dolor sit amet")
+        NotificationInline(type: .info, title: "Informative title", subtitle: "Lorem ipsum dolor sit amet")
+        NotificationInline(type: .warning, title: "Warning title", subtitle: "Lorem ipsum dolor sit amet")
+        NotificationInline(type: .success, title: "Success title", subtitle: "Lorem ipsum dolor sit amet")
     }
 }
-

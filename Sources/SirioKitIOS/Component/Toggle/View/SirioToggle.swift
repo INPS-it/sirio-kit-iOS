@@ -64,8 +64,6 @@ struct TestSirioToggle: View {
     }
 }
 
-struct SirioToggle_Previews: PreviewProvider {
-    static var previews: some View {
-        TestSirioToggle()
-    }
+#Preview {
+    TestSirioToggle()
 }

@@ -67,8 +67,6 @@ struct ExampleTextField: View {
     }
 }
 
-struct ExampleTextField_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleTextField()
-    }
+#Preview {
+    ExampleTextField()
 }

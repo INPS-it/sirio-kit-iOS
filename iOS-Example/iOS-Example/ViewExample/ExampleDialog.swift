@@ -81,12 +81,9 @@ struct ExampleDialog: View {
     }
 }
 
-struct ExampleDialog_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleDialog()
-    }
+#Preview {
+    ExampleDialog()
 }
-
 
 struct Dialog1: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>

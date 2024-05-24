@@ -20,6 +20,8 @@ struct AppNavigationLogoInps: View {
             .frame(maxWidth: Size.AppNavigation.LogoInps.maxWidth,
                    maxHeight: Size.AppNavigation.LogoInps.maxHeight,
                    alignment: .center)
+            .accessibilityHidden(true)
+            
     }
     
     private var icon: Assets.Logo {
@@ -27,18 +29,21 @@ struct AppNavigationLogoInps: View {
     }
 }
 
-struct AppNavigationLogoInps_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            AppNavigationLogoInps()
-                .padding()
-                .colorScheme(.light)
-            
-            AppNavigationLogoInps()
-                .padding()
-                .background(Color.black)
-                .colorScheme(.dark)
-        }
-        .previewLayout(PreviewLayout.sizeThatFits)
+extension AppNavigationLogoInps {
+    private var iconColor: Color {
+        return Color.AppNavigation.LogoInps.light
     }
+}
+
+#Preview {
+    Group {
+        AppNavigationLogoInps()
+            .padding()
+            .colorScheme(.light)
+        
+        AppNavigationLogoInps()
+            .padding()
+            .colorScheme(.dark)
+    }
+    .previewLayout(PreviewLayout.sizeThatFits)
 }

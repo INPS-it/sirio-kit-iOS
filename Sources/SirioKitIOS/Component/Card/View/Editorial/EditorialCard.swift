@@ -30,10 +30,10 @@ public struct EditorialCard: View {
     var subtitle: String?
     var text: String
     var signature: String?
-    var items: [CardItemData]?
+    var iconsData: [SirioIconData]?
     var onTapCardAction: (() -> Void)?
     
-    public init(url: URL? = nil, base64: String? = nil, category: String? = nil, date: String, title: String, subtitle: String? = nil, text: String, signature: String? = nil, items: [CardItemData]? = nil, onTapCardAction: (() -> Void)? = nil) {
+    public init(url: URL? = nil, base64: String? = nil, category: String? = nil, date: String, title: String, subtitle: String? = nil, text: String, signature: String? = nil, iconsData: [SirioIconData]? = nil, onTapCardAction: (() -> Void)? = nil) {
         self.url = url
         self.base64 = base64
         self.category = category
@@ -42,7 +42,7 @@ public struct EditorialCard: View {
         self.subtitle = subtitle
         self.text = text
         self.signature = signature
-        self.items = items
+        self.iconsData = iconsData
         self.onTapCardAction = onTapCardAction
     }
     
@@ -66,7 +66,7 @@ public struct EditorialCard: View {
                     .foregroundColor(Color.Card.Editorial.Text.title)
                     .lineLimit(1)
                     .padding(.top, Size.Card.Editorial.spacing)
-
+                
                 if let subtitle = subtitle {
                     SirioText(text: subtitle, typography: Typography.Card.Editorial.subtitle)
                         .foregroundColor(Color.Card.Editorial.Text.subtitle)
@@ -77,7 +77,7 @@ public struct EditorialCard: View {
                     .foregroundColor(Color.Card.Editorial.Text.body)
                     .lineLimit(3)
                     .padding(.top, Size.Card.Editorial.spacing)
-
+                
                 if let signature = signature {
                     HStack {
                         SirioText(text: signature, typography: Typography.Card.Editorial.signature)
@@ -89,12 +89,12 @@ public struct EditorialCard: View {
                     .padding(.top, Size.Card.Editorial.spacing)
                 }
                 
-                if let items = items?.prefix(2), items.count > 0 {
+                if let items = iconsData?.prefix(2), items.count > 0 {
                     HStack(spacing: Size.Card.Editorial.spacingItems) {
                         Spacer()
                         
                         ForEach(items){ item in
-                            SirioIcon(data: .init(icon: item.icon))
+                            SirioIcon(data: item)
                                 .frame(width: Size.Card.Editorial.Item.width,
                                        height: Size.Card.Editorial.Item.height)
                                 .foregroundColor(Color.Card.Editorial.Item.default)
@@ -146,15 +146,6 @@ public struct EditorialCard: View {
     }
 }
 
-struct EditorialCard_Previews: PreviewProvider {
-    static var url = URL(string: "https://www.inps.it/content/dam/inps-site/immagini/INPS-home.svg")!
-    
-    static var previews: some View {
-        EditorialCard(url: url, category: "Categoria", date: "13 Nov 2023", title: "Titolo della card", subtitle: "Sottotitolo", text: .loremIpsum, signature: "Firma Autore", items: [.previewEllipsis, .previewHeart])
-            .padding()
-    }
-}
-
 extension EditorialCard {
     private func saveBase64StringToLocalFile(base64String: String) -> URL? {
         guard let data = Data(base64Encoded: base64String) else {
@@ -178,11 +169,11 @@ extension EditorialCard {
     
     private func getImageUrl() -> URL? {
         if let url = url {
-                    return url
-                } else if let base64 = base64, let localUrl = saveBase64StringToLocalFile(base64String: base64) {
-                    return localUrl
-                }
-                return nil
+            return url
+        } else if let base64 = base64, let localUrl = saveBase64StringToLocalFile(base64String: base64) {
+            return localUrl
+        }
+        return nil
     }
     
     private func existUrl() -> Bool {
@@ -207,4 +198,17 @@ extension EditorialCard {
             Spacer()
         }
     }
+}
+
+#Preview {
+    
+    EditorialCard(url: URL(string: "https://www.inps.it/content/dam/inps-site/immagini/INPS-home.svg")!,
+                  category: "Categoria",
+                  date: "13 Nov 2023",
+                  title: "Titolo della card",
+                  subtitle: "Sottotitolo",
+                  text: .loremIpsum,
+                  signature: "Firma Autore",
+                  iconsData: [.previewEllipsis, .previewHeart])
+        .padding()
 }

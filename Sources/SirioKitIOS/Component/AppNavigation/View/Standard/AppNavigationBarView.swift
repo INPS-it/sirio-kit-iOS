@@ -52,22 +52,19 @@ public struct AppNavigationBarView: View {
     }
 }
 
-struct AppNavigationBarView_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview {
+    Group {
+        AppNavigationStandardTitle(title: "Titolo pagina",
+                                   leftItem: .previewBack,
+                                   rightItems: [.previewUser, .previewSearch])
+        .padding(.vertical)
+        .colorScheme(.light)
         
-        Group {
-            AppNavigationStandardTitle(title: "Titolo pagina",
-                                       leftItem: .previewBack,
-                                       rightItems: [.previewUser, .previewSearch])
-            .padding(.vertical)
-            .colorScheme(.light)
-            
-            AppNavigationStandardTitle(title: "Titolo pagina",
-                                       leftItem: .previewBack,
-                                       rightItems: [.previewUser, .previewSearch])
-            .padding(.vertical)
-            .colorScheme(.dark)
-        }
-        .previewLayout(PreviewLayout.sizeThatFits)
+        AppNavigationStandardTitle(title: "Titolo pagina",
+                                   leftItem: .previewBack,
+                                   rightItems: [.previewUser, .previewSearch])
+        .padding(.vertical)
+        .colorScheme(.dark)
     }
+    .previewLayout(PreviewLayout.sizeThatFits)
 }

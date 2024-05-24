@@ -48,17 +48,13 @@ public struct ChipsOnlyLabel: View {
     }
 }
 
-struct ChipsOnlyLabel_Preview: PreviewProvider {
-    static var previews: some View {
-        ChipsOnlyLabel_2()
-    }
-}
-
-
-struct ChipsOnlyLabel_2 : View {
+struct ChipsOnlyLabelTestView : View {
     @State private var selectedType: String? = "Type"
 
      var body: some View {
          ChipsOnlyLabel(text: "Chips", selectedType: $selectedType)
      }
+}
+#Preview {
+    ChipsOnlyLabelTestView()
 }

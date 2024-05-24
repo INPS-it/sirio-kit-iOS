@@ -44,22 +44,6 @@ public struct AppNavigationLogoBarView: View {
     }
 }
 
-struct AppNavigationLogoBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            AppNavigationLogoBarView(leftItem: .previewBack,
-                                     rightItems: [.previewUser, .previewSearch])
-            .padding(.vertical)
-            .colorScheme(.light)
-            AppNavigationLogoBarView(leftItem: .previewBack,
-                                     rightItems: [.previewUser, .previewSearch])
-            .padding(.vertical)
-            .colorScheme(.dark)
-        }
-        .previewLayout(PreviewLayout.sizeThatFits)
-    }
-}
-
 extension AppNavigationLogoBarView {
     
     private var appNavigationBackgroundColor: Color {
@@ -83,4 +67,18 @@ extension AppNavigationLogoBarView {
             return Color.AppNavigation.Default.Text.light
         }
     }
+}
+
+#Preview {
+    Group {
+        AppNavigationLogoBarView(leftItem: .previewBack,
+                                 rightItems: [.previewUser, .previewSearch])
+        .padding(.vertical)
+        .colorScheme(.light)
+        AppNavigationLogoBarView(leftItem: .previewBack,
+                                 rightItems: [.previewUser, .previewSearch])
+        .padding(.vertical)
+        .colorScheme(.dark)
+    }
+    .previewLayout(PreviewLayout.sizeThatFits)
 }

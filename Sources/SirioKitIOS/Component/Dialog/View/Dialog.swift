@@ -26,7 +26,9 @@ public enum DialogType: CaseIterable {
 ///   - onTapInfo: Callback that is executed when the info button is tapped
 ///   - onTapClose: Callback that is executed when the close button is tapped
 ///   - isVisibleInfoIcon: A boolean to show the info icon
+///   - accessibilityLabelInfoIcon: A string that identifies the info icon accessibility element
 ///   - accessibilityLabelSubtitle: A string that identifies the subtitle accessibility element
+///   - accessibilityLabelButtonClose: A string that identifies the button close accessibility element
 
 public struct Dialog: View {
     var type: DialogType
@@ -53,7 +55,9 @@ public struct Dialog: View {
     
     var isVisibleInfoIcon: Bool
     
+    var accessibilityLabelInfoIcon: String?
     var accessibilityLabelSubtitle: String?
+    var accessibilityLabelButtonClose: String?
     
     @FocusState private var isTextField1Focused: Bool
     @FocusState private var isTextField2Focused: Bool
@@ -70,7 +74,9 @@ public struct Dialog: View {
                 onTapInfoAction: (() -> Void)?,
                 onTapCloseAction: (() -> Void)?,
                 isVisibleInfoIcon: Bool,
-                accessibilityLabelSubtitle: String? = nil){
+                accessibilityLabelInfoIcon: String? = nil,
+                accessibilityLabelSubtitle: String? = nil,
+                accessibilityLabelButtonClose: String? = nil){
         self.type = type
         self.isVisibleInfoIcon = isVisibleInfoIcon
         self.title = title
@@ -83,7 +89,9 @@ public struct Dialog: View {
         self.actionSecondButton = actionSecondButton
         self.onTapInfoAction = onTapInfoAction
         self.onTapCloseAction = onTapCloseAction
+        self.accessibilityLabelInfoIcon = accessibilityLabelInfoIcon
         self.accessibilityLabelSubtitle = accessibilityLabelSubtitle
+        self.accessibilityLabelButtonClose = accessibilityLabelButtonClose
     }
     
     private var iconColor: Color {
@@ -128,7 +136,7 @@ public struct Dialog: View {
                         Spacer()
                         ButtonIconOnly(style: .ghost, size: .large, iconData: .init(icon: .times), action: {
                             onTapCloseAction?()
-                        })
+                        }, accessibilityLabel: accessibilityLabelButtonClose)
                     }
                     if let icon = icon, isVisibleInfoIcon {
                         HStack(spacing: Size.Dialog.noSpacing){
@@ -141,6 +149,7 @@ public struct Dialog: View {
                                            height: Size.Dialog.InfoIcon.frame)
                                     .foregroundColor(iconColor)
                             })
+                            .accessibilityHidden(accessibilityLabelInfoIcon == nil)
                             
                             Spacer()
                         }
@@ -155,8 +164,9 @@ public struct Dialog: View {
                 ScrollView(showsIndicators: false, content: {
                     SirioText(text: subtitle ?? "", typography: Typography.Dialog.subtitle)
                         .foregroundColor(Color.Dialog.subtitle)
+                        .setAccessibilityLabel(accessibilityLabelSubtitle != nil ? accessibilityLabelSubtitle : subtitle)
                 })
-                .setAccessibilityLabel(accessibilityLabelSubtitle)
+                
                 
                 ViewTextField(textfield: textfield1)
                 
@@ -232,25 +242,23 @@ struct ViewTextField: View {
     }
 }
 
-struct Dialog_Previews: PreviewProvider {
-    static var previews: some View {
-        Dialog(type: .warning,
-               title: "Title",
-               subtitle: .loremIpsum,
-               textfield1: .init(type: .info,
-                                 label: "Label",
-                                 placeholder: "Placeholder",
-                                 text: ""),
-               textfield2: .init(type: .info,
-                                 label: "Label",
-                                 placeholder: "Placeholder",
-                                 text: ""),
-               textFirstButton: "Text",
-               actionFirstButton: nil,
-               textSecondButton: "Text",
-               actionSecondButton: nil,
-               onTapInfoAction: nil,
-               onTapCloseAction: nil,
-               isVisibleInfoIcon: true)
-    }
+#Preview {
+    Dialog(type: .warning,
+           title: "Title",
+           subtitle: .loremIpsum,
+           textfield1: .init(type: .info,
+                             label: "Label",
+                             placeholder: "Placeholder",
+                             text: ""),
+           textfield2: .init(type: .info,
+                             label: "Label",
+                             placeholder: "Placeholder",
+                             text: ""),
+           textFirstButton: "Text",
+           actionFirstButton: nil,
+           textSecondButton: "Text",
+           actionSecondButton: nil,
+           onTapInfoAction: nil,
+           onTapCloseAction: nil,
+           isVisibleInfoIcon: true)
 }

@@ -51,39 +51,36 @@ public struct RadioButton: View {
                                       isDisabled: $isDisabled))
         .setAccessibilityLabel(accessibilityLabel)
     }
-    
-    
 }
-struct RadioButton_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            RadioButton(text: "Title",
-                        isChecked: .constant(false),
-                        isDisabled: .constant(false),
-                        callback: { _ in
-                
-            })
+
+#Preview {
+    VStack {
+        RadioButton(text: "Title",
+                    isChecked: .constant(false),
+                    isDisabled: .constant(false),
+                    callback: { _ in
             
-            RadioButton(text: "Title",
-                        isChecked: .constant(true),
-                        isDisabled: .constant(false),
-                        callback: { _ in
-                
-            })
+        })
+        
+        RadioButton(text: "Title",
+                    isChecked: .constant(true),
+                    isDisabled: .constant(false),
+                    callback: { _ in
             
-            RadioButton(text: "Title",
-                        isChecked: .constant(true),
-                        isDisabled: .constant(true),
-                        callback: { _ in
-                
-            })
+        })
+        
+        RadioButton(text: "Title",
+                    isChecked: .constant(true),
+                    isDisabled: .constant(true),
+                    callback: { _ in
             
-            RadioButton(text: "Title",
-                        isChecked: .constant(false),
-                        isDisabled: .constant(true),
-                        callback: { _ in
-                
-            })
-        }.padding()
-    }
+        })
+        
+        RadioButton(text: "Title",
+                    isChecked: .constant(false),
+                    isDisabled: .constant(true),
+                    callback: { _ in
+            
+        })
+    }.padding()
 }

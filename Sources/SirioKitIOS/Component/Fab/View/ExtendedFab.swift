@@ -29,18 +29,15 @@ public struct ExtendedFab: View {
     }
 }
 
-struct ExtendedFab_Previews: PreviewProvider {
-    
-    static var previews: some View {
+#Preview {
+    Group {
+        ExtendedFab(data: .init(text: "Text", icon: .plus, action: nil))
+        .padding()
+        .colorScheme(.light)
         
-        Group {
-            ExtendedFab(data: .init(text: "Text", icon: .plus, action: nil))
-            .padding()
-            .colorScheme(.light)
-            ExtendedFab(data: .init(text: "Text", icon: .plus, action: nil))
-            .padding()
-            .colorScheme(.dark)
-        }
-        .previewLayout(PreviewLayout.sizeThatFits)
+        ExtendedFab(data: .init(text: "Text", icon: .plus, action: nil))
+        .padding()
+        .colorScheme(.dark)
     }
+    .previewLayout(PreviewLayout.sizeThatFits)
 }

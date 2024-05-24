@@ -11,7 +11,7 @@ import SwiftUI
 // A struct to manage the Sirio button text only style
 struct SirioButtonTextOnlyStyle: ButtonStyle {
     var style: SirioButtonStyle
-    var size: SirioButtonSize
+    var size: SirioSize
     var text: String
     @Binding var isDisabled: Bool
     var isFullSize: Bool

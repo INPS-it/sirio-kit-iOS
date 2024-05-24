@@ -95,16 +95,13 @@ public struct ProgressBar: View {
     }
 }
 
-struct ProgressBar_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        VStack(spacing: 10){
-            ProgressBar(text: "Label", currentValue: .constant(0))
-            ProgressBar(text: "Label", currentValue: .constant(30))
-            ProgressBar(text: "Label", currentValue: .constant(50))
-            ProgressBar(text: "Label", currentValue: .constant(70))
-            ProgressBar(text: "Label", currentValue: .constant(100))
-        }
-        .padding()
+#Preview {
+    VStack(spacing: 10){
+        ProgressBar(text: "Label", currentValue: .constant(0))
+        ProgressBar(text: "Label", currentValue: .constant(30))
+        ProgressBar(text: "Label", currentValue: .constant(50))
+        ProgressBar(text: "Label", currentValue: .constant(70))
+        ProgressBar(text: "Label", currentValue: .constant(100))
     }
+    .padding()
 }

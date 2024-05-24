@@ -59,8 +59,6 @@ struct ExampleRadioButton: View {
     }
 }
 
-struct ExampleRadioButton_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleRadioButton()
-    }
+#Preview {
+    ExampleRadioButton()
 }

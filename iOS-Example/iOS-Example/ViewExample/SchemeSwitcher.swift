@@ -30,15 +30,6 @@ struct VSchemeSwitcher<Content: View>: View {
     }
 }
 
-struct VSchemeSwitcher_Previews: PreviewProvider {
-    static var previews: some View {
-        VSchemeSwitcher(content: {
-            
-        })
-    }
-}
-
-
 struct HSchemeSwitcher<Content: View>: View {
     
     let content: Content
@@ -63,10 +54,14 @@ struct HSchemeSwitcher<Content: View>: View {
     }
 }
 
-struct HSchemeSwitcher_Previews: PreviewProvider {
-    static var previews: some View {
-        HSchemeSwitcher(content: {
-            
-        })
-    }
+#Preview {
+    HSchemeSwitcher(content: {
+        
+    })
+}
+
+#Preview {
+    VSchemeSwitcher(content: {
+        
+    })
 }

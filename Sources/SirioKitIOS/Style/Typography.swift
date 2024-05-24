@@ -62,164 +62,169 @@ public struct Typography {
 }
 
 // Here generic styles from sirio toolkit
-public extension Typography {
+extension Typography {
     
-    static let label_md_700: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+    public static let label_md_700: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                  fontSize: StyleDictionarySize.globalFontSize04.cgFloat,
                                                  fontWeight: StyleDictionaryTypography.globalFontWeights700,
                                                  lineHeight: StyleDictionarySize.globalLineHeights04.cgFloat)
     
-    static let label_md_600: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+    public static let label_md_600: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                fontSize: StyleDictionarySize.globalFontSize04.cgFloat,
                                                fontWeight: StyleDictionaryTypography.globalFontWeights600,
                                                lineHeight: StyleDictionarySize.globalLineHeights04.cgFloat)
 
-    static let label_md_400: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+    public static let label_md_400: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                fontSize: StyleDictionarySize.globalFontSize04.cgFloat,
                                                fontWeight: StyleDictionaryTypography.globalFontWeights400,
                                                lineHeight: StyleDictionarySize.globalLineHeights04.cgFloat)
     
-    static let h4_md: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+    public static let h4_md: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                             fontSize: StyleDictionarySize.globalFontSize07.cgFloat,
                                             fontWeight: StyleDictionaryTypography.globalFontWeights700,
                                             lineHeight: StyleDictionarySize.globalLineHeights07.cgFloat)
 
-    static let p_md_01: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+    public static let p_md_01: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                             fontSize: StyleDictionarySize.globalFontSize04.cgFloat,
                                             fontWeight: StyleDictionaryTypography.globalFontWeights400,
                                             lineHeight: StyleDictionarySize.globalLineHeights04.cgFloat)
     
-    static let helper_text_xs_400: Typography = Typography.init(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+    public static let helper_text_xs_400: Typography = Typography.init(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                     fontSize: StyleDictionarySize.globalFontSize02.cgFloat,
                                                     fontWeight: StyleDictionaryTypography.globalFontWeights400,
                                                     lineHeight: StyleDictionarySize.globalLineHeights01.cgFloat)
     
-    static let label_md_number_400: Typography = Typography.init(fontFamily: StyleDictionaryTypography.globalFontFamily03,
+    public static let label_md_number_400: Typography = Typography.init(fontFamily: StyleDictionaryTypography.globalFontFamily03,
                                                                fontSize: StyleDictionarySize.globalFontSize04.cgFloat,
                                                                fontWeight: StyleDictionaryTypography.globalFontWeights400,
                                                                lineHeight: StyleDictionarySize.globalLineHeights04.cgFloat)
     
-    static let ios_tabbar_label_xs: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+    public static let ios_tabbar_label_xs: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                           fontSize: StyleDictionarySize.aliasLabelXsSize02.cgFloat,
                                                           fontWeight: StyleDictionaryTypography.aliasLabelFontWeight400,
                                                           lineHeight: StyleDictionarySize.globalLineHeights01.cgFloat)
     
-    static let app_navigation_title_md: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+    public static let app_navigation_title_md: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                           fontSize: StyleDictionarySize.globalLineHeights01.cgFloat,
                                                           fontWeight: StyleDictionaryTypography.globalFontWeights600,
                                                           lineHeight: StyleDictionarySize.globalLineHeights04.cgFloat)
 
     
-    static let app_navigation_title_xl: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+    public static let app_navigation_title_xl: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                           fontSize: StyleDictionarySize.globalLineHeights04.cgFloat,
                                                           fontWeight: StyleDictionaryTypography.globalFontWeights600,
                                                           lineHeight: StyleDictionarySize.globalLineHeights06.cgFloat)
     
-    static let placeholder_md_400: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+    public static let placeholder_md_400: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                fontSize: StyleDictionarySize.globalFontSize04.cgFloat,
                                                fontWeight: StyleDictionaryTypography.globalFontWeights400,
                                                lineHeight: StyleDictionarySize.globalLineHeights01.cgFloat)
     
-    static let text_md_400: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+    public static let text_md_400: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                fontSize: StyleDictionarySize.globalFontSize04.cgFloat,
                                                fontWeight: StyleDictionaryTypography.globalFontWeights400,
                                                lineHeight: StyleDictionarySize.globalLineHeights01.cgFloat)
     
-    static let link_h4_md_01: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+    public static let link_h4_md_01: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                fontSize: StyleDictionarySize.globalFontSize07.cgFloat,
                                                fontWeight: StyleDictionaryTypography.globalFontWeights700,
                                                lineHeight: StyleDictionarySize.globalLineHeights07.cgFloat)
 
-    static let h6_md: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+    public static let h6_md: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                fontSize: StyleDictionarySize.globalFontSize05.cgFloat,
                                                fontWeight: StyleDictionaryTypography.globalFontWeights600,
                                                lineHeight: StyleDictionarySize.globalLineHeights05.cgFloat)
     
-    static let signature_p_md_02: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily02,
+    public static let signature_p_md_02: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily02,
                                                fontSize: StyleDictionarySize.globalFontSize04.cgFloat,
                                                fontWeight: StyleDictionaryTypography.globalFontWeights700I,
                                                lineHeight: StyleDictionarySize.globalLineHeights04.cgFloat)
+    
+    static let h2_md: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+                                               fontSize: StyleDictionarySize.globalFontSize11.cgFloat,
+                                               fontWeight: StyleDictionaryTypography.aliasH2FontWeight700,
+                                               lineHeight: StyleDictionarySize.globalLineHeights11.cgFloat)
 }
 
 // MARK: Fab
-public extension Typography {
-    struct Fab {
-        static let style: Typography = .label_md_700
+extension Typography {
+    public struct Fab {
+        public static let style: Typography = .label_md_700
     }
 }
 
 // MARK: AppNavigation
-public extension Typography {
-    struct AppNavigation {
-        static let md: Typography = .app_navigation_title_md
-        static let xl: Typography = .app_navigation_title_xl
-        static let profile: Typography = .label_md_700
+extension Typography {
+    public struct AppNavigation {
+        public static let md: Typography = .app_navigation_title_md
+        public static let xl: Typography = .app_navigation_title_xl
+        public static let profile: Typography = .label_md_700
     }
 }
 
 // MARK: TabBar
-public extension Typography {
-    struct TabBar {
-        static let style: Typography = .ios_tabbar_label_xs
+extension Typography {
+    public struct TabBar {
+        public static let style: Typography = .ios_tabbar_label_xs
     }
 }
 
 // MARK: Accordion
-public extension Typography {
-    struct Accordion {
-        static let style: Typography = .label_md_600
+extension Typography {
+    public struct Accordion {
+        public static let style: Typography = .label_md_600
     }
 }
 
 // MARK: Tag
-public extension Typography {
-    struct Tag {
-        static let style: Typography = .label_md_700
+extension Typography {
+    public struct Tag {
+        public static let style: Typography = .label_md_700
     }
 }
 
 // MARK: Chips
-public extension Typography {
-    struct Chips {
-        static let style: Typography = .label_md_700
+extension Typography {
+    public struct Chips {
+        public static let style: Typography = .label_md_700
     }
 }
 
 // MARK: CheckBox
-public extension Typography {
-    struct CheckBox {
-        static let style: Typography = .label_md_400
+extension Typography {
+    public struct CheckBox {
+        public static let style: Typography = .label_md_400
     }
 }
 
 // MARK: RadioButton
-public extension Typography {
-    struct RadioButton {
-        static let style: Typography = .label_md_400
+extension Typography {
+    public struct RadioButton {
+        public static let style: Typography = .label_md_400
     }
 }
 
 // MARK: Toggle
-public extension Typography {
-    struct Toggle {
-        static let style: Typography = .label_md_400
+extension Typography {
+    public struct Toggle {
+        public static let style: Typography = .label_md_400
     }
 }
 
 // MARK: Slider
-public extension Typography {
-    struct Slider {
-        static let title: Typography = .label_md_600
-        static let subtitle: Typography = .helper_text_xs_400
-        static let number: Typography = .label_md_number_400
+extension Typography {
+    public struct Slider {
+        public static let title: Typography = .label_md_600
+        public static let subtitle: Typography = .helper_text_xs_400
+        public static let number: Typography = .label_md_number_400
     }
 }
 
 // MARK: ProgressBar
-public extension Typography {
-    struct ProgressBar {
-        static let label: Typography = .label_md_600
-        static let number: Typography = Typography.init(fontFamily: StyleDictionaryTypography.globalFontFamily03,
+extension Typography {
+    public struct ProgressBar {
+        public static let label: Typography = .label_md_600
+        public static let number: Typography = Typography.init(fontFamily: StyleDictionaryTypography.globalFontFamily03,
                                                       fontSize: StyleDictionarySize.globalFontSize02.cgFloat,
                                                       fontWeight: StyleDictionaryTypography.globalFontWeights400,
                                                       lineHeight: StyleDictionarySize.globalLineHeights01.cgFloat)
@@ -227,98 +232,98 @@ public extension Typography {
 }
 
 // MARK: FileUpload
-public extension Typography {
-    struct FileUpload {
-        static let title: Typography = .label_md_600
-        static let subtitle: Typography = .helper_text_xs_400
-        static let text: Typography = .label_md_700
+extension Typography {
+    public struct FileUpload {
+        public static let title: Typography = .label_md_600
+        public static let subtitle: Typography = .helper_text_xs_400
+        public static let text: Typography = .label_md_700
     }
 }
 
 // MARK: Buttons
-public extension Typography {
-    struct Buttons {
-        static let text: Typography = .label_md_700
+extension Typography {
+    public struct Buttons {
+        public static let text: Typography = .label_md_700
     }
 }
 
 // MARK: Notification Inline & Toast
-public extension Typography {
-    struct Notification {
-        struct Inline {
-            static let title: Typography = .label_md_700
-            static let subtitle: Typography = .p_md_01
+extension Typography {
+    public struct Notification {
+        public struct Inline {
+            public static let title: Typography = .label_md_700
+            public static let subtitle: Typography = .p_md_01
         }
         
-        struct Toast {
-            static let title: Typography = .label_md_700
-            static let subtitle: Typography = .p_md_01
+        public struct Toast {
+            public static let title: Typography = .label_md_700
+            public static let subtitle: Typography = .p_md_01
         }
     }
 }
 
 // MARK: Dialog
-public extension Typography {
-    struct Dialog {
-        static let title: Typography = .h4_md
-        static let subtitle: Typography = .p_md_01
-        static let textfield: Typography = .label_md_600
+extension Typography {
+    public struct Dialog {
+        public static let title: Typography = .h4_md
+        public static let subtitle: Typography = .p_md_01
+        public static let textfield: Typography = .label_md_600
     }
 }
 
 // MARK: TextField
-public extension Typography {
-    struct TextField {
-        static let label: Typography = .placeholder_md_400
-        static let text: Typography = .text_md_400
-        static let helper: Typography = .helper_text_xs_400
+extension Typography {
+    public struct TextField {
+        public static let label: Typography = .placeholder_md_400
+        public static let text: Typography = .text_md_400
+        public static let helper: Typography = .helper_text_xs_400
     }
 }
 
 // MARK: Tab
-public extension Typography {
-    struct Tab {
-        static let selected: Typography = .label_md_700
-        static let unselected: Typography = .label_md_400
+extension Typography {
+    public struct Tab {
+        public static let selected: Typography = .label_md_700
+        public static let unselected: Typography = .label_md_400
     }
 }
 
 // MARK: SearchBar
-public extension Typography {
-    struct SearchBar {
-        static let label: Typography = .label_md_600
-        static let searchText: Typography = .placeholder_md_400
-        static let helper: Typography = .helper_text_xs_400
+extension Typography {
+    public struct SearchBar {
+        public static let label: Typography = .label_md_600
+        public static let searchText: Typography = .placeholder_md_400
+        public static let helper: Typography = .helper_text_xs_400
     }
 }
 
 // MARK: Pagination
-public extension Typography {
-    struct Pagination {
-        static let number: Typography = .label_md_number_400
-        static let dots: Typography = .label_md_number_400
+extension Typography {
+    public struct Pagination {
+        public static let number: Typography = .label_md_number_400
+        public static let dots: Typography = .label_md_number_400
     }
 }
 
 
 // MARK: Card
-public extension Typography {
-    struct Card {
-        static let date: Typography = Typography.init(fontFamily: StyleDictionaryTypography.globalFontFamily03,
+extension Typography {
+    public struct Card {
+        public static let date: Typography = Typography.init(fontFamily: StyleDictionaryTypography.globalFontFamily03,
                                                       fontSize: StyleDictionarySize.globalFontSize03.cgFloat,
                                                       fontWeight: StyleDictionaryTypography.globalFontWeights500,
                                                       lineHeight: StyleDictionarySize.globalLineHeights03.cgFloat)
         
-        struct Editorial {
-            static let title: Typography = .link_h4_md_01
-            static let subtitle: Typography = .h6_md
-            static let body: Typography = .p_md_01
-            static let signature: Typography = .signature_p_md_02
+        public struct Editorial {
+            public static let title: Typography = .link_h4_md_01
+            public static let subtitle: Typography = .h6_md
+            public static let body: Typography = .p_md_01
+            public static let signature: Typography = .signature_p_md_02
         }
         
-        struct Process {
-            static let title: Typography = .h4_md
-            static let body: Typography = .p_md_01
+        public struct Process {
+            public static let title: Typography = .h4_md
+            public static let body: Typography = .p_md_01
         }
     }
 }

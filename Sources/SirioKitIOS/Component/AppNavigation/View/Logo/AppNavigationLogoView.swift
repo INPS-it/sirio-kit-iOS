@@ -29,14 +29,12 @@ public struct AppNavigationLogoView<Content: View>: View {
     }
 }
 
-struct AppNavigationLogoView_Previews: PreviewProvider {
-    static var previews: some View {
-        AppNavigationLogoView {
-            Color.gray.edgesIgnoringSafeArea(.all)
-                .setAppNavigationBarItems(
-                    leftItem: .previewBack,
-                    rightItems: [.previewUser, .previewSearch])
-        }
-        .preferredColorScheme(.dark)
+#Preview {
+    AppNavigationLogoView {
+        Color.gray.edgesIgnoringSafeArea(.all)
+            .setAppNavigationBarItems(
+                leftItem: .previewBack,
+                rightItems: [.previewUser, .previewSearch])
     }
+    .preferredColorScheme(.dark)
 }

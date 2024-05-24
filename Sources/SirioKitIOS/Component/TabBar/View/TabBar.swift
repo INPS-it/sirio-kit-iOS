@@ -45,12 +45,6 @@ public struct TabBar: View {
     }
 }
 
-struct TabBar_Previews: PreviewProvider {
-    static var previews: some View {
-        TabBarTest()
-    }
-}
-
 struct TabBarTest: View {
     @State var selectedIndex = 0
     
@@ -65,4 +59,8 @@ struct StaticButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
     }
+}
+
+#Preview {
+    TabBarTest()
 }

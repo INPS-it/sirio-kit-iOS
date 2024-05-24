@@ -30,8 +30,6 @@ struct ExampleTag: View {
     }
 }
 
-struct ExampleTag_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleTag()
-    }
+#Preview {
+    ExampleTag()
 }

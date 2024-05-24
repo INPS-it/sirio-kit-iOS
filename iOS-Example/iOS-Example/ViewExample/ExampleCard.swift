@@ -17,10 +17,10 @@ struct ExampleCard: View {
         List {
             NavigationLink(destination: {
                 ScrollView {
-                    EditorialCard(url: url, category: "Categoria", date: "13 Nov 2023", title: "Titolo della card", subtitle: "Sottotitolo", text: .loremIpsum, signature: "Firma Autore", items: [.previewEllipsis, .previewHeart])
+                    EditorialCard(url: url, category: "Categoria", date: "13 Nov 2023", title: "Titolo della card", subtitle: "Sottotitolo", text: .loremIpsum, signature: "Firma Autore", iconsData: [.previewEllipsis, .previewHeart])
                         .padding()
                     
-                    EditorialCard(category: "Categoria", date: "13 Nov 2023", title: "Titolo della card", subtitle: "Sottotitolo", text: .loremIpsum, signature: "Firma Autore", items: [.previewEllipsis, .previewHeart])
+                    EditorialCard(category: "Categoria", date: "13 Nov 2023", title: "Titolo della card", subtitle: "Sottotitolo", text: .loremIpsum, signature: "Firma Autore", iconsData: [.previewEllipsis, .previewHeart])
                         .padding()
                 }
                 .navigationTitle("Editorial Card")
@@ -32,10 +32,10 @@ struct ExampleCard: View {
             NavigationLink(destination: {
                 ScrollView {
                     
-                    ProcessCard(schemeColor: .light, icon: .book, date: "13 Nov 2023", title: "Titolo della card molto lungo su 2 righe", text: .loremIpsum, textButton: "Text", onTapButtonAction: {}, item: .previewEllipsis)
+                    ProcessCard(schemeColor: .light, icon: .book, date: "13 Nov 2023", title: "Titolo della card molto lungo su 2 righe", text: .loremIpsum, textButton: "Text", onTapButtonAction: {}, iconData: .previewEllipsis)
                         .padding()
                     
-                    ProcessCard(schemeColor: .dark, icon: .book, date: "13 Nov 2023", title: "Titolo della card molto lungo su 2 righe", text: .loremIpsum, textButton: "Text", onTapButtonAction: {}, item: .previewEllipsis)
+                    ProcessCard(schemeColor: .dark, icon: .book, date: "13 Nov 2023", title: "Titolo della card molto lungo su 2 righe", text: .loremIpsum, textButton: "Text", onTapButtonAction: {}, iconData: .previewEllipsis)
                         .padding()
                 }
                 
@@ -51,8 +51,6 @@ struct ExampleCard: View {
     }
 }
 
-struct ExampleCard_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleCard()
-    }
+#Preview {
+    ExampleCard()
 }

@@ -52,10 +52,6 @@ struct ExampleSlider: View {
     }
 }
 
-
-
-struct ExampleSlider_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleSlider()
-    }
+#Preview {
+    ExampleSlider()
 }

@@ -44,25 +44,22 @@ extension AccordionGroup {
     }
 }
 
-struct AccordionGroup_Previews: PreviewProvider {
-
-    static var previews: some View {
-        VStack {
-            AccordionGroup(data: [
-                .init(text: "Accordion #1", content: {
-                    SirioText(text: .loremIpsum, typography: .label_md_700)
-                        .foregroundColor(.black)
-                }),
-                .init(text: "Accordion #2", content: {
-                    SirioText(text: .loremIpsum, typography: .label_md_700)
-                        .foregroundColor(.black)
-                }),
-                .init(text: "Accordion #3", content: {
-                    SirioText(text: .loremIpsum, typography: .label_md_700)
-                        .foregroundColor(.black)
-                }, isDisabled: true)
-            ])
-            Spacer()
-        }
+#Preview {
+    VStack {
+        AccordionGroup(data: [
+            .init(text: "Accordion #1", content: {
+                SirioText(text: .loremIpsum, typography: .label_md_700)
+                    .foregroundColor(.black)
+            }),
+            .init(text: "Accordion #2", content: {
+                SirioText(text: .loremIpsum, typography: .label_md_700)
+                    .foregroundColor(.black)
+            }),
+            .init(text: "Accordion #3", content: {
+                SirioText(text: .loremIpsum, typography: .label_md_700)
+                    .foregroundColor(.black)
+            }, isDisabled: true)
+        ])
+        Spacer()
     }
 }

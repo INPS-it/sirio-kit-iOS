@@ -11,7 +11,7 @@ import SwiftUI
 // A struct to manage the Sirio button icon only style
 struct SirioButtonIconOnlyStyle: ButtonStyle {
     var style: SirioButtonStyle
-    var size: SirioButtonSize
+    var size: SirioSize
     var iconData: SirioIconData
     @Binding var isDisabled: Bool
     @State var isHover = false

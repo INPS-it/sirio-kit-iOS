@@ -39,12 +39,9 @@ struct ExampleAccordion: View {
     }
 }
 
-struct ExampleAccordion_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleAccordion()
-    }
+#Preview {
+    ExampleAccordion()
 }
-
 
 struct ExampleAccordionSingle: View {
     

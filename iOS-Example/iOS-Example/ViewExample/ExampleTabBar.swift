@@ -47,8 +47,7 @@ struct ExampleTabBar: View {
     }
 }
 
-struct ExampleTabBar_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleTabBar()
-    }
+#Preview {
+    ExampleTabBar()
 }
+

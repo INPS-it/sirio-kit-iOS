@@ -53,8 +53,6 @@ public struct ChipsLabelClose: View {
     }
 }
 
-struct ChipsLabelClose_Preview: PreviewProvider {
-    static var previews: some View {
-        ChipsLabelClose(text: "Chips")
-    }
+#Preview {
+    ChipsLabelClose(text: "Chips")
 }

@@ -154,10 +154,7 @@ struct TestSirioSlider: View {
     }
 }
 
-struct SirioSlider_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        TestSirioSlider()
-            .padding()
-    }
+#Preview {
+    TestSirioSlider()
+        .padding()
 }

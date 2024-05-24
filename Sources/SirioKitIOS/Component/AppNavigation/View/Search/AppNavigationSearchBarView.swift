@@ -90,15 +90,13 @@ public struct AppNavigationSearchBarView: View {
     }
 }
 
-struct AppNavigationSearchBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            AppNavigationSearchBarView(title: "",
-                                       placeholder: "Placeholder search bar",
-                                       leftItem: nil,
-                                       rightItems: [.previewBell, .previewUser])
-            .environmentObject(SearchEnvironment())
-        }
-        .previewLayout(PreviewLayout.sizeThatFits)
+#Preview {
+    Group {
+        AppNavigationSearchBarView(title: "",
+                                   placeholder: "Placeholder search bar",
+                                   leftItem: nil,
+                                   rightItems: [.previewBell, .previewUser])
+        .environmentObject(SearchEnvironment())
     }
+    .previewLayout(PreviewLayout.sizeThatFits)
 }

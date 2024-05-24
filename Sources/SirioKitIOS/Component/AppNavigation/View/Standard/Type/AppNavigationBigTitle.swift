@@ -50,25 +50,6 @@ public struct AppNavigationBigTitle: View {
     }
 }
 
-struct AppNavigationBigTitle_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            AppNavigationBigTitle(title: "Titolo grande",
-                                  leftItem: .previewBack,
-                                  rightItems: [.previewUser, .previewSearch])
-            .padding(.vertical)
-            .colorScheme(.light)
-            AppNavigationBigTitle(title: "Titolo grande",
-                                  leftItem: .previewBack,
-                                  rightItems: [.previewUser, .previewSearch])
-            .padding(.vertical)
-            .colorScheme(.dark)
-        }
-        .previewLayout(PreviewLayout.sizeThatFits)
-    }
-}
-
-
 extension AppNavigationBigTitle {
     
     private var backgroundColor: Color {
@@ -93,4 +74,20 @@ extension AppNavigationBigTitle {
             return Color.AppNavigation.Default.Text.light
         }
     }
+}
+
+#Preview {
+    Group {
+        AppNavigationBigTitle(title: "Titolo grande",
+                              leftItem: .previewBack,
+                              rightItems: [.previewUser, .previewSearch])
+        .padding(.vertical)
+        .colorScheme(.light)
+        AppNavigationBigTitle(title: "Titolo grande",
+                              leftItem: .previewBack,
+                              rightItems: [.previewUser, .previewSearch])
+        .padding(.vertical)
+        .colorScheme(.dark)
+    }
+    .previewLayout(PreviewLayout.sizeThatFits)
 }

@@ -120,22 +120,20 @@ public struct NotificationToast: View {
     }
 }
 
-struct NotificationToast_Previews: PreviewProvider {
-    static var previews: some View {
-        ScrollView {
-            VStack(spacing: 10) {
-                NotificationToast(type: .alert,
-                                  title: "Error title",
-                                  subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                                  textButton: "Action",
-                                  onTapCloseAction: nil,
-                                  onTapButtonAction: nil)
-                
-                NotificationToast(type: .alert,
-                                  title: "Error title",
-                                  subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                                  onTapCloseAction: nil)
-            }
+#Preview {
+    ScrollView {
+        VStack(spacing: 10) {
+            NotificationToast(type: .alert,
+                              title: "Error title",
+                              subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                              textButton: "Action",
+                              onTapCloseAction: nil,
+                              onTapButtonAction: nil)
+            
+            NotificationToast(type: .alert,
+                              title: "Error title",
+                              subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                              onTapCloseAction: nil)
         }
     }
 }

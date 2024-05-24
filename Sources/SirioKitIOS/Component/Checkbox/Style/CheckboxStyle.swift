@@ -20,15 +20,17 @@ struct CheckboxStyle: ButtonStyle {
         HStack(spacing: Size.Checkbox.padding) {
             VStack {
                 RoundedRectangle(cornerRadius: Size.Checkbox.cornerRadius)
-                    .strokeBorder(colorShape, lineWidth: Size.Checkbox.border)
+                    .strokeBorder(getColor(for: .border), lineWidth: Size.Checkbox.border)
+                    .background(getColor(for: .background).cornerRadius(Size.Checkbox.cornerRadius))
                     .frame(width: Size.Checkbox.frameDefault, height: Size.Checkbox.frameDefault)
                     .overlay(isChecked ? checked : nil, alignment: .center)
             }
             .frame(width: Size.Checkbox.touchArea, height: Size.Checkbox.touchArea)
             
+            
             if let text = text {
                 SirioText(text: text, typography: Typography.CheckBox.style)
-                    .foregroundColor(colorText)
+                    .foregroundColor(getColor(for: .text))
             }
         }
         .onHover { isHover in
@@ -39,28 +41,44 @@ struct CheckboxStyle: ButtonStyle {
     private var checked: some View {
         SirioIcon(data: .init(icon: .check))
             .frame(width: Size.Checkbox.frameChecked, height: Size.Checkbox.frameChecked, alignment: .center)
-            .foregroundColor(colorShape)
+            .foregroundColor(getColor(for: .icon))
     }
     
-    private var colorText: Color {
-        if isDisabled {
-            return Color.Checkbox.Text.disabled
-        } else if isHover {
-            return Color.Checkbox.Text.hover
-        } else if isChecked {
-            return Color.Checkbox.Text.checked
+    private func getColor(for component: CheckboxComponent) -> Color {
+        switch component {
+        case .text:
+            if isDisabled {
+                return Color.Checkbox.Text.disabled
+            } else if isHover {
+                return Color.Checkbox.Text.hover
+            } else if isChecked {
+                return Color.Checkbox.Text.checked
+            }
+            return Color.Checkbox.Text.default
+            
+        case .icon:
+            return Color.Checkbox.Icon.default
+            
+        case .border:
+            if isDisabled {
+                return Color.Checkbox.Border.disabled
+            } else if isHover {
+                return Color.Checkbox.Border.hover
+            } else if isChecked {
+                return Color.Checkbox.Border.checked
+            }
+            return Color.Checkbox.Border.default
+                        
+        case .background:
+            if isDisabled {
+                return Color.Checkbox.Background.disabled
+            } else {
+                return Color.Checkbox.Background.default
+            }
         }
-        return Color.Checkbox.Text.default
     }
     
-    private var colorShape: Color {
-        if isDisabled {
-            return Color.Checkbox.Check.disabled
-        } else if isHover {
-            return Color.Checkbox.Check.hover
-        } else if isChecked {
-            return Color.Checkbox.Check.checked
-        }
-        return Color.Checkbox.Check.default
+    enum CheckboxComponent {
+        case text, border, background, icon
     }
 }

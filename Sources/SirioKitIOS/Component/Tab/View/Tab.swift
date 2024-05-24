@@ -47,23 +47,21 @@ public struct Tab: View {
     }
 }
 
-struct Tab_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack(spacing: 20) {
-            Tab(isSelected: true, position: .top, item: .previewInps()[0],
-                onSelectTab: nil)
-            
-            Tab(isSelected: false, position: .top, item: .previewInps()[1],
-                onSelectTab: nil)
-            
-            Tab(isSelected: false, position: .top, item: .previewInps()[2],
-                onSelectTab: nil)
-            
-            Tab(isSelected: true, position: .bottom, item: .previewInps()[0], onSelectTab: nil)
-            
-            Tab(isSelected: false, position: .bottom, item: .previewInps()[1], onSelectTab: nil)
-            
-            Tab(isSelected: false, position: .bottom, item: .previewInps()[2], onSelectTab: nil)
-        }
+#Preview {
+    VStack(spacing: 20) {
+        Tab(isSelected: true, position: .top, item: .previewInps()[0],
+            onSelectTab: nil)
+        
+        Tab(isSelected: false, position: .top, item: .previewInps()[1],
+            onSelectTab: nil)
+        
+        Tab(isSelected: false, position: .top, item: .previewInps()[2],
+            onSelectTab: nil)
+        
+        Tab(isSelected: true, position: .bottom, item: .previewInps()[0], onSelectTab: nil)
+        
+        Tab(isSelected: false, position: .bottom, item: .previewInps()[1], onSelectTab: nil)
+        
+        Tab(isSelected: false, position: .bottom, item: .previewInps()[2], onSelectTab: nil)
     }
 }

@@ -33,8 +33,6 @@ struct ChipsButtonClose: View {
     }
 }
 
-struct ChipsButtonClose_Previews: PreviewProvider {
-    static var previews: some View {
-        ChipsButtonClose()
-    }
+#Preview {
+    ChipsButtonClose()
 }

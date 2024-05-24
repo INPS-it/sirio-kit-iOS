@@ -27,15 +27,10 @@ public struct AppNavigationView<Content: View>: View {
     }
 }
 
-struct AppNavigationView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        AppNavigationView(content: {
-            Color.gray.edgesIgnoringSafeArea(.all)
-                .setAppNavigationBarItems(leftItem: .previewBack,
-                                       rightItems: [.previewUser, .previewSearch])
-        })
-    }
+#Preview {
+    AppNavigationView(content: {
+        Color.gray.edgesIgnoringSafeArea(.all)
+            .setAppNavigationBarItems(leftItem: .previewBack,
+                                   rightItems: [.previewUser, .previewSearch])
+    })
 }
-
-

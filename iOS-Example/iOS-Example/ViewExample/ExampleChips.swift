@@ -43,8 +43,6 @@ struct ExampleChips: View {
     }
 }
 
-struct ExampleChips_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleChips()
-    }
+#Preview {
+    ExampleChips()
 }

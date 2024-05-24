@@ -28,8 +28,6 @@ struct ExampleNotification: View {
                     SirioText(text: "Notification Toast \(type)", typography: .label_md_400)
                 })
             }
-            
-            
         }
         .background(Color.colorBackground)
         .navigationTitle("Notification")
@@ -37,10 +35,8 @@ struct ExampleNotification: View {
     }
 }
 
-struct ExampleNotification_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleNotification()
-    }
+#Preview {
+    ExampleNotification()
 }
 
 struct ExampleNotificationInline: View {

@@ -11,7 +11,7 @@ import SwiftUI
 /// The Sirio Button Icon Only
 /// - Parameters:
 ///   - style: The [SirioButtonStyle]
-///   - size: The [SirioButtonSize]
+///   - size: The [SirioSize]
 ///   - iconData: The data for icon button
 ///   - isDisabled: Whether the button is disabled
 ///   - action: Callback that is executed when the button is tapped
@@ -20,14 +20,14 @@ import SwiftUI
 public struct ButtonIconOnly: View {
     
     private var style: SirioButtonStyle // primary, secondary...
-    private var size: SirioButtonSize // large, medium, small
+    private var size: SirioSize // large, medium, small
     private var iconData: SirioIconData
     @Binding private var isDisabled: Bool
     private var action: () -> Void
     private var accessibilityLabel: String?
     
     public init(style: SirioButtonStyle,
-                size: SirioButtonSize,
+                size: SirioSize,
                 iconData: SirioIconData,
                 isDisabled: Binding<Bool> = .constant(false),
                 action: @escaping () -> Void,
@@ -53,23 +53,7 @@ public struct ButtonIconOnly: View {
     }
 }
 
-struct ButtonIconOnly_Previews: PreviewProvider {
-    static var previews: some View {
-        ScrollView(showsIndicators: false, content: {
-            VStack(alignment: .leading, spacing: 8) {
-                TrilogyButtonsIconOnly(type: "Primary", style: .primary)
-                TrilogyButtonsIconOnly(type: "Secondary", style: .secondary)
-                TrilogyButtonsIconOnly(type: "Tertiary Light", style: .tertiaryLight)
-                TrilogyButtonsIconOnly(type: "Tertiary Dark", style: .tertiaryDark)
-                TrilogyButtonsIconOnly(type: "Danger", style: .danger)
-                TrilogyButtonsIconOnly(type: "Ghost", style: .ghost)
-            }
-        })
-    }
-}
-
-
-struct TrilogyButtonsIconOnly: View {
+struct TestButtonsIconOnly: View {
     var type: String
     var style: SirioButtonStyle
     
@@ -77,7 +61,7 @@ struct TrilogyButtonsIconOnly: View {
         VStack(spacing: 8) {
             SirioText(text: "\(type)" , typography: .label_md_700)
             HStack {
-                ForEach(SirioButtonSize.allCases, id: \.self, content: { size in
+                ForEach(SirioSize.allCases, id: \.self, content: { size in
                     ButtonIconOnly(style: style,
                                    size: size,
                                    iconData: .init(icon: .arrowRight),
@@ -87,7 +71,7 @@ struct TrilogyButtonsIconOnly: View {
             }
             
             HStack {
-                ForEach(SirioButtonSize.allCases, id: \.self, content: { size in
+                ForEach(SirioSize.allCases, id: \.self, content: { size in
                     ButtonIconOnly(style: style,
                                    size: size,
                                    iconData: .init(icon: .arrowRight),
@@ -98,4 +82,17 @@ struct TrilogyButtonsIconOnly: View {
         }
         .padding()
     }
+}
+
+#Preview {
+    ScrollView(showsIndicators: false, content: {
+        VStack(alignment: .leading, spacing: 8) {
+            TestButtonsIconOnly(type: "Primary", style: .primary)
+            TestButtonsIconOnly(type: "Secondary", style: .secondary)
+            TestButtonsIconOnly(type: "Tertiary Light", style: .tertiaryLight)
+            TestButtonsIconOnly(type: "Tertiary Dark", style: .tertiaryDark)
+            TestButtonsIconOnly(type: "Danger", style: .danger)
+            TestButtonsIconOnly(type: "Ghost", style: .ghost)
+        }
+    })
 }

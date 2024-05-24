@@ -143,9 +143,6 @@ struct ExamplePagination: View {
     }
 }
 
-struct Pagination_Previews: PreviewProvider {
-    static var previews: some View {
-        ExamplePagination()
-    }
+#Preview {
+    ExamplePagination()
 }
-

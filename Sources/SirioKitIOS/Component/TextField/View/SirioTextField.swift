@@ -27,7 +27,7 @@ public enum SemanticTextField: String, CaseIterable {
 ///   - isTextFieldDisabled: Whether only the textfield is disabled. For example use it for show picker
 ///   - onTapInfoAction: Callback that is executed when the info button is tapped
 ///   - onTapIconAction: Callback that is executed when the icon button is tapped
-///   - onTapTextFieldAction: Callback that is executed when the text field is tapped. If the callback is provided the textfield is disabled to allow the action, normal behaviour otherwise
+///   - onTapTextFieldAction: Callback that is executed when the textfield is tapped. If the callback is provided, the textfield is disabled to allow the action; otherwise, the normal behavior is maintained.
 ///   - accessibilityLabelInfo: A string that identifies the info accessibility element
 ///   - accessibilityLabelIcon: A string that identifies the icon accessibility element
 
@@ -56,7 +56,7 @@ public struct SirioTextField: View {
                 placeholder: String,
                 text: Binding<String>,
                 icon: AwesomeIcon?,
-                helperText: String?,
+                helperText: String? = nil,
                 isDisabled: Binding<Bool> = .constant(false),
                 isSecureText: Binding<Bool> = .constant(false),
                 onTapInfoAction: (() -> Void)? = nil,
@@ -168,7 +168,7 @@ public struct SirioTextField: View {
             .background(backgroundColor)
             .cornerRadius(Size.SirioTextField.cornerRadius)
             
-            if let helperText = helperText {
+            if let helperText = helperText, !helperText.isEmpty {
                 SirioText(text: helperText, typography: Typography.TextField.helper)
                     .foregroundColor(textColor)
             }
@@ -286,16 +286,14 @@ public struct SirioTextField: View {
     }
 }
 
-struct SirioTextField_Previews: PreviewProvider {
-    static var previews: some View {
-        SirioTextField(type: .constant(.warning),
-                       textInfo: "Label",
-                       infoIcon: .infoCircle,
-                       placeholder: "Placeholder",
-                       text: .constant(""),
-                       icon: .calendar,
-                       helperText: "*Helper text",
-                       onTapInfoAction: nil)
-        .padding()
-    }
+#Preview {
+    SirioTextField(type: .constant(.warning),
+                   textInfo: "Label",
+                   infoIcon: .infoCircle,
+                   placeholder: "Placeholder",
+                   text: .constant(""),
+                   icon: .calendar,
+                   helperText: "*Helper text",
+                   onTapInfoAction: nil)
+    .padding()
 }

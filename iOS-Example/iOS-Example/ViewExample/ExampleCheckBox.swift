@@ -51,8 +51,6 @@ struct ExampleCheckBox: View {
     }
 }
 
-struct ExampleCheckBox_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleCheckBox()
-    }
+#Preview {
+    ExampleCheckBox()
 }

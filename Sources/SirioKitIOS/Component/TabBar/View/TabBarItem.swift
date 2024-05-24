@@ -84,16 +84,6 @@ public struct TabBarItem: View {
     }
 }
 
-struct TabBarItem_Previews: PreviewProvider {
-    static var previews: some View {
-        TabBarItem(itemData: TabItemData.preview, isSelected: false)
-            .previewLayout(PreviewLayout.sizeThatFits)
-            .padding()
-            .previewDisplayName("TabBarItem Preview")
-            .environmentObject(OrientationInfo())
-    }
-}
-
 extension TabBarItem {
     
     private var iconColor: Color {
@@ -107,4 +97,10 @@ extension TabBarItem {
     private var indicatorColor: Color {
         return isSelected ? Color.TabBar.Item.Indicator.selected : Color.TabBar.Item.Indicator.default
     }
+}
+#Preview {
+    TabBarItem(itemData: TabItemData.preview, isSelected: false)
+        .previewLayout(PreviewLayout.sizeThatFits)
+        .padding()
+        .environmentObject(OrientationInfo())
 }

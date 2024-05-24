@@ -54,26 +54,6 @@ public struct AppNavigationStandardTitle: View {
     }
 }
 
-struct AppNavigationStandardTitle_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        Group {
-            AppNavigationStandardTitle(title: "Titolo pagina",
-                                       leftItem: .previewBack,
-                                       rightItems: [.previewUser, .previewSearch])
-            .padding(.vertical)
-            .colorScheme(.light)
-            
-            AppNavigationStandardTitle(title: "Titolo pagina",
-                                       leftItem: .previewBack,
-                                       rightItems: [.previewUser, .previewSearch])
-            .padding(.vertical)
-            .colorScheme(.dark)
-        }
-        .previewLayout(PreviewLayout.sizeThatFits)
-    }
-}
-
 extension AppNavigationStandardTitle {
     
     private var backgroundColor: Color {
@@ -97,4 +77,21 @@ extension AppNavigationStandardTitle {
             return Color.AppNavigation.Default.Text.light
         }
     }
+}
+
+#Preview {
+    Group {
+        AppNavigationStandardTitle(title: "Titolo pagina",
+                                   leftItem: .previewBack,
+                                   rightItems: [.previewUser, .previewSearch])
+        .padding(.vertical)
+        .colorScheme(.light)
+        
+        AppNavigationStandardTitle(title: "Titolo pagina",
+                                   leftItem: .previewBack,
+                                   rightItems: [.previewUser, .previewSearch])
+        .padding(.vertical)
+        .colorScheme(.dark)
+    }
+    .previewLayout(PreviewLayout.sizeThatFits)
 }

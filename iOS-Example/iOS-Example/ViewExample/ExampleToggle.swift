@@ -66,8 +66,6 @@ struct ExampleToggle: View {
     }
 }
 
-struct ExampleToggle_Previews: PreviewProvider {
-    static var previews: some View {
-        ExampleToggle()
-    }
+#Preview {
+    ExampleToggle()
 }

@@ -221,7 +221,7 @@ public struct SearchBar: View {
     }
 }
 
-struct Test: View {
+struct SearchBarTestView: View {
     @State var searchText: String = ""
     @State var optionValues: [String] = []
     @State var queries: [String] = [] // Default is empty
@@ -247,11 +247,6 @@ struct Test: View {
     }
 }
 
-struct Test_Previews: PreviewProvider {
-    static var previews: some View {
-        Test()
-    }
+#Preview {
+    SearchBarTestView()
 }
-
-
-

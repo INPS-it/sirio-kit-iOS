@@ -25,15 +25,24 @@ public struct ProcessCard: View {
     var schemeColor: SchemeColor
     var category: String?
     var icon: AwesomeIcon?
-    var date: String
+    var date: String?
     var title: String
-    var text: String
+    var text: String?
     var textButton: String
     var onTapButtonAction: () -> Void
-    var item: CardItemData?
+    var iconData: SirioIconData?
     var onTapCardAction: (() -> Void)?
     
-    public init(schemeColor: SchemeColor, category: String? = nil, icon: AwesomeIcon? = nil, date: String, title: String, text: String, textButton: String, onTapButtonAction: @escaping () -> Void, item: CardItemData? = nil, onTapCardAction: (() -> Void)? = nil) {
+    public init(schemeColor: SchemeColor,
+                category: String? = nil,
+                icon: AwesomeIcon? = nil,
+                date: String? = nil,
+                title: String,
+                text: String?,
+                textButton: String,
+                onTapButtonAction: @escaping () -> Void,
+                iconData: SirioIconData? = nil,
+                onTapCardAction: (() -> Void)? = nil) {
         self.schemeColor = schemeColor
         self.category = category
         self.icon = icon
@@ -42,39 +51,45 @@ public struct ProcessCard: View {
         self.text = text
         self.textButton = textButton
         self.onTapButtonAction = onTapButtonAction
-        self.item = item
+        self.iconData = iconData
         self.onTapCardAction = onTapCardAction
     }
     
     public var body: some View {
         VStack(alignment: .leading, spacing: Size.Card.Process.spacing) {
-            firstSection
+            if date != nil || category != nil || icon != nil {
+                firstSection
+            }
             
             SirioText(text: title, typography: Typography.Card.Process.title)
                 .foregroundColor(schemeColor == .light ? Color.Card.Process.Text.Title.light : Color.Card.Process.Text.Title.dark)
                 .lineLimit(2)
-                .frame(height: Size.Card.Process.titleHeight)
             
-            SirioText(text: text, typography: Typography.Card.Process.body)
-                .foregroundColor(schemeColor == .light ? Color.Card.Process.Text.Body.light : Color.Card.Process.Text.Body.dark)
-                .lineLimit(4)
-                .frame(height: Size.Card.Process.bodyHeight)
+            if let text = text {
+                SirioText(text: text, typography: Typography.Card.Process.body)
+                    .foregroundColor(schemeColor == .light ? Color.Card.Process.Text.Body.light : Color.Card.Process.Text.Body.dark)
+                    .lineLimit(4)
+                    .frame(height: Size.Card.Process.bodyHeight)
+            }
+            
             
             HStack(spacing: Size.Card.Process.spacing) {
-                ButtonTextOnly(style: schemeColor == .light ? .tertiaryLight : .tertiaryDark, size: .large, text: textButton, action: {
+                ButtonTextOnly(style: schemeColor == .light ? .tertiaryLight : .tertiaryDark, size: .medium, text: textButton, action: {
                     self.onTapButtonAction()
                 })
                 
                 Spacer()
                 
-                if let item = item {
-                    SirioIcon(data: .init(icon: item.icon))
-                        .frame(width: Size.Card.Process.Item.width,
-                               height: Size.Card.Process.Item.height)
-                        .foregroundColor(schemeColor == .light ? Color.Card.Process.Item.light : Color.Card.Process.Item.dark)
-                        .onTapGesture{
-                            item.action()
-                        }
+                if let iconData = iconData {
+                    Button(action: {
+                        iconData.action()
+                    }, label: {
+                        SirioIcon(data: iconData)
+                            .padding(Size.Card.Process.Item.padding)
+                            .frame(width: Size.Card.Process.Item.width,
+                                   height: Size.Card.Process.Item.height)
+                            .foregroundColor(schemeColor == .light ? Color.Card.Process.Item.light : Color.Card.Process.Item.dark)
+                    })
                 }
             }
         }
@@ -104,24 +119,13 @@ public struct ProcessCard: View {
     }
 }
 
-struct ProcessCard_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack(spacing: 10) {
-            ProcessCard(schemeColor: .light, category: nil, icon: .book, date: "13 Nov 2023", title: "Titolo della card molto lungo su 2 righe", text: .loremIpsum, textButton: "Text", onTapButtonAction: {}, item: .previewHeart)
-            
-            ProcessCard(schemeColor: .dark, category: "Categoria", icon: .book, date: "13 Nov 2023", title: "Titolo della card molto lungo su 2 righe", text: .loremIpsum, textButton: "Text", onTapButtonAction: {}, item: nil)
-        }
-        .padding()
-    }
-}
-
 extension ProcessCard {
     @ViewBuilder
     private func categoryView(with category: String) -> some View {
         HStack {
             Tag(type: schemeColor == .light ? .gray : .white, text: category)
             Spacer()
-            SirioText(text: date, typography: Typography.Card.date)
+            SirioText(text: date ?? "", typography: Typography.Card.date)
                 .foregroundColor(schemeColor == .light ?  Color.Card.Process.Text.Date.light : Color.Card.Process.Text.Date.dark)
         }
     }
@@ -133,7 +137,7 @@ extension ProcessCard {
                 .foregroundColor(schemeColor == .light ? Color.Card.Process.Icon.light : Color.Card.Process.Icon.dark)
                 .frame(width: Size.Card.Process.Icon.width, height: Size.Card.Process.Icon.width)
             Spacer()
-            SirioText(text: date, typography: Typography.Card.date)
+            SirioText(text: date ?? "", typography: Typography.Card.date)
                 .foregroundColor(schemeColor == .light ?  Color.Card.Process.Text.Date.light : Color.Card.Process.Text.Date.dark)
         }
     }
@@ -141,9 +145,21 @@ extension ProcessCard {
     @ViewBuilder
     private func dateView() -> some View {
         HStack {
-            SirioText(text: date, typography: Typography.Card.date)
-                .foregroundColor(schemeColor == .light ?  Color.Card.Process.Text.Date.light : Color.Card.Process.Text.Date.dark)
             Spacer()
+            
+            SirioText(text: date ?? "", typography: Typography.Card.date)
+                .foregroundColor(schemeColor == .light ?  Color.Card.Process.Text.Date.light : Color.Card.Process.Text.Date.dark)
+            
         }
     }
+}
+#Preview {
+    ScrollView {
+        ProcessCard(schemeColor: .light, category: nil, icon: .book, date: "13 Nov 2023", title: "Titolo della card molto lungo su 2 righe", text: .loremIpsum, textButton: "Text", onTapButtonAction: {}, iconData: .previewHeart)
+        
+        ProcessCard(schemeColor: .dark, category: "Categoria", icon: .book, date: "13 Nov 2023", title: "Titolo della card molto lungo su 2 righe", text: .loremIpsum, textButton: "Text", onTapButtonAction: {}, iconData: nil)
+        
+        ProcessCard(schemeColor: .dark, category: nil, icon: nil, date: "13 Nov 2023", title: "Titolo della card molto lungo su 2 righe", text: .loremIpsum, textButton: "Text", onTapButtonAction: {}, iconData: nil)
+    }
+    .padding()
 }

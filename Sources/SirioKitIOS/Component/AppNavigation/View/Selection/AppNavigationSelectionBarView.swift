@@ -55,26 +55,6 @@ public struct AppNavigationSelectionBarView: View {
     }
 }
 
-struct AppNavigationSelectionBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        Group {
-            AppNavigationSelectionBarView(title: "1 Elemento",
-                                        leftItem: .previewBack,
-                                        rightItems: [.previewUser, .previewBell])
-            .padding(.vertical)
-            .colorScheme(.light)
-            AppNavigationSelectionBarView(title: "1 Elemento",
-                                        leftItem: .previewBack,
-                                        rightItems: [.previewUser, .previewBell])
-
-            .padding(.vertical)
-            .colorScheme(.dark)
-        }
-        .previewLayout(PreviewLayout.sizeThatFits)
-    }
-}
-
 extension AppNavigationSelectionBarView {
     
     private var appNavigationColor: Color {
@@ -98,4 +78,21 @@ extension AppNavigationSelectionBarView {
             return Color.AppNavigation.Selection.Text.light
         }
     }
+}
+
+#Preview {
+    Group {
+        AppNavigationSelectionBarView(title: "1 Elemento",
+                                    leftItem: .previewBack,
+                                    rightItems: [.previewUser, .previewBell])
+        .padding(.vertical)
+        .colorScheme(.light)
+        AppNavigationSelectionBarView(title: "1 Elemento",
+                                    leftItem: .previewBack,
+                                    rightItems: [.previewUser, .previewBell])
+
+        .padding(.vertical)
+        .colorScheme(.dark)
+    }
+    .previewLayout(PreviewLayout.sizeThatFits)
 }

@@ -19,8 +19,6 @@ struct AppNavigationItemEmpty: View {
     }
 }
 
-struct AppNavigationItemEmpty_Previews: PreviewProvider {
-    static var previews: some View {
-        AppNavigationItemEmpty()
-    }
+#Preview {
+    AppNavigationItemEmpty()
 }

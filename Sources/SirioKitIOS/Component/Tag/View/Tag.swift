@@ -66,15 +66,13 @@ extension Tag {
         }
     }
 }
- 
-struct Tag_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            ForEach(TagType.allCases, id: \.self){ type in
-                Tag(type: type, text: "Label Tag")
-            }
+
+#Preview {
+    VStack {
+        ForEach(TagType.allCases, id: \.self){ type in
+            Tag(type: type, text: "Label Tag")
         }
-        .padding()
-        .background(Color.gray.opacity(0.2))
     }
+    .padding()
+    .background(Color.gray.opacity(0.2))
 }

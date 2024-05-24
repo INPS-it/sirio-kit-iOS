@@ -19,16 +19,18 @@ public struct AppNavigationItemData: Identifiable {
     var textProfile: String
     var action: () -> Void
     var hasBadge: Bool
-    
+    var accessibilityLabel: String?
+
     var isUserLogged: Bool {
         return !textProfile.isEmpty
     }
     
-    public init(icon: AwesomeIcon, textProfile: String = "", hasBadge: Bool = false, action: @escaping () -> Void){
+    public init(icon: AwesomeIcon, textProfile: String = "", hasBadge: Bool = false, action: @escaping () -> Void, accessibilityLabel: String? = nil){
         self.icon = icon
         self.textProfile = textProfile
         self.hasBadge = hasBadge
         self.action = action
+        self.accessibilityLabel = accessibilityLabel
     }
     
     public static let preview = AppNavigationItemData(icon: .ellipsisV, action: {})

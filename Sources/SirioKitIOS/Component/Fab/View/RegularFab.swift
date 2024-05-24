@@ -24,16 +24,14 @@ public struct RegularFab: View {
     }
 }
 
-struct RegularFab_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            RegularFab(data: .init(icon: .plus, action: {}))
-                .padding()
-                .colorScheme(.light)
-            RegularFab(data: .init(icon: .plus, action: {}))
-                .padding()
-                .colorScheme(.dark)
-        }
-        .previewLayout(PreviewLayout.sizeThatFits)
+#Preview {
+    Group {
+        RegularFab(data: .init(icon: .plus, action: {}))
+            .padding()
+            .colorScheme(.light)
+        RegularFab(data: .init(icon: .plus, action: {}))
+            .padding()
+            .colorScheme(.dark)
     }
+    .previewLayout(PreviewLayout.sizeThatFits)
 }

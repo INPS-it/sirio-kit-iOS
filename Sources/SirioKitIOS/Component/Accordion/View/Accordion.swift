@@ -24,12 +24,10 @@ public struct Accordion: View {
     }
 }
 
-struct Accordion_Previews: PreviewProvider {
-    static var previews: some View {
-        Accordion(data: .init(text: "Accordion Item #1", content: {
-            SirioText(text: .loremIpsum, typography: .label_md_700)
-                .foregroundColor(.black)
-        }))
-        .colorScheme(.dark)
-    }
+#Preview {
+    Accordion(data: .init(text: "Accordion Item #1", content: {
+        SirioText(text: .loremIpsum, typography: .label_md_700)
+            .foregroundColor(.black)
+    }))
+    .colorScheme(.dark)
 }
