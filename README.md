@@ -11,7 +11,7 @@ sirio-kit-iOS is a library containing the iOS implementation of the Sirio design
 ## Usage
 1. Add the following to your Package.swift:
 ```swift
-.package(url: "https://github.com/INPS-it/sirio-kit-iOS", .upToNextMajor(from: "7.0.2"))
+.package(url: "https://github.com/INPS-it/sirio-kit-iOS", .upToNextMajor(from: "8.0.0"))
 ```
 2. Declare `import SirioKitIOS` to use the components where you want to use them.
 
@@ -24,6 +24,8 @@ struct iOS_ExampleApp: App {
     init() {
         // Register fonts from library
         Fonts.registerFonts()
+        // Svg Coder
+        SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
     }
 }
 ```
