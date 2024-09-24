@@ -15,19 +15,19 @@ struct ExampleProgressBar: View {
         ScrollView(showsIndicators: false){
             VStack(spacing: 16) {
                 Group {
-                    ProgressBar(text: "Label", currentValue: .constant(0))
-                    ProgressBar(text: "Label", currentValue: .constant(10))
-                    ProgressBar(text: "Label", currentValue: .constant(20))
-                    ProgressBar(text: "Label", currentValue: .constant(30))
-                    ProgressBar(text: "Label", currentValue: .constant(40))
-                    ProgressBar(text: "Label", currentValue: .constant(50))
+                    SirioProgressBar(text: "Label", currentValue: .constant(0))
+                    SirioProgressBar(text: "Label", currentValue: .constant(10))
+                    SirioProgressBar(text: "Label", currentValue: .constant(20))
+                    SirioProgressBar(text: "Label", currentValue: .constant(30))
+                    SirioProgressBar(text: "Label", currentValue: .constant(40))
+                    SirioProgressBar(text: "Label", currentValue: .constant(50))
                 }
                 Group {
-                    ProgressBar(text: "Label", currentValue: .constant(60))
-                    ProgressBar(text: "Label", currentValue: .constant(70))
-                    ProgressBar(text: "Label", currentValue: .constant(80))
-                    ProgressBar(text: "Label", currentValue: .constant(90))
-                    ProgressBar(text: "Label", currentValue: .constant(100))
+                    SirioProgressBar(text: "Label", currentValue: .constant(60))
+                    SirioProgressBar(text: "Label", currentValue: .constant(70))
+                    SirioProgressBar(text: "Label", currentValue: .constant(80))
+                    SirioProgressBar(text: "Label", currentValue: .constant(90))
+                    SirioProgressBar(text: "Label", currentValue: .constant(100))
                 }
             }
             .padding()

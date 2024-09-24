@@ -12,8 +12,8 @@ import SirioKitIOS
 struct ExampleTag: View {
     var body: some View {
         VStack(alignment: .center) {
-            ForEach(TagType.allCases, id: \.self){ type in
-                Tag(type: type, text: "Label Tag")
+            ForEach(SirioTagType.allCases, id: \.self){ type in
+                SirioTag(type: type, text: "Label Tag")
                     .padding(10)
             }
         }

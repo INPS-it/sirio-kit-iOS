@@ -43,7 +43,7 @@ struct ExampleCarousel: View {
         SirioCarousel(index: $index,
                       items: ExampleCarousel.preview,
                       content: { item in
-            ProcessCard(schemeColor: .light, icon: item.icon, date: item.date, title: item.title, text: item.text, textButton: item.textButton, onTapButtonAction: { })
+            SirioProcessCard(schemeColor: .light, icon: item.icon, date: item.date, title: item.title, text: item.text, textButton: item.textButton, onTapButtonAction: { })
         })
         .navigationTitle("Carousel")
     }

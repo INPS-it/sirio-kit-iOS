@@ -13,7 +13,7 @@ import SwiftUI
 ///   - data: The data of the FAB
 ///   - size: The size of the FAB
 struct CustomFab: View {
-    var data: FabData
+    var data: SirioFabData
     var size: CGFloat
     
     var body: some View {
@@ -23,7 +23,7 @@ struct CustomFab: View {
         }, label: {
             
         })
-        .buttonStyle(FabOnlyIconStyle(data: data, size: size))
+        .buttonStyle(SirioFabOnlyIconStyle(data: data, size: size))
     }
 }
 

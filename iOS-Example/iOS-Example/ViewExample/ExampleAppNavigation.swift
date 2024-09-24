@@ -96,20 +96,20 @@ struct ExampleAppNavigation: View {
 struct ExampleAppNavigationStandardTitleView: View {
     var body: some View {
         VStack(spacing: 4){
-            AppNavigationStandardTitle(title: "Titolo pagina",
+            SirioAppNavigationStandardTitle(title: "Titolo pagina",
                                        leftItem: nil,
                                        rightItems: [.previewUser, .previewBell])
             
-            AppNavigationStandardTitle(title: "Titolo pagina",
+            SirioAppNavigationStandardTitle(title: "Titolo pagina",
                                        leftItem: .previewBack,
                                        rightItems: [.previewUser, .previewBell])
             
-            AppNavigationStandardTitle(title: "Titolo pagina",
+            SirioAppNavigationStandardTitle(title: "Titolo pagina",
                                        leftItem: nil,
                                        rightItems: [.previewUserLogged, .previewBell])
             
             
-            AppNavigationStandardTitle(title: "Titolo pagina",
+            SirioAppNavigationStandardTitle(title: "Titolo pagina",
                                        leftItem: .previewBack,
                                        rightItems: [.previewUserLogged, .previewBell])
             
@@ -122,22 +122,22 @@ struct ExampleAppNavigationLongTitleView: View {
     var body: some View {
         VStack(spacing: 4){
             
-            AppNavigationLongTitle(title: "Titolo pagina molto lungo \nsu due righe",
+            SirioAppNavigationLongTitle(title: "Titolo pagina molto lungo \nsu due righe",
                                    leftItem: nil,
                                    rightItems: [.previewUser, .previewBell])
             
             
-            AppNavigationLongTitle(title: "Titolo pagina molto lungo \nsu due righe",
+            SirioAppNavigationLongTitle(title: "Titolo pagina molto lungo \nsu due righe",
                                    leftItem: .previewBack,
                                    rightItems: [.previewUser, .previewBell])
             
             
-            AppNavigationLongTitle(title: "Titolo pagina molto lungo \nsu due righe",
+            SirioAppNavigationLongTitle(title: "Titolo pagina molto lungo \nsu due righe",
                                    leftItem: nil,
                                    rightItems: [.previewUserLogged, .previewBell])
             
             
-            AppNavigationLongTitle(title: "Titolo pagina molto lungo \nsu due righe",
+            SirioAppNavigationLongTitle(title: "Titolo pagina molto lungo \nsu due righe",
                                    leftItem: .previewBack,
                                    rightItems: [.previewUserLogged, .previewBell])
             
@@ -150,21 +150,21 @@ struct ExampleAppNavigationBigTitleView: View {
     var body: some View {
         VStack(spacing: 4){
             
-            AppNavigationBigTitle(title: "Titolo Grande",
+            SirioAppNavigationBigTitle(title: "Titolo Grande",
                                   leftItem: nil,
                                   rightItems: [.previewUser, .previewBell])
             
             
-            AppNavigationBigTitle(title: "Titolo Grande",
+            SirioAppNavigationBigTitle(title: "Titolo Grande",
                                   leftItem: .previewBack,
                                   rightItems: [.previewUser, .previewBell])
             
             
-            AppNavigationBigTitle(title: "Titolo Grande",
+            SirioAppNavigationBigTitle(title: "Titolo Grande",
                                   leftItem: nil,
                                   rightItems: [.previewUserLogged, .previewBell])
             
-            AppNavigationBigTitle(title: "Titolo Grande",
+            SirioAppNavigationBigTitle(title: "Titolo Grande",
                                   leftItem: .previewBack,
                                   rightItems: [.previewUserLogged, .previewBell])
         }
@@ -174,11 +174,11 @@ struct ExampleAppNavigationBigTitleView: View {
 struct ExampleAppNavigationSelectionView: View {
     var body: some View {
         VStack(spacing: 4){
-            AppNavigationSelectionBarView(title: "Titolo pagina",
+            SirioAppNavigationSelectionBarView(title: "Titolo pagina",
                                           leftItem: .previewBack,
                                           rightItems: [.previewDownload, .previewTrash])
             
-            AppNavigationSelectionBarView(title: "1 Elemento Selezionato",
+            SirioAppNavigationSelectionBarView(title: "1 Elemento Selezionato",
                                           leftItem: .previewBack,
                                           rightItems: [.previewDownload, .previewTrash])
             
@@ -187,11 +187,11 @@ struct ExampleAppNavigationSelectionView: View {
 }
 
 struct ExampleAppNavigationSearchView: View {
-    @StateObject var searchEnv: SearchEnvironment = SearchEnvironment()
+    @StateObject var searchEnv: SirioSearchEnvironment = SirioSearchEnvironment()
     
     var body: some View {
         VStack(spacing: 4){
-            AppNavigationSearchBarView(title: "Titolo pagina",
+            SirioAppNavigationSearchBarView(title: "Titolo pagina",
                                        placeholder: "Ricerca...",
                                        leftItem: nil,
                                        rightItems: [.previewUser, .previewBell])
@@ -204,10 +204,10 @@ struct ExampleAppNavigationSearchView: View {
 struct ExampleAppNavigationLogoView: View {
     var body: some View {
         VStack(spacing: 4){
-            AppNavigationLogoBarView(leftItem: nil,
+            SirioAppNavigationLogoBarView(leftItem: nil,
                                      rightItems: [.previewUser, .previewBell])
             
-            AppNavigationLogoBarView(leftItem: nil,
+            SirioAppNavigationLogoBarView(leftItem: nil,
                                      rightItems: [.previewUserLogged, .previewBell])
         }
     }

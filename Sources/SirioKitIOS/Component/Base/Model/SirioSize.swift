@@ -12,3 +12,8 @@ import Foundation
 public enum SirioSize: String, CaseIterable {
     case large, medium, small
 }
+
+public enum SirioTableSize: String, CaseIterable {
+    case large, medium, small, xsmall
+}
+

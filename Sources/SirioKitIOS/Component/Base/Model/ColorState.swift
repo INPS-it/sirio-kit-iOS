@@ -10,8 +10,8 @@ import SwiftUI
 
 // This model is used to manage the various component colors states
 public struct ColorState {
-    var `default`: Color
-    var disabled: Color
-    var hover: Color
-    var pressed: Color
+    public var `default`: Color
+    public var disabled: Color
+    public var hover: Color
+    public var pressed: Color
 }

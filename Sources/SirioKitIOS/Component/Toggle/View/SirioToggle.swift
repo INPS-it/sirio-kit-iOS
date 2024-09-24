@@ -66,4 +66,5 @@ struct TestSirioToggle: View {
 
 #Preview {
     TestSirioToggle()
+
 }

@@ -12,7 +12,7 @@ import SwiftUI
 struct TabStyle: ButtonStyle {
     var isSelected: Bool
     var position: Position
-    var item: TabData
+    var item: SirioTabData
 
     @State var isHover = false
     

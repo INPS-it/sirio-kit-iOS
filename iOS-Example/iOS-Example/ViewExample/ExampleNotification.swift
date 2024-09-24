@@ -13,7 +13,7 @@ struct ExampleNotification: View {
     var body: some View {
         List {
             
-            ForEach(NotificationType.allCases, id: \.self) { type in
+            ForEach(SirioNotificationType.allCases, id: \.self) { type in
                 NavigationLink(destination: {
                     ExampleNotificationInline(type: type)
                 }, label: {
@@ -21,7 +21,7 @@ struct ExampleNotification: View {
                 })
             }
             
-            ForEach(NotificationType.allCases, id: \.self) { type in
+            ForEach(SirioNotificationType.allCases, id: \.self) { type in
                 NavigationLink(destination: {
                     ExampleNotificationToast(type: type)
                 }, label: {
@@ -40,12 +40,12 @@ struct ExampleNotification: View {
 }
 
 struct ExampleNotificationInline: View {
-    var type: NotificationType
+    var type: SirioNotificationType
 
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 10) {
-                NotificationInline(type: type,
+                SirioNotificationInline(type: type,
                                    title: "Titolo di errore",
                                    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                                    onCloseAction: {})
@@ -76,19 +76,19 @@ struct ExampleNotificationInline: View {
 }
 
 struct ExampleNotificationToast: View {
-    var type: NotificationType
+    var type: SirioNotificationType
 
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 10) {
-                NotificationToast(type: type,
+                SirioNotificationToast(type: type,
                                   title: "Titolo di Errore",
                                   subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                                   textButton: "Azione",
                                   onTapCloseAction: nil,
                                   onTapButtonAction: nil)
                 
-                NotificationToast(type: type,
+                SirioNotificationToast(type: type,
                                   title: "Titolo di Errore",
                                   subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                                   onTapCloseAction: nil)

@@ -19,11 +19,11 @@ struct ExamplePagination: View {
         VStack {
             VStack(alignment: .center) {
                 SirioText(text: "Enabled", typography: .label_md_400)
-                Pagination(selectedPage: $selectedPage1, numberOfPages: 10, isDisabled: $isDisabled)
+                SirioPagination(selectedPage: $selectedPage1, numberOfPages: 10, isDisabled: $isDisabled)
                     .padding(.bottom)
                 
                 SirioText(text: "Disabled", typography: .label_md_400)
-                Pagination(selectedPage: $selectedPage2, numberOfPages: 10, isDisabled: .constant(true))
+                SirioPagination(selectedPage: $selectedPage2, numberOfPages: 10, isDisabled: .constant(true))
             }
         }
         .padding(.top, 20)

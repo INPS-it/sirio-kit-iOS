@@ -1,10 +1,9 @@
-
 //
 // StyleDictionaryBoxShadow.swift
 //
 
 // Do not edit directly
-// Generated on Tue, 10 Oct 2023 09:12:09 GMT
+// Generated on Tue, 17 Sep 2024 13:42:01 GMT
 
 
 import UIKit

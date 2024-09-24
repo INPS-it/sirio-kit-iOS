@@ -59,7 +59,7 @@ public struct SirioHero: View {
                         }
                         
                         if let textButton = textButton {
-                            ButtonTextOnly(style: .tertiaryLight,
+                            SirioButtonTextOnly(style: .tertiaryLight,
                                            size: .large,
                                            text: textButton,
                                            action: {

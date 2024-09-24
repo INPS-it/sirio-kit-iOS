@@ -22,7 +22,7 @@ struct ExampleFileUpload: View {
         ScrollView(showsIndicators: false){
             VStack(spacing: 16) {
                 SirioText(text: "Enabled", typography: .label_md_400)
-                FileUpload(title: "Label",
+                SirioFileUpload(title: "Label",
                            subtitle: "*Info upload file",
                            text: "Upload",
                            isDisabled: $isDisabled,
@@ -38,7 +38,7 @@ struct ExampleFileUpload: View {
                 })
                 
                 SirioText(text: "Disabled", typography: .label_md_400)
-                FileUpload(title: "Label",
+                SirioFileUpload(title: "Label",
                            subtitle: "*Info upload file",
                            text: "Upload",
                            isDisabled: .constant(true),

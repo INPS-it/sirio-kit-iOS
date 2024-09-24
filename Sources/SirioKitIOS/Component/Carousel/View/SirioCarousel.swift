@@ -21,14 +21,13 @@ public struct SirioCarousel<Content: View, T: Identifiable>: View {
     var background: SirioCarouselBackground
     @Binding var index: Int
     @State var frameSize: CGSize = .zero
-    @State private var scrollViewContentSize: CGSize = .zero
 
     public init(spacing: CGFloat = 15,
                 trailingSpace: CGFloat = 80,
                 index: Binding<Int>,
                 items: [T],
                 background: SirioCarouselBackground = .light,
-                @ViewBuilder content: @escaping (T) -> Content){
+                @ViewBuilder content: @escaping (T) -> Content) {
         self.spacing = spacing
         self.trailingSpace = trailingSpace
         self._index = index
@@ -37,20 +36,18 @@ public struct SirioCarousel<Content: View, T: Identifiable>: View {
         self.content = content
         self.items.count > 6 ? print("The items should be a maximum of 6.") : nil
     }
-    
+
     @GestureState var offset: CGFloat = 0
     @State var currentIndex: Int = 0
-    
-    public var body: some View{
+
+    public var body: some View {
         VStack(alignment: .center) {
-            
             GeometryReader { proxy in
-                
                 let width = proxy.size.width - (trailingSpace - spacing)
-                let adjustMentWidth = (trailingSpace / 2) - spacing
-                
-                HStack(spacing: spacing){
-                    ForEach(items){item in
+                let adjustmentWidth = (trailingSpace / 2) - spacing
+
+                HStack(spacing: spacing) {
+                    ForEach(items) { item in
                         content(item)
                             .frame(width: proxy.size.width - trailingSpace)
                             .readSize { size in
@@ -58,51 +55,50 @@ public struct SirioCarousel<Content: View, T: Identifiable>: View {
                             }
                     }
                 }
-                .padding(.horizontal, spacing )
-                .offset(x: (CGFloat(currentIndex) * -width) + (currentIndex != 0 ? adjustMentWidth : 0) + offset)
+                .padding(.horizontal, spacing)
+                .offset(x: (CGFloat(currentIndex) * -width) + (currentIndex != 0 ? adjustmentWidth : 0) + offset)
                 .gesture(
                     DragGesture()
-                        .updating($offset, body: { value, out, _ in
+                        .updating($offset) { value, out, _ in
                             out = value.translation.width
-                        })
-                        .onEnded({ value in
+                        }
+                        .onEnded { value in
                             let offsetX = value.translation.width
                             let progress = -offsetX / width
                             let roundIndex = progress.rounded()
                             currentIndex = max(min(currentIndex + Int(roundIndex), items.count - 1), 0)
-                            currentIndex = index
-                        })
-                        .onChanged({ value in
+                            index = currentIndex
+                        }
+                        .onChanged { value in
                             let offsetX = value.translation.width
                             let progress = -offsetX / width
                             let roundIndex = progress.rounded()
                             index = max(min(currentIndex + Int(roundIndex), items.count - 1), 0)
-                        })
+                        }
                 )
             }
-            .frame(width: nil, height: frameSize.height)
+            .frame(height: frameSize.height)
             .animation(.easeInOut, value: offset == 0)
-            
+
             indicator()
-                .padding()
         }
         .padding(.top)
         .background(background == .light ? Color.Carousel.Background.light : Color.Carousel.Background.medium)
     }
-    
+
     @ViewBuilder
     func indicator() -> some View {
-        HStack(alignment: .center){
-            HStack(alignment: .center, spacing: Size.Carousel.Indicator.spacing){
+        HStack(alignment: .center) {
+            HStack(alignment: .center, spacing: Size.Carousel.Indicator.spacing) {
                 ForEach(items.indices, id: \.self) { index in
                     Button(action: {
                         self.currentIndex = index
-                    }, label: {
+                    }) {
                         Capsule()
                             .fill(items[currentIndex].id == items[index].id ? Color.Carousel.Dot.selected : Color.Carousel.Dot.unselected)
                             .frame(width: items[currentIndex].id == items[index].id ? Size.Carousel.Indicator.currentIndexWidth : Size.Carousel.Indicator.defaultWidth, height: Size.Carousel.Indicator.height)
                             .id(index)
-                    })
+                    }
                 }
             }
         }
@@ -149,7 +145,7 @@ struct SirioCarouselPreview: View {
         SirioCarousel(index: $index,
                       items: News.preview,
                       content: { item in
-            ProcessCard(schemeColor: .light, icon: item.icon, date: item.date, title: item.title, text: item.text, textButton: item.textButton, onTapButtonAction: { })
+            SirioProcessCard(schemeColor: .light, icon: item.icon, date: item.date, title: item.title, text: item.text, textButton: item.textButton, onTapButtonAction: { })
         })
     }
 }

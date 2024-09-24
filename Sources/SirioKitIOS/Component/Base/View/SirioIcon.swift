@@ -17,32 +17,36 @@ import SwiftUI
 
 public struct SirioIconData: Identifiable {
     public var id = UUID()
-    var icon: AwesomeIcon?
-    var iconName: String?
-    var systemName: String?
-    var bundle: Bundle?
-    var accessibilityLabel: String?
-    var action: (() -> Void)
+    public var icon: AwesomeIcon?
+    public var iconName: String?
+    public var systemName: String?
+    public var bundle: Bundle?
+    public var text: String?
+    public var accessibilityLabel: String?
+    public var action: (() -> Void)
     
-    public init(icon: AwesomeIcon, bundle: Bundle = .bundleModule, accessibilityLabel: String? = nil, action: @escaping () -> Void = {}){
+    public init(icon: AwesomeIcon, bundle: Bundle = .bundleModule, text: String? = nil, accessibilityLabel: String? = nil, action: @escaping () -> Void = {}){
         self.icon = icon
         self.bundle = bundle
+        self.text = text
         self.accessibilityLabel = accessibilityLabel
         self.action = action
         precondition(bundle == .bundleModule, "Make sure the bundle you are using is the correct one")
     }
     
-    public init(iconName: String, bundle: Bundle = .bundleModule, accessibilityLabel: String? = nil, action: @escaping () -> Void = {}){
+    public init(iconName: String, bundle: Bundle = .bundleModule, text: String? = nil, accessibilityLabel: String? = nil, action: @escaping () -> Void = {}){
         self.iconName = iconName
         self.bundle = bundle
+        self.text = text
         self.accessibilityLabel = accessibilityLabel
         self.action = action
         precondition(bundle != .bundleModule, "Make sure the bundle you are using is the correct one")
     }
     
-    public init(systemName: String, bundle: Bundle? = nil, accessibilityLabel: String? = nil, action: @escaping () -> Void = {}){
+    public init(systemName: String, bundle: Bundle? = nil, text: String? = nil, accessibilityLabel: String? = nil, action: @escaping () -> Void = {}){
         self.systemName = systemName
         self.bundle = bundle
+        self.text = text
         self.accessibilityLabel = accessibilityLabel
         self.action = action
         precondition(bundle != .bundleModule, "Make sure the bundle you are using is the correct one")
@@ -50,6 +54,9 @@ public struct SirioIconData: Identifiable {
     
     public static let previewEllipsis = SirioIconData(icon: .ellipsisH)
     public static let previewHeart = SirioIconData(icon: .heart)
+    public static let previewPdf = SirioIconData(icon: .filePdf)
+    public static let previewDownload = SirioIconData(icon: .download)
+    public static let previewTrash = SirioIconData(icon: .trash)
 }
 
 /// A basic component that represent an icon using the data
@@ -88,6 +95,6 @@ public struct SirioIcon: View {
 }
 
 #Preview {
-    SirioIcon(data: .init(icon: .bell))
+    SirioIcon(data: .previewPdf)
         .padding()
 }

@@ -17,10 +17,10 @@ struct ExampleCard: View {
         List {
             NavigationLink(destination: {
                 ScrollView {
-                    EditorialCard(url: url, category: "Categoria", date: "13 Nov 2023", title: "Titolo della card", subtitle: "Sottotitolo", text: .loremIpsum, signature: "Firma Autore", iconsData: [.previewEllipsis, .previewHeart])
+                    SirioEditorialCard(url: url, category: "Categoria", date: "13 Nov 2023", title: "Titolo della card", subtitle: "Sottotitolo", text: .loremIpsum, signature: "Firma Autore", iconsData: [.previewEllipsis, .previewHeart])
                         .padding()
                     
-                    EditorialCard(category: "Categoria", date: "13 Nov 2023", title: "Titolo della card", subtitle: "Sottotitolo", text: .loremIpsum, signature: "Firma Autore", iconsData: [.previewEllipsis, .previewHeart])
+                    SirioEditorialCard(category: "Categoria", date: "13 Nov 2023", title: "Titolo della card", subtitle: "Sottotitolo", text: .loremIpsum, signature: "Firma Autore", iconsData: [.previewEllipsis, .previewHeart])
                         .padding()
                 }
                 .navigationTitle("Editorial Card")
@@ -32,10 +32,10 @@ struct ExampleCard: View {
             NavigationLink(destination: {
                 ScrollView {
                     
-                    ProcessCard(schemeColor: .light, icon: .book, date: "13 Nov 2023", title: "Titolo della card molto lungo su 2 righe", text: .loremIpsum, textButton: "Text", onTapButtonAction: {}, iconData: .previewEllipsis)
+                    SirioProcessCard(schemeColor: .light, icon: .book, date: "13 Nov 2023", title: "Titolo della card molto lungo su 2 righe", text: .loremIpsum, textButton: "Text", onTapButtonAction: {}, iconData: .previewEllipsis)
                         .padding()
                     
-                    ProcessCard(schemeColor: .dark, icon: .book, date: "13 Nov 2023", title: "Titolo della card molto lungo su 2 righe", text: .loremIpsum, textButton: "Text", onTapButtonAction: {}, iconData: .previewEllipsis)
+                    SirioProcessCard(schemeColor: .dark, icon: .book, date: "13 Nov 2023", title: "Titolo della card molto lungo su 2 righe", text: .loremIpsum, textButton: "Text", onTapButtonAction: {}, iconData: .previewEllipsis)
                         .padding()
                 }
                 

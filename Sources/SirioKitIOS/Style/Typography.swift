@@ -140,10 +140,40 @@ extension Typography {
                                                fontWeight: StyleDictionaryTypography.globalFontWeights700I,
                                                lineHeight: StyleDictionarySize.globalLineHeights04.cgFloat)
     
-    static let h2_md: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+    public static let h2_md: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
                                                fontSize: StyleDictionarySize.globalFontSize11.cgFloat,
                                                fontWeight: StyleDictionaryTypography.aliasH2FontWeight700,
                                                lineHeight: StyleDictionarySize.globalLineHeights11.cgFloat)
+    
+    public static let h4_lg: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+                                               fontSize: StyleDictionarySize.globalFontSize08.cgFloat,
+                                               fontWeight: StyleDictionaryTypography.aliasH4FontWeight700,
+                                               lineHeight: StyleDictionarySize.globalLineHeights08.cgFloat)
+    
+    public static let p_lg_01: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+                                               fontSize: StyleDictionarySize.globalFontSize05.cgFloat,
+                                               fontWeight: StyleDictionaryTypography.globalFontWeights400,
+                                               lineHeight: StyleDictionarySize.globalLineHeights05.cgFloat)
+    
+    public static let h5_md: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+                                               fontSize: StyleDictionarySize.globalFontSize06.cgFloat,
+                                               fontWeight: StyleDictionaryTypography.globalFontWeights600,
+                                               lineHeight: StyleDictionarySize.globalLineHeights06.cgFloat)
+    
+    public static let link_p_md_01: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+                                               fontSize: StyleDictionarySize.globalFontSize04.cgFloat,
+                                               fontWeight: StyleDictionaryTypography.globalFontWeights700,
+                                               lineHeight: StyleDictionarySize.globalLineHeights04.cgFloat)
+    
+    public static let label_lg_700: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+                                                 fontSize: StyleDictionarySize.globalFontSize05.cgFloat,
+                                                 fontWeight: StyleDictionaryTypography.globalFontWeights700,
+                                                 lineHeight: StyleDictionarySize.globalLineHeights01.cgFloat)
+    
+    public static let label_xl_700: Typography = Typography(fontFamily: StyleDictionaryTypography.globalFontFamily01,
+                                                 fontSize: StyleDictionarySize.globalFontSize06.cgFloat,
+                                                 fontWeight: StyleDictionaryTypography.globalFontWeights700,
+                                                 lineHeight: StyleDictionarySize.globalLineHeights03.cgFloat)
 }
 
 // MARK: Fab
@@ -176,7 +206,7 @@ extension Typography {
     }
 }
 
-// MARK: Tag
+// MARK: SirioTag
 extension Typography {
     public struct Tag {
         public static let style: Typography = .label_md_700
@@ -327,3 +357,85 @@ extension Typography {
         }
     }
 }
+
+// MARK: Avviso
+extension Typography {
+    public struct Avviso {
+        public static let title: Typography = .h4_lg
+        public static let text: Typography = .p_lg_01
+    }
+}
+
+// MARK: Avviso
+extension Typography {
+    public struct Table {
+        
+        public struct Header {
+            public static let title: Typography = .label_md_600
+        }
+        
+        public struct Cell {
+            public static let number: Typography = .label_md_number_400
+            public static let date: Typography = .label_md_number_400
+            public static let text: Typography = .text_md_400
+            public static let link: Typography = .link_p_md_01
+        }
+        
+        public struct Drawer {
+            public struct Header {
+                public static let title: Typography = h5_md
+            }
+            
+            public struct Item {
+                public static let text: Typography = .p_md_01
+                public static let date: Typography = .label_md_number_400
+                public static let number: Typography = .label_md_number_400
+                public static let link: Typography = .link_p_md_01
+            }
+        }
+    }
+}
+
+// MARK: Menu Spalla
+extension Typography {
+    public struct MenuSpalla {
+        public struct Drawer {
+            public struct Item {
+                public static let title: Typography = .label_lg_700
+                public static let subtitle: Typography = .label_md_400
+            }
+            
+            public struct ItemInfo {
+                public static let title: Typography = .label_lg_700
+                public static let subtitle: Typography = .label_md_400
+            }
+            
+        }
+        
+        public struct Item {
+            public static let text: Typography = .label_md_600
+
+        }
+        
+        public struct TitleSection {
+            public static let title: Typography = .label_xl_700
+
+        }
+    }
+}
+
+// MARK: Step Progress Bar
+extension Typography {
+    public struct StepProgressBar {
+        
+        struct StepControls {
+            static let text: Typography = .label_lg_700
+        }
+        
+        struct StepSelection {
+            static let leftText: Typography = .label_md_400
+            static let rightText: Typography = .label_lg_700
+        }
+    }
+}
+

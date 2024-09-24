@@ -25,10 +25,6 @@ public struct SirioText: View {
                 typography: Typography,
                 isUnderlined: Bool = false,
                 accessibilityLabel: String? = nil){
-#if targetEnvironment(simulator)
-        // Execute code only intended for the simulator or Previews
-        Fonts.registerFonts()
-#endif
         self.text = text
         self.typography = typography
         self.isUnderlined = isUnderlined

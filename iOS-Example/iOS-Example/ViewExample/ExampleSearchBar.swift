@@ -16,7 +16,7 @@ struct ExampleSearchBar: View {
 
     var body: some View {
         VStack {
-            SearchBar(label: "Label",
+            SirioSearchBar(label: "Label",
                       helperText: "*Helper text",
                       placeholder: "Text",
                       searchText: $searchText,

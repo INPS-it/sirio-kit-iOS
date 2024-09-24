@@ -47,12 +47,12 @@ struct ExampleAccordionSingle: View {
     
     var body: some View{
         VStack {
-            Accordion(data: .init(text: "Accordion #1", content: {
+            SirioAccordion(data: .init(text: "Accordion #1", content: {
                 SirioText(text: .loremIpsum, typography: .label_md_600)
                     .foregroundColor(.black)
             }))
             
-            Accordion(data: .init(text: "Accordion #1", content: {
+            SirioAccordion(data: .init(text: "Accordion #1", content: {
                 SirioText(text: .loremIpsum, typography: .label_md_600)
                     .foregroundColor(.black)
             }, isDisabled: true))
@@ -63,7 +63,7 @@ struct ExampleAccordionSingle: View {
 struct ExampleAccordionGroup: View {
     
     var body: some View {
-        AccordionGroup(data: [
+        SirioAccordionGroup(data: [
             .init(text: "Accordion #1", content: {
                 SirioText(text: .loremIpsum, typography: .label_md_600)
                     .foregroundColor(.black)

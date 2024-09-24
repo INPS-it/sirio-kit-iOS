@@ -27,7 +27,7 @@ struct ExampleFab: View {
                     SirioText(text: "Small", typography: .label_md_400)
                     
                     HSchemeSwitcher {
-                        SmallFab(data: .init(icon: .plus, action: nil))
+                        SirioSmallFab(data: .init(icon: .plus, action: nil))
                     }
                 }
                 .padding()
@@ -36,7 +36,7 @@ struct ExampleFab: View {
                     SirioText(text: "Regular", typography: .label_md_400)
                     
                     HSchemeSwitcher {
-                        RegularFab(data: .init(icon: .plus, action: nil))
+                        SirioRegularFab(data: .init(icon: .plus, action: nil))
                     }
                 }
                 .padding()
@@ -45,7 +45,7 @@ struct ExampleFab: View {
                     SirioText(text: "Extended", typography: .label_md_400)
                     
                     HSchemeSwitcher {
-                        ExtendedFab(data: .init(text: "Text", icon: .plus, action: nil))
+                        SirioExtendedFab(data: .init(text: "Text", icon: .plus, action: nil))
                     }
                 }
                 .padding()

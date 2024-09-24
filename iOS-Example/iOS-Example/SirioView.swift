@@ -27,6 +27,12 @@ struct SirioView: View {
                 })
                 
                 NavigationLink(destination: {
+                    ExampleAvviso()
+                }, label: {
+                    SirioText(text: "Avviso", typography: .label_md_400)
+                })
+                
+                NavigationLink(destination: {
                     ExampleButtons()
                 }, label: {
                     SirioText(text: "Buttons", typography: .label_md_400)
@@ -75,9 +81,21 @@ struct SirioView: View {
                 })
                 
                 NavigationLink(destination: {
+                    ExampleFiltri()
+                }, label: {
+                    SirioText(text: "Filtri", typography: .label_md_400)
+                })
+                
+                NavigationLink(destination: {
                     ExampleHero()
                 }, label: {
                     SirioText(text: "Hero", typography: .label_md_400)
+                })
+                
+                NavigationLink(destination: {
+                    ExampleMenuSpalla()
+                }, label: {
+                    SirioText(text: "Menu Spalla", typography: .label_md_400)
                 })
                 
                 NavigationLink(destination: {
@@ -117,6 +135,12 @@ struct SirioView: View {
                 })
                 
                 NavigationLink(destination: {
+                    ExampleStepProgressBar()
+                }, label: {
+                    SirioText(text: "Step Progress Bar", typography: .label_md_400)
+                })
+                
+                NavigationLink(destination: {
                     ExampleTab()
                 }, label: {
                     SirioText(text: "Tab", typography: .label_md_400)
@@ -126,6 +150,12 @@ struct SirioView: View {
                     ExampleTabBar()
                 }, label: {
                     SirioText(text: "Tab Bar", typography: .label_md_400)
+                })
+                
+                NavigationLink(destination: {
+                    ExampleTable()
+                }, label: {
+                    SirioText(text: "Table", typography: .label_md_400)
                 })
                 
                 NavigationLink(destination: {
@@ -144,6 +174,11 @@ struct SirioView: View {
                     ExampleTextField()
                 }, label: {
                     SirioText(text: "TextField", typography: .label_md_400)
+                })
+                NavigationLink(destination: {
+                    ExampleTitleBar()
+                }, label: {
+                    SirioText(text: "TitleBar", typography: .label_md_400)
                 })
                 
                 NavigationLink(destination: {

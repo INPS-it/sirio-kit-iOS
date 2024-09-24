@@ -18,16 +18,16 @@ struct ExampleChips: View {
         VStack {
             VStack(alignment: .center) {
                 SirioText(text: "Big Chips Label + Icon + Close", typography: .label_md_400)
-                ChipsLabelIconClose(text: "Chips", icon: .user)
+                SirioChipsLabelIconClose(text: "Chips", icon: .user)
                 
                 SirioText(text: "Big Chips Label + Close", typography: .label_md_400)
-                ChipsLabelClose(text: "Chips")
+                SirioChipsLabelClose(text: "Chips")
                 
                 SirioText(text: "Big Chips Label + Icon", typography: .label_md_400)
-                ChipsLabelIcon(text: "Chips", icon: .check, selectedType: $chipsLabelIconSelected)
+                SirioChipsLabelIcon(text: "Chips", icon: .check, selectedType: $chipsLabelIconSelected)
                 
                 SirioText(text: "Big Chips Only Label", typography: .label_md_400)
-                ChipsOnlyLabel(text: "Chips", selectedType: $chipsOnlyLabelSelected)
+                SirioChipsOnlyLabel(text: "Chips", selectedType: $chipsOnlyLabelSelected)
             }
         }
         .padding(.top, 20)

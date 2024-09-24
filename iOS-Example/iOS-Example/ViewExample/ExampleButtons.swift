@@ -87,13 +87,13 @@ struct DoubleButtonsView: View {
         VStack {
             HStack(spacing: 8){
                 
-                ButtonTextOnly(style: style,
+                SirioButtonTextOnly(style: style,
                                size: size,
                                text: "Text",
                                isDisabled: .constant(false),
                                action: {})
                 
-                ButtonTextOnly(style: style,
+                SirioButtonTextOnly(style: style,
                                size: size,
                                text: "Text",
                                isDisabled: .constant(true),
@@ -103,14 +103,14 @@ struct DoubleButtonsView: View {
             
             HStack(spacing: 8){
                 
-                ButtonTextIcon(style: style,
+                SirioButtonTextIcon(style: style,
                                size: size,
                                text: "Text",
                                iconData: .init(icon: .arrowRight),
                                isDisabled: .constant(false),
                                action: {})
                 
-                ButtonTextIcon(style: style,
+                SirioButtonTextIcon(style: style,
                                size: size,
                                text: "Text",
                                iconData: .init(icon: .arrowRight),
@@ -121,13 +121,13 @@ struct DoubleButtonsView: View {
             
             HStack(spacing: 8){
                 
-                ButtonIconOnly(style: style,
+                SirioButtonIconOnly(style: style,
                                size: size,
                                iconData: .init(icon: .arrowRight),
                                isDisabled: .constant(false),
                                action: {})
                 
-                ButtonIconOnly(style: style,
+                SirioButtonIconOnly(style: style,
                                size: size,
                                iconData: .init(icon: .arrowRight),
                                isDisabled: .constant(true),

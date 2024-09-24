@@ -11,11 +11,11 @@ import SirioKitIOS
 
 struct ExampleTabBar: View {
     let items = [
-                 TabItemData(icon: .home, name: "Home", hasBadge: false),
-                 TabItemData(icon: .bell, name: "News", hasBadge: true),
-                 TabItemData(icon: .globe, name: "Maps", hasBadge: false),
-                 TabItemData(icon: .commentAlt, name: "Contacts", hasBadge: false),
-                 TabItemData(icon: .gripHorizontal, name: "Services", hasBadge: false)]
+        SirioTabItemData(icon: .home, name: "Home", hasBadge: false),
+        SirioTabItemData(icon: .bell, name: "News", hasBadge: true),
+        SirioTabItemData(icon: .globe, name: "Maps", hasBadge: false),
+        SirioTabItemData(icon: .commentAlt, name: "Contacts", hasBadge: false),
+        SirioTabItemData(icon: .gripHorizontal, name: "Services", hasBadge: false)]
     @State var selectedIndex: Int = 0
     
     var body: some View {
@@ -40,7 +40,7 @@ struct ExampleTabBar: View {
                 Spacer()
             }
             
-            TabBar(items: items, selectedIndex: $selectedIndex)
+            SirioTabBar(items: items, selectedIndex: $selectedIndex)
                 .navigationBarTitle("Tab Bar", displayMode: .automatic)
         }
         

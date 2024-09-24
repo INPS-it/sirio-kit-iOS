@@ -34,14 +34,12 @@ struct SirioToggleStyle: ButtonStyle {
                             .offset(x: isOn ? Size.Toggle.circleOffset : -Size.Toggle.circleOffset))
                     .background(getColor(for: .background).cornerRadius(Size.Toggle.cornerRadius))
             }
-            .frame(width: Size.Toggle.horizontalTouchArea, height: Size.Toggle.verticalTouchArea)
 
             if let text = text {
                 SirioText(text: text, typography: Typography.Toggle.style)
                     .foregroundColor(getColor(for: .text))
             }
         }
-        .padding(.horizontal)
         .onHover { isHover in
             self.isHover = isHover
         }

@@ -45,16 +45,16 @@ public extension View {
     /// - Returns: Either the original `View` or the notification `View` if isPresented  is `true`.
     func notificationInline(
         isPresented: Binding<Bool>,
-        type: NotificationType,
+        type: SirioNotificationType,
         title: String,
         subtitle: String,
         alignment: Alignment = .bottom,
-        direction: NotificationInlineModifier.Direction = .bottom,
-        life: NotificationInlineModifier.Life? = nil,
+        direction: SirioNotificationInlineModifier.Direction = .bottom,
+        life: SirioNotificationInlineModifier.Life? = nil,
         onCloseAction: @escaping () -> Void,
         onTapAction: @escaping () -> Void
     ) -> some View {
-        return modifier(NotificationInlineModifier(isPresented: isPresented,
+        return modifier(SirioNotificationInlineModifier(isPresented: isPresented,
                                                    type: type,
                                                    title: title,
                                                    subtitle: subtitle,
@@ -78,18 +78,22 @@ public extension View {
     /// - Returns: Either the original `View` or the notification toast `View` if isPresented  is `true`.
     func notificationToast(
         isPresented: Binding<Bool>,
-        type: NotificationType,
+        type: SirioNotificationType,
         title: String,
         subtitle: String?,
         textButton: String?,
+        alignment: Alignment = .bottom,
+        direction: SirioNotificationToastModifier.Direction = .bottom,
         onCloseAction: @escaping () -> Void,
         onTapButtonAction: @escaping () -> Void
     ) -> some View {
-        return modifier(NotificationToastModifier(isPresented: isPresented,
+        return modifier(SirioNotificationToastModifier(isPresented: isPresented,
                                                   type: type,
                                                   title: title,
                                                   subtitle: subtitle,
                                                   textButton: textButton,
+                                                  alignment: alignment,
+                                                  direction: direction,
                                                   onCloseAction: onCloseAction,
                                                   onTapButtonAction: onTapButtonAction))
     }
@@ -134,7 +138,7 @@ public extension View {
         accessibilityLabelSubtitle: String? = nil,
         accessibilityLabelButtonClose: String? = nil) -> some View {
             return modifier(ClearModifier(isPresented: isPresented, fullScreenContent: {
-                Dialog(type: type,
+                SirioDialog(type: type,
                        title: title,
                        subtitle: subtitle,
                        textfield1: textfield1,
