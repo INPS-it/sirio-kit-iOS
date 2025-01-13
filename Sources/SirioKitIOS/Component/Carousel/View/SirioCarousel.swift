@@ -1,7 +1,7 @@
 //
 //  SirioCarousel.swift
 //
-// SPDX-FileCopyrightText: 2024 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -122,19 +122,19 @@ struct SirioCarouselPreview: View {
         
         
         static var preview: [News] = [
-            .init(date: "15/01/2024", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "16/01/2024", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "17/01/2024", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2024", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2024", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2024", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2024", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2024", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2024", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2024", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2024", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2024", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "19/01/2024", title: "Title", text: .loremIpsum, textButton: "Button")
+            .init(date: "15/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
+            .init(date: "16/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
+            .init(date: "17/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
+            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
+            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
+            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
+            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
+            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
+            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
+            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
+            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
+            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
+            .init(date: "19/01/2025", title: "Title", text: .loremIpsum, textButton: "Button")
         ]
     }
     
