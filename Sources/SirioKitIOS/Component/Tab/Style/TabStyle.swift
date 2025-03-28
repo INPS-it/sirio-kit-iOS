@@ -25,11 +25,11 @@ struct TabStyle: ButtonStyle {
     }
     
     func tabOnTop(configuration: Self.Configuration) -> some View {
-        VStack(spacing: Size.Tab.spacingVertical){
+        VStack(spacing: Size.zero){
             Rectangle()
                 .frame(height: Size.Tab.Rectangle.height)
                 .foregroundColor(rectangleColor)
-                .cornerRadius(Size.Tab.Rectangle.cornerRadius)
+                .cornerRadius(Size.zero)
             
             Spacer()
             
@@ -56,7 +56,7 @@ struct TabStyle: ButtonStyle {
     }
     
     func tabOnBottom(configuration: Self.Configuration) -> some View {
-        VStack(spacing: Size.Tab.spacingVertical){
+        VStack(spacing: Size.zero){
             
             Spacer()
             

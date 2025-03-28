@@ -28,35 +28,14 @@ struct ExampleAppNavigation: View {
             // STANDARD TITLE
             NavigationLink(destination: {
                 VSchemeSwitcher {
-                    ExampleAppNavigationStandardTitleView()
+                    ExampleAppNavigationView()
                 }
-                .navigationTitle("Standard Title")
+                .navigationTitle("Standard")
                 .background(Color.colorBackground)
             }, label: {
-                SirioText(text: "Standard Title", typography: .label_md_400)
+                SirioText(text: "Standard", typography: .label_md_400)
             })
             
-            // LONG TITLE
-            NavigationLink(destination: {
-                VSchemeSwitcher {
-                    ExampleAppNavigationLongTitleView()
-                }
-                .navigationTitle("Long Title")
-                .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Long Title", typography: .label_md_400)
-            })
-            
-            // BIG TITLE
-            NavigationLink(destination: {
-                VSchemeSwitcher {
-                    ExampleAppNavigationBigTitleView()
-                }
-                .navigationTitle("Big Title")
-                .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Big Title", typography: .label_md_400)
-            })
             
             // SELECTION
             NavigationLink(destination: {
@@ -93,80 +72,25 @@ struct ExampleAppNavigation: View {
     ExampleAppNavigation()
 }
 
-struct ExampleAppNavigationStandardTitleView: View {
+struct ExampleAppNavigationView: View {
     var body: some View {
         VStack(spacing: 4){
-            SirioAppNavigationStandardTitle(title: "Titolo pagina",
+            NewSirioAppNavigationBarView(title: "Titolo pagina",
                                        leftItem: nil,
-                                       rightItems: [.previewUser, .previewBell])
+                                         rightItems: [.previewUserLogged, .previewBell])
             
-            SirioAppNavigationStandardTitle(title: "Titolo pagina",
+            NewSirioAppNavigationBarView(title: "Titolo pagina",
                                        leftItem: .previewBack,
                                        rightItems: [.previewUser, .previewBell])
             
-            SirioAppNavigationStandardTitle(title: "Titolo pagina",
+            NewSirioAppNavigationBarView(title: "Titolo pagina molto molto lungo su due righe con sospensione del t...",
                                        leftItem: nil,
                                        rightItems: [.previewUserLogged, .previewBell])
             
-            
-            SirioAppNavigationStandardTitle(title: "Titolo pagina",
+            NewSirioAppNavigationBarView(title: "Titolo pagina molto molto lungo su due righe con sospensione del t...",
                                        leftItem: .previewBack,
                                        rightItems: [.previewUserLogged, .previewBell])
             
-        }
-    }
-}
-
-
-struct ExampleAppNavigationLongTitleView: View {
-    var body: some View {
-        VStack(spacing: 4){
-            
-            SirioAppNavigationLongTitle(title: "Titolo pagina molto lungo \nsu due righe",
-                                   leftItem: nil,
-                                   rightItems: [.previewUser, .previewBell])
-            
-            
-            SirioAppNavigationLongTitle(title: "Titolo pagina molto lungo \nsu due righe",
-                                   leftItem: .previewBack,
-                                   rightItems: [.previewUser, .previewBell])
-            
-            
-            SirioAppNavigationLongTitle(title: "Titolo pagina molto lungo \nsu due righe",
-                                   leftItem: nil,
-                                   rightItems: [.previewUserLogged, .previewBell])
-            
-            
-            SirioAppNavigationLongTitle(title: "Titolo pagina molto lungo \nsu due righe",
-                                   leftItem: .previewBack,
-                                   rightItems: [.previewUserLogged, .previewBell])
-            
-        }
-    }
-}
-
-
-struct ExampleAppNavigationBigTitleView: View {
-    var body: some View {
-        VStack(spacing: 4){
-            
-            SirioAppNavigationBigTitle(title: "Titolo Grande",
-                                  leftItem: nil,
-                                  rightItems: [.previewUser, .previewBell])
-            
-            
-            SirioAppNavigationBigTitle(title: "Titolo Grande",
-                                  leftItem: .previewBack,
-                                  rightItems: [.previewUser, .previewBell])
-            
-            
-            SirioAppNavigationBigTitle(title: "Titolo Grande",
-                                  leftItem: nil,
-                                  rightItems: [.previewUserLogged, .previewBell])
-            
-            SirioAppNavigationBigTitle(title: "Titolo Grande",
-                                  leftItem: .previewBack,
-                                  rightItems: [.previewUserLogged, .previewBell])
         }
     }
 }

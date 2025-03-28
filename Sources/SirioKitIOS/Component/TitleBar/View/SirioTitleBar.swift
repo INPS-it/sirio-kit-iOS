@@ -10,9 +10,10 @@ import SwiftUI
 /// A view representing a title bar with a title and optional items.
 ///
 /// - Parameters:
-///   - schemeColor: The schemeColor of the component
-///   - title: The title displayed in the title bar.
-///   - items: An optional array of `TitleBarItemData` representing additional items to be displayed in the title bar.
+///   - schemeColor: Defines the color scheme of the title bar (dark or light).
+///   - title: The main title displayed in the title bar.
+///   - items: An optional array of `SirioTitleBarItemData` representing interactive items displayed in the title bar. Limited to a maximum of 2 items.
+
 
 public struct SirioTitleBar: View {
     var schemeColor: SchemeColor

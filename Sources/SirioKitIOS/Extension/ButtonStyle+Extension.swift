@@ -10,40 +10,40 @@
 import SwiftUI
 
 extension ButtonStyle {
-    func getSirioButtonBackgroundColor(style: SirioButtonStyle, isDisabled: Bool, isHover: Bool, isPressed: Bool) -> Color {
+    func getSirioButtonBackgroundColor(hierarchy: SirioButtonHierarchy, isDisabled: Bool, isHover: Bool, isPressed: Bool) -> Color {
         if isDisabled {
-            return style.background.disabled
+            return hierarchy.theme.background.disabled
         }
         
-        let backgroundColor: Color = isPressed ? style.background.pressed : style.background.default
+        let backgroundColor: Color = isPressed ? hierarchy.theme.background.pressed : hierarchy.theme.background.default
         
-        return isHover ? style.background.hover : backgroundColor
+        return isHover ? hierarchy.theme.background.hover : backgroundColor
     }
     
-    func getSirioButtonIconColor(style: SirioButtonStyle, isDisabled: Bool, isHover: Bool, isPressed: Bool) -> Color {
+    func getSirioButtonIconColor(hierarchy: SirioButtonHierarchy, isDisabled: Bool, isHover: Bool, isPressed: Bool) -> Color {
         if isDisabled {
-            return style.icon.disabled
+            return hierarchy.theme.icon.disabled
         } else if isHover {
-            return style.icon.hover
+            return hierarchy.theme.icon.hover
         } else if isPressed {
-            return style.icon.pressed
+            return hierarchy.theme.icon.pressed
         }
-        return style.icon.default
+        return hierarchy.theme.icon.default
     }
     
-    func getSirioButtonTextColor(style: SirioButtonStyle, isDisabled: Bool, isHover: Bool, isPressed: Bool) -> Color {
+    func getSirioButtonTextColor(hierarchy: SirioButtonHierarchy, isDisabled: Bool, isHover: Bool, isPressed: Bool) -> Color {
         if isDisabled {
-            return style.text.disabled
+            return hierarchy.theme.text.disabled
         } else if isHover {
-            return style.text.hover
+            return hierarchy.theme.text.hover
         } else if isPressed {
-            return style.text.pressed
+            return hierarchy.theme.text.pressed
         }
-        return style.text.default
+        return hierarchy.theme.text.default
     }
     
-    func getSirioButtonBorderColor(style: SirioButtonStyle, isDisabled: Bool, isHover: Bool, isPressed: Bool) -> Color {
-        if let border = style.border {
+    func getSirioButtonBorderColor(hierarchy: SirioButtonHierarchy, isDisabled: Bool, isHover: Bool, isPressed: Bool) -> Color {
+        if let border = hierarchy.theme.border {
             if isDisabled {
                 return border.disabled
             }

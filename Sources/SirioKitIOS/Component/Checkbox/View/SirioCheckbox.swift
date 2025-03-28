@@ -8,13 +8,16 @@
 
 import SwiftUI
 
-/// The Sirio checkbox
+/// A custom checkbox component, typically used for binary selection options (checked/unchecked).
+/// It allows the user to toggle the checkbox state and provides feedback via a callback.
+///
 /// - Parameters:
-///   - text: The string checkbox right
-///   - isChecked: Whether the checkbox is checked
-///   - isDisabled: Whether the checkbox is disabled
-///   - callback: The callback when the checkbox state change
-///   - accessibilityLabel: A string that identifies the accessibility element
+///   - text: The label text displayed next to the checkbox. This is optional.
+///   - isChecked: A `Binding` boolean that indicates whether the checkbox is checked (`true`) or unchecked (`false`).
+///   - isDisabled: A `Binding` boolean that determines if the checkbox is interactive. When `true`, the checkbox is disabled and cannot be toggled.
+///   - callback: A closure that is called whenever the checkbox state changes. It provides the `text` value as a parameter, which can be `nil` if no text is provided.
+///   - accessibilityLabel: An optional string that helps identify the checkbox for accessibility tools like screen readers.
+
 
 public struct SirioCheckbox: View {
     var text: String?

@@ -12,7 +12,6 @@ public struct SirioFiltriInput: View {
     
     @Binding var type: SemanticTextField
     var textInfo: String?
-    var infoIcon: AwesomeIcon?
     var placeholder: String
     @Binding var text: String
     var icon: AwesomeIcon?
@@ -28,7 +27,6 @@ public struct SirioFiltriInput: View {
     
     public init(type: Binding<SemanticTextField> = .constant(.info),
                 textInfo: String? = nil,
-                infoIcon: AwesomeIcon? = nil,
                 placeholder: String,
                 text: Binding<String>,
                 icon: AwesomeIcon? = nil,
@@ -43,7 +41,6 @@ public struct SirioFiltriInput: View {
                 accessibilityLabelIcon: String? = nil){
         self._type = type
         self.textInfo = textInfo
-        self.infoIcon = infoIcon
         self.placeholder = placeholder
         self._text = text
         self.icon = icon
@@ -60,20 +57,19 @@ public struct SirioFiltriInput: View {
     
     public var body: some View {
         HStack {
-            SirioTextField(type: $type,
-                           textInfo: "Label",
-                           infoIcon: nil,
-                           placeholder: "Text",
-                           text: $text,
-                           icon: nil,
-                           helperText: nil,
-                           isDisabled: $isDisabled,
-                           isSecureText: $isSecureText,
-                           onTapInfoAction: nil,
-                           onTapIconAction: nil,
-                           onTapTextFieldAction: nil,
-                           accessibilityLabelInfo: accessibilityLabelIcon,
-                           accessibilityLabelIcon: accessibilityLabelIcon)
+            SirioGenericTextField(type: $type,
+                                  textInfo: "Label",
+                                  placeholder: "Text",
+                                  value: $text,
+                                  iconData: nil,
+                                  helperText: nil,
+                                  isDisabled: $isDisabled,
+                                  isSecureText: $isSecureText,
+                                  onTapInfoAction: nil,
+                                  onTapIconAction: nil,
+                                  onTapTextFieldAction: nil,
+                                  accessibilityLabelInfo: accessibilityLabelIcon,
+                                  accessibilityLabelIcon: accessibilityLabelIcon)
             
             Spacer()
         }

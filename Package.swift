@@ -15,7 +15,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/SDWebImage/SDWebImageSwiftUI", from: "2.2.3"),
+        .package(url: "https://github.com/SDWebImage/SDWebImageSwiftUI", from: "3.1.3"),
         .package(url: "https://github.com/SDWebImage/SDWebImageSVGCoder", from: "1.7.0"),
     ],
     targets: [

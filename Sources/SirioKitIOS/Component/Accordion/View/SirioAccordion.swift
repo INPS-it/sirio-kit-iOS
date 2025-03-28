@@ -8,9 +8,12 @@
 
 import SwiftUI
 
-/// Displays collapsible content panels for presenting information in a limited amount of space
+/// A view that displays collapsible content panels for presenting information in a limited amount of space.
+/// This component allows for the expansion and collapse of content panels, enabling the user to toggle visibility of additional information.
+///
 /// - Parameters:
-///   - data: The content of the component
+///   - data: An instance of `SirioAccordionData` that contains the content to be displayed within the accordion panel.
+
 
 public struct SirioAccordion: View {
     private var data: SirioAccordionData

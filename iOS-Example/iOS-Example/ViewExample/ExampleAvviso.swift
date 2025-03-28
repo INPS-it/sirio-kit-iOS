@@ -14,13 +14,13 @@ struct ExampleAvviso: View {
     var body: some View {
         VStack {
             ScrollView {
-                SirioAvviso(title: "Titolo avviso", text: .loremIpsum, textButton: "Text", onTapButtonAction: {
-                    
-                })
                 
-                SirioAvviso(schemeColor: .light, title: "Titolo avviso", text: .loremIpsum, textButton: "Text", onTapButtonAction: {
-                    
-                })
+                SirioAvviso(title: "Titolo avviso", text: .loremIpsum2)
+                    .padding()
+
+                SirioAvviso(title: "Titolo avviso", text: .loremIpsum2, link: "Link opzionale")
+                    .padding()
+                
             }
         }
         .background(Color.colorBackground)

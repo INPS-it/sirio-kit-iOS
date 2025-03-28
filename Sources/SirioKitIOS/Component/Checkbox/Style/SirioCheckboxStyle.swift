@@ -14,7 +14,6 @@ struct SirioCheckboxStyle: ButtonStyle {
     var text: String?
     var isChecked: Bool
     @Binding var isDisabled: Bool
-    @State var isHover = false
     
     func makeBody(configuration: Self.Configuration) -> some View {
         HStack(spacing: Size.Checkbox.padding) {
@@ -31,9 +30,6 @@ struct SirioCheckboxStyle: ButtonStyle {
                     .foregroundColor(getColor(for: .text))
             }
         }
-        .onHover { isHover in
-            self.isHover = isHover
-        }
     }
     
     private var checked: some View {
@@ -47,8 +43,6 @@ struct SirioCheckboxStyle: ButtonStyle {
         case .text:
             if isDisabled {
                 return Color.Checkbox.Text.disabled
-            } else if isHover {
-                return Color.Checkbox.Text.hover
             } else if isChecked {
                 return Color.Checkbox.Text.checked
             }
@@ -60,8 +54,6 @@ struct SirioCheckboxStyle: ButtonStyle {
         case .border:
             if isDisabled {
                 return Color.Checkbox.Border.disabled
-            } else if isHover {
-                return Color.Checkbox.Border.hover
             } else if isChecked {
                 return Color.Checkbox.Border.checked
             }

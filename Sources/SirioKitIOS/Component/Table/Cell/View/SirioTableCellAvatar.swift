@@ -29,8 +29,8 @@ public struct SirioTableCellAvatar: View {
     
     public var body: some View {
         
-        HStack(spacing: Size.Table.Cell.spacing) {
-            VStack(alignment: .leading, spacing: Size.Table.Cell.spacing) {
+        HStack(spacing: Size.zero) {
+            VStack(alignment: .leading, spacing: Size.zero) {
                 
                 HStack(spacing: Size.Table.Cell.Avatar.spacing) {
                     
@@ -42,7 +42,7 @@ public struct SirioTableCellAvatar: View {
                         .clipShape(Circle())
                     
                     
-                    VStack(alignment: .leading, spacing: Size.Table.Cell.spacing) {
+                    VStack(alignment: .leading, spacing: Size.zero) {
                         SirioText(text: title, typography: .placeholder_md_400)
                             .foregroundStyle(textColor)
                             .lineLimit(1)

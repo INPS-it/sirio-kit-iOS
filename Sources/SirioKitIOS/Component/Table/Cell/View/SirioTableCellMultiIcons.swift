@@ -27,8 +27,8 @@ public struct SirioTableCellMultiIcons: View {
     
     public var body: some View {
         
-        HStack(spacing: Size.Table.Cell.spacing) {
-            VStack(spacing: Size.Table.Cell.spacing) {
+        HStack(spacing: Size.zero) {
+            VStack(spacing: Size.zero) {
                 
                 HStack(spacing: Size.Table.Cell.Icons.spacing) {
                     Spacer()

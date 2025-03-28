@@ -39,8 +39,8 @@ public struct SirioAppNavigationItemData: Identifiable {
     public static let previewUserLogged = SirioAppNavigationItemData(icon: AwesomeIcon.user, textProfile: "MC", action: {})
     public static let previewSearch = SirioAppNavigationItemData(icon: AwesomeIcon.search, action: {})
     public static let previewBell = SirioAppNavigationItemData(icon: AwesomeIcon.bell, hasBadge: true, action: {})
-    public static let previewTrash = SirioAppNavigationItemData(icon: AwesomeIcon.trash, hasBadge: true, action: {})
-    public static let previewDownload = SirioAppNavigationItemData(icon: AwesomeIcon.download, hasBadge: true, action: {})
+    public static let previewTrash = SirioAppNavigationItemData(icon: AwesomeIcon.trash, hasBadge: false, action: {})
+    public static let previewDownload = SirioAppNavigationItemData(icon: AwesomeIcon.download, hasBadge: false, action: {})
 
 }
 

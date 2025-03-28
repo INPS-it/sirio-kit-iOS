@@ -8,19 +8,23 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import SDWebImageSVGCoder
 
-/// The Sirio Editorial Card
-/// - Parameters:
-///   - url: The url of an image
-///   - base64: The base64 of an image
-///   - category: The name of category
-///   - date: The date
-///   - title: The card's title
-///   - subtitle: The card's subtitle
-///   - text: The card's body
-///   - signature: The card's signature
-///   - items: The card's items. (Max 2 items)
+/// A custom editorial card view that displays an article with an optional image, title, subtitle, body text, and other metadata.
+/// It also supports interactive icons that can trigger actions when tapped.
 ///
+/// - Parameters:
+///   - url: The URL of the image to display at the top of the card (optional).
+///   - base64: The base64 string of the image to display at the top of the card (optional).
+///   - category: The category name associated with the article (optional).
+///   - date: The publication date of the article, displayed on the card.
+///   - title: The title of the article, displayed prominently in the card.
+///   - subtitle: An optional subtitle for the article.
+///   - text: The body text or summary of the article.
+///   - signature: An optional signature or byline associated with the article.
+///   - iconsData: An array of up to two icons, each with an associated action that can be triggered when tapped.
+///   - onTapCardAction: A callback that is triggered when the card is tapped.
+
 public struct SirioEditorialCard: View {
     var url: URL?
     var base64: String?
@@ -44,6 +48,9 @@ public struct SirioEditorialCard: View {
         self.signature = signature
         self.iconsData = iconsData
         self.onTapCardAction = onTapCardAction
+        
+        // Inizialize plugin for svg images
+        SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
     }
     
     private var existImage: Bool {
@@ -133,15 +140,17 @@ public struct SirioEditorialCard: View {
     
     var image: some View {
         return ZStack(alignment: .top) {
-            WebImage(url: url,
-                     options: [],
-                     context: [.imageThumbnailPixelSize : CGSize.zero])
-            .placeholder {
-                ProgressView()
-            }
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: Size.Card.Editorial.imageHeight, alignment: .center)
+            WebImage(url: url) { image in
+                    image.resizable()
+                } placeholder: {
+                        Rectangle().foregroundColor(.gray)
+                }
+                .onSuccess { image, data, cacheType in
+                }
+                .indicator(.activity)
+                .transition(.fade(duration: 0.5))
+                .scaledToFit()
+                .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: Size.Card.Editorial.imageHeight, alignment: .center)
         }
     }
 }

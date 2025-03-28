@@ -10,7 +10,7 @@ import SwiftUI
 
 // A struct that defines the style for ButtonTextIcon component
 struct SirioButtonTextIconStyle: ButtonStyle {
-    var style: SirioButtonStyle
+    var hierarchy: SirioButtonHierarchy
     var size: SirioSize
     var text: String
     var iconData: SirioIconData
@@ -24,8 +24,8 @@ struct SirioButtonTextIconStyle: ButtonStyle {
     @State var colorBackground: Color
     @State var colorBorder: Color
     
-    init(style: SirioButtonStyle, size: SirioSize, text: String, iconData: SirioIconData, isDisabled: Binding<Bool>, isFullSize: Bool){
-        self.style = style
+    init(hierarchy: SirioButtonHierarchy, size: SirioSize, text: String, iconData: SirioIconData, isDisabled: Binding<Bool>, isFullSize: Bool){
+        self.hierarchy = hierarchy
         self.size = size
         self.text = text
         self.iconData = iconData
@@ -33,11 +33,11 @@ struct SirioButtonTextIconStyle: ButtonStyle {
         self.isFullSize = isFullSize
         
         // Set default color by state
-        self._colorText = State(initialValue: isDisabled.wrappedValue ? self.style.text.disabled : self.style.text.default)
-        self._colorIcon = State(initialValue: isDisabled.wrappedValue ? self.style.icon.disabled : self.style.icon.default)
-        self._colorBackground = State(initialValue: isDisabled.wrappedValue ? self.style.background.disabled : self.style.background.default)
+        self._colorText = State(initialValue: isDisabled.wrappedValue ? self.hierarchy.theme.text.disabled : self.hierarchy.theme.text.default)
+        self._colorIcon = State(initialValue: isDisabled.wrappedValue ? self.hierarchy.theme.icon.disabled : self.hierarchy.theme.icon.default)
+        self._colorBackground = State(initialValue: isDisabled.wrappedValue ? self.hierarchy.theme.background.disabled : self.hierarchy.theme.background.default)
         
-        if let border = self.style.border {
+        if let border = self.hierarchy.theme.border {
             self._colorBorder = State(initialValue: isDisabled.wrappedValue ? border.disabled : border.default)
         } else {
             self._colorBorder = State(initialValue: .clear)
@@ -76,10 +76,10 @@ struct SirioButtonTextIconStyle: ButtonStyle {
         }
         .onChange(of: configuration.isPressed) { isPressed in
             self.isPressed = isPressed
-            self.colorText = getSirioButtonTextColor(style: style, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed)
-            self.colorIcon = getSirioButtonIconColor(style: style, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed)
-            self.colorBackground = getSirioButtonBackgroundColor(style: style, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed)
-            self.colorBorder = getSirioButtonBorderColor(style: style, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed)
+            self.colorText = getSirioButtonTextColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed)
+            self.colorIcon = getSirioButtonIconColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed)
+            self.colorBackground = getSirioButtonBackgroundColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed)
+            self.colorBorder = getSirioButtonBorderColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed)
         }
         .onChange(of: isDisabled) { isDisabled in
             self.setColor(isDisabled: isDisabled)
@@ -88,11 +88,11 @@ struct SirioButtonTextIconStyle: ButtonStyle {
     
     private func setColor(isDisabled: Bool) {
         // Set default color by state
-        self.colorText = isDisabled ? self.style.text.disabled : self.style.text.default
-        self.colorIcon = isDisabled ? self.style.icon.disabled : self.style.icon.default
-        self.colorBackground = isDisabled ? self.style.background.disabled : self.style.background.default
+        self.colorText = isDisabled ? self.hierarchy.theme.text.disabled : self.hierarchy.theme.text.default
+        self.colorIcon = isDisabled ? self.hierarchy.theme.icon.disabled : self.hierarchy.theme.icon.default
+        self.colorBackground = isDisabled ? self.hierarchy.theme.background.disabled : self.hierarchy.theme.background.default
         
-        if let border = self.style.border {
+        if let border = self.hierarchy.theme.border {
             self.colorBorder = isDisabled ? border.disabled : border.default
         } else {
             self.colorBorder = .clear

@@ -10,7 +10,7 @@ import SwiftUI
 
 // A struct that defines the style for ButtonTextOnly component
 struct SirioButtonTextOnlyStyle: ButtonStyle {
-    var style: SirioButtonStyle
+    var hierarchy: SirioButtonHierarchy
     var size: SirioSize
     var text: String
     @Binding var isDisabled: Bool
@@ -25,7 +25,7 @@ struct SirioButtonTextOnlyStyle: ButtonStyle {
             }
             
             SirioText(text: text, typography: .label_md_700)
-                .foregroundColor(getSirioButtonTextColor(style: style, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed))
+                .foregroundColor(getSirioButtonTextColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed))
                 .lineLimit(1)
             
             if isFullSize {
@@ -33,13 +33,14 @@ struct SirioButtonTextOnlyStyle: ButtonStyle {
             }
         }
         .padding(.horizontal, paddingHorizontal)
-        .padding(.vertical, paddingVertical)
+        //.padding(.vertical, paddingVertical)
+        .frame(height: height)
         .contentShape(Rectangle())
-        .background(getSirioButtonBackgroundColor(style: style, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed))
+        .background(getSirioButtonBackgroundColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed))
         .cornerRadius(Size.Button.Border.cornerRadius)
         .overlay(
             RoundedRectangle(cornerRadius: Size.Button.Border.cornerRadius)
-                .stroke(getSirioButtonBorderColor(style: style, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed), lineWidth: Size.Button.Border.width)
+                .stroke(getSirioButtonBorderColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed), lineWidth: Size.Button.Border.width)
         )
         .onHover { isHover in
             self.isHover = isHover
@@ -63,11 +64,22 @@ struct SirioButtonTextOnlyStyle: ButtonStyle {
     private var paddingVertical: CGFloat {
         switch size {
         case .large:
-            return Size.Button.Large.Text.paddingVertical
+            return  Size.Button.Large.Text.paddingVertical
         case .medium:
             return Size.Button.Medium.Text.paddingVertical
         case .small:
             return Size.Button.Small.Text.paddingVertical
+        }
+    }
+    
+    private var height: CGFloat {
+        switch size {
+        case .large:
+            return Size.Button.Large.frame
+        case .medium:
+            return Size.Button.Medium.frame
+        case .small:
+            return Size.Button.Small.frame
         }
     }
 }

@@ -8,22 +8,23 @@
 
 import SwiftUI
 
-/// Component that handle file selection
+/// Component that handles file selection and uploads.
+///
 /// - Parameters:
 ///   - title: The title of the component
 ///   - subtitle: The subtitle of the component
 ///   - text: The upload button text
-///   - icon: The icon inside the upload button
+///   - iconData: The iconData model for the icon. Arrow up is default
 ///   - isDisabled: Whether the file upload is disabled
 ///   - uploads: The list of the uploaded files
-///   - onUploadAction: Callback that is executed when the button upload is tapped
+///   - onUploadAction: Callback that is executed when the upload button is tapped
 ///   - onRemoveUploadAction: Callback that is executed when one file is removed
 
 public struct SirioFileUpload: View {
     private var title: String
     private var subtitle: String
     private var text: String
-    private var icon: AwesomeIcon
+    private var iconData: SirioIconData
     @Binding private var isDisabled: Bool
     @Binding private var uploads: [String]
     private var onUploadAction: (() -> Void)
@@ -32,7 +33,7 @@ public struct SirioFileUpload: View {
     public init(title: String,
                 subtitle: String,
                 text: String,
-                icon: AwesomeIcon = .arrowUp,
+                iconData: SirioIconData = .init(icon: .arrowUp),
                 isDisabled: Binding<Bool> = .constant(false),
                 uploads: Binding<[String]>,
                 onUploadAction: @escaping (() -> Void),
@@ -40,7 +41,7 @@ public struct SirioFileUpload: View {
         self.title = title
         self.subtitle = subtitle
         self.text = text
-        self.icon = icon
+        self.iconData = iconData
         self._isDisabled = isDisabled
         self._uploads = uploads
         self.onUploadAction = onUploadAction
@@ -50,27 +51,27 @@ public struct SirioFileUpload: View {
     public var body: some View {
         VStack(alignment: .leading, spacing: Size.FileUpload.spacing){
             SirioText(text: title, typography: Typography.FileUpload.title)
-                .foregroundColor(Color.FileUpload.Label.title)
+                .foregroundStyle(Color.FileUpload.Label.title)
             SirioText(text: subtitle, typography: Typography.FileUpload.subtitle)
-                .foregroundColor(Color.FileUpload.Label.subtitle)
+                .foregroundStyle(Color.FileUpload.Label.subtitle)
             
-            SirioButtonTextIcon(style: .primary,
-                           size: .large,
-                           text: text,
-                           iconData: .init(icon: icon),
-                           isDisabled: $isDisabled,
-                           action: {
+            SirioButton(hierarchy: .primary,
+                        size: .large,
+                        text: text,
+                        iconData: iconData,
+                        isDisabled: $isDisabled,
+                        action: {
                 onUploadAction()
             })
             
             VStack {
                 FlexibleView(data: uploads,
-                             spacing: 0,
+                             spacing: Size.zero,
                              alignment: .leading) { item in
-                    SirioChipsLabelClose(text: item,
-                                    isDisabled: .constant(false),
-                                    onTapChips: nil,
-                                    onTapClose: {
+                    SirioChips(text: item,
+                               iconData: nil,
+                               isDisabled: .constant(false),
+                               onTapClose: {
                         if let index = uploads.firstIndex(of: item){
                             onRemoveUploadAction(index, item)
                         }

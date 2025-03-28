@@ -10,7 +10,7 @@ import SwiftUI
 
 public enum SirioTableCellType {
     case header(schemeColor: SchemeColor = .dark,
-                alignment: SirioAligment,
+                alignment: SirioAlignment,
                 size: SirioTableSize,
                 title: String,
                 scroll: Bool = false,
@@ -64,12 +64,12 @@ public enum SirioTableCellType {
 
 public struct SirioTable: View {
     var schemeColor: SchemeColor
-    var title: String
+    var title: String?
     var items: [SirioTitleBarItemData]?
     var headers: SirioTableRowData
     var columns: [SirioTableColumnData]
     
-    public init(schemeColor: SchemeColor = .dark, title: String, items: [SirioTitleBarItemData]? = nil, headers: SirioTableRowData, columns: [SirioTableColumnData]) {
+    public init(schemeColor: SchemeColor = .dark, title: String?, items: [SirioTitleBarItemData]? = nil, headers: SirioTableRowData, columns: [SirioTableColumnData]) {
         self.schemeColor = schemeColor
         self.title = title
         self.items = items
@@ -78,23 +78,42 @@ public struct SirioTable: View {
     }
     
     public var body: some View {
-        VStack(spacing: Size.Table.spacing) {
-            SirioTitleBar(title: title, items: [])
-            HStack(spacing: Size.Table.spacing) {
-                ForEach(headers.cells.indices, id: \.self) { index in
-                    cellView(cell: headers.cells[index])
-                }
+        VStack(spacing: Size.zero) {
+            if let title = title, !title.isEmpty {
+                SirioTitleBar(title: title, items: items)
             }
-            HStack(spacing: Size.Table.spacing) {
-                ForEach(columns.indices, id: \.self) { rowIndex in
-                    VStack(spacing: Size.Table.spacing) {
-                        ForEach(columns[rowIndex].cells.indices, id: \.self) { cellIndex in
-                            cellView(cell: columns[rowIndex].cells[cellIndex])
+            VStack(spacing: 0){
+                Rectangle()
+                    .fill(borderColor)
+                    .frame(height: Size.Table.Cell.line)
+                    .frame(maxWidth: .infinity)
+
+                HStack(spacing: Size.zero) {
+                    
+                    ForEach(headers.cells.indices, id: \.self) { index in
+                        cellView(cell: headers.cells[index])
+                    }
+                }
+                HStack(spacing: Size.zero) {
+                    ForEach(columns.indices, id: \.self) { rowIndex in
+                        VStack(spacing: Size.zero) {
+                            ForEach(columns[rowIndex].cells.indices, id: \.self) { cellIndex in
+                                cellView(cell: columns[rowIndex].cells[cellIndex])
+                            }
                         }
                     }
                 }
-            }
+            }.overlay(
+                Rectangle()
+                    .fill(borderColor)
+                    .frame(width: Size.Table.Cell.line),
+                alignment: .leading 
+            )
         }
+    }
+    
+    private var borderColor: Color {
+        Color.Table.Header.border
     }
     
     @ViewBuilder
@@ -262,4 +281,18 @@ public struct SirioTable: View {
             ]),
         ]
     )
+}
+
+
+#Preview {
+    SirioTable(
+                                title: "Richieste",
+                                headers: SirioTableRowData(cells: [
+                                    .header(schemeColor: .dark, alignment: .leading, size: .medium, title: "Stato", scroll: false, hasCheckBox: false, isChecked: .constant(false), onTapCheckBoxAction: nil, onTapButtonAction: nil),
+                                    .header(schemeColor: .dark, alignment: .leading, size: .medium, title: "Oggetto", scroll: false, hasCheckBox: false, isChecked: .constant(false), onTapCheckBoxAction: nil, onTapButtonAction: nil),
+                                    .header(schemeColor: .dark, alignment: .leading, size: .medium, title: "creazione", scroll: false, hasCheckBox: false, isChecked: .constant(false), onTapCheckBoxAction: nil, onTapButtonAction: nil),
+                                    .header(schemeColor: .dark, alignment: .leading, size: .medium, title: "azioni", scroll: false, hasCheckBox: false, isChecked: .constant(false), onTapCheckBoxAction: nil, onTapButtonAction: nil)
+                                ]),
+                                columns:  []
+                            )
 }

@@ -8,89 +8,95 @@
 
 /* Begin PBXBuildFile section */
 		7E1C91E82891371F008FE477 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C91E72891371F008FE477 /* UIColor+Extension.swift */; };
+		7E321194289BB0F200FFB256 /* ExamplePagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E321193289BB0F200FFB256 /* ExamplePagination.swift */; };
+		7E3F3F67288FE387008FF13D /* ExampleSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3F3F66288FE387008FF13D /* ExampleSearchBar.swift */; };
+		7E40AA7E2D3FD76C0028B996 /* ExampleSegmentedControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40AA7D2D3FD7670028B996 /* ExampleSegmentedControls.swift */; };
+		7E50809D29A8B96500FC8A4D /* ExampleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E50809C29A8B96500FC8A4D /* ExampleCard.swift */; };
+		7E5E7AA32B55744D00A7B45A /* ExampleCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5E7AA22B55744D00A7B45A /* ExampleCarousel.swift */; };
+		7E5E7AA52B55756000A7B45A /* ExampleHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5E7AA42B55756000A7B45A /* ExampleHero.swift */; };
+		7E5E7AA72B55757100A7B45A /* ExampleTextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5E7AA62B55757100A7B45A /* ExampleTextArea.swift */; };
+		7E7998812C649C1F00B3C957 /* ExampleTitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7998802C649C1F00B3C957 /* ExampleTitleBar.swift */; };
+		7E7998832C661EAE00B3C957 /* ExampleStepProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7998822C661EAE00B3C957 /* ExampleStepProgressBar.swift */; };
 		7E7FB5E3284E05A100F80FC7 /* iOS_ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB5E2284E05A100F80FC7 /* iOS_ExampleApp.swift */; };
 		7E7FB5E7284E05A100F80FC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E7FB5E6284E05A100F80FC7 /* Assets.xcassets */; };
 		7E7FB5EA284E05A100F80FC7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E7FB5E9284E05A100F80FC7 /* Preview Assets.xcassets */; };
 		7E7FB5F4284E085600F80FC7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB5E4284E05A100F80FC7 /* ContentView.swift */; };
 		7E7FB5F7284E090C00F80FC7 /* SirioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB5F6284E090C00F80FC7 /* SirioView.swift */; };
+		7E7FB600284E095A00F80FC7 /* ExampleAppNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB5F9284E095A00F80FC7 /* ExampleAppNavigation.swift */; };
+		7E7FB601284E095A00F80FC7 /* ExampleChips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB5FA284E095A00F80FC7 /* ExampleChips.swift */; };
+		7E7FB602284E095A00F80FC7 /* ExampleAccordion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB5FB284E095A00F80FC7 /* ExampleAccordion.swift */; };
+		7E7FB603284E095A00F80FC7 /* SchemeSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB5FC284E095A00F80FC7 /* SchemeSwitcher.swift */; };
+		7E7FB604284E095A00F80FC7 /* ExampleTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB5FD284E095A00F80FC7 /* ExampleTags.swift */; };
+		7E7FB605284E095A00F80FC7 /* ExampleTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB5FE284E095A00F80FC7 /* ExampleTabBar.swift */; };
+		7E7FB606284E095A00F80FC7 /* ExampleFab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB5FF284E095A00F80FC7 /* ExampleFab.swift */; };
 		7E7FB609284E099700F80FC7 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB608284E099700F80FC7 /* Color+Extension.swift */; };
 		7E7FB60B284E09C100F80FC7 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB60A284E09C100F80FC7 /* View+Extension.swift */; };
-		7E9CFEDD2B8CA9F10084F8AC /* SirioKitIOS in Frameworks */ = {isa = PBXBuildFile; productRef = 7E9CFEDC2B8CA9F10084F8AC /* SirioKitIOS */; };
-		7EA5D3432CA2BC3800E79CFF /* ExampleAppNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3262CA2BC3800E79CFF /* ExampleAppNavigation.swift */; };
-		7EA5D3442CA2BC3800E79CFF /* ExampleSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3372CA2BC3800E79CFF /* ExampleSearchBar.swift */; };
-		7EA5D3452CA2BC3800E79CFF /* ExampleTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D33A2CA2BC3800E79CFF /* ExampleTab.swift */; };
-		7EA5D3462CA2BC3800E79CFF /* ExampleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3382CA2BC3800E79CFF /* ExampleSlider.swift */; };
-		7EA5D3472CA2BC3800E79CFF /* ExampleTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D33C2CA2BC3800E79CFF /* ExampleTable.swift */; };
-		7EA5D3482CA2BC3800E79CFF /* ExampleFileUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D32F2CA2BC3800E79CFF /* ExampleFileUpload.swift */; };
-		7EA5D3492CA2BC3800E79CFF /* ExampleTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D33D2CA2BC3800E79CFF /* ExampleTags.swift */; };
-		7EA5D34A2CA2BC3800E79CFF /* ExampleStepProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3392CA2BC3800E79CFF /* ExampleStepProgressBar.swift */; };
-		7EA5D34B2CA2BC3800E79CFF /* ExampleFiltri.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3302CA2BC3800E79CFF /* ExampleFiltri.swift */; };
-		7EA5D34C2CA2BC3800E79CFF /* ExampleChips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D32C2CA2BC3800E79CFF /* ExampleChips.swift */; };
-		7EA5D34D2CA2BC3800E79CFF /* ExampleHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3312CA2BC3800E79CFF /* ExampleHero.swift */; };
-		7EA5D34E2CA2BC3800E79CFF /* ExampleButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3282CA2BC3800E79CFF /* ExampleButtons.swift */; };
-		7EA5D34F2CA2BC3800E79CFF /* ExampleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D33F2CA2BC3800E79CFF /* ExampleTextField.swift */; };
-		7EA5D3502CA2BC3800E79CFF /* ExampleNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3332CA2BC3800E79CFF /* ExampleNotification.swift */; };
-		7EA5D3512CA2BC3800E79CFF /* ExampleTextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D33E2CA2BC3800E79CFF /* ExampleTextArea.swift */; };
-		7EA5D3522CA2BC3800E79CFF /* ExampleAccordion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3252CA2BC3800E79CFF /* ExampleAccordion.swift */; };
-		7EA5D3532CA2BC3800E79CFF /* ExampleAvviso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3272CA2BC3800E79CFF /* ExampleAvviso.swift */; };
-		7EA5D3542CA2BC3800E79CFF /* ExampleToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3412CA2BC3800E79CFF /* ExampleToggle.swift */; };
-		7EA5D3552CA2BC3800E79CFF /* ExampleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3292CA2BC3800E79CFF /* ExampleCard.swift */; };
-		7EA5D3562CA2BC3800E79CFF /* ExampleCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D32A2CA2BC3800E79CFF /* ExampleCarousel.swift */; };
-		7EA5D3572CA2BC3800E79CFF /* ExampleDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D32D2CA2BC3800E79CFF /* ExampleDialog.swift */; };
-		7EA5D3582CA2BC3800E79CFF /* ExamplePagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3342CA2BC3800E79CFF /* ExamplePagination.swift */; };
-		7EA5D3592CA2BC3800E79CFF /* ExampleTitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3402CA2BC3800E79CFF /* ExampleTitleBar.swift */; };
-		7EA5D35A2CA2BC3800E79CFF /* ExampleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3352CA2BC3800E79CFF /* ExampleProgressBar.swift */; };
-		7EA5D35B2CA2BC3800E79CFF /* ExampleCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D32B2CA2BC3800E79CFF /* ExampleCheckBox.swift */; };
-		7EA5D35C2CA2BC3800E79CFF /* ExampleFab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D32E2CA2BC3800E79CFF /* ExampleFab.swift */; };
-		7EA5D35D2CA2BC3800E79CFF /* ExampleTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D33B2CA2BC3800E79CFF /* ExampleTabBar.swift */; };
-		7EA5D35E2CA2BC3800E79CFF /* SchemeSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3422CA2BC3800E79CFF /* SchemeSwitcher.swift */; };
-		7EA5D35F2CA2BC3800E79CFF /* ExampleMenuSpalla.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3322CA2BC3800E79CFF /* ExampleMenuSpalla.swift */; };
-		7EA5D3602CA2BC3800E79CFF /* ExampleRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA5D3362CA2BC3800E79CFF /* ExampleRadioButton.swift */; };
+		7E82B10E2C342EE9001F0BFC /* ExampleFiltri.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E82B10D2C342EE9001F0BFC /* ExampleFiltri.swift */; };
+		7E8FC8182C524F5800D831F7 /* ExampleTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8FC8172C524F5800D831F7 /* ExampleTable.swift */; };
+		7E94CC1E284F488F00AEADC9 /* ExampleToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94CC1D284F488F00AEADC9 /* ExampleToggle.swift */; };
+		7E94CC20284F78F200AEADC9 /* ExampleSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94CC1F284F78F200AEADC9 /* ExampleSlider.swift */; };
+		7E9CFEE02B8CAD1E0084F8AC /* SirioKitIOS in Frameworks */ = {isa = PBXBuildFile; productRef = 7E9CFEDF2B8CAD1E0084F8AC /* SirioKitIOS */; };
+		7EA2E88328606914001FE093 /* ExampleButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA2E88128606359001FE093 /* ExampleButtons.swift */; };
+		7EAF97B82861C9B400B90534 /* ExampleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAF97B72861C9B400B90534 /* ExampleProgressBar.swift */; };
+		7EAF97BA2861CAA500B90534 /* ExampleFileUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAF97B92861CAA500B90534 /* ExampleFileUpload.swift */; };
+		7EB4308B2886B16A00CBF196 /* ExampleTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB4308A2886B16A00CBF196 /* ExampleTab.swift */; };
+		7ED0D0AF2881A1BB00553662 /* ExampleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED0D0AE2881A1BB00553662 /* ExampleTextField.swift */; };
+		7ED0E57F284E4119001574D5 /* ExampleRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED0E57E284E4119001574D5 /* ExampleRadioButton.swift */; };
+		7ED0E581284E4CAB001574D5 /* ExampleCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED0E580284E4CAB001574D5 /* ExampleCheckBox.swift */; };
+		7ED4ABB62BC3F1F9007F3308 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 7ED4ABB52BC3F1F9007F3308 /* PrivacyInfo.xcprivacy */; };
+		7EE2188E286F187F0042D288 /* ExampleNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE2188D286F187F0042D288 /* ExampleNotification.swift */; };
+		7EE3708B2D072A07001023D8 /* ExampleFoundationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE3708A2D0729F9001023D8 /* ExampleFoundationToken.swift */; };
+		7EE5EAF72897FDC9000EC224 /* ExampleDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE5EAF62897FDC9000EC224 /* ExampleDialog.swift */; };
 		7EE5EAF928980092000EC224 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE5EAF828980092000EC224 /* String+Extension.swift */; };
+		7EEAE0332C342B5000F4D335 /* ExampleAvviso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAE0322C342B5000F4D335 /* ExampleAvviso.swift */; };
+		7EFB50AF2C3BE51A00C84CBB /* ExampleMenuSpalla.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFB50AE2C3BE51A00C84CBB /* ExampleMenuSpalla.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7E1C91E72891371F008FE477 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		7E321193289BB0F200FFB256 /* ExamplePagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplePagination.swift; sourceTree = "<group>"; };
+		7E3F3F66288FE387008FF13D /* ExampleSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSearchBar.swift; sourceTree = "<group>"; };
+		7E40AA7D2D3FD7670028B996 /* ExampleSegmentedControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSegmentedControls.swift; sourceTree = "<group>"; };
+		7E50809C29A8B96500FC8A4D /* ExampleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCard.swift; sourceTree = "<group>"; };
 		7E541EC22859CF8E002DBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7E5E7AA22B55744D00A7B45A /* ExampleCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCarousel.swift; sourceTree = "<group>"; };
+		7E5E7AA42B55756000A7B45A /* ExampleHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleHero.swift; sourceTree = "<group>"; };
+		7E5E7AA62B55757100A7B45A /* ExampleTextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTextArea.swift; sourceTree = "<group>"; };
+		7E7998802C649C1F00B3C957 /* ExampleTitleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTitleBar.swift; sourceTree = "<group>"; };
+		7E7998822C661EAE00B3C957 /* ExampleStepProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleStepProgressBar.swift; sourceTree = "<group>"; };
 		7E7FB5DF284E05A100F80FC7 /* SirioKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SirioKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E7FB5E2284E05A100F80FC7 /* iOS_ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_ExampleApp.swift; sourceTree = "<group>"; };
 		7E7FB5E4284E05A100F80FC7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7E7FB5E6284E05A100F80FC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E7FB5E9284E05A100F80FC7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7E7FB5F6284E090C00F80FC7 /* SirioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SirioView.swift; sourceTree = "<group>"; };
+		7E7FB5F9284E095A00F80FC7 /* ExampleAppNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleAppNavigation.swift; sourceTree = "<group>"; };
+		7E7FB5FA284E095A00F80FC7 /* ExampleChips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleChips.swift; sourceTree = "<group>"; };
+		7E7FB5FB284E095A00F80FC7 /* ExampleAccordion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleAccordion.swift; sourceTree = "<group>"; };
+		7E7FB5FC284E095A00F80FC7 /* SchemeSwitcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchemeSwitcher.swift; sourceTree = "<group>"; };
+		7E7FB5FD284E095A00F80FC7 /* ExampleTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleTags.swift; sourceTree = "<group>"; };
+		7E7FB5FE284E095A00F80FC7 /* ExampleTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleTabBar.swift; sourceTree = "<group>"; };
+		7E7FB5FF284E095A00F80FC7 /* ExampleFab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleFab.swift; sourceTree = "<group>"; };
 		7E7FB608284E099700F80FC7 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		7E7FB60A284E09C100F80FC7 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
-		7EA5D3252CA2BC3800E79CFF /* ExampleAccordion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleAccordion.swift; sourceTree = "<group>"; };
-		7EA5D3262CA2BC3800E79CFF /* ExampleAppNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleAppNavigation.swift; sourceTree = "<group>"; };
-		7EA5D3272CA2BC3800E79CFF /* ExampleAvviso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleAvviso.swift; sourceTree = "<group>"; };
-		7EA5D3282CA2BC3800E79CFF /* ExampleButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleButtons.swift; sourceTree = "<group>"; };
-		7EA5D3292CA2BC3800E79CFF /* ExampleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCard.swift; sourceTree = "<group>"; };
-		7EA5D32A2CA2BC3800E79CFF /* ExampleCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCarousel.swift; sourceTree = "<group>"; };
-		7EA5D32B2CA2BC3800E79CFF /* ExampleCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCheckBox.swift; sourceTree = "<group>"; };
-		7EA5D32C2CA2BC3800E79CFF /* ExampleChips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleChips.swift; sourceTree = "<group>"; };
-		7EA5D32D2CA2BC3800E79CFF /* ExampleDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleDialog.swift; sourceTree = "<group>"; };
-		7EA5D32E2CA2BC3800E79CFF /* ExampleFab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleFab.swift; sourceTree = "<group>"; };
-		7EA5D32F2CA2BC3800E79CFF /* ExampleFileUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleFileUpload.swift; sourceTree = "<group>"; };
-		7EA5D3302CA2BC3800E79CFF /* ExampleFiltri.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleFiltri.swift; sourceTree = "<group>"; };
-		7EA5D3312CA2BC3800E79CFF /* ExampleHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleHero.swift; sourceTree = "<group>"; };
-		7EA5D3322CA2BC3800E79CFF /* ExampleMenuSpalla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleMenuSpalla.swift; sourceTree = "<group>"; };
-		7EA5D3332CA2BC3800E79CFF /* ExampleNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleNotification.swift; sourceTree = "<group>"; };
-		7EA5D3342CA2BC3800E79CFF /* ExamplePagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplePagination.swift; sourceTree = "<group>"; };
-		7EA5D3352CA2BC3800E79CFF /* ExampleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleProgressBar.swift; sourceTree = "<group>"; };
-		7EA5D3362CA2BC3800E79CFF /* ExampleRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleRadioButton.swift; sourceTree = "<group>"; };
-		7EA5D3372CA2BC3800E79CFF /* ExampleSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSearchBar.swift; sourceTree = "<group>"; };
-		7EA5D3382CA2BC3800E79CFF /* ExampleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSlider.swift; sourceTree = "<group>"; };
-		7EA5D3392CA2BC3800E79CFF /* ExampleStepProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleStepProgressBar.swift; sourceTree = "<group>"; };
-		7EA5D33A2CA2BC3800E79CFF /* ExampleTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTab.swift; sourceTree = "<group>"; };
-		7EA5D33B2CA2BC3800E79CFF /* ExampleTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTabBar.swift; sourceTree = "<group>"; };
-		7EA5D33C2CA2BC3800E79CFF /* ExampleTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTable.swift; sourceTree = "<group>"; };
-		7EA5D33D2CA2BC3800E79CFF /* ExampleTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTags.swift; sourceTree = "<group>"; };
-		7EA5D33E2CA2BC3800E79CFF /* ExampleTextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTextArea.swift; sourceTree = "<group>"; };
-		7EA5D33F2CA2BC3800E79CFF /* ExampleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTextField.swift; sourceTree = "<group>"; };
-		7EA5D3402CA2BC3800E79CFF /* ExampleTitleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTitleBar.swift; sourceTree = "<group>"; };
-		7EA5D3412CA2BC3800E79CFF /* ExampleToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleToggle.swift; sourceTree = "<group>"; };
-		7EA5D3422CA2BC3800E79CFF /* SchemeSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemeSwitcher.swift; sourceTree = "<group>"; };
+		7E82B10D2C342EE9001F0BFC /* ExampleFiltri.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleFiltri.swift; sourceTree = "<group>"; };
+		7E8FC8172C524F5800D831F7 /* ExampleTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTable.swift; sourceTree = "<group>"; };
+		7E94CC1D284F488F00AEADC9 /* ExampleToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleToggle.swift; sourceTree = "<group>"; };
+		7E94CC1F284F78F200AEADC9 /* ExampleSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSlider.swift; sourceTree = "<group>"; };
+		7EA2E88128606359001FE093 /* ExampleButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleButtons.swift; sourceTree = "<group>"; };
+		7EAF97B72861C9B400B90534 /* ExampleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleProgressBar.swift; sourceTree = "<group>"; };
+		7EAF97B92861CAA500B90534 /* ExampleFileUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleFileUpload.swift; sourceTree = "<group>"; };
+		7EB4308A2886B16A00CBF196 /* ExampleTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTab.swift; sourceTree = "<group>"; };
+		7ED0D0AE2881A1BB00553662 /* ExampleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTextField.swift; sourceTree = "<group>"; };
+		7ED0E57E284E4119001574D5 /* ExampleRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleRadioButton.swift; sourceTree = "<group>"; };
+		7ED0E580284E4CAB001574D5 /* ExampleCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCheckBox.swift; sourceTree = "<group>"; };
+		7ED4ABB52BC3F1F9007F3308 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		7EE2188D286F187F0042D288 /* ExampleNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleNotification.swift; sourceTree = "<group>"; };
+		7EE3708A2D0729F9001023D8 /* ExampleFoundationToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleFoundationToken.swift; sourceTree = "<group>"; };
+		7EE5EAF62897FDC9000EC224 /* ExampleDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleDialog.swift; sourceTree = "<group>"; };
 		7EE5EAF828980092000EC224 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		7EEAE0322C342B5000F4D335 /* ExampleAvviso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleAvviso.swift; sourceTree = "<group>"; };
+		7EFB50AE2C3BE51A00C84CBB /* ExampleMenuSpalla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleMenuSpalla.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E9CFEDD2B8CA9F10084F8AC /* SirioKitIOS in Frameworks */,
+				7E9CFEE02B8CAD1E0084F8AC /* SirioKitIOS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +114,7 @@
 		7E7FB5D6284E05A100F80FC7 = {
 			isa = PBXGroup;
 			children = (
+				7ED4ABB52BC3F1F9007F3308 /* PrivacyInfo.xcprivacy */,
 				7E7FB5E1284E05A100F80FC7 /* iOS-Example */,
 				7E7FB5E0284E05A100F80FC7 /* Products */,
 			);
@@ -147,36 +154,38 @@
 		7E7FB5F8284E095A00F80FC7 /* ViewExample */ = {
 			isa = PBXGroup;
 			children = (
-				7EA5D3252CA2BC3800E79CFF /* ExampleAccordion.swift */,
-				7EA5D3262CA2BC3800E79CFF /* ExampleAppNavigation.swift */,
-				7EA5D3272CA2BC3800E79CFF /* ExampleAvviso.swift */,
-				7EA5D3282CA2BC3800E79CFF /* ExampleButtons.swift */,
-				7EA5D3292CA2BC3800E79CFF /* ExampleCard.swift */,
-				7EA5D32A2CA2BC3800E79CFF /* ExampleCarousel.swift */,
-				7EA5D32B2CA2BC3800E79CFF /* ExampleCheckBox.swift */,
-				7EA5D32C2CA2BC3800E79CFF /* ExampleChips.swift */,
-				7EA5D32D2CA2BC3800E79CFF /* ExampleDialog.swift */,
-				7EA5D32E2CA2BC3800E79CFF /* ExampleFab.swift */,
-				7EA5D32F2CA2BC3800E79CFF /* ExampleFileUpload.swift */,
-				7EA5D3302CA2BC3800E79CFF /* ExampleFiltri.swift */,
-				7EA5D3312CA2BC3800E79CFF /* ExampleHero.swift */,
-				7EA5D3322CA2BC3800E79CFF /* ExampleMenuSpalla.swift */,
-				7EA5D3332CA2BC3800E79CFF /* ExampleNotification.swift */,
-				7EA5D3342CA2BC3800E79CFF /* ExamplePagination.swift */,
-				7EA5D3352CA2BC3800E79CFF /* ExampleProgressBar.swift */,
-				7EA5D3362CA2BC3800E79CFF /* ExampleRadioButton.swift */,
-				7EA5D3372CA2BC3800E79CFF /* ExampleSearchBar.swift */,
-				7EA5D3382CA2BC3800E79CFF /* ExampleSlider.swift */,
-				7EA5D3392CA2BC3800E79CFF /* ExampleStepProgressBar.swift */,
-				7EA5D33A2CA2BC3800E79CFF /* ExampleTab.swift */,
-				7EA5D33B2CA2BC3800E79CFF /* ExampleTabBar.swift */,
-				7EA5D33C2CA2BC3800E79CFF /* ExampleTable.swift */,
-				7EA5D33D2CA2BC3800E79CFF /* ExampleTags.swift */,
-				7EA5D33E2CA2BC3800E79CFF /* ExampleTextArea.swift */,
-				7EA5D33F2CA2BC3800E79CFF /* ExampleTextField.swift */,
-				7EA5D3402CA2BC3800E79CFF /* ExampleTitleBar.swift */,
-				7EA5D3412CA2BC3800E79CFF /* ExampleToggle.swift */,
-				7EA5D3422CA2BC3800E79CFF /* SchemeSwitcher.swift */,
+				7E40AA7D2D3FD7670028B996 /* ExampleSegmentedControls.swift */,
+				7EE3708A2D0729F9001023D8 /* ExampleFoundationToken.swift */,
+				7E7FB5FB284E095A00F80FC7 /* ExampleAccordion.swift */,
+				7E7FB5F9284E095A00F80FC7 /* ExampleAppNavigation.swift */,
+				7EEAE0322C342B5000F4D335 /* ExampleAvviso.swift */,
+				7EA2E88128606359001FE093 /* ExampleButtons.swift */,
+				7E50809C29A8B96500FC8A4D /* ExampleCard.swift */,
+				7E5E7AA22B55744D00A7B45A /* ExampleCarousel.swift */,
+				7ED0E580284E4CAB001574D5 /* ExampleCheckBox.swift */,
+				7E7FB5FA284E095A00F80FC7 /* ExampleChips.swift */,
+				7EE5EAF62897FDC9000EC224 /* ExampleDialog.swift */,
+				7E7FB5FF284E095A00F80FC7 /* ExampleFab.swift */,
+				7EAF97B92861CAA500B90534 /* ExampleFileUpload.swift */,
+				7E5E7AA42B55756000A7B45A /* ExampleHero.swift */,
+				7EE2188D286F187F0042D288 /* ExampleNotification.swift */,
+				7E321193289BB0F200FFB256 /* ExamplePagination.swift */,
+				7EAF97B72861C9B400B90534 /* ExampleProgressBar.swift */,
+				7ED0E57E284E4119001574D5 /* ExampleRadioButton.swift */,
+				7E3F3F66288FE387008FF13D /* ExampleSearchBar.swift */,
+				7E94CC1F284F78F200AEADC9 /* ExampleSlider.swift */,
+				7EB4308A2886B16A00CBF196 /* ExampleTab.swift */,
+				7E7FB5FE284E095A00F80FC7 /* ExampleTabBar.swift */,
+				7E7FB5FD284E095A00F80FC7 /* ExampleTags.swift */,
+				7E5E7AA62B55757100A7B45A /* ExampleTextArea.swift */,
+				7ED0D0AE2881A1BB00553662 /* ExampleTextField.swift */,
+				7E94CC1D284F488F00AEADC9 /* ExampleToggle.swift */,
+				7E7FB5FC284E095A00F80FC7 /* SchemeSwitcher.swift */,
+				7E82B10D2C342EE9001F0BFC /* ExampleFiltri.swift */,
+				7EFB50AE2C3BE51A00C84CBB /* ExampleMenuSpalla.swift */,
+				7E8FC8172C524F5800D831F7 /* ExampleTable.swift */,
+				7E7998802C649C1F00B3C957 /* ExampleTitleBar.swift */,
+				7E7998822C661EAE00B3C957 /* ExampleStepProgressBar.swift */,
 			);
 			path = ViewExample;
 			sourceTree = "<group>";
@@ -209,7 +218,7 @@
 			);
 			name = "iOS-Example";
 			packageProductDependencies = (
-				7E9CFEDC2B8CA9F10084F8AC /* SirioKitIOS */,
+				7E9CFEDF2B8CAD1E0084F8AC /* SirioKitIOS */,
 			);
 			productName = "iOS-Example";
 			productReference = 7E7FB5DF284E05A100F80FC7 /* SirioKit.app */;
@@ -223,7 +232,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					7E7FB5DE284E05A100F80FC7 = {
 						CreatedOnToolsVersion = 13.4;
@@ -240,7 +249,7 @@
 			);
 			mainGroup = 7E7FB5D6284E05A100F80FC7;
 			packageReferences = (
-				7E9CFEDB2B8CA9F10084F8AC /* XCLocalSwiftPackageReference ".." */,
+				7E9CFEDE2B8CAD1E0084F8AC /* XCLocalSwiftPackageReference ".." */,
 			);
 			productRefGroup = 7E7FB5E0284E05A100F80FC7 /* Products */;
 			projectDirPath = "";
@@ -256,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ED4ABB62BC3F1F9007F3308 /* PrivacyInfo.xcprivacy in Resources */,
 				7E7FB5EA284E05A100F80FC7 /* Preview Assets.xcassets in Resources */,
 				7E7FB5E7284E05A100F80FC7 /* Assets.xcassets in Resources */,
 			);
@@ -268,43 +278,45 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E7FB606284E095A00F80FC7 /* ExampleFab.swift in Sources */,
+				7EE3708B2D072A07001023D8 /* ExampleFoundationToken.swift in Sources */,
+				7E7998832C661EAE00B3C957 /* ExampleStepProgressBar.swift in Sources */,
+				7E7FB603284E095A00F80FC7 /* SchemeSwitcher.swift in Sources */,
+				7EFB50AF2C3BE51A00C84CBB /* ExampleMenuSpalla.swift in Sources */,
+				7E5E7AA32B55744D00A7B45A /* ExampleCarousel.swift in Sources */,
 				7E7FB5F4284E085600F80FC7 /* ContentView.swift in Sources */,
+				7EAF97B82861C9B400B90534 /* ExampleProgressBar.swift in Sources */,
 				7E7FB5E3284E05A100F80FC7 /* iOS_ExampleApp.swift in Sources */,
+				7E7FB605284E095A00F80FC7 /* ExampleTabBar.swift in Sources */,
+				7E40AA7E2D3FD76C0028B996 /* ExampleSegmentedControls.swift in Sources */,
+				7EE5EAF72897FDC9000EC224 /* ExampleDialog.swift in Sources */,
+				7E7FB601284E095A00F80FC7 /* ExampleChips.swift in Sources */,
+				7E50809D29A8B96500FC8A4D /* ExampleCard.swift in Sources */,
+				7ED0E57F284E4119001574D5 /* ExampleRadioButton.swift in Sources */,
+				7EAF97BA2861CAA500B90534 /* ExampleFileUpload.swift in Sources */,
 				7E1C91E82891371F008FE477 /* UIColor+Extension.swift in Sources */,
-				7EA5D3432CA2BC3800E79CFF /* ExampleAppNavigation.swift in Sources */,
-				7EA5D3442CA2BC3800E79CFF /* ExampleSearchBar.swift in Sources */,
-				7EA5D3452CA2BC3800E79CFF /* ExampleTab.swift in Sources */,
-				7EA5D3462CA2BC3800E79CFF /* ExampleSlider.swift in Sources */,
-				7EA5D3472CA2BC3800E79CFF /* ExampleTable.swift in Sources */,
-				7EA5D3482CA2BC3800E79CFF /* ExampleFileUpload.swift in Sources */,
-				7EA5D3492CA2BC3800E79CFF /* ExampleTags.swift in Sources */,
-				7EA5D34A2CA2BC3800E79CFF /* ExampleStepProgressBar.swift in Sources */,
-				7EA5D34B2CA2BC3800E79CFF /* ExampleFiltri.swift in Sources */,
-				7EA5D34C2CA2BC3800E79CFF /* ExampleChips.swift in Sources */,
-				7EA5D34D2CA2BC3800E79CFF /* ExampleHero.swift in Sources */,
-				7EA5D34E2CA2BC3800E79CFF /* ExampleButtons.swift in Sources */,
-				7EA5D34F2CA2BC3800E79CFF /* ExampleTextField.swift in Sources */,
-				7EA5D3502CA2BC3800E79CFF /* ExampleNotification.swift in Sources */,
-				7EA5D3512CA2BC3800E79CFF /* ExampleTextArea.swift in Sources */,
-				7EA5D3522CA2BC3800E79CFF /* ExampleAccordion.swift in Sources */,
-				7EA5D3532CA2BC3800E79CFF /* ExampleAvviso.swift in Sources */,
-				7EA5D3542CA2BC3800E79CFF /* ExampleToggle.swift in Sources */,
-				7EA5D3552CA2BC3800E79CFF /* ExampleCard.swift in Sources */,
-				7EA5D3562CA2BC3800E79CFF /* ExampleCarousel.swift in Sources */,
-				7EA5D3572CA2BC3800E79CFF /* ExampleDialog.swift in Sources */,
-				7EA5D3582CA2BC3800E79CFF /* ExamplePagination.swift in Sources */,
-				7EA5D3592CA2BC3800E79CFF /* ExampleTitleBar.swift in Sources */,
-				7EA5D35A2CA2BC3800E79CFF /* ExampleProgressBar.swift in Sources */,
-				7EA5D35B2CA2BC3800E79CFF /* ExampleCheckBox.swift in Sources */,
-				7EA5D35C2CA2BC3800E79CFF /* ExampleFab.swift in Sources */,
-				7EA5D35D2CA2BC3800E79CFF /* ExampleTabBar.swift in Sources */,
-				7EA5D35E2CA2BC3800E79CFF /* SchemeSwitcher.swift in Sources */,
-				7EA5D35F2CA2BC3800E79CFF /* ExampleMenuSpalla.swift in Sources */,
-				7EA5D3602CA2BC3800E79CFF /* ExampleRadioButton.swift in Sources */,
+				7E82B10E2C342EE9001F0BFC /* ExampleFiltri.swift in Sources */,
+				7E7FB602284E095A00F80FC7 /* ExampleAccordion.swift in Sources */,
+				7E7FB600284E095A00F80FC7 /* ExampleAppNavigation.swift in Sources */,
+				7EB4308B2886B16A00CBF196 /* ExampleTab.swift in Sources */,
+				7E321194289BB0F200FFB256 /* ExamplePagination.swift in Sources */,
 				7E7FB5F7284E090C00F80FC7 /* SirioView.swift in Sources */,
+				7ED0E581284E4CAB001574D5 /* ExampleCheckBox.swift in Sources */,
+				7EE2188E286F187F0042D288 /* ExampleNotification.swift in Sources */,
+				7EA2E88328606914001FE093 /* ExampleButtons.swift in Sources */,
+				7E3F3F67288FE387008FF13D /* ExampleSearchBar.swift in Sources */,
 				7EE5EAF928980092000EC224 /* String+Extension.swift in Sources */,
+				7E94CC1E284F488F00AEADC9 /* ExampleToggle.swift in Sources */,
+				7ED0D0AF2881A1BB00553662 /* ExampleTextField.swift in Sources */,
+				7E7998812C649C1F00B3C957 /* ExampleTitleBar.swift in Sources */,
+				7E5E7AA72B55757100A7B45A /* ExampleTextArea.swift in Sources */,
+				7EEAE0332C342B5000F4D335 /* ExampleAvviso.swift in Sources */,
+				7E5E7AA52B55756000A7B45A /* ExampleHero.swift in Sources */,
+				7E94CC20284F78F200AEADC9 /* ExampleSlider.swift in Sources */,
 				7E7FB609284E099700F80FC7 /* Color+Extension.swift in Sources */,
+				7E8FC8182C524F5800D831F7 /* ExampleTable.swift in Sources */,
 				7E7FB60B284E09C100F80FC7 /* View+Extension.swift in Sources */,
+				7E7FB604284E095A00F80FC7 /* ExampleTags.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +359,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -407,6 +420,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -431,7 +445,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202402260;
+				CURRENT_PROJECT_VERSION = 202503240;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS-Example/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -440,20 +454,21 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.2;
+				MARKETING_VERSION = 9.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = it.inps.sirio;
 				PRODUCT_NAME = SirioKit;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -466,7 +481,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202402260;
+				CURRENT_PROJECT_VERSION = 202503240;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS-Example/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -475,20 +490,21 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.2;
+				MARKETING_VERSION = 9.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = it.inps.sirio;
 				PRODUCT_NAME = SirioKit;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -519,14 +535,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		7E9CFEDB2B8CA9F10084F8AC /* XCLocalSwiftPackageReference ".." */ = {
+		7E9CFEDE2B8CAD1E0084F8AC /* XCLocalSwiftPackageReference ".." */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ..;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7E9CFEDC2B8CA9F10084F8AC /* SirioKitIOS */ = {
+		7E9CFEDF2B8CAD1E0084F8AC /* SirioKitIOS */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SirioKitIOS;
 		};

@@ -209,3 +209,20 @@ extension View {
     }
 }
 
+extension View {
+    /// Adds a press action to the view, triggering separate closures when the view is pressed and released.
+    ///
+    /// - Parameters:
+    ///   - onPress: A closure executed when the view is pressed down.
+    ///   - onRelease: A closure executed when the press is released.
+    ///
+    /// This method uses a `DragGesture` with `minimumDistance: 0` to detect
+    func pressAction(onPress: @escaping (() -> Void), onRelease: @escaping (() -> Void)) -> some View {
+        self
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged({ _ in onPress() })
+                    .onEnded({ _ in onRelease() })
+            )
+    }
+}

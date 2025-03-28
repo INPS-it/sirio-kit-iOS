@@ -8,10 +8,13 @@
 
 import SwiftUI
 
-/// Base Accordion implementation
+/// The base implementation of an accordion component that toggles between expanded and collapsed states.
+/// This view represents an individual accordion panel, with the ability to expand or collapse its content when tapped.
+///
 /// - Parameters:
-///   - data: AccordionData model
-///   - withBorder: A boolean to manage the borders
+///   - data: An instance of `SirioAccordionData` that provides the content and state for the accordion.
+///   - withBorder: A boolean value that determines if the accordion content should have a border. Defaults to `true`.
+///
 
 struct SirioBaseAccordion: View {
     @ObservedObject private var data: SirioAccordionData
@@ -60,7 +63,7 @@ struct SirioBaseAccordion: View {
             
         }))
         
-        SirioBaseAccordion(data: .init(text: "Accordion Item #1", content: {
+        SirioBaseAccordion(data: .init(text: "Accordion Item con testo molto molto molto molto molto molto molto molto molto molto molto molto lungo ", content: {
             SirioText(text: "Lorem ipsum", typography: .label_md_700)
                 .foregroundColor(.black)
             

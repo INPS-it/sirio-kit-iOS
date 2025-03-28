@@ -13,24 +13,21 @@ struct ExampleNotification: View {
     var body: some View {
         List {
             
-            ForEach(SirioNotificationType.allCases, id: \.self) { type in
-                NavigationLink(destination: {
-                    ExampleNotificationInline(type: type)
-                }, label: {
-                    SirioText(text: "Notification Inline \(type)", typography: .label_md_400)
-                })
-            }
+            NavigationLink(destination: {
+                ExampleNotificaInline()
+            }, label: {
+                SirioText(text: "Notifica in linea", typography: .label_md_400)
+            })
             
-            ForEach(SirioNotificationType.allCases, id: \.self) { type in
-                NavigationLink(destination: {
-                    ExampleNotificationToast(type: type)
-                }, label: {
-                    SirioText(text: "Notification Toast \(type)", typography: .label_md_400)
-                })
-            }
+            
+            NavigationLink(destination: {
+                ExampleNotificaPage()
+            }, label: {
+                SirioText(text: "Notifica pagina", typography: .label_md_400)
+            })
         }
         .background(Color.colorBackground)
-        .navigationTitle("Notification")
+        .navigationTitle("Notifiche")
         .listStyle(GroupedListStyle())
     }
 }
@@ -39,17 +36,17 @@ struct ExampleNotification: View {
     ExampleNotification()
 }
 
-struct ExampleNotificationInline: View {
-    var type: SirioNotificationType
+struct ExampleNotificaInline: View {
 
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: 10) {
-                SirioNotificationInline(type: type,
-                                   title: "Titolo di errore",
-                                   subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                                   onCloseAction: {})
+            ForEach(SirioNotificaState.allCases, id: \.self) { type in
+                VStack(alignment: .leading, spacing: 10) {
+                    SirioText(text: "\(type)".capitalized, typography: .labelSmMiddle)
+                    SirioNotificaInline(state: type, title: "Titolo notifica", subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", link: "Link opzionale", showCloseButton: true, onCloseAction: {}, onTapLinkAction: {})
+                }
             }
+            .padding()
         }
         .frame(
             minWidth: 0,
@@ -57,42 +54,24 @@ struct ExampleNotificationInline: View {
             minHeight: 0,
             maxHeight: .infinity,
             alignment: .top)
-        .navigationBarTitle("Notification Inline \(notificationType)", displayMode: .inline)
+        .navigationBarTitle("Notification Inline", displayMode: .inline)
         .background(Color.colorBackground)
-    }
-    
-    var notificationType: String {
-        switch type {
-        case .alert:
-            return "Alert"
-        case .info:
-            return "Info"
-        case .warning:
-            return "Warning"
-        case .success:
-            return "Success"
-        }
+        
     }
 }
 
-struct ExampleNotificationToast: View {
-    var type: SirioNotificationType
+struct ExampleNotificaPage: View {
 
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: 10) {
-                SirioNotificationToast(type: type,
-                                  title: "Titolo di Errore",
-                                  subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                                  textButton: "Azione",
-                                  onTapCloseAction: nil,
-                                  onTapButtonAction: nil)
-                
-                SirioNotificationToast(type: type,
-                                  title: "Titolo di Errore",
-                                  subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                                  onTapCloseAction: nil)
+            VStack(alignment: .leading, spacing: 10) {
+                ForEach(SirioNotificaState.allCases, id: \.self) { type in
+                    SirioText(text: "\(type)".capitalized, typography: .labelSmMiddle)
+
+                    SirioNotificaPage(state: type, title: "Titolo notifica", subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", link: "Link opzionale", onCloseAction: {}, onTapLinkAction: {})
+                }
             }
+            .padding()
         }
         .frame(
             minWidth: 0,
@@ -100,20 +79,8 @@ struct ExampleNotificationToast: View {
             minHeight: 0,
             maxHeight: .infinity,
             alignment: .top)
-        .navigationBarTitle("Notification Toast \(notificationType)", displayMode: .inline)
+        .navigationBarTitle("Notifica Page", displayMode: .inline)
         .background(Color.colorBackground)
     }
     
-    var notificationType: String {
-        switch type {
-        case .alert:
-            return "Alert"
-        case .info:
-            return "Info"
-        case .warning:
-            return "Warning"
-        case .success:
-            return "Success"
-        }
-    }
 }

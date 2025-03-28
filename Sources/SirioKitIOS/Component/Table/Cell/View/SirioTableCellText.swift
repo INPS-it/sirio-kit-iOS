@@ -29,10 +29,10 @@ public struct SirioTableCellText: View {
     
     public var body: some View {
         
-        HStack(spacing: Size.Table.Cell.spacing) {
-            VStack(alignment: .leading, spacing: Size.Table.Cell.spacing) {
+        HStack(spacing: Size.zero) {
+            VStack(alignment: .leading, spacing: Size.zero) {
                 
-                HStack(spacing: Size.Table.Cell.spacing) {
+                HStack(spacing: Size.zero) {
                     SirioCheckbox(text: text, isChecked: $isChecked, callback: { _ in
                         // Azione di callback
                         self.onTapCheckBoxAction?()

@@ -8,16 +8,16 @@
 
 import SwiftUI
 
-///  Search bar component
+/// A search bar component with suggestions and recently searched queries functionality.
 /// - Parameters:
-///   - label: The optional string above the search bar
-///   - helperText: The optional string below the search bar
-///   - placeholder: The placeholder of the search bar
-///   - searchText: The search string of the search bar
-///   - optionValues: The hints based on current [searchText]
-///   - queries: The list of already searched queries
-///   - onTapSearch: Callback that is executed when the search button is tapped
-///   - onQueryAdded: The callback invoked when the [queries] list change
+///   - label: The optional string displayed above the search bar.
+///   - helperText: The optional string displayed below the search bar.
+///   - placeholder: The placeholder text inside the search bar when empty.
+///   - searchText: The binding for the current search string.
+///   - optionValues: The list of suggestions based on the current [searchText].
+///   - queries: The list of recently searched queries.
+///   - onTapSearch: The callback executed when the search button is tapped.
+///   - onQueryAdded: The callback invoked when the [queries] list is modified.
 public struct SirioSearchBar: View {
     var label: String?
     var helperText: String?
@@ -172,10 +172,10 @@ public struct SirioSearchBar: View {
             FlexibleView(data: queries,
                          spacing: 0,
                          alignment: .leading) { item in
-                SirioChipsLabelClose(text: item,
-                                isDisabled: .constant(false),
-                                onTapChips: nil,
-                                onTapClose: {
+                SirioChips(text: item,
+                           iconData: nil,
+                           isDisabled: .constant(false),
+                           onTapClose: {
                     if let index = queries.firstIndex(of: item){
                         // Remove current item
                         self.queries.remove(at: index)
@@ -187,7 +187,7 @@ public struct SirioSearchBar: View {
     }
     
     private var optionsView: some View {
-        VStack(spacing: Size.SearchBar.Options.spacing) {
+        VStack(spacing: Size.zero) {
             List {
                 ForEach(optionValues, id: \.self){ value in
                     

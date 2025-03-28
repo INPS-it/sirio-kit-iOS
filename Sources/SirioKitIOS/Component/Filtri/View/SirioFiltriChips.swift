@@ -37,10 +37,7 @@ public struct SirioFiltriChips: View {
                 HStack {
                     OverflowLayout() {
                         ForEach(texts, id: \.self) { text in
-                            SirioChipsOnlyLabel(text: text,
-                                           selectedType: $selectedType,
-                                           isDisabled: $isDisabled,
-                                           accessibilityLabel: accessibilityLabel)
+                            SirioChipsSelection(text: text, isSelected: .constant(text == selectedType), isDisabled: $isDisabled, accessibilityLabel: accessibilityLabel)
                             .padding(.vertical, Size.Filtri.paddingVerticalChips)
                         }
                     }
@@ -50,24 +47,25 @@ public struct SirioFiltriChips: View {
                 .frame(maxWidth: .infinity)
                 .background(background == .default ? Color.Filtri.Background.default : Color.Filtri.Background.light)
             } else {
-                
+                wrappedView
             }
         } else {
-            ScrollView(.horizontal, showsIndicators: false, content: {
-                HStack {
-                    ForEach(texts, id: \.self) { text in
-                        SirioChipsOnlyLabel(text: text,
-                                       selectedType: $selectedType,
-                                       isDisabled: $isDisabled,
-                                       accessibilityLabel: accessibilityLabel)
-                        .padding(.vertical, Size.Filtri.paddingVerticalChips)
-                    }
-                }
-                .padding(Size.Filtri.padding)
-            })
-            .frame(maxWidth: .infinity)
-            .background(background == .default ? Color.Filtri.Background.default : Color.Filtri.Background.light)
+            wrappedView
         }
+    }
+    
+    var wrappedView: some View {
+        ScrollView(.horizontal, showsIndicators: false, content: {
+            HStack {
+                ForEach(texts, id: \.self) { text in
+                    SirioChipsSelection(text: text, isSelected: .constant(text == selectedType), isDisabled: $isDisabled, accessibilityLabel: accessibilityLabel)
+                    .padding(.vertical, Size.Filtri.paddingVerticalChips)
+                }
+            }
+            .padding(Size.Filtri.padding)
+        })
+        .frame(maxWidth: .infinity)
+        .background(background == .default ? Color.Filtri.Background.default : Color.Filtri.Background.light)
     }
 }
 
@@ -76,3 +74,4 @@ public struct SirioFiltriChips: View {
     SirioFiltriChips(texts: ["Valore selezionato", "Valore 1", "Valore 2", "Valore 3", "Valore 4"],
                      selectedType: .constant("Valore selezionato"))
 }
+

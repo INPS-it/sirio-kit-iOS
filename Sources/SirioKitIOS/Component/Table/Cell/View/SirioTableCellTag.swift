@@ -26,8 +26,8 @@ public struct SirioTableCellTag: View {
     
     public var body: some View {
         
-        HStack(spacing: Size.Table.Cell.spacing) {
-            VStack(spacing: Size.Table.Cell.spacing) {
+        HStack(spacing: Size.zero) {
+            VStack(spacing: Size.zero) {
                 HStack {
                     SirioTag(type: tagType, text: text)
                     Spacer()

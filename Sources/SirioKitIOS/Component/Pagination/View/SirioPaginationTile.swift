@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-/// Internal representation of a single tile
+/// Internal representation of a single tile in the pagination component.
 /// - Parameters:
-///   - number: The number of pages in pagination component
-///   - isSelected: A boolean for selection
-///   - isDisabled: Whether the tile is disabled
-///   - action: Callback that is executed when the tile is tapped
-///   - accessibilityLabel: A string that identifies the accessibility element
+///   - number: The page number for the tile.
+///   - isSelected: A boolean indicating whether the tile is currently selected.
+///   - isDisabled: A boolean indicating whether the tile is disabled.
+///   - action: A callback function that is triggered when the tile is tapped.
+///   - accessibilityLabel: A string that identifies the accessibility element for the tile.
 
 struct SirioPaginationTile: View {
     var number: Int

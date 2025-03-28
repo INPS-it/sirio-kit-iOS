@@ -10,24 +10,28 @@ import SwiftUI
 
 /// Sirio toggle component
 /// - Parameters:
-///   - text: The optional toggle string
-///   - isOn: Whether the toggle is active
-///   - isDisabled: Whether the toggle is disabled
-///   - accessibilityLabel: A string that identifies the accessibility element
+///   - text: The optional text displayed next to the toggle.
+///   - isOn: A binding that indicates whether the toggle is on or off.
+///   - isDisabled: A binding that determines whether the toggle is disabled.
+///   - onToggleChanged: A closure called when the toggle state changes.
+///   - accessibilityLabel: A string used as an accessibility label for screen readers.
 
 public struct SirioToggle: View {
     var text: String?
     @Binding var isOn: Bool
     @Binding var isDisabled: Bool
+    var onToggleChanged: ((Bool) -> Void)?
     var accessibilityLabel: String?
 
     public init(text: String? = nil,
                 isOn: Binding<Bool>,
                 isDisabled: Binding<Bool> = .constant(false),
+                onToggleChanged: ((Bool) -> Void)? = nil,
                 accessibilityLabel: String? = nil){
         self.text = text
         self._isOn = isOn
         self._isDisabled = isDisabled
+        self.onToggleChanged = onToggleChanged
         self.accessibilityLabel = accessibilityLabel
     }
     
@@ -38,6 +42,7 @@ public struct SirioToggle: View {
                 if !isDisabled {
                     isOn.toggle()
                 }
+                onToggleChanged?(isOn)
             }
         }, label: {
             // Inside style

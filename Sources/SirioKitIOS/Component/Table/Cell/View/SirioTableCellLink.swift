@@ -26,8 +26,8 @@ public struct SirioTableCellLink: View {
     
     public var body: some View {
         
-        HStack(spacing: Size.Table.Cell.spacing) {
-            VStack(alignment: .leading, spacing: Size.Table.Cell.spacing) {
+        HStack(spacing: Size.zero) {
+            VStack(alignment: .leading, spacing: Size.zero) {
                 
                 SirioText(text: text, typography: Typography.Table.Cell.link, isUnderlined: true)
                     .foregroundStyle(textColor)

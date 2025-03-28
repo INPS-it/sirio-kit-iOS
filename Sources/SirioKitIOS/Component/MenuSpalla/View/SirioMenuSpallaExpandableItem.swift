@@ -20,7 +20,7 @@ public struct SirioMenuSpallaExpandleItem: View, Identifiable {
     }
     
     public var body: some View {
-        VStack(spacing: Size.MenuSpalla.spacing) {
+        VStack(spacing: Size.zero) {
             SirioMenuSpallaItem(item: item, selectedID: $selectedID)
             if item.hasSubItems && item.hasChild(childId: selectedID){
                 ForEach(item.children) { child in

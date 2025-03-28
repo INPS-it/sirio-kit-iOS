@@ -32,10 +32,23 @@ public struct SirioFiltriCTA: View {
     
     public var body: some View {
         HStack {
-            SirioButtonTextOnly(style: .secondary, size: .medium, text: text1, action: action1)
+            SirioButton(hierarchy: .secondary,
+                        size: .medium,
+                        text: text1,
+                        iconData: nil,
+                        action: {
+                action1()
+            }, accessibilityLabel: text1)
+            
             Spacer()
-            SirioButtonTextOnly(style: .primary, size: .medium, text: text2, action: action2)
-
+            
+            SirioButton(hierarchy: .primary,
+                        size: .medium,
+                        text: text2,
+                        iconData: nil,
+                        action: {
+                action2()
+            }, accessibilityLabel: text2)
         }
         .padding(Size.Filtri.padding)
         .background(background == .default ? Color.Filtri.Background.default : Color.Filtri.Background.light)

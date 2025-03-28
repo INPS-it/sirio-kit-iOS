@@ -22,7 +22,7 @@ struct SirioAccordionStyle: ButtonStyle {
             HStack {
                 SirioText(text: text, typography: Typography.Accordion.style)
                     .foregroundColor(textColor)
-                    .lineLimit(1)
+                    .lineLimit(2)
                 
                 Spacer()
                 

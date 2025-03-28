@@ -13,10 +13,11 @@ public enum SirioTagType: CaseIterable {
     case gray, blue, red, orange, green, white
 }
 
-/// SirioTag component
+/// SirioTag component representing a color-coded label
 /// - Parameters:
-///   - type: The tag color type [TagType]
-///   - text: The tag label
+///   - type: The color type of the tag [SirioTagType]
+///   - text: The label text displayed within the tag
+
 public struct SirioTag: View {
     private var type: SirioTagType
     private var text: String
@@ -27,13 +28,13 @@ public struct SirioTag: View {
     }
     
     public var body: some View {
-        SirioText(text: text, typography: Typography.Tag.style)
+        SirioText(text: text, typography: Typography.labelMdHeavy)
             .lineLimit(1)
             .foregroundColor(textColor)
             .padding(.horizontal, Size.Tag.paddingHorizontal)
-            .padding(.vertical, Size.Tag.paddingVertical)
             .background(backgroundColor)
             .cornerRadius(Size.Tag.cornerRadius)
+            .frame(height: Size.Tag.height)
     }
 }
 

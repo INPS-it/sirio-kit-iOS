@@ -17,7 +17,6 @@ public enum SemanticTextField: String, CaseIterable {
 /// - Parameters:
 ///   - type: The semantic [TextFieldSemantic] of text field
 ///   - textInfo: The info label text
-///   - infoIcon: The info icon
 ///   - placeholder: The textfield placeholder
 ///   - text: The current text field text
 ///   - icon: The textfield icon
@@ -30,11 +29,10 @@ public enum SemanticTextField: String, CaseIterable {
 ///   - onTapTextFieldAction: Callback that is executed when the textfield is tapped. If the callback is provided, the textfield is disabled to allow the action; otherwise, the normal behavior is maintained.
 ///   - accessibilityLabelInfo: A string that identifies the info accessibility element
 ///   - accessibilityLabelIcon: A string that identifies the icon accessibility element
-
+@available(*, deprecated, message: "This view is deprecated. Use SirioGenericTextField instead.")
 public struct SirioTextField: View {
     @Binding var type: SemanticTextField
     var textInfo: String?
-    var infoIcon: AwesomeIcon?
     var placeholder: String
     @Binding var text: String
     var icon: AwesomeIcon?
@@ -47,12 +45,10 @@ public struct SirioTextField: View {
     var accessibilityLabelInfo: String?
     var accessibilityLabelIcon: String?
     
-    @State private var isHover: Bool = false
     @FocusState private var isFocused: Bool
     
     public init(type: Binding<SemanticTextField> = .constant(.info),
                 textInfo: String? = nil,
-                infoIcon: AwesomeIcon? = nil,
                 placeholder: String,
                 text: Binding<String>,
                 icon: AwesomeIcon?,
@@ -66,7 +62,6 @@ public struct SirioTextField: View {
                 accessibilityLabelIcon: String? = nil){
         self._type = type
         self.textInfo = textInfo
-        self.infoIcon = infoIcon
         self.placeholder = placeholder
         self._text = text
         self.icon = icon
@@ -89,11 +84,11 @@ public struct SirioTextField: View {
                         .foregroundColor(textColor)
                 }
                 
-                if let infoIcon = infoIcon {
+                if let onTapInfoAction = onTapInfoAction {
                     Button(action: {
-                        onTapInfoAction?()
+                        onTapInfoAction()
                     }, label: {
-                        SirioIcon(data: .init(icon: infoIcon))
+                        SirioIcon(data: .init(icon: .infoCircle))
                             .frame(width: Size.SirioTextField.Icon.frame1,
                                    height: Size.SirioTextField.Icon.frame1)
                             .foregroundColor(infoIconColor)
@@ -174,19 +169,14 @@ public struct SirioTextField: View {
             }
         }
         .disabled(isDisabled)
-        .onHover { isHover in
-            self.isHover = isHover
-        }
         .onTapGesture {
             onTapTextFieldAction?()
         }
     }
     
-    var textColor: Color {
+    private var textColor: Color {
         if isDisabled {
             return Color.SirioTextField.Text.disabled
-        } else if isHover {
-            return Color.SirioTextField.Text.hover
         } else {
             switch type {
             case .warning:
@@ -201,11 +191,9 @@ public struct SirioTextField: View {
         }
     }
     
-    var textFieldTextColor: Color {
+    private var textFieldTextColor: Color {
         if isDisabled {
             return Color.SirioTextField.Text.disabled
-        } else if isHover {
-            return Color.SirioTextField.Text.hover
         } else {
             if text.isEmpty {
                 return Color.SirioTextField.Text.placeholder
@@ -224,15 +212,13 @@ public struct SirioTextField: View {
         }
     }
     
-    var backgroundColor: Color {
-        return Color.SirioTextField.Background.default
+    private var backgroundColor: Color {
+        return isDisabled ? Color.SirioTextField.Background.disabled : Color.SirioTextField.Background.default
     }
     
-    var borderColor: Color {
+    private var borderColor: Color {
         if isDisabled {
             return Color.SirioTextField.Border.disabled
-        } else if isHover {
-            return Color.SirioTextField.Border.hover
         } else {
             switch type {
             case .warning:
@@ -247,11 +233,9 @@ public struct SirioTextField: View {
         }
     }
     
-    var iconColor: Color {
+    private var iconColor: Color {
         if isDisabled {
             return Color.SirioTextField.Icon.disabled
-        } else if isHover {
-            return Color.SirioTextField.Icon.hover
         } else {
             switch type {
             case .warning:
@@ -266,11 +250,9 @@ public struct SirioTextField: View {
         }
     }
     
-    var infoIconColor: Color {
+    private var infoIconColor: Color {
         if isDisabled {
             return Color.SirioTextField.InfoIcon.disabled
-        } else if isHover {
-            return Color.SirioTextField.InfoIcon.hover
         } else {
             switch type {
             case .warning:
@@ -289,7 +271,6 @@ public struct SirioTextField: View {
 #Preview {
     SirioTextField(type: .constant(.warning),
                    textInfo: "Label",
-                   infoIcon: .infoCircle,
                    placeholder: "Placeholder",
                    text: .constant(""),
                    icon: .calendar,

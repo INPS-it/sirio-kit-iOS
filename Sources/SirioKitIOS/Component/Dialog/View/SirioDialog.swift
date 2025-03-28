@@ -12,24 +12,24 @@ public enum DialogType: CaseIterable {
     case `default`, warning, alert
 }
 
-/// The Sirio dialog.
+/// A custom dialog component that can be used for various purposes like showing alerts.
+///
 /// - Parameters:
-///   - type: The type of the Dialog
-///   - title: The title of the dialog
-///   - subtitle: The subtitle of the dialog
-///   - textfield1: The first textfield
-///   - textfield2: The second textfield
-///   - textFirstButton: The first button text
-///   - actionFirstButton: The first button action
-///   - textSecondButton: The second button text
-///   - actionSecondButton: The second button action
-///   - onTapInfo: Callback that is executed when the info button is tapped
-///   - onTapClose: Callback that is executed when the close button is tapped
-///   - isVisibleInfoIcon: A boolean to show the info icon
-///   - accessibilityLabelInfoIcon: A string that identifies the info icon accessibility element
-///   - accessibilityLabelSubtitle: A string that identifies the subtitle accessibility element
-///   - accessibilityLabelButtonClose: A string that identifies the button close accessibility element
-
+///   - type: The type of the dialog, e.g., `.default`, `.warning`, or `.alert`.
+///   - title: The title text of the dialog.
+///   - subtitle: The subtitle text of the dialog.
+///   - textfield1: The first text field to be displayed in the dialog.
+///   - textfield2: The second text field to be displayed in the dialog.
+///   - textFirstButton: The text for the first action button.
+///   - actionFirstButton: The action to be executed when the first button is tapped.
+///   - textSecondButton: The text for the second action button.
+///   - actionSecondButton: The action to be executed when the second button is tapped.
+///   - onTapInfo: Callback executed when the info icon is tapped.
+///   - onTapClose: Callback executed when the close button is tapped.
+///   - isVisibleInfoIcon: A boolean flag to determine if the info icon should be shown.
+///   - accessibilityLabelInfoIcon: Accessibility label for the info icon.
+///   - accessibilityLabelSubtitle: Accessibility label for the subtitle.
+///   - accessibilityLabelButtonClose: Accessibility label for the close button.
 public struct SirioDialog: View {
     var type: DialogType
     var title: String?
@@ -122,7 +122,7 @@ public struct SirioDialog: View {
         }
     }
     
-    private var styleFirstButton: SirioButtonStyle {
+    private var hierarchy: SirioButtonHierarchy {
         return type == .alert ? .danger : .primary
     }
     
@@ -131,15 +131,15 @@ public struct SirioDialog: View {
             Color.clear
             
             VStack(alignment: .leading, spacing: Size.Dialog.spacing) { // Dialog View
-                VStack(spacing: Size.Dialog.noSpacing){ // Icons View
+                VStack(spacing: Size.zero){ // Icons View
                     HStack { // Close
                         Spacer()
-                        SirioButtonIconOnly(style: .ghost, size: .large, iconData: .init(icon: .times), action: {
+                        SirioButton(hierarchy: .ghost, size: .large, text: nil, iconData: .init(icon: .times), action: {
                             onTapCloseAction?()
                         }, accessibilityLabel: accessibilityLabelButtonClose)
                     }
                     if let icon = icon, isVisibleInfoIcon {
-                        HStack(spacing: Size.Dialog.noSpacing){
+                        HStack(spacing: Size.zero){
                             Button(action: {
                                 onTapInfoAction?()
                                 
@@ -173,13 +173,13 @@ public struct SirioDialog: View {
                 ViewTextField(textfield: textfield2)
                 
                 VStack(spacing: Size.Dialog.spacing) {
-                    ViewButton(style: styleFirstButton,
+                    ViewButton(hierarchy: hierarchy,
                                text: textFirstButton,
                                action: {
                         actionFirstButton?()
                     })
                     
-                    ViewButton(style: .ghost,
+                    ViewButton(hierarchy: .ghost,
                                text: textSecondButton,
                                action: {
                         actionSecondButton?()
@@ -201,17 +201,14 @@ public struct SirioDialog: View {
 }
 
 struct ViewButton: View {
-    var style: SirioButtonStyle
+    var hierarchy: SirioButtonHierarchy
     var text: String?
     var action: (() -> Void)?
     
     var body: some View {
         if let text = text {
-            SirioButtonTextOnly(style: style,
-                           size: .large,
-                           text: text,
-                           isFullSize: true,
-                           action: {
+            
+            SirioButton(hierarchy: hierarchy, size: .large, text: text, iconData: nil, isFullSize: true, action: {
                 action?()
             })
         }
@@ -229,7 +226,6 @@ struct ViewTextField: View {
             VStack(alignment: .leading, spacing: Size.Dialog.spacing){
                 SirioTextField(type: $textfield.type.toUnwrapped(defaultValue: .info),
                                textInfo: label,
-                               infoIcon: nil,
                                placeholder: placeholder,
                                text: $textfield.text.toUnwrapped(defaultValue: ""),
                                icon: nil,

@@ -8,6 +8,13 @@
 
 import SwiftUI
 
+/// A menu component for displaying a side drawer with sections that can be opened and closed.
+/// - Parameters:
+///   - titleDrawer: The title of the drawer.
+///   - subtitle: The subtitle of the drawer.
+///   - sections: An array of sections to be displayed within the drawer.
+///   - onTapDrawer: A closure that is executed when the drawer's open/close action is triggered.
+
 public struct SirioMenuSpalla: View {
     @State private var selectedID: UUID = UUID()
     @State private var isOpen: Bool = false
@@ -38,7 +45,7 @@ public struct SirioMenuSpalla: View {
     }
     
     public var body: some View {
-        VStack(spacing: Size.MenuSpalla.spacing) {
+        VStack(spacing: Size.zero) {
             SirioMenuSpallaDrawerItem(title: titleDrawer,
                                       subtitle: subtitle,
                                       isOpen: $isOpen,

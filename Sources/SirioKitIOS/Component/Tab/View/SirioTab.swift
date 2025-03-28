@@ -8,17 +8,19 @@
 
 import SwiftUI
 
-// SirioTab selection indicator position
+/// SirioTab selection indicator position
+/// - Defines the position of the selection indicator relative to the tab.
 public enum Position: String, CaseIterable {
     case top, bottom
 }
 
 /// Single tab to be used in [SirioTabGroup]
 /// - Parameters:
-///   - isSelected: Whether the tab is the selected one
-///   - position: The position of the selection indicator
-///   - item: The SirioTab item data
-///   - onSelectTab: Callback that is executed when the tab is selected
+///   - isSelected: Whether the tab is the selected one.
+///   - position: The position of the selection indicator (top or bottom).
+///   - item: The SirioTab item data.
+///   - onSelectTab: A callback that is executed when the tab is selected.
+///   
 public struct SirioTab: View {
     var isSelected: Bool
     var position: Position

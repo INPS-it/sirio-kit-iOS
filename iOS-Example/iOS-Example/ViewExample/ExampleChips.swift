@@ -11,32 +11,43 @@ import SirioKitIOS
 
 struct ExampleChips: View {
     
-    @State var chipsLabelIconSelected: String? = ""
-    @State var chipsOnlyLabelSelected: String? = ""
+    @State var isSelected1: Bool = true
+    @State var isSelected2: Bool = true
+    @State var isSelected3: Bool = false
+    @State var isSelected4: Bool = false
     
     var body: some View {
         VStack {
-            VStack(alignment: .center) {
-                SirioText(text: "Big Chips Label + Icon + Close", typography: .label_md_400)
-                SirioChipsLabelIconClose(text: "Chips", icon: .user)
+            VStack {
+                SirioText(text: "Chips Close", typography: .labelMdHeavy)
+
+                SirioChips(text: "Chips", iconData: .init(icon: .user), isDisabled: .constant(false))
+                SirioChips(text: "Chips", iconData: .init(icon: .user), isDisabled: .constant(true))
+                    .padding(.bottom)
                 
-                SirioText(text: "Big Chips Label + Close", typography: .label_md_400)
-                SirioChipsLabelClose(text: "Chips")
+                SirioText(text: "Chips Selection", typography: .labelMdHeavy)
                 
-                SirioText(text: "Big Chips Label + Icon", typography: .label_md_400)
-                SirioChipsLabelIcon(text: "Chips", icon: .check, selectedType: $chipsLabelIconSelected)
+                SirioChipsSelection(text: "Chips",
+                                    isSelected: $isSelected1,
+                                    isDisabled: .constant(false),
+                                    onTapChips: nil)
                 
-                SirioText(text: "Big Chips Only Label", typography: .label_md_400)
-                SirioChipsOnlyLabel(text: "Chips", selectedType: $chipsOnlyLabelSelected)
+                SirioChipsSelection(text: "Chips",
+                                    isSelected: $isSelected2,
+                                    isDisabled: .constant(true),
+                                    onTapChips: nil)
+                SirioChipsSelection(text: "Chips",
+                                    isSelected: $isSelected3,
+                                    isDisabled: .constant(false),
+                                    onTapChips: nil)
+                SirioChipsSelection(text: "Chips",
+                                    isSelected: $isSelected4,
+                                    isDisabled: .constant(true),
+                                    onTapChips: nil)
             }
+            Spacer()
         }
         .padding(.top, 20)
-        .frame(
-            minWidth: 0,
-            maxWidth: .infinity,
-            minHeight: 0,
-            maxHeight: .infinity,
-            alignment: .top)
         .background(Color.colorBackground)
         .navigationTitle("Chips")
         .listStyle(GroupedListStyle())

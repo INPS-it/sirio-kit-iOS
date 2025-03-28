@@ -15,12 +15,12 @@ struct SirioMenuSpallaItemStyle: ButtonStyle {
     @State var isPressed: Bool = false
     
     func makeBody(configuration: Self.Configuration) -> some View {
-        VStack(spacing: Size.MenuSpalla.Item.spacingVertical) {
+        VStack(spacing: Size.zero) {
             Rectangle()
                 .frame(height: Size.MenuSpalla.Item.frameLineHorizontal)
                 .foregroundStyle(hLineColor)
             
-            HStack(spacing: Size.MenuSpalla.Item.spacingHorizontal) {
+            HStack(spacing: Size.zero) {
                 Rectangle()
                     .frame(width: Size.MenuSpalla.Item.frameLineVertical)
                     .frame(maxHeight: .infinity)

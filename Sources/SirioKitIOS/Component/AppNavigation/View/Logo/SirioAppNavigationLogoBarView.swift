@@ -26,19 +26,18 @@ public struct SirioAppNavigationLogoBarView: View {
     }
     
     public var body: some View {
-        HStack(spacing: Size.AppNavigation.spacing) {
-            SirioAppNavigationItem(item: leftItem)
+        HStack(spacing: Size.zero) {
+            NewSirioAppNavigationItem(item: leftItem)
             
             Spacer()
                         
             if let rightItems = rightItems {
                 ForEach(rightItems.prefix(2)) { item in
-                    SirioAppNavigationItem(item: item)
+                    NewSirioAppNavigationItem(item: item)
                 }
             }
         }
-        .frame(height: Size.AppNavigation.height)
-        .padding(.horizontal, Size.AppNavigation.paddingHorizontal)
+        .frame(height: Size.NewAppNavigation.height)
         .background(appNavigationBackgroundColor)
         .overlay(SirioAppNavigationLogoInps(), alignment: .center)
     }
@@ -49,36 +48,34 @@ extension SirioAppNavigationLogoBarView {
     private var appNavigationBackgroundColor: Color {
         switch colorScheme {
         case .light:
-            return Color.AppNavigation.Default.Background.light
+            return Color.NewAppNavigation.Default.Background.light
         case .dark:
-            return Color.AppNavigation.Default.Background.dark
+            return Color.NewAppNavigation.Default.Background.dark
         @unknown default:
-            return Color.AppNavigation.Default.Background.light
+            return Color.NewAppNavigation.Default.Background.light
         }
     }
     
     private var appNavigationtextColor: Color {
         switch colorScheme {
         case .light:
-            return Color.AppNavigation.Default.Text.light
+            return Color.NewAppNavigation.Default.Text.light
         case .dark:
-            return Color.AppNavigation.Default.Text.dark
+            return Color.NewAppNavigation.Default.Text.dark
         @unknown default:
-            return Color.AppNavigation.Default.Text.light
+            return Color.NewAppNavigation.Default.Text.light
         }
     }
 }
 
 #Preview {
-    Group {
+    VStack {
         SirioAppNavigationLogoBarView(leftItem: .previewBack,
                                  rightItems: [.previewUser, .previewSearch])
-        .padding(.vertical)
         .colorScheme(.light)
+        
         SirioAppNavigationLogoBarView(leftItem: .previewBack,
                                  rightItems: [.previewUser, .previewSearch])
-        .padding(.vertical)
         .colorScheme(.dark)
     }
-    .previewLayout(PreviewLayout.sizeThatFits)
 }

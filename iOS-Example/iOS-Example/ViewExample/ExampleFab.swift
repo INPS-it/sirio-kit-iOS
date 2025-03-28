@@ -17,9 +17,10 @@ struct ExampleFab: View {
             VStack(alignment: .center) {
                 
                 HStack {
-                    SirioText(text: "Light", typography: .label_md_400)
+                    SirioText(text: "Light", typography: .headlineSmMiddle)
                     Spacer()
-                    SirioText(text: "Dark", typography: .label_md_400)
+                    SirioText(text: "Dark", typography: .headlineSmMiddle)
+
                 }
                 .padding()
                 
@@ -27,7 +28,9 @@ struct ExampleFab: View {
                     SirioText(text: "Small", typography: .label_md_400)
                     
                     HSchemeSwitcher {
-                        SirioSmallFab(data: .init(icon: .plus, action: nil))
+                        SirioFloatingActionButton(data: .init(icon: .plus, size: .small, action: {
+                            
+                        }))
                     }
                 }
                 .padding()
@@ -36,7 +39,9 @@ struct ExampleFab: View {
                     SirioText(text: "Regular", typography: .label_md_400)
                     
                     HSchemeSwitcher {
-                        SirioRegularFab(data: .init(icon: .plus, action: nil))
+                        SirioFloatingActionButton(data: .init(icon: .plus, size: .regular, action: {
+                            
+                        }))
                     }
                 }
                 .padding()
@@ -45,7 +50,9 @@ struct ExampleFab: View {
                     SirioText(text: "Extended", typography: .label_md_400)
                     
                     HSchemeSwitcher {
-                        SirioExtendedFab(data: .init(text: "Text", icon: .plus, action: nil))
+                        SirioFloatingActionButton(data: .init(text: "Text", icon: .plus, action: {
+                            
+                        }))
                     }
                 }
                 .padding()

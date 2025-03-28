@@ -8,19 +8,20 @@
 
 import SwiftUI
 
-/// The Sirio Process Card
-/// - Parameters:
-///   - schemeColor: The schemeColor of the component
-///   - category: The name of category
-///   - icon: The icon's name
-///   - date: The date
-///   - title: The card's title
-///   - text: The card's body
-///   - textButton: The card's button text
-///   - onTapButtonAction: The card's button action
-///   - item: The card's right item
-///   - onTapCardAction: The card's action
+/// A custom process card view designed to display information with an optional icon, category, date, title, body text, and a button.
 ///
+/// - Parameters:
+///   - schemeColor: Defines the color scheme of the card, either light or dark.
+///   - category: The category of the process, displayed at the top of the card (optional).
+///   - icon: An optional icon displayed next to the category or date.
+///   - date: The date associated with the process, displayed at the top of the card (optional).
+///   - title: The title of the process, displayed prominently in the card.
+///   - text: The body text describing the process (optional).
+///   - textButton: The text of the button at the bottom of the card.
+///   - onTapButtonAction: The callback action triggered when the button is tapped.
+///   - iconData: Optional data for an icon that can trigger an action when tapped.
+///   - onTapCardAction: A callback action triggered when the card itself is tapped.
+
 public struct SirioProcessCard: View {
     var schemeColor: SchemeColor
     var category: String?
@@ -74,9 +75,12 @@ public struct SirioProcessCard: View {
             
             
             HStack(spacing: Size.Card.Process.spacing) {
-                SirioButtonTextOnly(style: schemeColor == .light ? .tertiaryLight : .tertiaryDark, size: .medium, text: textButton, action: {
+                SirioButton(hierarchy: schemeColor == .light ? .tertiaryLight : .tertiaryDark,
+                            size: .medium,
+                            text: textButton,
+                            action: {
                     self.onTapButtonAction()
-                })
+                }, accessibilityLabel: text)
                 
                 Spacer()
                 
@@ -153,6 +157,7 @@ extension SirioProcessCard {
         }
     }
 }
+
 #Preview {
     ScrollView {
         SirioProcessCard(schemeColor: .light, category: nil, icon: .book, date: "13 Nov 2023", title: "Titolo della card molto lungo su 2 righe", text: .loremIpsum, textButton: "Text", onTapButtonAction: {}, iconData: .previewHeart)

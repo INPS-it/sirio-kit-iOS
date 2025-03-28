@@ -8,6 +8,17 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import SDWebImageSVGCoder
+
+/// A hero section component that displays a title, subtitle, text, and optional image or button.
+/// - Parameters:
+///   - title: The main title displayed in the hero section.
+///   - subtitle: The optional subtitle displayed under the title.
+///   - text: Optional additional text displayed below the subtitle.
+///   - textButton: The label for the button displayed below the text.
+///   - onTapButtonAction: Closure that is triggered when the button is tapped.
+///   - url: An optional URL for an image to be displayed.
+///   - base64: An optional base64 string for an image to be displayed.
 
 public struct SirioHero: View {
     var title: String
@@ -32,6 +43,8 @@ public struct SirioHero: View {
         self.onTapButtonAction = onTapButtonAction
         self.url = url
         self.base64 = base64
+        // Inizialize plugin for svg images
+        SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
     }
     
     private var existImage: Bool {
@@ -41,8 +54,8 @@ public struct SirioHero: View {
     public var body: some View {
         VStack {
             HStack {
-                VStack(spacing: Size.Hero.spacing){
-                    VStack(alignment: .leading, spacing: Size.Hero.spacing) {
+                VStack(spacing: Size.zero){
+                    VStack(alignment: .leading, spacing: Size.zero) {
                         SirioText(text: title, typography: .h2_md)
                             .foregroundStyle(titleColor)
                             .padding(.top, Size.Hero.paddingTop)
@@ -59,12 +72,13 @@ public struct SirioHero: View {
                         }
                         
                         if let textButton = textButton {
-                            SirioButtonTextOnly(style: .tertiaryLight,
-                                           size: .large,
-                                           text: textButton,
-                                           action: {
+                            SirioButton(hierarchy: .tertiaryLight,
+                                        size: .large,
+                                        text: textButton,
+                                        iconData: nil,
+                                        action: {
                                 onTapButtonAction?()
-                            })
+                            }, accessibilityLabel: textButton)
                             .padding(.vertical)
                         }
                         
@@ -98,15 +112,17 @@ public struct SirioHero: View {
     private var dividerColor: Color = Color.Hero.divider
 
     private var image: some View {
-        WebImage(url: url,
-                 options: [],
-                 context: [.imageThumbnailPixelSize : CGSize.zero])
-        .placeholder {
-            ProgressView()
-        }
-        .resizable()
-        .aspectRatio(contentMode: .fit)
-        .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: Size.Card.Editorial.imageHeight, alignment: .center)
+        WebImage(url: url) { image in
+                image.resizable()
+            } placeholder: {
+                    Rectangle().foregroundColor(.gray)
+            }
+            .onSuccess { image, data, cacheType in
+            }
+            .indicator(.activity)
+            .transition(.fade(duration: 0.5))
+            .scaledToFit()
+            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: Size.Card.Editorial.imageHeight, alignment: .center)
     }
 }
 

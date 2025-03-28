@@ -20,7 +20,11 @@ public struct SirioText: View {
     private var typography: Typography
     private var isUnderlined: Bool
     private var accessibilityLabel: String?
-
+    
+    private static let fontRegistration: Void = {
+        Fonts.registerFonts()
+    }()
+    
     public init(text: String,
                 typography: Typography,
                 isUnderlined: Bool = false,
@@ -29,6 +33,10 @@ public struct SirioText: View {
         self.typography = typography
         self.isUnderlined = isUnderlined
         self.accessibilityLabel = accessibilityLabel
+        
+        #if DEBUG
+        _ = SirioText.fontRegistration
+        #endif
     }
     
     public var body: some View {

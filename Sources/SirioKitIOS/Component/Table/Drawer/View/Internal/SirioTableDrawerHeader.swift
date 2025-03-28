@@ -19,7 +19,7 @@ struct SirioTableDrawerHeader: View {
     }
     
     var body: some View {
-        VStack(spacing: Size.Table.Drawer.spacing){
+        VStack(spacing: Size.zero){
             HStack {
                 Spacer()
                 SirioIcon(data: .init(icon: .times))

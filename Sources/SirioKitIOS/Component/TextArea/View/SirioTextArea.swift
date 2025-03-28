@@ -13,20 +13,20 @@ public enum SemanticTextArea: String, CaseIterable {
     case `default`, info, error, success
 }
 
-/// Text area component
+/// A customizable text area component with optional labels, icons, and actions.
+///
 /// - Parameters:
-///   - type: The semantic [SemanticTextArea] of text area
-///   - textInfo: The info label text
-///   - infoIcon: The info icon
-///   - placeholder: The text area placeholder
-///   - text: The current text area text
-///   - helperText: The optionl text on bottom of text area
-///   - isDisabled: Whether the component is disabled
-///   - isTextAreaDisabled: Whether only the text area is disabled.
-///   - onTapInfoAction: Callback that is executed when the info button is tapped
-///   - onTapTextAreaAction: Callback that is executed when the text area is tapped. If the callback is provided, the text area is disabled to allow the action; otherwise, the normal behavior is maintained.
-///   - accessibilityLabelInfo: A string that identifies the info accessibility element
-///   - accessibilityLabelIcon: A string that identifies the icon accessibility element
+///   - type: The semantic [SemanticTextArea] type of the text area.
+///   - textInfo: An optional label text displayed above the text area.
+///   - infoIcon: An optional icon displayed next to the textInfo label.
+///   - placeholder: The placeholder text shown when the text area is empty.
+///   - text: A binding to the current text content of the text area.
+///   - helperText: An optional helper text displayed below the text area.
+///   - isDisabled: A binding that determines whether the entire component is disabled.
+///   - onTapInfoAction: An optional callback executed when the info button is tapped.
+///   - onTapTextAreaAction: An optional callback executed when the text area is tapped. If provided, the text area becomes non-editable and the action is executed instead.
+///   - accessibilityLabelInfo: A string identifying the accessibility element for the info label.
+///   - accessibilityLabelIcon: A string identifying the accessibility element for the icon.
 
 public struct SirioTextArea: View {
     @Binding var type: SemanticTextArea
@@ -41,7 +41,6 @@ public struct SirioTextArea: View {
     var accessibilityLabelInfo: String?
     var accessibilityLabelIcon: String?
     
-    @State private var isHover: Bool = false
     @FocusState private var isFocused: Bool
     
     public init(type: Binding<SemanticTextArea> = .constant(.default),
@@ -73,7 +72,7 @@ public struct SirioTextArea: View {
             
             HStack(spacing: Size.TextArea.spacing){
                 if let textInfo = textInfo {
-                    SirioText(text: textInfo, typography: .label_md_600)
+                    SirioText(text: textInfo, typography: .labelMdMiddle)
                         .foregroundColor(textColor)
                 }
                 
@@ -82,8 +81,8 @@ public struct SirioTextArea: View {
                         onTapInfoAction?()
                     }, label: {
                         SirioIcon(data: .init(icon: infoIcon))
-                            .frame(width: Size.TextArea.Icon.frame1,
-                                   height: Size.TextArea.Icon.frame1)
+                            .frame(width: Size.TextArea.icon,
+                                   height: Size.TextArea.icon)
                             .foregroundColor(infoIconColor)
                     })
                     .setAccessibilityLabel(accessibilityLabelInfo)
@@ -91,11 +90,9 @@ public struct SirioTextArea: View {
             }
             
             HStack {
-                
                 ZStack(alignment: .leading) {
-                    
                     TextEditor(text: $text)
-                        .sirioFont(typography: Typography.text_md_400)
+                        .sirioFont(typography: Typography.labelMdMiddle)
                         .foregroundColor(textColor)
                         .focused($isFocused)
                         .disabled(onTapTextAreaAction != nil)
@@ -116,7 +113,7 @@ public struct SirioTextArea: View {
                     if text.isEmpty {
                         HStack(alignment: .top){
                             VStack {
-                                SirioText(text: placeholder, typography: .placeholder_md_400)
+                                SirioText(text: placeholder, typography: .labelMdMiddle)
                                     .foregroundColor(textColor)
                                     .lineLimit(1)
                                 Spacer()
@@ -128,8 +125,8 @@ public struct SirioTextArea: View {
                                 Spacer()
                                 
                                 SirioIcon(data: .init(icon: icon))
-                                    .frame(width: Size.TextArea.Icon.frame1,
-                                           height: Size.TextArea.Icon.frame1)
+                                    .frame(width: Size.TextArea.icon,
+                                           height: Size.TextArea.icon)
                                     .foregroundStyle(iconColor)
                             }
                         }
@@ -146,7 +143,7 @@ public struct SirioTextArea: View {
                 RoundedRectangle(cornerRadius: Size.TextArea.cornerRadius)
                     .stroke(borderColor, lineWidth: Size.TextArea.lineWidth)
             )
-            .background(StyleDictionaryColor.aliasBackgroundColorPrimaryLight0.color)
+            .background(backgroundColor)
             .cornerRadius(Size.TextArea.cornerRadius)
             
             if let helperText = helperText {
@@ -155,20 +152,15 @@ public struct SirioTextArea: View {
             }
         }
         .disabled(isDisabled)
-        .onHover { isHover in
-            self.isHover = isHover
-        }
         .onTapGesture {
             onTapTextAreaAction?()
         }
     }
     
     
-    var textColor: Color {
+    private var textColor: Color {
         if isDisabled {
             return Color.SirioTextArea.Text.disabled
-        } else if isHover {
-            return Color.SirioTextArea.Text.hover
         } else {
             switch type {
             case .default, .info:
@@ -182,18 +174,16 @@ public struct SirioTextArea: View {
         }
     }
     
-    var backgroundColor: Color {
+    private var backgroundColor: Color {
         if isDisabled {
             return Color.SirioTextArea.Background.disabled
         }
         return Color.SirioTextArea.Background.default
     }
     
-    var borderColor: Color {
+    private var borderColor: Color {
         if isDisabled {
             return Color.SirioTextArea.Border.disabled
-        } else if isHover {
-            return Color.SirioTextArea.Border.hover
         } else {
             switch type {
             case .default, .info:
@@ -207,11 +197,9 @@ public struct SirioTextArea: View {
         }
     }
     
-    var infoIconColor: Color {
+    private var infoIconColor: Color {
         if isDisabled {
             return Color.SirioTextArea.InfoIcon.disabled
-        } else if isHover {
-            return Color.SirioTextArea.InfoIcon.hover
         } else {
             switch type {
             case .default, .info:
@@ -225,7 +213,7 @@ public struct SirioTextArea: View {
         }
     }
     
-    var icon: AwesomeIcon? {
+    private var icon: AwesomeIcon? {
         switch type {
         case .default, .info:
             return nil
@@ -236,7 +224,7 @@ public struct SirioTextArea: View {
         }
     }
     
-    var iconColor: Color {
+    private var iconColor: Color {
         switch type {
         case .default, .info:
             return Color.SirioTextArea.InfoIcon.default
@@ -249,15 +237,30 @@ public struct SirioTextArea: View {
     
 }
 
-
 #Preview {
-    SirioTextArea(type: .constant(.success),
-                  textInfo: "Label",
-                  infoIcon: .infoCircle,
-                  placeholder: "Placeholder",
-                  text: .constant(""),
-                  helperText: "*Helper text",
-                  isDisabled: .constant(false),
-                  onTapInfoAction: nil)
-    .padding()
+    ScrollView {
+        VStack {
+            ForEach(SemanticTextArea.allCases, id: \.self, content: { c in
+                SirioTextArea(type: .constant(c),
+                              textInfo: "Label",
+                              infoIcon: .infoCircle,
+                              placeholder: "Placeholder",
+                              text: .constant(""),
+                              helperText: "*Helper text",
+                              isDisabled: .constant(false),
+                              onTapInfoAction: nil)
+                
+            })
+            
+            SirioTextArea(type: .constant(.info),
+                          textInfo: "Label",
+                          infoIcon: .infoCircle,
+                          placeholder: "Placeholder",
+                          text: .constant(""),
+                          helperText: "*Helper text",
+                          isDisabled: .constant(true),
+                          onTapInfoAction: nil)
+        }
+        .padding(.horizontal)
+    }
 }

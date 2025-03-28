@@ -8,10 +8,11 @@
 
 import SwiftUI
 
-/// SirioTab bar component
+/// SirioTabBar component for managing tab selection and display
 /// - Parameters:
-///   - items: The items [SirioTabItemData] to be shown. Min 3 - Max 5
-///   - selectedIndex: An int to manage the selected tab
+///   - items: An array of [SirioTabItemData] representing the tabs. Must contain at least 3 and no more than 5 items.
+///   - selectedIndex: A binding to the currently selected tab index
+///   
 public struct SirioTabBar: View {
     private var items: [SirioTabItemData]
     @Binding private var selectedIndex: Int
@@ -24,7 +25,7 @@ public struct SirioTabBar: View {
     }
     
     public var body: some View {
-        HStack {
+        HStack(spacing: Size.zero) {
             Spacer()
             ForEach(items.indices, id: \.self) { index in
                 let item = items[index]
@@ -36,8 +37,8 @@ public struct SirioTabBar: View {
                         .environmentObject(OrientationInfo())
                 })
                 .buttonStyle(StaticButtonStyle())
-                Spacer()
             }
+            Spacer()
         }
         .frame(height: Size.TabBar.height)
         .background(Color.TabBar.background)
@@ -49,8 +50,15 @@ struct TabBarTest: View {
     @State var selectedIndex = 0
     
     public var body: some View {
-        SirioTabBar(items: SirioTabItemData.previewInps3(),
-               selectedIndex: $selectedIndex)
+        ZStack(alignment: .bottom) {
+            Text("Contenuto principale")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.red)
+                .ignoresSafeArea()
+            
+            SirioTabBar(items: SirioTabItemData.previewInps3(),
+                        selectedIndex: $selectedIndex)
+        }
     }
 }
 

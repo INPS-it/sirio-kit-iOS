@@ -8,7 +8,6 @@
 
 import SwiftUI
 import SirioKitIOS
-import SwiftUI
 
 struct ExampleTab: View {
     var body: some View {

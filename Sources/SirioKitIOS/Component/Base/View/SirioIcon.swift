@@ -57,6 +57,9 @@ public struct SirioIconData: Identifiable {
     public static let previewPdf = SirioIconData(icon: .filePdf)
     public static let previewDownload = SirioIconData(icon: .download)
     public static let previewTrash = SirioIconData(icon: .trash)
+    public static let previewArrowLeft = SirioIconData(icon: .arrowLeft)
+    public static let previewArrowRight = SirioIconData(icon: .arrowRight)
+    public static let previewCube = SirioIconData(icon: .cube)
 }
 
 /// A basic component that represent an icon using the data

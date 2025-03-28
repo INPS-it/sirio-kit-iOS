@@ -24,7 +24,7 @@ public class SirioAccordionData: Identifiable, ObservableObject {
     private(set) var text: String
     private(set) var content: AnyView
     @Published public var isDisabled: Bool
-    @Published public var isOpen: Bool
+    @Published public var isOpen: Bool 
     private(set) var onTapAccordion: ((Bool) -> Void)?
     private(set) var accessibilityLabel: String?
 

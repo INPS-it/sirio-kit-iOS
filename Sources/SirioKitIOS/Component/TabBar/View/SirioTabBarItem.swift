@@ -10,8 +10,8 @@ import SwiftUI
 
 /// A representation of a single tab bar item
 /// - Parameters:
-///   - itemData: The data of the item
-///   - isSelected: A boolean to manage selected tab
+///   - itemData: The data representing the tab item [SirioTabItemData]
+///   - isSelected: A boolean to manage the selected state of the tab
 public struct SirioTabBarItem: View {
     
     @EnvironmentObject var orientationInfo: OrientationInfo
@@ -26,61 +26,81 @@ public struct SirioTabBarItem: View {
     
     public var body: some View {
         VStack {
-            if orientationInfo.orientation == .landscape && UIDevice.isIPad {
-                VStack(spacing: 0) {
-                    Rectangle()
-                        .fill(indicatorColor)
-                        .frame(height: Size.TabBar.Item.Indicator.height)
-                    HStack(spacing: 0){
-                        SirioIcon(data: .init(icon: itemData.icon))
-                            .frame(width: Size.TabBar.Item.Icon.frame, height: Size.TabBar.Item.Icon.frame)
-                            .foregroundColor(iconColor)
-                            .if(itemData.hasBadge, transform: {
-                                $0.overlay(alignment: .topTrailing, content: {
-                                    SirioBadge()
-                                        .padding(.top, Size.AppNavigation.Badge.paddingTop)
-                                        .padding(.trailing, Size.AppNavigation.Badge.paddingTrailing)
-                                })
-                            })
-                            .padding(.leading, Size.TabBar.Item.Landscape.Icon.paddingLeading)
-                            .padding(.trailing, Size.TabBar.Item.Landscape.Icon.paddingTrailing)
-                            .padding(.top, Size.TabBar.Item.Landscape.Icon.paddingTop)
-                            .padding(.bottom, Size.TabBar.Item.Landscape.Icon.paddingBottom)
-                        
-                        SirioText(text: itemData.name, typography: Typography.TabBar.style)
-                            .foregroundColor(textColor)
-                            .padding(.top, Size.TabBar.Item.Landscape.Text.paddingTop)
-                            .padding(.bottom, Size.TabBar.Item.Landscape.Text.paddingBottom)
-                            .padding(.trailing, Size.TabBar.Item.Landscape.Text.paddingTrailing)
-                    }
-                }
-            } else {
-                VStack(spacing: 0) {
-                    Rectangle()
-                        .fill(indicatorColor)
-                        .frame(height: Size.TabBar.Item.Indicator.height)
-                    
-                    SirioIcon(data: .init(icon: itemData.icon))
-                        .frame(width: Size.TabBar.Item.Icon.frame, height: Size.TabBar.Item.Icon.frame)
-                        .foregroundColor(iconColor)
-                        .if(itemData.hasBadge, transform: {
-                            $0.overlay(alignment: .topTrailing, content: {
-                                SirioBadge()
-                                    .padding(.top, Size.AppNavigation.Badge.paddingTop)
-                                    .padding(.trailing, Size.AppNavigation.Badge.paddingTrailing)
-                            })
-                        })
-                        .padding(.horizontal, Size.TabBar.Item.Portrait.Icon.paddingHorizontal)
-                        .padding(.top, Size.TabBar.Item.Portrait.Icon.paddingTop)
-                    
-                    SirioText(text: itemData.name, typography: Typography.TabBar.style)
-                        .foregroundColor(textColor)
-                        .padding(.top, Size.TabBar.Item.Portrait.Text.paddingTop)
-                        .padding(.bottom, Size.TabBar.Item.Portrait.Text.paddingBottom)
-                }
+            // Landscape
+            if orientationInfo.orientation == .landscape {
+                landscape
+            } else { // Portrait
+                portrait
             }
         }
+        .frame(height: Size.TabBar.height)
+        .background(Color.white)
         .setAccessibilityLabel(itemData.accessibilityLabel)
+    }
+    
+    private var landscape: some View {
+        VStack(spacing: Size.zero) {
+            Rectangle()
+                .fill(indicatorColor)
+                .frame(width: hStackFrame.width, height: Size.TabBar.Item.indicator)
+
+            Spacer()
+
+            HStack(spacing: Size.TabBar.Item.Landscape.spacing) {
+                SirioIcon(data: .init(icon: itemData.icon))
+                    .frame(width: Size.TabBar.Item.icon, height: Size.TabBar.Item.icon)
+                    .foregroundStyle(iconColor)
+                    .if(itemData.hasBadge, transform: {
+                        $0.overlay(alignment: .topTrailing, content: {
+                            SirioBadge()
+                                .padding(.top, Size.Badge.paddingTop)
+                                .padding(.trailing, Size.Badge.paddingTrailing)
+                        })
+                    })
+                SirioText(text: itemData.name, typography: Typography.TabBar.style)
+                    .foregroundColor(textColor)
+            }
+            .padding(.horizontal, Size.TabBar.Item.paddingHorizontal)
+            .frame(height: Size.TabBar.Item.Landscape.height)
+            .readSize { size in
+                hStackFrame = size
+            }
+
+            Spacer()
+        }
+        .frame(height: Size.TabBar.height)
+        
+    }
+    // Variabile di stato per salvare la larghezza dell'HStack
+    @State private var hStackFrame: CGSize = .zero
+
+    
+    private var portrait: some View {
+        VStack(spacing: Size.zero) {
+            Rectangle()
+                .fill(indicatorColor)
+                .frame(height: Size.TabBar.Item.indicator)
+            Spacer()
+            VStack(spacing: Size.TabBar.Item.Portrait.spacing){
+                
+                SirioIcon(data: .init(icon: itemData.icon))
+                    .frame(width: Size.TabBar.Item.icon, height: Size.TabBar.Item.icon)
+                    .foregroundStyle(iconColor)
+                    .if(itemData.hasBadge, transform: {
+                        $0.overlay(alignment: .topTrailing, content: {
+                            SirioBadge()
+                                .padding(.top, Size.Badge.paddingTop)
+                                .padding(.trailing, Size.Badge.paddingTrailing)
+                        })
+                    })
+                SirioText(text: itemData.name, typography: Typography.TabBar.style)
+                    .foregroundColor(textColor)
+                Spacer()
+            }
+            .padding(.horizontal, Size.TabBar.Item.paddingHorizontal)
+            .frame(height: Size.TabBar.Item.Portrait.height)
+        }
+        .frame(height: Size.TabBar.height)
     }
 }
 
@@ -98,9 +118,15 @@ extension SirioTabBarItem {
         return isSelected ? Color.TabBar.Item.Indicator.selected : Color.TabBar.Item.Indicator.default
     }
 }
+
 #Preview {
-    SirioTabBarItem(itemData: SirioTabItemData.preview, isSelected: false)
-        .previewLayout(PreviewLayout.sizeThatFits)
-        .padding()
-        .environmentObject(OrientationInfo())
+    VStack {
+        HStack(spacing: 10) {
+            SirioTabBarItem(itemData: SirioTabItemData.preview, isSelected: true)
+            SirioTabBarItem(itemData: SirioTabItemData.preview, isSelected: false)
+            
+        }
+    }
+    .padding(.horizontal)
+    .environmentObject(OrientationInfo())
 }

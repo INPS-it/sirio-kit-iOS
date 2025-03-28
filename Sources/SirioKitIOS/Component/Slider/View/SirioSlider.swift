@@ -8,15 +8,16 @@
 
 import SwiftUI
 
-/// Slider component
+/// Slider component to control a numeric value with an optional title, subtitle, and customization options
 /// - Parameters:
-///   - title: The optional slider title
-///   - subtitle: The optional slider subtitle
-///   - currentValue: The slider current value
-///   - minValue: The slider minimum allowed value
-///   - maxValue: The slider maximum allowed value
-///   - step: The distance between each valid value. Default is 1.
-///   - isDisabled: Whether the slider is disabled
+///   - title: The optional title displayed above the slider
+///   - subtitle: The optional subtitle displayed below the title
+///   - currentValue: The current value of the slider
+///   - minValue: The minimum value allowed for the slider
+///   - maxValue: The maximum value allowed for the slider
+///   - step: The distance between valid values (default is 1)
+///   - isDisabled: Whether the slider is disabled (default is false)
+///   
 public struct SirioSlider: View {
     private var title: String?
     private var subtitle: String?

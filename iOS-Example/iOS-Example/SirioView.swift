@@ -15,6 +15,12 @@ struct SirioView: View {
         NavigationView {
             List {
                 NavigationLink(destination: {
+                    ExampleFoundationToken()
+                }, label: {
+                    SirioText(text: "Foundation", typography: .label_md_400)
+                })
+                
+                NavigationLink(destination: {
                     ExampleAccordion()
                 }, label: {
                     SirioText(text: "Accordion", typography: .label_md_400)
@@ -101,7 +107,7 @@ struct SirioView: View {
                 NavigationLink(destination: {
                     ExampleNotification()
                 }, label: {
-                    SirioText(text: "Notification", typography: .label_md_400)
+                    SirioText(text: "Notifiche", typography: .label_md_400)
                 })
                 
                 NavigationLink(destination: {
@@ -126,6 +132,12 @@ struct SirioView: View {
                     ExampleSearchBar()
                 }, label: {
                     SirioText(text: "SearchBar", typography: .label_md_400)
+                })
+                
+                NavigationLink(destination: {
+                    ExampleSegmentedControls()
+                }, label: {
+                    SirioText(text: "Segmented Controls", typography: .label_md_400)
                 })
                 
                 NavigationLink(destination: {

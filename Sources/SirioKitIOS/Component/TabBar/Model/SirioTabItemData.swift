@@ -47,10 +47,10 @@ public struct SirioTabItemData {
     
     public static func previewInps3() -> [Self] {
         return [SirioTabItemData(icon: .home, name: "Home", hasBadge: false),
-        SirioTabItemData(icon: .newspaper, name: "News", hasBadge: false),
-        SirioTabItemData(icon: .piggyBank, name: "Services", hasBadge: false),
-        SirioTabItemData(icon: .headphones, name: "Contacts", hasBadge: false),
-        SirioTabItemData(icon: .user, name: "Profile", hasBadge: false)]
+                SirioTabItemData(icon: .newspaper, name: "News", hasBadge: false),
+                SirioTabItemData(icon: .globe, name: "Mappa", hasBadge: false),
+                SirioTabItemData(icon: .commentAlt, name: "Contattaci", hasBadge: false),
+                SirioTabItemData(icon: .gripHorizontal, name: "Servizi", hasBadge: false)]
     }
 }
 

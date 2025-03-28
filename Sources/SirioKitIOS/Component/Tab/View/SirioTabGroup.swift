@@ -10,10 +10,11 @@ import SwiftUI
 
 /// Tab group component
 /// - Parameters:
-///   - items: List of tab data
-///   - selectedIndex: The current selected index
-///   - position:  The position of the selection indicator
-///   - onSelectedTab: Callback that is executed when the tab is selected
+///   - items: A list of tab data to be displayed in the tab group.
+///   - selectedIndex: The current selected index to determine which tab is selected.
+///   - position: The position of the selection indicator (top or bottom).
+///   - onSelectedTab: A callback that is executed when a tab is selected, passing the selected index.
+
 public struct SirioTabGroup: View {
     
     private var items: [SirioTabData]
@@ -34,7 +35,7 @@ public struct SirioTabGroup: View {
     public var body: some View {
         ScrollViewReader { proxy in
             ScrollView(.horizontal, showsIndicators: false, content: {
-                HStack(spacing: position == .top ? Size.Tab.spacingHorizontalGroupTop : Size.Tab.spacingHorizontalGroupBottom) {
+                HStack(spacing: position == .top ? Size.Tab.spacingHorizontalGroupTop : Size.zero) {
                     ForEach(items.indices, id: \.self) { index in
                         let item = items[index]
                         let isSelected = selectedIndex == index

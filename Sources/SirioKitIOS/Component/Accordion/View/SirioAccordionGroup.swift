@@ -8,9 +8,12 @@
 
 import SwiftUI
 
-///  A group of accordions in column
+/// A group of collapsible accordion panels displayed in a vertical stack.
+/// This view allows you to present multiple accordion panels, each containing its own content. The accordions are displayed in a column with optional separators between them.
+///
 /// - Parameters:
-///   - data: A list of [AccordionData] each with the content of one accordion
+///   - data: A list of `SirioAccordionData`, where each item represents the content for one individual accordion panel.
+///
 public struct SirioAccordionGroup: View {
     @Environment(\.colorScheme) var colorScheme
 

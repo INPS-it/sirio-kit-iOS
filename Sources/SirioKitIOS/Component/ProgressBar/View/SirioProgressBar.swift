@@ -8,12 +8,13 @@
 
 import SwiftUI
 
-/// A progressbar component
+/// A progress bar component that visually displays the progress of a task.
 /// - Parameters:
-///   - text: The label above the progress
-///   - maxValue: The max value of the progress
-///   - currentValue: The current progress value between 0 and [maxValue]
-///   - showPercentage: A boolean flag for show percentage
+///   - text: The label displayed above the progress bar.
+///   - maxValue: The maximum value of the progress bar (default is 100).
+///   - currentValue: The current progress value, which must be between 0 and [maxValue].
+///   - showPercentage: A boolean flag to determine if the percentage of progress should be shown.
+
 public struct SirioProgressBar: View {
     private let text: String
     private let maxValue: CGFloat

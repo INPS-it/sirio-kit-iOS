@@ -23,7 +23,7 @@ public struct SirioTableDrawer: View {
     }
     
     public var body: some View {
-        VStack(spacing: Size.Table.Drawer.spacing){
+        VStack(spacing: Size.zero){
             SirioTableDrawerHeader(title: title, onTapClose: onTapClose)
                 .padding(.bottom, Size.Table.Drawer.paddingBottom)
             ForEach(data) { datum in
@@ -52,7 +52,7 @@ public struct SirioTableDrawer: View {
     }
     
     private var optionsView: some View {
-        VStack(spacing: Size.SearchBar.Options.spacing) {
+        VStack(spacing: Size.zero) {
             List {
                 ForEach(iconsData ?? []){ data in
                     
@@ -75,7 +75,6 @@ public struct SirioTableDrawer: View {
         )
         .background(Color.white)
         .cornerRadius(Size.SearchBar.cornerRadius)
-        
     }
 }
 
@@ -87,7 +86,11 @@ public struct SirioTableDrawer: View {
                         SirioTableDrawerItemData.init(title: "Titolo", subtitle: "00", type: .number),
                         SirioTableDrawerItemData.init(title: "Titolo", subtitle: "11/03/2023", type: .date),
                         SirioTableDrawerItemData.init(title: "Titolo", subtitle: "Lorem Ipsum dolor sit amet", type: .link),
-                     ], iconsData: [.init(icon: .print), .init(icon: .trash), .init(icon: .download)])
+                     ], iconsData: [.init(icon: .print),
+                                    .init(icon: .trash),
+                                    .init(icon: .download),
+                                    .init(icon: .download)
+                     ])
 }
 
 #Preview {

@@ -39,7 +39,7 @@ struct ExampleTabBar: View {
                 }
                 Spacer()
             }
-            
+
             SirioTabBar(items: items, selectedIndex: $selectedIndex)
                 .navigationBarTitle("Tab Bar", displayMode: .automatic)
         }

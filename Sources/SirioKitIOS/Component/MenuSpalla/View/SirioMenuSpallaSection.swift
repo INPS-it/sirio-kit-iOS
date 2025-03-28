@@ -19,7 +19,7 @@ public struct SirioMenuSpallaSection: View {
     }
     
     public var body: some View {
-        VStack(spacing: Size.MenuSpalla.spacing) {
+        VStack(spacing: Size.zero) {
             if let title = section.titleSection, !title.isEmpty {
                 SirioMenuSpallaItemTitleSection(title: title)
             }

@@ -23,7 +23,7 @@ import SwiftUI
 
 public struct SirioTableHeader: View {
     var schemeColor: SchemeColor
-    var alignment: SirioAligment
+    var alignment: SirioAlignment
     var size: SirioTableSize
     var title: String
     var scroll: Bool
@@ -34,7 +34,7 @@ public struct SirioTableHeader: View {
     var onTapButtonAction: (() -> Void)?
     
     public init(schemeColor: SchemeColor = .dark,
-                alignment: SirioAligment,
+                alignment: SirioAlignment,
                 size: SirioTableSize,
                 title: String,
                 scroll: Bool = false,
@@ -56,8 +56,8 @@ public struct SirioTableHeader: View {
     }
     
     public var body: some View {
-        HStack(spacing: Size.Table.Header.spacing) {
-            VStack(spacing: Size.Table.Header.spacing) {
+        HStack(spacing: Size.zero) {
+            VStack(spacing: Size.zero) {
                 headerContent
                 Divider().background(borderColor)
             }
@@ -69,7 +69,7 @@ public struct SirioTableHeader: View {
     }
     
     private var headerContent: some View {
-        HStack(spacing: Size.Table.Header.spacing) {
+        HStack(spacing: Size.zero) {
             if hasCheckBox {
                 SirioCheckbox(text: "", isChecked: $isChecked, callback: { _ in
                     onTapCheckBoxAction?()
@@ -79,7 +79,6 @@ public struct SirioTableHeader: View {
             SirioText(text: title, typography: Typography.Table.Header.title)
                 .foregroundStyle(titleColor)
                 .frame(maxWidth: .infinity, alignment: alignment == .leading ? .leading : .trailing)
-//                .padding(alignment == .trailing ? .trailing : .leading, alignment == .trailing ? paddingLeading : Size.Table.Header.Icon.Padding.small)
                 .padding(.trailing, paddingLeading)
             
             if withSort {

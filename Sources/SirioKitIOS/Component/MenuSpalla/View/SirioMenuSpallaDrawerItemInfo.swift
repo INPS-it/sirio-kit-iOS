@@ -24,7 +24,7 @@ public struct SirioMenuSpallaDrawerItemInfo: View {
                        height: Size.MenuSpalla.Drawer.ItemInfo.iconFrame)
                 .foregroundStyle(Color.MenuSpalla.Drawer.ItemInfo.icon)
             
-            VStack(alignment: .leading, spacing: Size.MenuSpalla.Drawer.ItemInfo.spacingVertical) {
+            VStack(alignment: .leading, spacing: Size.zero) {
                 SirioText(text: title, typography: Typography.MenuSpalla.Drawer.ItemInfo.title)
                     .foregroundStyle(Color.MenuSpalla.Drawer.ItemInfo.text)
                 if let subtitle = subtitle {

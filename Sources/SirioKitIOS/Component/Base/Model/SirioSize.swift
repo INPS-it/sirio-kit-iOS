@@ -17,3 +17,6 @@ public enum SirioTableSize: String, CaseIterable {
     case large, medium, small, xsmall
 }
 
+public enum SirioFloatingActionButtonSize: String, CaseIterable {
+    case regular, small
+}

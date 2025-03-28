@@ -33,7 +33,11 @@ public struct Fonts {
         }
         
         var error: Unmanaged<CFError>?
-        CTFontManagerRegisterGraphicsFont(font, &error)
+        if CTFontManagerRegisterGraphicsFont(font, &error) {
+            print("Successfully registered font: \(fontName)")
+        } else {
+            print("Failed to register font: \(fontName), error: \(error?.takeRetainedValue())")
+        }
     }
 }
 

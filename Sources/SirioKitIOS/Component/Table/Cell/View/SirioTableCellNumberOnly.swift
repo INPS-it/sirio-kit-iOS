@@ -23,10 +23,10 @@ public struct SirioTableCellNumberOnly: View {
     
     public var body: some View {
         
-        HStack(spacing: Size.Table.Cell.spacing) {
-            VStack(spacing: Size.Table.Cell.spacing) {
+        HStack(spacing: Size.zero) {
+            VStack(spacing: Size.zero) {
                 
-                HStack(spacing: Size.Table.Cell.spacing) {
+                HStack(spacing: Size.zero) {
                     Spacer()
                     
                     SirioText(text: text, typography: Typography.Table.Cell.number)

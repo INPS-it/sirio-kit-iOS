@@ -9,12 +9,12 @@
 
 import SwiftUI
 
-public struct SirioTableDrawerBottomBar: View {
-    public var text: String?
-    public var data: [SirioIconData]
-    public var onTapEllipsis: (() -> Void)?
+struct SirioTableDrawerBottomBar: View {
+    var text: String?
+    var data: [SirioIconData]
+    var onTapEllipsis: (() -> Void)?
     
-    public var body: some View {
+    var body: some View {
         HStack(spacing: Size.Table.Drawer.BottomBar.spacing) {
             if let text = text, data.count > 3 {
                 SirioText(text: text, typography: .label_md_700)
@@ -35,7 +35,7 @@ public struct SirioTableDrawerBottomBar: View {
                 .frame(width: Size.Table.Drawer.BottomBar.Button.width, height: Size.Table.Drawer.BottomBar.Button.height)
             } else {
                 ForEach(data) { datum in
-                    SirioButtonIconOnly(style: .primary, size: .medium, iconData: datum, action: {
+                    SirioButton(hierarchy: .primary, size: .medium, text: nil, iconData: datum, action: {
                         let _ = datum.action
                     })
                     .frame(width: Size.Table.Drawer.BottomBar.Button.width, height: Size.Table.Drawer.BottomBar.Button.height)
@@ -47,4 +47,8 @@ public struct SirioTableDrawerBottomBar: View {
         .padding(.horizontal, Size.Table.Drawer.BottomBar.paddingHorizontal)
         .background(StyleDictionaryColor.globalPrimary100.color)
     }
+}
+
+#Preview {
+    SirioTableDrawerBottomBar(text: "Text", data: [.init(icon: .addressBook)], onTapEllipsis: {})
 }

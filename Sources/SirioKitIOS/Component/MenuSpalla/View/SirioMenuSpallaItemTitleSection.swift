@@ -16,7 +16,7 @@ public struct SirioMenuSpallaItemTitleSection: View {
     }
     
     public var body: some View {
-        VStack(alignment: .leading, spacing: Size.MenuSpalla.TitleSection.spacingVertical) {
+        VStack(alignment: .leading, spacing: Size.zero) {
             SirioText(text: title, typography: Typography.MenuSpalla.TitleSection.title)
                 .foregroundStyle(Color.MenuSpalla.TitleSection.text)
                 .padding(.top, Size.MenuSpalla.TitleSection.paddingTop)

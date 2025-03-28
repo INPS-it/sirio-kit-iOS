@@ -21,10 +21,10 @@ public struct SirioAppNavigationSearchBarView: View {
     @EnvironmentObject private var searchEnv: SirioSearchEnvironment
     @FocusState private var isTextFieldFocused: Bool
     
-    private let backgroundColor: Color = Color.AppNavigation.Search.background
-    private let borderColor: Color =  Color.AppNavigation.Search.border
-    private let textColor: Color = Color.AppNavigation.Search.text
-    private let iconColor: Color = Color.AppNavigation.Search.Item.icon
+    private let backgroundColor: Color = Color.NewAppNavigation.Search.background
+    private let borderColor: Color =  Color.NewAppNavigation.Search.border
+    private let textColor: Color = Color.NewAppNavigation.Search.text
+    private let iconColor: Color = Color.NewAppNavigation.Search.Item.icon
     
     private var title: String
     private var placeholder: String
@@ -43,21 +43,21 @@ public struct SirioAppNavigationSearchBarView: View {
     
     public var body: some View {
         VStack(spacing: 0) {
-            SirioAppNavigationStandardTitle(title: title,
+            NewSirioAppNavigationBarView(title: title,
                                        leftItem: leftItem,
                                        rightItems: rightItems)
             .colorScheme(.light)
             
-            HStack(spacing: Size.AppNavigation.spacing) {
+            HStack(spacing: Size.NewAppNavigation.spacing) {
                 
                 ZStack(alignment: .leading) {
                     if searchEnv.text.isEmpty {
-                        SirioText(text: placeholder, typography: Typography.AppNavigation.md)
+                        SirioText(text: placeholder, typography: Typography.labelMdMiddle)
                             .foregroundColor(textColor)
                             .lineLimit(1)
                     }
                     TextField(placeholder, text: $searchEnv.text)
-                        .sirioFont(typography: Typography.AppNavigation.md)
+                        .sirioFont(typography: Typography.labelMdMiddle)
                         .foregroundColor(textColor)
                         .accentColor(textColor)
                         .lineLimit(1)
@@ -77,26 +77,21 @@ public struct SirioAppNavigationSearchBarView: View {
                 }, label: {
                     SirioIcon(data: .init(icon: searchEnv.text.isEmpty ? AwesomeIcon.search : AwesomeIcon.times))
                         .foregroundColor(iconColor)
-                        .frame(width: Size.AppNavigation.Search.item, height: Size.AppNavigation.Search.item)
+                        .frame(width: Size.NewAppNavigation.Search.item, height: Size.NewAppNavigation.Search.item)
                 })
             }
-            .frame(height: Size.AppNavigation.Search.height + 2 * Size.AppNavigation.Search.border)
-            .padding(.horizontal, Size.AppNavigation.Search.paddingHorizontal)
-            
-            .border(borderColor, width: Size.AppNavigation.Search.border)
+            .frame(height: 56)
+            .padding(.horizontal, Size.NewAppNavigation.Search.paddingHorizontal)
+            .border(borderColor, width: Size.NewAppNavigation.Search.border)
             .background(backgroundColor)
-            
         }
     }
 }
 
 #Preview {
-    Group {
-        SirioAppNavigationSearchBarView(title: "",
-                                   placeholder: "Placeholder search bar",
-                                   leftItem: nil,
-                                   rightItems: [.previewBell, .previewUser])
-        .environmentObject(SirioSearchEnvironment())
-    }
-    .previewLayout(PreviewLayout.sizeThatFits)
+    SirioAppNavigationSearchBarView(title: "Titolo pagina",
+                               placeholder: "Placeholder search bar",
+                               leftItem: nil,
+                               rightItems: [.previewBell, .previewUser])
+    .environmentObject(SirioSearchEnvironment())
 }

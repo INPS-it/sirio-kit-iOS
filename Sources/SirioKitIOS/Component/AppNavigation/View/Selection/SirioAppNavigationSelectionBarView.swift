@@ -31,11 +31,11 @@ public struct SirioAppNavigationSelectionBarView: View {
     }
     
     public var body: some View {
-        HStack(spacing: Size.AppNavigation.spacing) {
-            SirioAppNavigationItem(item: leftItem)
+        HStack(spacing: Size.zero) {
+            NewSirioAppNavigationItem(item: leftItem)
                 .colorScheme(colorScheme == .dark ? .light : .dark)
             
-            SirioText(text: title, typography: Typography.AppNavigation.md)
+            SirioText(text: title, typography: Typography.NewAppNavigation.title)
                 .foregroundColor(textColor)
                 .lineLimit(1)
             
@@ -43,14 +43,13 @@ public struct SirioAppNavigationSelectionBarView: View {
 
             if let rightItems = rightItems {
                 ForEach(rightItems.prefix(2)) { item in
-                    SirioAppNavigationItem(item: item)
+                    NewSirioAppNavigationItem(item: item)
                         .colorScheme(colorScheme == .dark ? .light : .dark)
                 }
             }
         }
         
-        .frame(height: Size.AppNavigation.height)
-        .padding(.horizontal, Size.AppNavigation.paddingHorizontal)
+        .frame(height: Size.NewAppNavigation.height)
         .background(appNavigationColor)
     }
 }
@@ -60,39 +59,36 @@ extension SirioAppNavigationSelectionBarView {
     private var appNavigationColor: Color {
         switch colorScheme {
         case .light:
-            return Color.AppNavigation.Selection.Background.light
+            return Color.NewAppNavigation.Selection.Background.light
         case .dark:
-            return Color.AppNavigation.Selection.Background.dark
+            return Color.NewAppNavigation.Selection.Background.dark
         @unknown default:
-            return Color.AppNavigation.Selection.Background.light
+            return Color.NewAppNavigation.Selection.Background.light
         }
     }
     
     private var textColor: Color {
         switch colorScheme {
         case .light:
-            return Color.AppNavigation.Selection.Text.light
+            return Color.NewAppNavigation.Selection.Text.light
         case .dark:
-            return Color.AppNavigation.Selection.Text.dark
+            return Color.NewAppNavigation.Selection.Text.dark
         @unknown default:
-            return Color.AppNavigation.Selection.Text.light
+            return Color.NewAppNavigation.Selection.Text.light
         }
     }
 }
 
 #Preview {
-    Group {
+    VStack {
         SirioAppNavigationSelectionBarView(title: "1 Elemento",
                                     leftItem: .previewBack,
                                     rightItems: [.previewUser, .previewBell])
-        .padding(.vertical)
         .colorScheme(.light)
         SirioAppNavigationSelectionBarView(title: "1 Elemento",
                                     leftItem: .previewBack,
                                     rightItems: [.previewUser, .previewBell])
 
-        .padding(.vertical)
         .colorScheme(.dark)
     }
-    .previewLayout(PreviewLayout.sizeThatFits)
 }

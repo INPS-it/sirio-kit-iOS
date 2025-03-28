@@ -8,15 +8,15 @@
 
 import SwiftUI
 
-/// Pagination component
+/// A pagination component that allows the user to navigate through pages.
 /// - Parameters:
-///   - selectedPage: The index of the selected page
-///   - numberOfPages: The total number of pages to handle
-///   - paginationViewModel: An observable object which manages the logic of the component
-///   - isDisabled: Whether the component allow page changes
-///   - accessibilityLabelLeftButton: A string that identifies the left button accessibility element
-///   - accessibilityLabelTile: A string that identifies the tile accessibility element
-///   - accessibilityLabelRightButton: A string that identifies the right button accessibility element
+///   - selectedPage: The index of the selected page.
+///   - numberOfPages: The total number of pages to handle.
+///   - paginationViewModel: An observable object that manages the logic of the pagination component.
+///   - isDisabled: Whether the component allows page changes.
+///   - accessibilityLabelLeftButton: A string that identifies the left button accessibility element.
+///   - accessibilityLabelTile: A string that identifies the tile accessibility element.
+///   - accessibilityLabelRightButton: A string that identifies the right button accessibility element.
 
 public struct SirioPagination: View {
     @Binding var selectedPage: Int
@@ -28,7 +28,7 @@ public struct SirioPagination: View {
     var accessibilityLabelLeftButton: String?
     var accessibilityLabelTile: String?
     var accessibilityLabelRightButton: String?
-
+    
     public init(selectedPage: Binding<Int>,
                 numberOfPages: Int,
                 isDisabled: Binding<Bool> = .constant(false),
@@ -47,19 +47,20 @@ public struct SirioPagination: View {
     public var body: some View {
         VStack {
             HStack {
-                SirioButtonIconOnly(style: .ghost,
-                               size: .large,
-                               iconData: .init(icon: .angleLeft),
-                               isDisabled: $isDisabledButtonLeft,
-                               action: {
+                SirioButton(hierarchy: .ghost,
+                            size: .large,
+                            text: nil,
+                            iconData: .init(icon: .angleLeft),
+                            isDisabled: $isDisabledButtonLeft,
+                            action: {
                     if selectedPage > 0 {
                         selectedPage -= 1
                     }
                 }, accessibilityLabel: accessibilityLabelLeftButton)
-
+                
                 Spacer()
                 
-                HStack(alignment: .center, spacing: Size.Pagination.spacing){
+                HStack(alignment: .center, spacing: Size.zero){
                     if paginationViewModel.availableWidth == 0 {
                         Spacer()
                     } else if paginationViewModel.availableWidth > 0 {
@@ -69,9 +70,9 @@ public struct SirioPagination: View {
                             } else {
                                 let number = current + 1
                                 SirioPaginationTile(number: number,
-                                                  isSelected: selectedPage == current ,
-                                                  isDisabled: isDisabled,
-                                                  action: {
+                                                    isSelected: selectedPage == current ,
+                                                    isDisabled: isDisabled,
+                                                    action: {
                                     if !isDisabled && selectedPage != current {
                                         self.selectedPage = current
                                     }
@@ -86,12 +87,13 @@ public struct SirioPagination: View {
                 
                 Spacer()
                 
-                SirioButtonIconOnly(style: .ghost,
-                               size: .large,
-                               iconData: .init(icon: .angleRight),
-                               isDisabled: $isDisabledButtonRight,
-                               action: {
-                    if selectedPage < numberOfPages - 1{
+                SirioButton(hierarchy: .ghost,
+                            size: .large,
+                            text: nil,
+                            iconData: .init(icon: .angleRight),
+                            isDisabled: $isDisabledButtonRight,
+                            action: {
+                    if selectedPage < numberOfPages - 1 {
                         selectedPage += 1
                     }
                 }, accessibilityLabel: accessibilityLabelRightButton)

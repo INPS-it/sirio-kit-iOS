@@ -10,11 +10,11 @@ import SwiftUI
 
 /// Radio button component
 /// - Parameters:
-///   - text: The optional radio button string
-///   - isChecked: Whether the radio button is checked
-///   - isDisabled: Whether the radio button is disabled
-///   - callback: Callback that is executed when the component is tapped
-///   - accessibilityLabel: A string that identifies the accessibility element
+///   - text: The optional label for the radio button.
+///   - isChecked: A binding to the state that determines if the radio button is selected or not.
+///   - isDisabled: A binding to determine if the radio button is disabled.
+///   - callback: A callback function that is executed when the radio button is tapped.
+///   - accessibilityLabel: A string that provides an accessibility label for the radio button.
 
 public struct SirioRadioButton: View {
     var text: String?

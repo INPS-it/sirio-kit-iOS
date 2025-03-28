@@ -31,7 +31,6 @@ public struct SirioAppNavigationSelectionLink<Label, Destination> : View where L
     }
 }
 
-
 public struct AppNavigationSelectionLinkActive<Label, Destination> : View where Label : View, Destination : View {
     @Binding private var isActive: Bool
     private let destination: Destination

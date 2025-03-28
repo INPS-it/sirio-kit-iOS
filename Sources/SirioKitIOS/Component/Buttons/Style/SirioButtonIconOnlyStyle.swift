@@ -10,7 +10,7 @@ import SwiftUI
 
 // A struct that defines the style for ButtonIconOnly component
 struct SirioButtonIconOnlyStyle: ButtonStyle {
-    var style: SirioButtonStyle
+    var hierarchy: SirioButtonHierarchy
     var size: SirioSize
     var iconData: SirioIconData
     @Binding var isDisabled: Bool
@@ -22,15 +22,15 @@ struct SirioButtonIconOnlyStyle: ButtonStyle {
         VStack {
             SirioIcon(data: iconData)
                 .frame(width: iconFrame, height: iconFrame)
-                .foregroundColor(getSirioButtonIconColor(style: style, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed))
+                .foregroundColor(getSirioButtonIconColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed))
         }
         .padding(.horizontal, paddingHorizontal)
         .padding(.vertical, paddingVertical)
-        .background(getSirioButtonBackgroundColor(style: style, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed))
+        .background(getSirioButtonBackgroundColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed))
         .cornerRadius(Size.Button.Border.cornerRadius)
         .overlay(
             RoundedRectangle(cornerRadius: Size.Button.Border.cornerRadius)
-                .stroke(getSirioButtonBorderColor(style: style, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed), lineWidth: Size.Button.Border.width)
+                .stroke(getSirioButtonBorderColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed), lineWidth: Size.Button.Border.width)
         )
         .onHover { isHover in
             self.isHover = isHover

@@ -19,30 +19,30 @@ struct ExampleTextField: View {
                 ForEach(SemanticTextField.allCases, id: \.self){ type in
                     VStack(spacing: 10) {
                         SirioText(text: type.rawValue.capitalized, typography: .label_md_600)
-                        SirioTextField(type: .constant(type),
-                                       textInfo: "Label",
-                                       infoIcon: .infoCircle,
-                                       placeholder: "Text",
-                                       text: $text,
-                                       icon: getIconBy(type: type),
-                                       helperText: "*Helper text",
-                                       isDisabled: $disabled,
-                                       onTapInfoAction: nil)
+                        SirioGenericTextField(type: .constant(type),
+                                              textInfo: "Label",
+                                              placeholder: "Text",
+                                              value: $text,
+                                              iconData: getIconBy(type: type),
+                                              helperText:"*Helper text",
+                                              isDisabled: $disabled,
+                                              isSecureText: .constant(false),
+                                              onTapInfoAction: nil)
                         .padding()
                     }
                 }
                 
                 SirioText(text: "Disabled", typography: .label_md_600)
                 
-                SirioTextField(type: .constant(.info),
-                               textInfo: "Label",
-                               infoIcon: .infoCircle,
-                               placeholder: "Text",
-                               text: .constant(""),
-                               icon: .calendar,
-                               helperText: "*Helper text",
-                               isDisabled: .constant(true),
-                               onTapInfoAction: nil)
+                SirioGenericTextField(type: .constant(.info),
+                                      textInfo: "Label",
+                                      placeholder: "Text",
+                                      value: $text,
+                                      iconData: .init(icon: .calendar),
+                                      helperText: "*Helper text",
+                                      isDisabled: .constant(true),
+                                      isSecureText: .constant(false),
+                                      onTapInfoAction: nil)
                 .padding()
                 
                 Spacer()
@@ -53,16 +53,16 @@ struct ExampleTextField: View {
         .navigationTitle("TextField")
     }
     
-    private func getIconBy(type: SemanticTextField) -> AwesomeIcon {
+    private func getIconBy(type: SemanticTextField) -> SirioIconData {
         switch type {
         case .warning:
-            return .exclamationCircle
+            return .init(icon: .exclamationCircle)
         case .alert:
-            return .exclamationTriangle
+            return .init(icon: .exclamationTriangle)
         case .success:
-            return .check
+            return .init(icon: .check)
         case .info:
-            return .calendar
+            return .init(icon: .calendar)
         }
     }
 }

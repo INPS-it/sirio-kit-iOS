@@ -13,7 +13,6 @@ struct SirioToggleStyle: ButtonStyle {
     var text: String?
     var isOn: Bool
     @Binding var isDisabled: Bool
-    @State var isHover = false
     
     private let defaultBorderColor: Color = .Toggle.Off.Border.default
     private let defaultCircleColor: Color = .Toggle.Off.Circle.default
@@ -40,9 +39,6 @@ struct SirioToggleStyle: ButtonStyle {
                     .foregroundColor(getColor(for: .text))
             }
         }
-        .onHover { isHover in
-            self.isHover = isHover
-        }
     }
     
     private func getColor(for component: ToggleComponent) -> Color {
@@ -50,24 +46,18 @@ struct SirioToggleStyle: ButtonStyle {
         case .border:
             if isDisabled {
                 return isOn ? .Toggle.On.Border.disabled : .Toggle.Off.Border.disabled
-            } else if isHover {
-                return isOn ? .Toggle.On.Border.hover : .Toggle.Off.Border.hover
             }
             return isOn ? .Toggle.On.Border.default : .Toggle.Off.Border.default
             
         case .circle:
             if isDisabled {
                 return isOn ? .Toggle.On.Circle.disabled : .Toggle.Off.Circle.disabled
-            } else if isHover {
-                return isOn ? .Toggle.On.Circle.hover : .Toggle.Off.Circle.hover
             }
             return isOn ? .Toggle.On.Circle.default : .Toggle.Off.Circle.default
             
         case .text:
             if isDisabled {
                 return isOn ? .Toggle.On.Text.disabled : .Toggle.Off.Text.disabled
-            } else if isHover {
-                return isOn ? .Toggle.On.Text.hover : .Toggle.Off.Text.hover
             }
             return isOn ? .Toggle.On.Text.default : .Toggle.Off.Text.default
             

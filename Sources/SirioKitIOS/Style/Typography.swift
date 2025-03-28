@@ -179,7 +179,7 @@ extension Typography {
 // MARK: Fab
 extension Typography {
     public struct Fab {
-        public static let style: Typography = .label_md_700
+        public static let style: Typography = .labelMdHeavy
     }
 }
 
@@ -189,6 +189,15 @@ extension Typography {
         public static let md: Typography = .app_navigation_title_md
         public static let xl: Typography = .app_navigation_title_xl
         public static let profile: Typography = .label_md_700
+    }
+}
+
+// MARK: NewAppNavigation
+extension Typography {
+    public struct NewAppNavigation {
+        public static let title: Typography = .labelMdMiddle
+        public static let xl: Typography = .app_navigation_title_xl
+        public static let profile: Typography = .labelMdHeavy
     }
 }
 
@@ -223,40 +232,40 @@ extension Typography {
 // MARK: CheckBox
 extension Typography {
     public struct CheckBox {
-        public static let style: Typography = .label_md_400
+        public static let style: Typography = .labelMdRegular
     }
 }
 
 // MARK: RadioButton
 extension Typography {
     public struct RadioButton {
-        public static let style: Typography = .label_md_400
+        public static let style: Typography = .labelMdRegular
     }
 }
 
 // MARK: Toggle
 extension Typography {
     public struct Toggle {
-        public static let style: Typography = .label_md_400
+        public static let style: Typography = .labelMdRegular
     }
 }
 
 // MARK: Slider
 extension Typography {
     public struct Slider {
-        public static let title: Typography = .label_md_600
-        public static let subtitle: Typography = .helper_text_xs_400
-        public static let number: Typography = .label_md_number_400
+        public static let title: Typography = .labelMdMiddle
+        public static let subtitle: Typography = .bodySmRegular
+        public static let number: Typography = .labelNumberMdRegular
     }
 }
 
 // MARK: ProgressBar
 extension Typography {
     public struct ProgressBar {
-        public static let label: Typography = .label_md_600
-        public static let number: Typography = Typography.init(fontFamily: StyleDictionaryTypography.globalFontFamily03,
-                                                      fontSize: StyleDictionarySize.globalFontSize02.cgFloat,
-                                                      fontWeight: StyleDictionaryTypography.globalFontWeights400,
+        public static let label: Typography = .labelMdMiddle
+        public static let number: Typography = Typography.init(fontFamily: SirioFoundationTypography.globalFontFamiliesFontFamily03,
+                                                      fontSize: StyleDictionarySize.globalFontSize01.cgFloat,
+                                                      fontWeight: SirioFoundationTypography.globalFontWeights400,
                                                       lineHeight: StyleDictionarySize.globalLineHeights01.cgFloat)
     }
 }
@@ -264,8 +273,8 @@ extension Typography {
 // MARK: FileUpload
 extension Typography {
     public struct FileUpload {
-        public static let title: Typography = .label_md_600
-        public static let subtitle: Typography = .helper_text_xs_400
+        public static let title: Typography = .labelMdMiddle
+        public static let subtitle: Typography = .bodySmRegular
         public static let text: Typography = .label_md_700
     }
 }
@@ -304,9 +313,10 @@ extension Typography {
 // MARK: TextField
 extension Typography {
     public struct TextField {
-        public static let label: Typography = .placeholder_md_400
-        public static let text: Typography = .text_md_400
-        public static let helper: Typography = .helper_text_xs_400
+        public static let label: Typography = .labelMdMiddle
+        public static let text: Typography = .labelMdRegular
+        public static let number: Typography = .labelNumberMdRegular
+        public static let helper: Typography = .specificIosTabbarLabelXsRegular
     }
 }
 
@@ -355,14 +365,6 @@ extension Typography {
             public static let title: Typography = .h4_md
             public static let body: Typography = .p_md_01
         }
-    }
-}
-
-// MARK: Avviso
-extension Typography {
-    public struct Avviso {
-        public static let title: Typography = .h4_lg
-        public static let text: Typography = .p_lg_01
     }
 }
 

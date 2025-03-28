@@ -14,16 +14,16 @@ struct ExampleButtons: View {
         List {
             // Primary
             NavigationLink(destination: {
-                ButtonsPreview(type: "Primary", style: .primary)
-                    .navigationTitle("Primary")
+                SirioButtonDemo(hierarchy: .primary)
                     .background(Color.colorBackground)
+                    .navigationTitle("Primary")
             }, label: {
                 SirioText(text: "Primary", typography: .label_md_400)
             })
             
             // Secondary
             NavigationLink(destination: {
-                ButtonsPreview(type: "Secondary", style: .secondary)
+                SirioButtonDemo(hierarchy: .secondary)
                     .navigationTitle("Secondary")
                     .background(Color.colorBackground)
             }, label: {
@@ -32,7 +32,7 @@ struct ExampleButtons: View {
             
             // Tertiary Light
             NavigationLink(destination: {
-                ButtonsPreview(type: "Tertiary Light", style: .tertiaryLight)
+                SirioButtonDemo(hierarchy: .tertiaryLight)
                     .navigationTitle("Tertiary Light")
                     .background(Color.colorBackground)
             }, label: {
@@ -41,7 +41,7 @@ struct ExampleButtons: View {
             
             // Tertiary Dark
             NavigationLink(destination: {
-                ButtonsPreview(type: "Tertiary Dark", style: .tertiaryDark)
+                SirioButtonDemo(hierarchy: .tertiaryDark)
                     .navigationTitle("Tertiary Dark")
                     .background(Color.colorBackground)
             }, label: {
@@ -50,7 +50,7 @@ struct ExampleButtons: View {
             
             // Danger
             NavigationLink(destination: {
-                ButtonsPreview(type: "Danger", style: .danger)
+                SirioButtonDemo(hierarchy: .danger)
                     .navigationTitle("Danger")
                     .background(Color.colorBackground)
             }, label: {
@@ -59,7 +59,7 @@ struct ExampleButtons: View {
             
             // Ghost
             NavigationLink(destination: {
-                ButtonsPreview(type: "Ghost", style: .ghost)
+                SirioButtonDemo(hierarchy: .ghost)
                     .navigationTitle("Ghost")
                     .background(Color.colorBackground)
                     .onTapGesture {
@@ -76,91 +76,55 @@ struct ExampleButtons: View {
 }
 
 #Preview {
-    ExampleButtons()
+    SirioButtonDemo(hierarchy: .primary)
 }
 
-struct DoubleButtonsView: View {
-    var style: SirioButtonStyle
-    var size: SirioSize
+struct SirioButtonDemo: View {
+    var hierarchy: SirioButtonHierarchy
     
     var body: some View {
-        VStack {
-            HStack(spacing: 8){
-                
-                SirioButtonTextOnly(style: style,
-                               size: size,
-                               text: "Text",
-                               isDisabled: .constant(false),
-                               action: {})
-                
-                SirioButtonTextOnly(style: style,
-                               size: size,
-                               text: "Text",
-                               isDisabled: .constant(true),
-                               action: {})
-                
-            }
-            
-            HStack(spacing: 8){
-                
-                SirioButtonTextIcon(style: style,
-                               size: size,
-                               text: "Text",
-                               iconData: .init(icon: .arrowRight),
-                               isDisabled: .constant(false),
-                               action: {})
-                
-                SirioButtonTextIcon(style: style,
-                               size: size,
-                               text: "Text",
-                               iconData: .init(icon: .arrowRight),
-                               isDisabled: .constant(true),
-                               action: {})
-                
-            }
-            
-            HStack(spacing: 8){
-                
-                SirioButtonIconOnly(style: style,
-                               size: size,
-                               iconData: .init(icon: .arrowRight),
-                               isDisabled: .constant(false),
-                               action: {})
-                
-                SirioButtonIconOnly(style: style,
-                               size: size,
-                               iconData: .init(icon: .arrowRight),
-                               isDisabled: .constant(true),
-                               action: {})
-                
-            }
-        }.padding(.horizontal, 8)
-    }
-}
-
-struct ButtonsPreview: View {
-    var type: String
-    var style: SirioButtonStyle
-    
-    var body: some View {
-        ScrollView(showsIndicators: false){
-            ForEach(SirioSize.allCases, id: \.self, content: { size in
-                VStack(spacing: 8){
-                    SirioText(text: "\(size.rawValue.capitalized)" , typography: .label_md_400)
-                        .padding()
-                    
-                    DoubleButtonsView(style: style, size: size)
+        ScrollView {
+            VStack(alignment: .leading) {
+                ForEach(SirioSize.allCases, id: \.self) { size in
+                    VStack(alignment: .leading) {
+                        SirioText(text: "\(size.rawValue.capitalized)", typography: .headlineSmMiddle)
+                        VStack(alignment: .leading) {
+                            HStack {
+                                Spacer()
+                                SirioButton(hierarchy: hierarchy, size: size, text: "Text", iconData: nil, action: {})
+                                SirioButton(hierarchy: hierarchy, size: size, text: "Text", iconData: nil, isDisabled: .constant(true), action: {})
+                                Spacer()
+                                
+                            }
+                            HStack {
+                                Spacer()
+                                
+                                SirioButton(hierarchy: hierarchy, size: size, text: "Text", iconData: .previewArrowRight, action: {})
+                                SirioButton(hierarchy: hierarchy, size: size, text: "Text", iconData: .previewArrowRight, isDisabled: .constant(true), action: {})
+                                Spacer()
+                                
+                            }
+                            HStack {
+                                Spacer()
+                                SirioButton(hierarchy: hierarchy, size: size, text: "Text", iconData: .previewArrowLeft, iconAlignment: .leading, action: {})
+                                
+                                SirioButton(hierarchy: hierarchy, size: size, text: "Text", iconData: .previewArrowLeft, iconAlignment: .leading, isDisabled: .constant(true), action: {})
+                                Spacer()
+                                
+                            }
+                            HStack {
+                                Spacer()
+                                
+                                SirioButton(hierarchy: hierarchy, size: size, text: nil, iconData: .previewArrowRight, action: {})
+                                SirioButton(hierarchy: hierarchy, size: size, text: nil, iconData: .previewArrowRight, isDisabled: .constant(true), action: {})
+                                Spacer()
+                                
+                            }
+                        }
+                    }
                 }
-            })
-            Spacer()
+            }
         }
-        .frame(
-            minWidth: 0,
-            maxWidth: .infinity,
-            minHeight: 0,
-            maxHeight: .infinity,
-            alignment: .top)
+        .padding()
     }
 }
-
-

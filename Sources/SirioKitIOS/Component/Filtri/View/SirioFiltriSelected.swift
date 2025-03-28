@@ -27,9 +27,11 @@ public struct SirioFiltriSelected: View {
             if #available(iOS 16.0, *) {
                 OverflowLayout() {
                     ForEach(values, id: \.self) { text in
-                        SirioChipsLabelClose(text: text, onTapClose: {
+                        SirioChips(text: text, iconData: nil,
+                                   onTapClose: {
                             callback(text)
-                        }).padding(.vertical, Size.Filtri.paddingVerticalChips)
+                        })
+                        .padding(.vertical, Size.Filtri.paddingVerticalChips)
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -38,7 +40,8 @@ public struct SirioFiltriSelected: View {
                 ScrollView(.horizontal, showsIndicators: false, content: {
                     HStack {
                         ForEach(values, id: \.self) { text in
-                            SirioChipsLabelClose(text: text, onTapClose: {
+                            SirioChips(text: text, iconData: nil,
+                                       onTapClose: {
                                 callback(text)
                             }).padding(.vertical, Size.Filtri.paddingVerticalChips)
                         }
