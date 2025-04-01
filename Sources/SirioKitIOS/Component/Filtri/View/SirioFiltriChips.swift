@@ -37,7 +37,12 @@ public struct SirioFiltriChips: View {
                 HStack {
                     OverflowLayout() {
                         ForEach(texts, id: \.self) { text in
-                            SirioChipsSelection(text: text, isSelected: .constant(text == selectedType), isDisabled: $isDisabled, accessibilityLabel: accessibilityLabel)
+                            SirioChipsSelection(text: text, isSelected: Binding(
+                                get: { selectedType == text },
+                                set: { newValue in
+                                    selectedType = newValue ? text : nil
+                                }
+                            ), isDisabled: $isDisabled, accessibilityLabel: accessibilityLabel)
                             .padding(.vertical, Size.Filtri.paddingVerticalChips)
                         }
                     }
@@ -58,7 +63,12 @@ public struct SirioFiltriChips: View {
         ScrollView(.horizontal, showsIndicators: false, content: {
             HStack {
                 ForEach(texts, id: \.self) { text in
-                    SirioChipsSelection(text: text, isSelected: .constant(text == selectedType), isDisabled: $isDisabled, accessibilityLabel: accessibilityLabel)
+                    SirioChipsSelection(text: text, isSelected: Binding(
+                        get: { selectedType == text },
+                        set: { newValue in
+                            selectedType = newValue ? text : nil
+                        }
+                    ), isDisabled: $isDisabled, accessibilityLabel: accessibilityLabel)
                     .padding(.vertical, Size.Filtri.paddingVerticalChips)
                 }
             }
