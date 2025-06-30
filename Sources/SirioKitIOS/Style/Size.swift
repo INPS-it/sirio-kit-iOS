@@ -55,8 +55,6 @@ extension Size {
             
             public static let icon: CGFloat = 20 // Both orientation
             public static let indicator: CGFloat = 3 // Both orientation
-            public static let linePaddingBottom: CGFloat = 10 // Both orientation
-            public static let paddingHorizontal: CGFloat = 9 // Both orientation
 
             // Landscape
             public struct Landscape {
@@ -158,11 +156,14 @@ extension Size {
     public struct Accordion {
         public static let borderWidth: CGFloat = 1
         public static let sectionHeight: CGFloat = 64
-        public static let paddingHorizontal: CGFloat = 16
-        public static let paddingContent: CGFloat = 16
+        
+        public struct Arrow {
+            public static let frame: CGFloat = 16
+        }
         
         public struct Icon {
-            public static let frame: CGFloat = 16
+            public static let frame: CGFloat = 24
+
         }
     }
 }
@@ -431,19 +432,10 @@ extension Size {
 extension Size {
     public struct Tab {
         
-        public static let spacingHorizontal: CGFloat = 8
-        public static let spacingHorizontalGroupTop: CGFloat = 2
-        public static let paddingHorizontal: CGFloat = 32
-        public static let paddingHorizontalWithIcon: CGFloat = 20
         public static let height: CGFloat = 44
-        
-        public struct Rectangle {
-            public static let height: CGFloat = 4
-        }
-        
-        public struct Icon {
-            public static let frame: CGFloat = 16
-        }
+        public static let rectangleHeight: CGFloat = 4
+        public static let lineHeight: CGFloat = 1
+        public static let iconFrame: CGFloat = 16
     }
 }
 
@@ -482,8 +474,6 @@ extension Size {
 extension Size {
     public struct Dialog {
         public static let maxHeight: CGFloat = UIScreen.main.bounds.height * 0.80 // 80% of the screen
-        public static let spacing: CGFloat = 16
-        public static let padding: CGFloat = 24
         public static let cornerRadius: CGFloat = 16
         
         public struct InfoIcon {
@@ -515,15 +505,12 @@ extension Size {
 extension Size {
     public struct Card {
         public struct Editorial {
-            public static let spacing: CGFloat = 16
-            public static let paddingHorizontal: CGFloat = 16
-            public static let paddingBottom: CGFloat = 16
-            public static let paddingTop: CGFloat = 24
-            public static let spacingItems: CGFloat = 60
+            
             public static let cornerRadius: CGFloat = 4
-            public static let imageHeight: CGFloat = 220
+            public static let imageHeight: CGFloat = 140
             
             public struct Item {
+                public static let containerFrame: CGFloat = 28
                 public static let width: CGFloat = 16
                 public static let height: CGFloat = 16
             }
@@ -535,21 +522,12 @@ extension Size {
         }
         
         public struct Process {
-            public static let spacing: CGFloat = 16
-            public static let paddingVertical: CGFloat = 16
-            public static let paddingHorizontal: CGFloat = 16
             public static let bodyHeight: CGFloat = 98
             public static let cornerRadius: CGFloat = 4
             
-            public struct Item {
-                public static let padding: CGFloat = 10
-                public static let width: CGFloat = 48
-                public static let height: CGFloat = 48
-            }
-            
             public struct Icon {
-                public static let width: CGFloat = 32
-                public static let height: CGFloat = 32
+                public static let width: CGFloat = 16
+                public static let height: CGFloat = 16
             }
         }
     }
@@ -824,10 +802,6 @@ extension Size {
 // MARK: Step Progress Bar
 extension Size {
     public struct SirioStepProgressBar {
-        static let spacingHorizontal: CGFloat = 16
-        static let paddingHorizontal: CGFloat = 16
-        static let paddingBottom: CGFloat = 24
-        static let paddingTop: CGFloat = 24
         
         struct StepBar {
             static let height: CGFloat = (60/2)-(32/2)
@@ -851,8 +825,6 @@ extension Size {
         
         struct StepSelection {
             static let iconFrame: CGFloat = 16
-            static let paddingTrailing: CGFloat = 10
-            static let paddingHorizontal: CGFloat = 16
             static let height: CGFloat = 48
         }
     }
@@ -948,6 +920,8 @@ extension Size {
         }
         
         public struct Inline {
+            static let paddingHorizontalLeading: CGFloat = 16
+            static let paddingHorizontalTrailing: CGFloat = 22
             static let rectangleWidth: CGFloat = 6
             static let height: CGFloat = 159
             static let cornerRadius: CGFloat = 6
@@ -981,5 +955,14 @@ extension Size {
             static let cornerRadius: CGFloat = 100
             static let lineWidth: CGFloat = 2
         }
+    }
+}
+
+extension Size {
+    struct DropdownMenu {
+        static let singleItemHeight: CGFloat = 46
+        static let width: CGFloat = 145
+        static let cornerRadius: CGFloat = 4
+        
     }
 }

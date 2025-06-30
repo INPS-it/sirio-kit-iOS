@@ -20,6 +20,7 @@ public enum SemanticTextArea: String, CaseIterable {
 ///   - textInfo: An optional label text displayed above the text area.
 ///   - infoIcon: An optional icon displayed next to the textInfo label.
 ///   - placeholder: The placeholder text shown when the text area is empty.
+///   - placeholderNLines: The number of lines displayed by the placeholder when the text area is empty.
 ///   - text: A binding to the current text content of the text area.
 ///   - helperText: An optional helper text displayed below the text area.
 ///   - isDisabled: A binding that determines whether the entire component is disabled.
@@ -33,6 +34,7 @@ public struct SirioTextArea: View {
     var textInfo: String?
     var infoIcon: AwesomeIcon?
     var placeholder: String
+    var placeholderMaxLines: Int
     @Binding var text: String
     var helperText: String?
     @Binding var isDisabled: Bool
@@ -47,6 +49,7 @@ public struct SirioTextArea: View {
                 textInfo: String? = nil,
                 infoIcon: AwesomeIcon? = nil,
                 placeholder: String,
+                placeholderMaxLines: Int = 1,
                 text: Binding<String>,
                 helperText: String?,
                 isDisabled: Binding<Bool> = .constant(false),
@@ -58,6 +61,7 @@ public struct SirioTextArea: View {
         self.textInfo = textInfo
         self.infoIcon = infoIcon
         self.placeholder = placeholder
+        self.placeholderMaxLines = placeholderMaxLines
         self._text = text
         self.helperText = helperText
         self._isDisabled = isDisabled
@@ -115,7 +119,7 @@ public struct SirioTextArea: View {
                             VStack {
                                 SirioText(text: placeholder, typography: .labelMdMiddle)
                                     .foregroundColor(textColor)
-                                    .lineLimit(1)
+                                    .lineLimit(placeholderMaxLines)
                                 Spacer()
                             }.onTapGesture {
                                 self.isFocused = true

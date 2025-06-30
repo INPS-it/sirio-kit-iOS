@@ -211,7 +211,8 @@ extension Typography {
 // MARK: Accordion
 extension Typography {
     public struct Accordion {
-        public static let style: Typography = .label_md_600
+        public static let title: Typography = .labelMdMiddle
+        public static let text: Typography = .labelMdRegular
     }
 }
 
@@ -304,9 +305,8 @@ extension Typography {
 // MARK: Dialog
 extension Typography {
     public struct Dialog {
-        public static let title: Typography = .h4_md
-        public static let subtitle: Typography = .p_md_01
-        public static let textfield: Typography = .label_md_600
+        public static let title: Typography = .headlineSmHeavy
+        public static let subtitle: Typography = .bodyMdRegular
     }
 }
 
@@ -323,8 +323,8 @@ extension Typography {
 // MARK: Tab
 extension Typography {
     public struct Tab {
-        public static let selected: Typography = .label_md_700
-        public static let unselected: Typography = .label_md_400
+        public static let selected: Typography = .labelMdHeavy
+        public static let unselected: Typography = .labelMdRegular
     }
 }
 
@@ -349,21 +349,18 @@ extension Typography {
 // MARK: Card
 extension Typography {
     public struct Card {
-        public static let date: Typography = Typography.init(fontFamily: StyleDictionaryTypography.globalFontFamily03,
-                                                      fontSize: StyleDictionarySize.globalFontSize03.cgFloat,
-                                                      fontWeight: StyleDictionaryTypography.globalFontWeights500,
-                                                      lineHeight: StyleDictionarySize.globalLineHeights03.cgFloat)
+        public static let date: Typography = .labelNumberSmRegular
         
         public struct Editorial {
-            public static let title: Typography = .link_h4_md_01
-            public static let subtitle: Typography = .h6_md
-            public static let body: Typography = .p_md_01
-            public static let signature: Typography = .signature_p_md_02
+            public static let title: Typography = .linkLgHeavy
+            public static let subtitle: Typography = .labelMdMiddle
+            public static let body: Typography = .bodyMdRegular
         }
         
         public struct Process {
-            public static let title: Typography = .h4_md
-            public static let body: Typography = .p_md_01
+            public static let title: Typography = .headlineSmHeavy
+            public static let subtitle: Typography = .labelMdMiddle
+            public static let body: Typography = .bodyMdRegular
         }
     }
 }

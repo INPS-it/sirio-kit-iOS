@@ -20,7 +20,7 @@ public class ObservableTextField: ObservableObject {
     @Published public var placeholder: String?
     @Published public var text: String?
     
-    public init(type: SemanticTextField? = nil,
+    public init(type: SemanticTextField? = .info,
                 label: String? = nil,
                 placeholder: String? = nil,
                 text: String? = nil){
@@ -28,5 +28,15 @@ public class ObservableTextField: ObservableObject {
         self.label = label
         self.placeholder = placeholder
         self.text = text
+    }
+    
+    public func isEmpty() -> Bool {
+        if let label = label,
+           let _ = type,
+           let placeholder = placeholder,
+           let _ = text {
+            return false
+        }
+        return true
     }
 }

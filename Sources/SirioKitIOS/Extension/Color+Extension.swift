@@ -288,11 +288,6 @@ extension Color {
                 public static let light = StyleDictionaryColor.globalPrimary000.color
             }
             
-            public struct Hover {
-                public static let dark = StyleDictionaryColor.aliasInteractivePrimaryHover.color
-                public static let light = StyleDictionaryColor.aliasBackgroundColorPrimaryLight40.color
-            }
-            
             public struct Active {
                 public static let dark = StyleDictionaryColor.aliasInteractivePrimaryPressed.color
                 public static let light = StyleDictionaryColor.aliasBackgroundColorPrimaryLight40.color
@@ -839,53 +834,31 @@ extension Color {
 extension Color {
     public struct Tab {
         public struct Rectangle {
-            public struct Top {
-                public static let state: ColorState = .init(default: StyleDictionaryColor.aliasBackgroundColorPrimaryLight40.color,
-                                                            disabled: StyleDictionaryColor.aliasBackgroundColorDisabled.color,
-                                                            hover: StyleDictionaryColor.aliasInteractivePrimaryHover.color,
-                                                            pressed: StyleDictionaryColor.aliasInteractivePrimaryDefault.color)
-            }
-            
-            public struct Bottom {
-                public static let state: ColorState = .init(default: StyleDictionaryColor.aliasBackgroundColorPrimaryLight40.color,
-                                                            disabled: StyleDictionaryColor.aliasBackgroundColorDisabled.color,
-                                                            hover: StyleDictionaryColor.aliasInteractivePrimaryHover.color,
-                                                            pressed: StyleDictionaryColor.aliasInteractivePrimaryDefault.color)
-            }
-            
-            
+            public static let `default`: Color = .aliasBackgroundColorPrimaryLight0
+            public static let selected: Color = .aliasInteractivePrimaryDefault
+            public static let disabled: Color = .aliasBackgroundColorDisabled
         }
         
         public struct Text {
-            public static let state: ColorState = .init(default: StyleDictionaryColor.aliasInteractiveSecondaryDefault.color,
-                                                        disabled: StyleDictionaryColor.aliasTextColorDisabled.color,
-                                                        hover: StyleDictionaryColor.aliasInteractivePrimaryHover.color,
-                                                        pressed: StyleDictionaryColor.aliasInteractiveSecondaryDefault.color)
+            public static let `default`: Color = .aliasInteractiveSecondaryDefault
+            public static let selected: Color = .aliasInteractiveSecondaryDefault
+            public static let disabled: Color = .aliasTextColorDisabled
         }
         
         public struct Icon {
-            public static let state: ColorState = .init(default: StyleDictionaryColor.aliasTextColorPrimaryLight50.color,
-                                                        disabled: StyleDictionaryColor.aliasTextColorDisabled.color,
-                                                        hover: StyleDictionaryColor.aliasInteractivePrimaryHover.color,
-                                                        pressed: StyleDictionaryColor.aliasInteractivePrimaryDefault.color)
+            public static let `default`: Color = .aliasInteractiveSecondaryDefault
+            public static let selected: Color = .aliasInteractiveSecondaryDefault
+            public static let disabled: Color = .aliasTextColorDisabled
         }
         
         public struct Background {
-            
-            public struct Top {
-                public static let state: ColorState = .init(default: StyleDictionaryColor.aliasBackgroundColorPrimaryLight40.color,
-                                                            disabled: StyleDictionaryColor.aliasBackgroundColorDisabled.color,
-                                                            hover: StyleDictionaryColor.aliasBackgroundColorPrimaryLight40.color,
-                                                            pressed: StyleDictionaryColor.aliasBackgroundColorPrimaryLight0.color)
-            }
-            
-            public struct Bottom {
-                public static let state: ColorState = .init(default: StyleDictionaryColor.aliasBackgroundColorPrimaryLight0.color,
-                                                            disabled: StyleDictionaryColor.aliasBackgroundColorPrimaryLight0.color,
-                                                            hover: StyleDictionaryColor.aliasBackgroundColorPrimaryLight40.color,
-                                                            pressed: StyleDictionaryColor.aliasBackgroundColorPrimaryLight0.color)
-            }
-            
+            public static let `default`: Color = .aliasBackgroundColorPrimaryLight0
+            public static let selected: Color = .aliasBackgroundColorPrimaryLight0
+            public static let disabled: Color = .aliasBackgroundColorPrimaryLight0            
+        }
+        
+        public struct Line {
+            public static let `default`: Color = .aliasBackgroundColorPrimaryLight50
         }
     }
 }
@@ -940,21 +913,21 @@ extension Color {
 extension Color {
     public struct Dialog {
         
-        public static let title = StyleDictionaryColor.aliasTextColorSecondaryDark100.color
-        public static let subtitle = StyleDictionaryColor.aliasTextColorSecondaryDark100.color
+        public static let title = SirioFoundationColor.aliasTextColorSecondaryDark100.color
+        public static let subtitle = SirioFoundationColor.aliasTextColorSecondaryDark100.color
         
         public struct InfoIcon {
-            public static let `default` = StyleDictionaryColor.globalSemanticInfo100.color
-            public static let alert = StyleDictionaryColor.globalSemanticAlert100.color
-            public static let warning = StyleDictionaryColor.globalSemanticWarning100.color
+            public static let `default` = SirioFoundationColor.globalSemanticInfo100.color
+            public static let alert = SirioFoundationColor.globalSemanticAlert100.color
+            public static let warning = SirioFoundationColor.globalSemanticWarning100.color
         }
         
-        public struct TextField {
-            public static let text = StyleDictionaryColor.aliasTextColorSecondaryDark100.color
-        }
+//        public struct TextField {
+//            public static let text = SirioFoundationColor.aliasTextColorSecondaryDark100.color
+//        }
         
         public struct Background {
-            public static let `default` = StyleDictionaryColor.aliasBackgroundColorPrimaryLight0.color
+            public static let `default` = SirioFoundationColor.aliasBackgroundColorPrimaryLight0.color
         }
     }
 }
@@ -1005,7 +978,6 @@ extension Color {
                 public static let title = StyleDictionaryColor.aliasInteractivePrimaryDefault.color
                 public static let subtitle = StyleDictionaryColor.globalSecondary100.color
                 public static let body = StyleDictionaryColor.globalSecondary100.color
-                public static let signature = StyleDictionaryColor.globalSecondary100.color
             }
             
             public struct Icon {
@@ -1020,19 +992,19 @@ extension Color {
         public struct Process {
             public struct Background {
                 public static let light = StyleDictionaryColor.aliasTextColorPrimaryLight0.color
-                public static let dark = StyleDictionaryColor.globalDarkPrimary120.color
+                public static let dark = StyleDictionaryColor.globalDarkPrimary115.color
             }
             
             public struct Text {
                 
-                public struct Date {
-                    public static let light = StyleDictionaryColor.globalSecondary100.color
-                    public static let dark = StyleDictionaryColor.globalLightPrimary40.color
+                public struct Title {
+                    public static let light = StyleDictionaryColor.aliasTextColorSecondaryDark100.color
+                    public static let dark = StyleDictionaryColor.aliasTextColorPrimaryLight0.color
                 }
                 
-                public struct Title {
-                    public static let light = StyleDictionaryColor.globalSecondary100.color
-                    public static let dark = StyleDictionaryColor.globalLightPrimary40.color
+                public struct Subtitle {
+                    public static let light = StyleDictionaryColor.aliasTextColorSecondaryDark100.color
+                    public static let dark = StyleDictionaryColor.aliasTextColorPrimaryLight0.color
                 }
                 
                 public struct Body {
@@ -1042,11 +1014,6 @@ extension Color {
             }
             
             public struct Icon {
-                public static let light = StyleDictionaryColor.globalSecondary100.color
-                public static let dark = StyleDictionaryColor.globalLightPrimary40.color
-            }
-            
-            public struct Item {
                 public static let light = StyleDictionaryColor.aliasInteractivePrimaryDefault.color
                 public static let dark = StyleDictionaryColor.aliasInteractiveAccentDefault.color
             }
@@ -1438,25 +1405,25 @@ extension Color {
 extension Color {
     public struct SegmentedControls {
         
-        static let background: Color = Color.aliasBackgroundColorPrimaryLight40
-        static let border: Color = Color.globalMidPrimary70
-        static let backgroundDivider: Color = Color.aliasBackgroundColorSecondaryLight50
+        static let background = Color.aliasBackgroundColorPrimaryLight40
+        static let border = Color.globalMidPrimary70
+        static let backgroundDivider = Color.aliasBackgroundColorSecondaryLight50
 
         
         struct Button {
             struct Icon {
-                static let `default`: Color = Color.aliasTextColorDisabled
-                static let selected: Color = Color.aliasAppInteractivePrimary000Default
+                static let `default` = Color.aliasTextColorDisabled
+                static let selected = Color.aliasAppInteractivePrimary000Default
             }
             
             struct Text {
-                static let `default`: Color = Color.aliasTextColorDisabled
-                static let selected: Color = Color.aliasAppInteractivePrimary000Default
+                static let `default` = Color.aliasTextColorDisabled
+                static let selected = Color.aliasAppInteractivePrimary000Default
             }
             
             struct Background {
-                static let `default`: Color = Color.aliasBackgroundColorPrimaryLight40
-                static let selected: Color = Color.aliasInteractivePrimaryDefault
+                static let `default` = Color.aliasBackgroundColorPrimaryLight40
+                static let selected = Color.aliasInteractivePrimaryDefault
             }
         }
     }

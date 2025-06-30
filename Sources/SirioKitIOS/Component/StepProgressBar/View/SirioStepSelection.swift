@@ -37,14 +37,14 @@ struct SirioStepSelection: View {
             
             SirioText(text: "\(currentStep + 1) / \(totalSteps)", typography: .labelMdRegular)
                 .foregroundStyle(Color.StepProgressBar.StepSelection.text2)
-                .padding(.trailing, Size.SirioStepProgressBar.StepSelection.paddingTrailing)
+                .padding(.trailing, Size.p10)
             
             SirioIcon(data: .init(icon: isOpen ? .angleUp : .angleDown))
                 .frame(width: Size.SirioStepProgressBar.StepSelection.iconFrame,
                        height: Size.SirioStepProgressBar.StepSelection.iconFrame)
                 .foregroundStyle(Color.StepProgressBar.StepSelection.icon)
         }
-        .padding(.horizontal, Size.SirioStepProgressBar.StepSelection.paddingHorizontal)
+        .padding(.horizontal, Size.p16)
         .frame(height: Size.SirioStepProgressBar.StepSelection.height)
         .frame(maxWidth: .infinity)
         .background(Color.StepProgressBar.StepSelection.background)

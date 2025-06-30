@@ -9,13 +9,13 @@
 import SwiftUI
 
 public enum DialogType: CaseIterable {
-    case `default`, warning, alert
+    case info, warning, alert
 }
 
 /// A custom dialog component that can be used for various purposes like showing alerts.
 ///
 /// - Parameters:
-///   - type: The type of the dialog, e.g., `.default`, `.warning`, or `.alert`.
+///   - type: The type of the dialog, e.g., `.info`, `.warning`, or `.alert`.
 ///   - title: The title text of the dialog.
 ///   - subtitle: The subtitle text of the dialog.
 ///   - textfield1: The first text field to be displayed in the dialog.
@@ -30,6 +30,7 @@ public enum DialogType: CaseIterable {
 ///   - accessibilityLabelInfoIcon: Accessibility label for the info icon.
 ///   - accessibilityLabelSubtitle: Accessibility label for the subtitle.
 ///   - accessibilityLabelButtonClose: Accessibility label for the close button.
+///   
 public struct SirioDialog: View {
     var type: DialogType
     var title: String?
@@ -62,7 +63,7 @@ public struct SirioDialog: View {
     @FocusState private var isTextField1Focused: Bool
     @FocusState private var isTextField2Focused: Bool
     
-    public init(type: DialogType = .default,
+    public init(type: DialogType = .info,
                 title: String?,
                 subtitle: String?,
                 textfield1: ObservableTextField = .init(),
@@ -73,7 +74,7 @@ public struct SirioDialog: View {
                 actionSecondButton: (() -> Void)?,
                 onTapInfoAction: (() -> Void)?,
                 onTapCloseAction: (() -> Void)?,
-                isVisibleInfoIcon: Bool,
+                isVisibleInfoIcon: Bool = true,
                 accessibilityLabelInfoIcon: String? = nil,
                 accessibilityLabelSubtitle: String? = nil,
                 accessibilityLabelButtonClose: String? = nil){
@@ -97,7 +98,7 @@ public struct SirioDialog: View {
     private var iconColor: Color {
         if let _ = icon, isVisibleInfoIcon {
             switch type {
-            case .default:
+            case .info:
                 return Color.Dialog.InfoIcon.default
             case .warning:
                 return Color.Dialog.InfoIcon.warning
@@ -113,7 +114,7 @@ public struct SirioDialog: View {
             return nil
         }
         switch type {
-        case .default:
+        case .info:
             return .infoCircle
         case .warning:
             return .exclamationCircle
@@ -127,14 +128,14 @@ public struct SirioDialog: View {
     }
     
     public var body: some View {
-        VStack(spacing: Size.Dialog.spacing) { // Blur view
+        VStack(spacing: Size.zero) { // Blur view
             Color.clear
             
-            VStack(alignment: .leading, spacing: Size.Dialog.spacing) { // Dialog View
-                VStack(spacing: Size.zero){ // Icons View
-                    HStack { // Close
+            VStack(alignment: .leading, spacing: Size.zero) {
+                VStack(spacing: Size.zero){
+                    HStack {
                         Spacer()
-                        SirioButton(hierarchy: .ghost, size: .large, text: nil, iconData: .init(icon: .times), action: {
+                        SirioButton(hierarchy: .ghost, size: .medium, text: nil, iconData: .init(icon: .times), action: {
                             onTapCloseAction?()
                         }, accessibilityLabel: accessibilityLabelButtonClose)
                     }
@@ -155,43 +156,62 @@ public struct SirioDialog: View {
                         }
                     }
                 }
-                
+                .padding(.bottom, Size.p12)
+
                 if let title = title {
                     SirioText(text: title, typography: Typography.Dialog.title)
                         .foregroundColor(Color.Dialog.title)
+                        .if(subtitle != nil && !subtitle!.isEmpty, transform: { view in
+                            view.padding(.bottom, Size.p8)
+                        })
+                }
+                if let subtitle = subtitle {
+                    ScrollView(showsIndicators: false, content: {
+                        SirioText(text: subtitle ?? "", typography: Typography.Dialog.subtitle)
+                            .foregroundColor(Color.Dialog.subtitle)
+                            .setAccessibilityLabel(accessibilityLabelSubtitle != nil ? accessibilityLabelSubtitle : subtitle)
+                            .if(textfield1.isEmpty() == false, transform: { view in
+                                view.padding(.bottom, Size.p16)
+                            })
+                    })
                 }
                 
-                ScrollView(showsIndicators: false, content: {
-                    SirioText(text: subtitle ?? "", typography: Typography.Dialog.subtitle)
-                        .foregroundColor(Color.Dialog.subtitle)
-                        .setAccessibilityLabel(accessibilityLabelSubtitle != nil ? accessibilityLabelSubtitle : subtitle)
-                })
+                if type == .info {
+                    ViewTextField(textfield: textfield1)
+                        .if(textfield2.isEmpty() == false, transform: { view in
+                            view.padding(.bottom, Size.p16)
+                        })
+                    
+                    ViewTextField(textfield: textfield2)
+                }
                 
-                
-                ViewTextField(textfield: textfield1)
-                
-                ViewTextField(textfield: textfield2)
-                
-                VStack(spacing: Size.Dialog.spacing) {
+                VStack(spacing: Size.p16) {
                     ViewButton(hierarchy: hierarchy,
                                text: textFirstButton,
                                action: {
                         actionFirstButton?()
                     })
                     
-                    ViewButton(hierarchy: .ghost,
+                    ViewButton(hierarchy: .secondary,
                                text: textSecondButton,
                                action: {
                         actionSecondButton?()
                     })
                 }
+                .padding(.top, Size.p24)
                 
             } // Dialog View
             .frame(maxHeight: Size.Dialog.maxHeight)
-            .padding(Size.Dialog.padding)
+            .padding(.horizontal, Size.p16)
+            .padding(.top, Size.p16)
+            .padding(.bottom, Size.p32)
             .background(Color.Dialog.Background.default)
             .cornerRadius(Size.Dialog.cornerRadius, corners: [.topLeft, .topRight])
             .fixedSize(horizontal: false, vertical: true)
+            .shadow(color: StyleDictionaryBoxShadow.elevation04.0.color,
+                    radius: StyleDictionaryBoxShadow.elevation04.3.cgFloat,
+                    x: StyleDictionaryBoxShadow.elevation04.1.cgFloat,
+                    y: StyleDictionaryBoxShadow.elevation04.2.cgFloat)
         } // Blur View
         .background(Color.black.opacity(0.2))
         .frame(height: UIScreen.main.bounds.height)
@@ -223,7 +243,7 @@ struct ViewTextField: View {
            let _ = textfield.type,
            let placeholder = textfield.placeholder,
            let _ = textfield.text {
-            VStack(alignment: .leading, spacing: Size.Dialog.spacing){
+            VStack(alignment: .leading, spacing: Size.s16) {
                 SirioTextField(type: $textfield.type.toUnwrapped(defaultValue: .info),
                                textInfo: label,
                                placeholder: placeholder,

@@ -42,7 +42,7 @@ public struct SirioFiltriTabs: View {
                 
             }
             
-            SirioTabGroup(items: items, selectedIndex: $selectedIndex, position: .top, onSelectedTab: onSelectedTab)
+            SirioTabGroup(items: items, selectedIndex: $selectedIndex, onSelectedTab: onSelectedTab)
                 .background(Color.Filtri.Background.default)
             
             if !withScroll {

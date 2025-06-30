@@ -28,7 +28,7 @@ public struct SirioAccordion: View {
 }
 
 #Preview {
-    SirioAccordion(data: .init(text: "Accordion Item #1", content: {
+    SirioAccordion(data: .init(title: "Accordion Item #1", content: {
         SirioText(text: .loremIpsum, typography: .label_md_700)
             .foregroundColor(.black)
     }))

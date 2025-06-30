@@ -94,7 +94,8 @@ public struct SirioNotificaInline: View {
                 }
             }
             .padding(.top, Size.Notifica.paddingTop)
-            .padding(.horizontal, Size.Notifica.paddingHorizontal)
+            .padding(.leading, Size.Notifica.Inline.paddingHorizontalLeading)
+            .padding(.trailing, Size.Notifica.Inline.paddingHorizontalTrailing)
         }
         .frame(maxHeight: .infinity)
         .frame(maxWidth: .infinity)

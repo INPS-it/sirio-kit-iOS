@@ -60,6 +60,8 @@ public struct SirioIconData: Identifiable {
     public static let previewArrowLeft = SirioIconData(icon: .arrowLeft)
     public static let previewArrowRight = SirioIconData(icon: .arrowRight)
     public static let previewCube = SirioIconData(icon: .cube)
+    public static let previewBookmark = SirioIconData(icon: .bookmark)
+    public static let previewShare = SirioIconData(icon: .shareAlt)
 }
 
 /// A basic component that represent an icon using the data

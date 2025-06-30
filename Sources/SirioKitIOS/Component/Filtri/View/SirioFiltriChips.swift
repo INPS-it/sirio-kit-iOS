@@ -31,6 +31,8 @@ public struct SirioFiltriChips: View {
         self.isWrapped = isWrapped
     }
     
+    
+    
     public var body: some View {
         if isWrapped {
             if #available(iOS 16.0, *) {

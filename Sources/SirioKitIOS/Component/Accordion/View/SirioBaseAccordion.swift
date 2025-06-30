@@ -36,10 +36,13 @@ struct SirioBaseAccordion: View {
                 }
             }, label: {
                 // Inside style
-            }).buttonStyle(SirioAccordionStyle(text: data.text,
-                                          isOpen: data.isOpen,
-                                          isDisabled: $data.isDisabled,
-                                          withBorder: withBorder))
+            }).buttonStyle(SirioAccordionStyle(iconData: data.iconData,
+                                               title: data.title,
+                                               text: data.text,
+                                               tag: data.tag,
+                                               isOpen: data.isOpen,
+                                               isDisabled: $data.isDisabled,
+                                               withBorder: withBorder))
             .setAccessibilityLabel(data.accessibilityLabel)
             
             if data.isOpen {
@@ -47,7 +50,7 @@ struct SirioBaseAccordion: View {
                     .frame(
                         minWidth: 0,
                         maxWidth: .infinity)
-                    .padding(Size.Accordion.paddingContent)
+                    .padding(Size.p16)
                     .border(Color.Accordion.Border.content, width: 1)
                     .background(Color.white)
             }
@@ -57,15 +60,44 @@ struct SirioBaseAccordion: View {
 
 #Preview {
     VStack {
-        SirioBaseAccordion(data: .init(text: "Accordion Item #1", content: {
-            SirioText(text: .loremIpsum, typography: .label_md_700)
+        SirioBaseAccordion(data: .init(title: "Accordion Item #1", content: {
+            SirioText(text: .loremIpsum, typography: .bodyMdRegular)
+                .foregroundStyle(Color.aliasTextColorSecondaryDark100)
         }, onTapAccordion: { isOpen in
             
         }))
         
-        SirioBaseAccordion(data: .init(text: "Accordion Item con testo molto molto molto molto molto molto molto molto molto molto molto molto lungo ", content: {
-            SirioText(text: "Lorem ipsum", typography: .label_md_700)
-                .foregroundColor(.black)
+        // Icon
+        SirioBaseAccordion(data: .init(iconData: SirioIconData(icon: .cube),
+                                       title: "Accordion Item #1",
+                                       content: {
+            SirioText(text: .loremIpsum, typography: .bodyMdRegular)
+                .foregroundStyle(Color.aliasTextColorSecondaryDark100)
+        }, isDisabled: true, onTapAccordion: { isOpen in
+            
+        }))
+        
+        // Tag
+        SirioBaseAccordion(data: .init(title: "Accordion Item #1",
+                                       tag: "Tag",
+                                       content: {
+            SirioText(text: .loremIpsum, typography: .bodyMdRegular)
+                .foregroundStyle(Color.aliasTextColorSecondaryDark100)
+        }, onTapAccordion: { isOpen in
+            
+        }))
+        
+        // Text
+        SirioBaseAccordion(data: .init(title: "Accordion Item #1", text: "Text", content: {
+            SirioText(text: .loremIpsum, typography: .bodyMdRegular)
+                .foregroundStyle(Color.aliasTextColorSecondaryDark100)
+        }, onTapAccordion: { isOpen in
+            
+        }))
+        
+        SirioBaseAccordion(data: .init(title: "Accordion Item con testo molto molto molto molto molto molto molto molto molto molto molto molto lungo ", content: {
+            SirioText(text: "Lorem ipsum", typography: .bodyMdRegular)
+                .foregroundStyle(Color.aliasTextColorSecondaryDark100)
             
         }))
         

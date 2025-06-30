@@ -19,37 +19,42 @@ public struct SirioTabGroup: View {
     
     private var items: [SirioTabData]
     @Binding private var selectedIndex: Int
-    private var position: Position
     private var onSelectedTab: ((Int) -> Void)?
     
     public init(items: [SirioTabData],
                 selectedIndex: Binding<Int>,
-                position: Position,
                 onSelectedTab: ((Int) -> Void)?) {
         self.items = items
         self._selectedIndex = selectedIndex
-        self.position = position
         self.onSelectedTab = onSelectedTab
     }
     
     public var body: some View {
         ScrollViewReader { proxy in
             ScrollView(.horizontal, showsIndicators: false, content: {
-                HStack(spacing: position == .top ? Size.Tab.spacingHorizontalGroupTop : Size.zero) {
-                    ForEach(items.indices, id: \.self) { index in
-                        let item = items[index]
-                        let isSelected = selectedIndex == index
-                        SirioTab(isSelected: isSelected,
-                            position: position,
-                            item: item,
-                            onSelectTab: {
-                            withAnimation {
-                                self.selectedIndex = index
-                            }
-                            onSelectedTab?(index)
-                        })
+                VStack(spacing: Size.s0) {
+                    HStack(spacing: Size.s8) {
+                        ForEach(items.indices, id: \.self) { index in
+                            let item = items[index]
+                            let isSelected = selectedIndex == index
+                            SirioTab(isSelected: isSelected,
+                                     item: item,
+                                     onSelectTab: {
+                                withAnimation {
+                                    self.selectedIndex = index
+                                }
+                                onSelectedTab?(index)
+                            })
+                        }
                     }
+                    .padding(.horizontal, Size.p16)
+                    Rectangle()
+                        .frame(height: Size.Tab.lineHeight)
+                        .foregroundStyle(Color.Tab.Line.default)
                 }
+                .padding(.top, Size.p8)
+                .padding(.bottom, Size.p16)
+
             })
             .onChange(of: selectedIndex) { newIndex in
                 withAnimation {
@@ -57,6 +62,7 @@ public struct SirioTabGroup: View {
                 }
             }
         }
+        .background(Color.Tab.Background.default)
     }
 }
 
@@ -66,8 +72,7 @@ struct ExampleTabGroup: View {
     var body: some View {
         SirioTabGroup(items: SirioTabData.previewInps(),
                  selectedIndex: $selectedIndex,
-                 position: .bottom,
-                 onSelectedTab: nil)
+                onSelectedTab: nil)
     }
 }
 

@@ -50,15 +50,15 @@ extension SirioAccordionGroup {
 #Preview {
     VStack {
         SirioAccordionGroup(data: [
-            .init(text: "Accordion #1", content: {
+            .init(title: "Accordion #1", content: {
                 SirioText(text: .loremIpsum, typography: .label_md_700)
                     .foregroundColor(.black)
             }),
-            .init(text: "Accordion #2", content: {
+            .init(title: "Accordion #2", content: {
                 SirioText(text: .loremIpsum, typography: .label_md_700)
                     .foregroundColor(.black)
             }),
-            .init(text: "Accordion #3", content: {
+            .init(title: "Accordion #3", content: {
                 SirioText(text: .loremIpsum, typography: .label_md_700)
                     .foregroundColor(.black)
             }, isDisabled: true)

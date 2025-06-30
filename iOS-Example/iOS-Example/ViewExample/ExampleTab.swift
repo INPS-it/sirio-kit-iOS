@@ -47,43 +47,18 @@ struct ExampleTabSingle: View {
         VStack(spacing: 20) {
             // Top
             Group {
-                SirioText(text: "Selected - Top", typography: .label_md_400)
+                SirioText(text: "Selected", typography: .label_md_400)
                 SirioTab(isSelected: true,
-                    position: .top,
                     item: .init(icon: .check, text: "Label tab", isDisabled: false),
                     onSelectTab: nil)
                 
-                SirioText(text: "Default - Top", typography: .label_md_400)
+                SirioText(text: "Default", typography: .label_md_400)
                 SirioTab(isSelected: false,
-                    position: .top,
                     item: .init(icon: .check, text: "Label tab", isDisabled: false),
                     onSelectTab: nil)
                 
-                SirioText(text: "Disabled - Top", typography: .label_md_400)
+                SirioText(text: "Disabled", typography: .label_md_400)
                 SirioTab(isSelected: false,
-                    position: .top,
-                    item: .init(icon: .check, text: "Label tab", isDisabled: true),
-                    onSelectTab: nil)
-            }
-            
-            
-            // Bottom
-            Group {
-                SirioText(text: "Selected - Bottom", typography: .label_md_400)
-                SirioTab(isSelected: true,
-                    position: .bottom,
-                    item: .init(icon: .check, text: "Label tab", isDisabled: false),
-                    onSelectTab: nil)
-                
-                SirioText(text: "Default - Bottom", typography: .label_md_400)
-                SirioTab(isSelected: false,
-                    position: .bottom,
-                    item: .init(icon: .check, text: "Label tab", isDisabled: false),
-                    onSelectTab: nil)
-                
-                SirioText(text: "Disabled - Bottom", typography: .label_md_400)
-                SirioTab(isSelected: false,
-                    position: .bottom,
                     item: .init(icon: .check, text: "Label tab", isDisabled: true),
                     onSelectTab: nil)
             }
@@ -97,8 +72,7 @@ struct ExampleTabSingle: View {
 
 // Tab Group
 struct ExampleTabGroup: View {
-    @State var selectedIndex1 = 0
-    @State var selectedIndex2 = 0
+    @State var selectedIndex = 0
     
     private var items: [SirioTabData] = [
         .init(icon: .check, text: "Label tab 0"),
@@ -110,14 +84,7 @@ struct ExampleTabGroup: View {
     
     var body: some View {
         VStack {
-            SirioText(text: "Top", typography: .label_md_400)
-            SirioTabGroup(items: items, selectedIndex: $selectedIndex1, position: .top, onSelectedTab: nil)
-            
-            Spacer()
-                .frame(height: 60)
-            
-            SirioText(text: "Bottom", typography: .label_md_400)
-            SirioTabGroup(items: items, selectedIndex: $selectedIndex2, position: .bottom, onSelectedTab: nil)
+            SirioTabGroup(items: items, selectedIndex: $selectedIndex, onSelectedTab: nil)
             
             Spacer()
         }

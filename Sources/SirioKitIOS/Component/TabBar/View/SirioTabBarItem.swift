@@ -60,7 +60,7 @@ public struct SirioTabBarItem: View {
                 SirioText(text: itemData.name, typography: Typography.TabBar.style)
                     .foregroundColor(textColor)
             }
-            .padding(.horizontal, Size.TabBar.Item.paddingHorizontal)
+            .padding(.horizontal, Size.p9)
             .frame(height: Size.TabBar.Item.Landscape.height)
             .readSize { size in
                 hStackFrame = size
@@ -97,7 +97,7 @@ public struct SirioTabBarItem: View {
                     .foregroundColor(textColor)
                 Spacer()
             }
-            .padding(.horizontal, Size.TabBar.Item.paddingHorizontal)
+            .padding(.horizontal, Size.p9)
             .frame(height: Size.TabBar.Item.Portrait.height)
         }
         .frame(height: Size.TabBar.height)

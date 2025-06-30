@@ -94,8 +94,8 @@ struct Dialog1: View {
             
         }
         .dialog(isPresented: $isPresented,
-                type: .default,
-                title: "Titolo finestra di dialogo",
+                type: .info,
+                title: "Titolo",
                 subtitle: .loremIpsum,
                 textfield1: .init(type: .info, label: "Label", placeholder: "Placeholder", text: ""),
                 textfield2: .init(type: .info, label: "Label", placeholder: "Placeholder", text: ""),
@@ -130,8 +130,8 @@ struct Dialog2: View {
         VStack {
             
         }.dialog(isPresented: $isPresented,
-                 type: .default,
-                 title: "Titolo finestra di dialogo",
+                 type: .info,
+                 title: "Titolo",
                  subtitle: .loremIpsum,
                  textfield1: .init(type: .info, label: "Label", placeholder: "Placeholder", text: ""),
                  textfield2: .init(),
@@ -164,8 +164,8 @@ struct Dialog3: View {
         VStack {
             
         }.dialog(isPresented: $isPresented,
-                 type: .default,
-                 title: "Titolo finestra di dialogo",
+                 type: .info,
+                 title: "Titolo",
                  subtitle: .loremIpsum,
                  textfield1: .init(),
                  textfield2: .init(),
@@ -199,8 +199,8 @@ struct Dialog4: View {
         VStack {
             
         }.dialog(isPresented: $isPresented,
-                 type: .default,
-                 title: "Titolo finestra di dialogo",
+                 type: .info,
+                 title: "Titolo",
                  subtitle: nil,
                  textfield1: .init(),
                  textfield2: .init(),
@@ -233,8 +233,8 @@ struct Dialog5: View {
         VStack {
             
         }.dialog(isPresented: $isPresented,
-                 type: .default,
-                 title: "Titolo finestra di dialogo",
+                 type: .info,
+                 title: "Titolo",
                  subtitle: .loremIpsum,
                  textfield1: .init(),
                  textfield2: .init(),
@@ -268,7 +268,7 @@ struct DialogAlert: View {
             
         }.dialog(isPresented: $isPresented,
                  type: .alert,
-                 title: "Titolo finestra di dialogo",
+                 title: "Titolo",
                  subtitle: .loremIpsum,
                  textfield1: .init(),
                  textfield2: .init(),
@@ -302,7 +302,7 @@ struct DialogWarning: View {
             
         }.dialog(isPresented: $isPresented,
                  type: .warning,
-                 title: "Titolo finestra di dialogo",
+                 title: "Titolo",
                  subtitle: .loremIpsum,
                  textfield1: .init(),
                  textfield2: .init(),

@@ -68,7 +68,6 @@ struct SirioStepControls: View {
             }
             .padding(.horizontal)
         })
-
     }
     
     private var optionsView: some View {

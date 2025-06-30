@@ -41,21 +41,45 @@ struct ExampleAccordion: View {
 
 #Preview {
     ExampleAccordion()
+    //ExampleAccordionSingle()
 }
 
 struct ExampleAccordionSingle: View {
     
     var body: some View{
         VStack {
-            SirioAccordion(data: .init(text: "Accordion #1", content: {
+            SirioAccordion(data: .init(title: "Accordion #1", content: {
                 SirioText(text: .loremIpsum, typography: .label_md_400)
                     .foregroundColor(.black)
             }))
             
-            SirioAccordion(data: .init(text: "Accordion #1", content: {
-                SirioText(text: .loremIpsum, typography: .label_md_400)
+            SirioAccordion(data: .init(iconData: SirioIconData(icon: .cube),
+                                       title: "Accordion Item #1",
+                                       content: {
+                SirioText(text: .loremIpsum, typography: .label_md_700)
                     .foregroundColor(.black)
-            }, isDisabled: true))
+            }, onTapAccordion: { isOpen in
+                
+            }))
+            
+            SirioAccordion(data: .init(title: "Accordion Item #1",
+                                       text: "Text",
+                                       content: {
+                SirioText(text: .loremIpsum, typography: .label_md_700)
+                    .foregroundColor(.black)
+            }, onTapAccordion: { isOpen in
+                
+            }))
+            
+            SirioAccordion(data: .init(title: "Accordion Item #1",
+                                       tag: "Tag",
+                                       content: {
+                SirioText(text: .loremIpsum, typography: .label_md_700)
+                    .foregroundColor(.black)
+            }, onTapAccordion: { isOpen in
+                
+            }))
+            
         }
         .padding(.horizontal)
     }
@@ -64,20 +88,105 @@ struct ExampleAccordionSingle: View {
 struct ExampleAccordionGroup: View {
     
     var body: some View {
-        SirioAccordionGroup(data: [
-            .init(text: "Accordion #1", content: {
-                SirioText(text: .loremIpsum, typography: .label_md_400)
-                    .foregroundColor(.black)
-            }),
-            .init(text: "Accordion #2", content: {
-                SirioText(text: .loremIpsum, typography: .label_md_400)
-                    .foregroundColor(.black)
-            }),
-            .init(text: "Accordion #3", content: {
-                SirioText(text: .loremIpsum, typography: .label_md_400)
-                    .foregroundColor(.black)
-            }, isDisabled: true)
-        ])
+        VStack(spacing: 16){
+            SirioAccordionGroup(data: [
+                .init(title: "Accordion #1", content: {
+                    SirioText(text: .loremIpsum, typography: .label_md_400)
+                        .foregroundColor(.black)
+                }),
+                .init(title: "Accordion #2", content: {
+                    SirioText(text: .loremIpsum, typography: .label_md_400)
+                        .foregroundColor(.black)
+                }),
+                .init(title: "Accordion #3", content: {
+                    SirioText(text: .loremIpsum, typography: .label_md_400)
+                        .foregroundColor(.black)
+                }, isDisabled: false)
+            ])
+            
+            SirioAccordionGroup(data: [
+                .init(iconData: SirioIconData(icon: .cube),
+                      title: "Accordion Item #1",
+                      content: {
+                          SirioText(text: .loremIpsum, typography: .label_md_700)
+                              .foregroundColor(.black)
+                      }, onTapAccordion: { isOpen in
+                          
+                      }),
+                .init(iconData: SirioIconData(icon: .cube),
+                      title: "Accordion Item #1",
+                      content: {
+                          SirioText(text: .loremIpsum, typography: .label_md_700)
+                              .foregroundColor(.black)
+                      }, onTapAccordion: { isOpen in
+                          
+                      }),
+                .init(iconData: SirioIconData(icon: .cube),
+                      title: "Accordion Item #1",
+                      content: {
+                          SirioText(text: .loremIpsum, typography: .label_md_700)
+                              .foregroundColor(.black)
+                      }, onTapAccordion: { isOpen in
+                          
+                      })
+            ])
+            
+            
+            SirioAccordionGroup(data: [
+                .init(title: "Accordion Item #1",
+                      text: "Text",
+                      content: {
+                          SirioText(text: .loremIpsum, typography: .label_md_700)
+                              .foregroundColor(.black)
+                      }, onTapAccordion: { isOpen in
+                          
+                      }),
+                .init(title: "Accordion Item #1",
+                      text: "Text",
+                      content: {
+                          SirioText(text: .loremIpsum, typography: .label_md_700)
+                              .foregroundColor(.black)
+                      }, onTapAccordion: { isOpen in
+                          
+                      }),
+                .init(title: "Accordion Item #1",
+                      text: "Text",
+                      content: {
+                          SirioText(text: .loremIpsum, typography: .label_md_700)
+                              .foregroundColor(.black)
+                      }, onTapAccordion: { isOpen in
+                          
+                      })
+            ])
+            
+            SirioAccordionGroup(data: [
+                .init(title: "Accordion Item #1",
+                      tag: "Tag",
+                      content: {
+                          SirioText(text: .loremIpsum, typography: .label_md_700)
+                              .foregroundColor(.black)
+                      }, onTapAccordion: { isOpen in
+                          
+                      }),
+                .init(title: "Accordion Item #1",
+                      tag: "Tag",
+                      content: {
+                          SirioText(text: .loremIpsum, typography: .label_md_700)
+                              .foregroundColor(.black)
+                      }, onTapAccordion: { isOpen in
+                          
+                      }),
+                .init(title: "Accordion Item #1",
+                      tag: "Tag",
+                      content: {
+                          SirioText(text: .loremIpsum, typography: .label_md_700)
+                              .foregroundColor(.black)
+                      }, onTapAccordion: { isOpen in
+                          
+                      })
+            ])
+            
+        }
         .padding(.horizontal)
     }
 }

@@ -152,27 +152,27 @@ struct SirioCarouselPreview: View {
     
     struct News: Identifiable {
         var id = UUID()
-        var icon: AwesomeIcon = .book
-        var date: String
+        var icon: AwesomeIcon = .infoCircle
         var title: String
+        var subtitle: String
         var text: String
         var textButton: String
         
         
         static var preview: [News] = [
-            .init(date: "15/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "16/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "17/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-            .init(date: "19/01/2025", title: "Title", text: .loremIpsum, textButton: "Button")
+            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button")
         ]
     }
     
@@ -183,7 +183,7 @@ struct SirioCarouselPreview: View {
         SirioCarousel(index: $index,
                       items: News.preview,
                       content: { item in
-            SirioProcessCard(schemeColor: .light, icon: item.icon, date: item.date, title: item.title, text: item.text, textButton: item.textButton, onTapButtonAction: { })
+//            SirioProcessCard(schemeColor: .light, title: item.title, subtitle: item.subtitle, text: item.text, textButton: item.textButton, onTapButtonAction: { })
         })
     }
 }

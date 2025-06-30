@@ -10,9 +10,9 @@ import SwiftUI
 
 /// SirioTab selection indicator position
 /// - Defines the position of the selection indicator relative to the tab.
-public enum Position: String, CaseIterable {
-    case top, bottom
-}
+//public enum Position: String, CaseIterable {
+//    case top, bottom
+//}
 
 /// Single tab to be used in [SirioTabGroup]
 /// - Parameters:
@@ -23,16 +23,13 @@ public enum Position: String, CaseIterable {
 ///   
 public struct SirioTab: View {
     var isSelected: Bool
-    var position: Position
     var item: SirioTabData
     var onSelectTab: (() -> Void)?
     
     public init(isSelected: Bool,
-                position: Position,
                 item: SirioTabData,
                 onSelectTab: (() -> Void)?){
         self.isSelected = isSelected
-        self.position = position
         self.item = item
         self.onSelectTab = onSelectTab
     }
@@ -43,27 +40,22 @@ public struct SirioTab: View {
         }, label: {
             // Inside style
         }).buttonStyle(TabStyle(isSelected: isSelected,
-                                position: position,
                                 item: item))
         .setAccessibilityLabel(item.accessibilityLabel)
+        .disabled(item.isDisabled)
     }
 }
 
 #Preview {
     VStack(spacing: 20) {
-        SirioTab(isSelected: true, position: .top, item: .previewInps()[0],
+        SirioTab(isSelected: true, item: .previewInps()[0],
             onSelectTab: nil)
         
-        SirioTab(isSelected: false, position: .top, item: .previewInps()[1],
+        SirioTab(isSelected: false, item: .previewInps()[1],
             onSelectTab: nil)
         
-        SirioTab(isSelected: false, position: .top, item: .previewInps()[2],
+        SirioTab(isSelected: false, item: .previewInps()[2],
             onSelectTab: nil)
-        
-        SirioTab(isSelected: true, position: .bottom, item: .previewInps()[0], onSelectTab: nil)
-        
-        SirioTab(isSelected: false, position: .bottom, item: .previewInps()[1], onSelectTab: nil)
-        
-        SirioTab(isSelected: false, position: .bottom, item: .previewInps()[2], onSelectTab: nil)
     }
+    .padding()
 }

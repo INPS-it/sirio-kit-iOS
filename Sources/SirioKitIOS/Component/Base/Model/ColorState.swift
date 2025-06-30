@@ -12,6 +12,6 @@ import SwiftUI
 public struct ColorState {
     public var `default`: Color
     public var disabled: Color
-    public var hover: Color
+    public var hover: Color // Deprecated
     public var pressed: Color
 }

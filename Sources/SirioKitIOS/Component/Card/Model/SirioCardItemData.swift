@@ -8,27 +8,55 @@
 
 import UIKit
 
-/// The model used for representation of an app navigation item
+/// The model used for representing a navigation item with flexible button configurations.
 /// - Parameters:
-///   - icon: The icon of the item
-///   - action: Callback that is executed when the item is tapped
-public struct SirioCardItemData: Identifiable {
+///   - firstButtonText: The text of the first button.
+///   - onTapFirstButtonAction: Callback that is executed when the first button is tapped.
+///   - secondButtonText: The optional text of the second button (for two-button configurations).
+///   - onTapSecondButtonAction: Callback that is executed when the second button is tapped (for two-button configurations).
+///   - menuItems: Optional array of dropdown menu items that will appear as a trailing action instead of a second button.
+
+public struct SirioProcessCardItemData: Identifiable {
     public var id = UUID()
-    var icon: AwesomeIcon
-    var action: () -> Void
-    
-    public init(icon: AwesomeIcon, action: @escaping () -> Void){
-        self.icon = icon
-        self.action = action
+
+    public var firstButtonText: String
+    public var onTapFirstButtonAction: () -> Void
+
+    public var secondButtonText: String?
+    public var onTapSecondButtonAction: (() -> Void)?
+
+    public var menuItems: [SirioDropdownMenuItem]?
+
+    // Caso 1: solo primo bottone
+    public init(
+        firstButtonText: String,
+        onTapFirstButtonAction: @escaping () -> Void
+    ) {
+        self.firstButtonText = firstButtonText
+        self.onTapFirstButtonAction = onTapFirstButtonAction
     }
-    
-    public static let previewEllipsis = SirioCardItemData(icon: .ellipsisH, action: {})
-    public static let previewHeart = SirioCardItemData(icon: .heart, action: {})
 
-}
+    // Caso 2: due bottoni (orizzontali o verticali)
+    public init(
+        firstButtonText: String,
+        onTapFirstButtonAction: @escaping () -> Void,
+        secondButtonText: String,
+        onTapSecondButtonAction: @escaping () -> Void
+    ) {
+        self.firstButtonText = firstButtonText
+        self.onTapFirstButtonAction = onTapFirstButtonAction
+        self.secondButtonText = secondButtonText
+        self.onTapSecondButtonAction = onTapSecondButtonAction
+    }
 
-extension SirioCardItemData: Equatable {
-    public static func == (lhs: SirioCardItemData, rhs: SirioCardItemData) -> Bool {
-        return lhs.icon == rhs.icon
+    // Caso 3: primo bottone e menu a destra
+    public init(
+        firstButtonText: String,
+        onTapFirstButtonAction: @escaping () -> Void,
+        menuItems: [SirioDropdownMenuItem]
+    ) {
+        self.firstButtonText = firstButtonText
+        self.onTapFirstButtonAction = onTapFirstButtonAction
+        self.menuItems = menuItems
     }
 }

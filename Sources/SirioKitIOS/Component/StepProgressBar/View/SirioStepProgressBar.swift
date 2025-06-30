@@ -65,8 +65,8 @@ public struct SirioStepProgressBar<Content: View>: View {
                 content()
                     .frame(maxWidth: .infinity)
                     .frame(maxHeight: .infinity)
-                    .padding(.top, Size.SirioStepProgressBar.paddingTop)
-                    .padding(.horizontal, Size.SirioStepProgressBar.paddingHorizontal)
+                    .padding(.top, Size.p24)
+                    .padding(.horizontal, Size.p16)
                     .background(
                         GeometryReader { geometry in
                             Color.clear
@@ -112,7 +112,7 @@ public struct SirioStepProgressBar<Content: View>: View {
                             y: StyleDictionaryBoxShadow.elevation05.2.cgFloat)
                 }
             }
-            .padding(.bottom, Size.SirioStepProgressBar.paddingBottom)
+            .padding(.bottom, Size.p24)
             
             SirioStepControls(back: back, next: next, others: others)
         }

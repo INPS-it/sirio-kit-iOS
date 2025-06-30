@@ -15,7 +15,8 @@ import SDWebImageSVGCoder
 ///
 /// - Parameters:
 ///   - url: The URL of the image to display at the top of the card (optional).
-///   - base64: The base64 string of the image to display at the top of the card (optional).
+///   - imageName: The image name string of the image to display at the top of the card (optional).
+///   - bundle: The bundle (to be used if you want to use an image outside the package)
 ///   - category: The category name associated with the article (optional).
 ///   - date: The publication date of the article, displayed on the card.
 ///   - title: The title of the article, displayed prominently in the card.
@@ -27,25 +28,60 @@ import SDWebImageSVGCoder
 
 public struct SirioEditorialCard: View {
     var url: URL?
-    var base64: String?
+    var imageName: String?
+    var bundle: Bundle?
     var category: String?
     var date: String
     var title: String
     var subtitle: String?
     var text: String
-    var signature: String?
     var iconsData: [SirioIconData]?
     var onTapCardAction: (() -> Void)?
     
-    public init(url: URL? = nil, base64: String? = nil, category: String? = nil, date: String, title: String, subtitle: String? = nil, text: String, signature: String? = nil, iconsData: [SirioIconData]? = nil, onTapCardAction: (() -> Void)? = nil) {
-        self.url = url
-        self.base64 = base64
+    // Without immagine
+    public init(category: String? = nil, date: String, title: String, subtitle: String? = nil, text: String, iconsData: [SirioIconData]? = nil, onTapCardAction: (() -> Void)? = nil) {
+        self.url = nil
+        self.imageName = nil
+        self.bundle = nil
         self.category = category
         self.date = date
         self.title = title
         self.subtitle = subtitle
         self.text = text
-        self.signature = signature
+        self.iconsData = iconsData
+        self.onTapCardAction = onTapCardAction
+        
+        // Inizialize plugin for svg images
+        SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
+    }
+    
+    // With url image
+    public init(url: URL, category: String? = nil, date: String, title: String, subtitle: String? = nil, text: String, iconsData: [SirioIconData]? = nil, onTapCardAction: (() -> Void)? = nil) {
+        self.url = url
+        self.imageName = nil
+        self.bundle = nil
+        self.category = category
+        self.date = date
+        self.title = title
+        self.subtitle = subtitle
+        self.text = text
+        self.iconsData = iconsData
+        self.onTapCardAction = onTapCardAction
+        
+        // Inizialize plugin for svg images
+        SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
+    }
+    
+    // With assets image
+    public init(imageName: String, bundle: Bundle, category: String? = nil, date: String, title: String, subtitle: String? = nil, text: String, iconsData: [SirioIconData]? = nil, onTapCardAction: (() -> Void)? = nil) {
+        self.url = nil
+        self.imageName = imageName
+        self.bundle = bundle
+        self.category = category
+        self.date = date
+        self.title = title
+        self.subtitle = subtitle
+        self.text = text
         self.iconsData = iconsData
         self.onTapCardAction = onTapCardAction
         
@@ -54,68 +90,60 @@ public struct SirioEditorialCard: View {
     }
     
     private var existImage: Bool {
-        return url != nil || base64 != nil
+        return url != nil || (imageName != nil && bundle != nil)
     }
     
     public var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            
-            if existImage && existUrl() {
-                image
+        VStack(alignment: .leading, spacing: Size.s0) {
+
+            if existImage {
+               image
             }
             
-            VStack(alignment: .leading, spacing: 0){
-                
+            VStack(alignment: .leading, spacing: Size.s0) {
+
                 firstSection
-                    .padding(.top, Size.Card.Editorial.spacing)
                 
                 SirioText(text: title, typography: Typography.Card.Editorial.title, isUnderlined: true)
                     .foregroundColor(Color.Card.Editorial.Text.title)
                     .lineLimit(1)
-                    .padding(.top, Size.Card.Editorial.spacing)
+                    .padding(.top, Size.p12)
                 
                 if let subtitle = subtitle {
                     SirioText(text: subtitle, typography: Typography.Card.Editorial.subtitle)
                         .foregroundColor(Color.Card.Editorial.Text.subtitle)
                         .lineLimit(1)
+                        .padding(.top, Size.p4)
                 }
                 
                 SirioText(text: text, typography: Typography.Card.Editorial.body)
                     .foregroundColor(Color.Card.Editorial.Text.body)
                     .lineLimit(3)
-                    .padding(.top, Size.Card.Editorial.spacing)
-                
-                if let signature = signature {
-                    HStack {
-                        SirioText(text: signature, typography: Typography.Card.Editorial.signature)
-                            .foregroundColor(Color.Card.Editorial.Text.signature)
-                            .lineLimit(1)
-                        
-                        Spacer()
-                    }
-                    .padding(.top, Size.Card.Editorial.spacing)
-                }
+                    .padding(.top, Size.p4)
                 
                 if let items = iconsData?.prefix(2), items.count > 0 {
-                    HStack(spacing: Size.Card.Editorial.spacingItems) {
+                    HStack(spacing: Size.s16) {
                         Spacer()
                         
                         ForEach(items){ item in
-                            SirioIcon(data: item)
-                                .frame(width: Size.Card.Editorial.Item.width,
-                                       height: Size.Card.Editorial.Item.height)
-                                .foregroundColor(Color.Card.Editorial.Item.default)
-                                .onTapGesture{
-                                    item.action()
-                                }
+                            Button(action: {
+                                item.action()
+                            }, label: {
+                                SirioIcon(data: item)
+                                    .frame(width: Size.Card.Editorial.Item.width,
+                                           height: Size.Card.Editorial.Item.height)
+                                    .foregroundColor(Color.Card.Editorial.Item.default)
+                            })
+                            .frame(width: Size.Card.Editorial.Item.containerFrame,
+                                   height: Size.Card.Editorial.Item.containerFrame)
                         }
                     }
-                    .padding(.top, Size.Card.Editorial.spacing)
+                    .padding(.top, Size.p12)
                 }
             }
-            .padding(.horizontal, Size.Card.Editorial.paddingHorizontal)
-            .padding(.bottom, Size.Card.Editorial.paddingBottom)
-            .padding(.top, Size.Card.Editorial.paddingTop)
+            .padding(.horizontal, Size.p12)
+            .padding(.bottom, Size.p16)
+            .padding(.top, Size.p16)
         }
         .background(Color.Card.Editorial.Background.default)
         .cornerRadius(Size.Card.Editorial.cornerRadius)
@@ -129,7 +157,7 @@ public struct SirioEditorialCard: View {
     }
     
     var firstSection: some View {
-        return VStack(spacing: 0) {
+        return VStack(spacing: Size.s0) {
             if let category = category {
                 categoryView(with: category)
             } else {
@@ -139,55 +167,37 @@ public struct SirioEditorialCard: View {
     }
     
     var image: some View {
-        return ZStack(alignment: .top) {
-            WebImage(url: url) { image in
+        if let url = url {
+            return  AnyView(GeometryReader { geometry in
+                WebImage(url: url) { image in
                     image.resizable()
                 } placeholder: {
-                        Rectangle().foregroundColor(.gray)
+                    Rectangle().foregroundColor(.gray)
                 }
-                .onSuccess { image, data, cacheType in
-                }
+                .onSuccess { _, _, _ in }
                 .indicator(.activity)
                 .transition(.fade(duration: 0.5))
-                .scaledToFit()
-                .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: Size.Card.Editorial.imageHeight, alignment: .center)
+                .aspectRatio(contentMode: .fill)
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .clipped()
+            }
+            .frame(height: Size.Card.Editorial.imageHeight))
+        } else if let imageName = imageName {
+            return  AnyView(GeometryReader { geometry in
+                Image(imageName, bundle: bundle)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .clipped()
+            }
+            .frame(height: Size.Card.Editorial.imageHeight))
         }
+        return AnyView(EmptyView())
+        
     }
 }
 
 extension SirioEditorialCard {
-    private func saveBase64StringToLocalFile(base64String: String) -> URL? {
-        guard let data = Data(base64Encoded: base64String) else {
-            return nil
-        }
-        
-        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return nil
-        }
-        
-        let fileURL = documentsDirectory.appendingPathComponent("image")
-        
-        do {
-            try data.write(to: fileURL)
-            return fileURL
-        } catch {
-            print("Error saving file (Editorial Card): \(error)")
-            return nil
-        }
-    }
-    
-    private func getImageUrl() -> URL? {
-        if let url = url {
-            return url
-        } else if let base64 = base64, let localUrl = saveBase64StringToLocalFile(base64String: base64) {
-            return localUrl
-        }
-        return nil
-    }
-    
-    private func existUrl() -> Bool {
-        return getImageUrl() != nil
-    }
     
     @ViewBuilder
     private func categoryView(with category: String) -> some View {
@@ -202,22 +212,35 @@ extension SirioEditorialCard {
     @ViewBuilder
     private func dateView() -> some View {
         HStack {
+            Spacer()
+            
             SirioText(text: date, typography: Typography.Card.date)
                 .foregroundColor(Color.Card.Generic.Text.date)
-            Spacer()
         }
     }
 }
 
 #Preview {
-    
-    SirioEditorialCard(url: URL(string: "https://www.inps.it/content/dam/inps-site/immagini/INPS-home.svg")!,
-                  category: "Categoria",
-                  date: "13 Nov 2023",
-                  title: "Titolo della card",
-                  subtitle: "Sottotitolo",
-                  text: .loremIpsum,
-                  signature: "Firma Autore",
-                  iconsData: [.previewEllipsis, .previewHeart])
+    HStack {
+        SirioEditorialCard(url: URL(string: "https://www.inps.it/content/dam/inps-site/immagini/INPS-home.svg")!,
+                           category: "Categoria",
+                           date: "13 Nov 2023",
+                           title: "Titolo della card",
+                           subtitle: "Sottotitolo",
+                           text: .loremIpsum,
+                           iconsData: [.previewShare, .previewBookmark])
         .padding()
+    }
+    
+    HStack {
+        SirioEditorialCard(imageName: "image_editorial_card",
+                           bundle: .bundleModule,
+                           category: "Categoria",
+                           date: "13 Nov 2023",
+                           title: "Titolo della card",
+                           subtitle: "Sottotitolo",
+                           text: .loremIpsum,
+                           iconsData: [.previewShare, .previewBookmark])
+        .padding()
+    }
 }

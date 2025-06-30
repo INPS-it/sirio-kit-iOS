@@ -8,127 +8,114 @@
 
 import SwiftUI
 
+#Preview {
+    ExampleTabGroup()
+}
+
 // A struct that defines the style for Tab component
 struct TabStyle: ButtonStyle {
     var isSelected: Bool
-    var position: Position
     var item: SirioTabData
-
-    @State var isHover = false
     
     func makeBody(configuration: Self.Configuration) -> some View {
-        if position == .top {
-            tabOnTop(configuration: configuration)
-        } else {
-            tabOnBottom(configuration: configuration)
-        }
+        tabOnTop(configuration: configuration)
     }
     
     func tabOnTop(configuration: Self.Configuration) -> some View {
-        VStack(spacing: Size.zero){
-            Rectangle()
-                .frame(height: Size.Tab.Rectangle.height)
-                .foregroundColor(rectangleColor)
-                .cornerRadius(Size.zero)
+        VStack(spacing: Size.s0){
             
             Spacer()
             
-            HStack(spacing: Size.Tab.spacingHorizontal){
+            HStack(spacing: Size.s8){
                 if let icon = item.icon {
                     SirioIcon(data: .init(icon: icon))
-                        .frame(width: Size.Tab.Icon.frame, height: Size.Tab.Icon.frame)
+                        .frame(width: Size.Tab.iconFrame, height: Size.Tab.iconFrame)
                         .foregroundColor(iconColor)
                 }
                 
                 SirioText(text: item.text, typography: typography)
                     .foregroundColor(textColor)
             }
-            .padding(.horizontal, item.icon == nil ? Size.Tab.paddingHorizontal : Size.Tab.paddingHorizontalWithIcon)
+            .padding(.horizontal, Size.p8)
             
             Spacer()
+            
+            Rectangle()
+                .frame(height: Size.Tab.rectangleHeight)
+                .foregroundColor(rectangleColor)
+                .cornerRadius(3, corners: [.topLeft, .topRight])
         }
         .frame(height: Size.Tab.height)
         .background(backgroundColor)
-        .onHover { isHover in
-            self.isHover = isHover
-        }
+        .fixedSize()
 
     }
     
-    func tabOnBottom(configuration: Self.Configuration) -> some View {
-        VStack(spacing: Size.zero){
-            
-            Spacer()
-            
-            HStack(spacing: Size.Tab.spacingHorizontal){
-                if let icon = item.icon {
-                    SirioIcon(data: .init(icon: icon))
-                        .frame(width: Size.Tab.Icon.frame, height: Size.Tab.Icon.frame)
-                        .foregroundColor(iconColor)
-                }
-                
-                SirioText(text: item.text, typography: typography)
-                    .foregroundColor(textColor)
-            }
-            .padding(.horizontal, item.icon == nil ? Size.Tab.paddingHorizontal : Size.Tab.paddingHorizontalWithIcon)
-            
-            Spacer()
-            
-            Rectangle()
-                .frame(height: Size.Tab.Rectangle.height)
-                .foregroundColor(rectangleColor)
-        }
-        .frame(height: Size.Tab.height)
-        .background(backgroundColor)
-        .onHover { isHover in
-            self.isHover = isHover
-        }
-    }
-    
+//    func tabOnBottom(configuration: Self.Configuration) -> some View {
+//        VStack(spacing: Size.zero){
+//            
+//            Spacer()
+//            
+//            HStack(spacing: Size.Tab.spacingHorizontal){
+//                if let icon = item.icon {
+//                    SirioIcon(data: .init(icon: icon))
+//                        .frame(width: Size.Tab.Icon.frame, height: Size.Tab.Icon.frame)
+//                        .foregroundColor(iconColor)
+//                }
+//                
+//                SirioText(text: item.text, typography: typography)
+//                    .foregroundColor(textColor)
+//            }
+//            .padding(.horizontal, item.icon == nil ? Size.Tab.paddingHorizontal : Size.Tab.paddingHorizontalWithIcon)
+//            
+//            Spacer()
+//            
+//            Rectangle()
+//                .frame(height: Size.Tab.Rectangle.height)
+//                .foregroundColor(rectangleColor)
+//        }
+//        .frame(height: Size.Tab.height)
+//        .background(backgroundColor)
+//        .onHover { isHover in
+//            self.isHover = isHover
+//        }
+//    }
     
      private var rectangleColor: Color {
          if item.isDisabled {
-             return position == .top ? Color.Tab.Rectangle.Top.state.disabled : Color.Tab.Rectangle.Bottom.state.disabled
-         } else if isHover {
-             return position == .top ? Color.Tab.Rectangle.Top.state.hover : Color.Tab.Rectangle.Bottom.state.hover
+             return Color.Tab.Rectangle.disabled
          } else {
              if isSelected {
-                 return position == .top ? Color.Tab.Rectangle.Top.state.pressed : Color.Tab.Rectangle.Bottom.state.pressed
+                 return Color.Tab.Rectangle.selected
              }
-             return position == .top ? Color.Tab.Rectangle.Top.state.default : Color.Tab.Rectangle.Bottom.state.default
+             return Color.Tab.Rectangle.default
          }
      }
      
      private var iconColor: Color {
          if item.isDisabled {
-             return Color.Tab.Icon.state.disabled
-         } else if isHover {
-             return Color.Tab.Icon.state.hover
+             return Color.Tab.Icon.disabled
          } else {
-             return isSelected ? Color.Tab.Icon.state.pressed : Color.Tab.Icon.state.default
+             return isSelected ? Color.Tab.Icon.selected : Color.Tab.Icon.default
          }
      }
     
     private var textColor: Color {
         if item.isDisabled {
-            return Color.Tab.Text.state.disabled
-        } else if isHover {
-            return Color.Tab.Text.state.hover
+            return Color.Tab.Text.disabled
         } else {
-            return isSelected ? Color.Tab.Text.state.pressed : Color.Tab.Text.state.default
+            return isSelected ? Color.Tab.Text.selected : Color.Tab.Text.default
         }
     }
      
      private var backgroundColor: Color {
          if item.isDisabled {
-             return position == .top ? Color.Tab.Background.Top.state.disabled : Color.Tab.Background.Bottom.state.disabled
-         } else if isHover {
-             return position == .top ? Color.Tab.Background.Top.state.hover : Color.Tab.Background.Bottom.state.hover
+             return Color.Tab.Background.disabled
          } else {
              if isSelected {
-                 return position == .top ? Color.Tab.Background.Top.state.pressed : Color.Tab.Background.Bottom.state.pressed
+                 return Color.Tab.Background.selected
              }
-             return position == .top ? Color.Tab.Background.Top.state.default : Color.Tab.Background.Bottom.state.default
+             return Color.Tab.Background.default
          }
      }
      

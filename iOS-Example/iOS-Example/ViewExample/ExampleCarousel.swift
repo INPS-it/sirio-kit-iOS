@@ -14,26 +14,26 @@ struct ExampleCarousel: View {
     struct News: Identifiable {
         var id = UUID()
         var icon: AwesomeIcon
-        var date: String
         var title: String
+        var subtitle: String
         var text: String
         var textButton: String
     }
     
     static var preview: [News] = [
-        .init(icon: .book, date: "15/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-        .init(icon: .book, date: "16/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-        .init(icon: .book, date: "17/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-        .init(icon: .book, date: "18/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-        .init(icon: .book, date: "19/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-        .init(icon: .book, date: "20/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-        .init(icon: .book, date: "21/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-        .init(icon: .book, date: "22/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-        .init(icon: .book, date: "23/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-        .init(icon: .book, date: "24/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-        .init(icon: .book, date: "25/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-        .init(icon: .book, date: "26/01/2025", title: "Title", text: .loremIpsum, textButton: "Button"),
-        .init(icon: .book, date: "27/01/2025", title: "Title", text: .loremIpsum, textButton: "Button")
+        .init(icon: .book, title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+        .init(icon: .book, title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+        .init(icon: .book, title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+        .init(icon: .book, title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+        .init(icon: .book, title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+        .init(icon: .book, title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+        .init(icon: .book, title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+        .init(icon: .book, title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+        .init(icon: .book, title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+        .init(icon: .book, title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+        .init(icon: .book, title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+        .init(icon: .book, title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
+        .init(icon: .book, title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button")
     ]
     
     @State var index = 0
@@ -43,7 +43,7 @@ struct ExampleCarousel: View {
         SirioCarousel(index: $index,
                       items: ExampleCarousel.preview,
                       content: { item in
-            SirioProcessCard(schemeColor: .light, icon: item.icon, date: item.date, title: item.title, text: item.text, textButton: item.textButton, onTapButtonAction: { })
+            SirioProcessCard(schemeColor: .light, title: item.title, subtitle: item.subtitle, text: item.text, itemData: .init(firstButtonText: item.textButton, onTapFirstButtonAction: { }))
         })
         .navigationTitle("Carousel")
     }

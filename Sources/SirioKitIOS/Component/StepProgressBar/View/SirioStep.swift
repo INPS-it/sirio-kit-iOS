@@ -33,7 +33,7 @@ struct SirioStep: View {
         Button(action: {
             onTapStep()
         }, label: {
-            HStack(spacing: Size.SirioStepProgressBar.spacingHorizontal) {
+            HStack(spacing: Size.s16) {
                 GeometryReader { geometry in
                     ZStack {
                         VStack(spacing: Size.zero) {
@@ -50,7 +50,7 @@ struct SirioStep: View {
                 
                 Spacer() // Allinea tutto a sinistra
             }
-            .padding(.horizontal, Size.SirioStepProgressBar.paddingHorizontal)
+            .padding(.horizontal, Size.p16)
             .frame(height: Size.SirioStepProgressBar.Step.height)
             .frame(maxWidth: .infinity)
             .background(Color.StepProgressBar.Step.background)

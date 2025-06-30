@@ -11,34 +11,53 @@ import SwiftUI
 // A struct that defines the style for Accordion component
 struct SirioAccordionStyle: ButtonStyle {
     @Environment(\.colorScheme) var colorScheme
-    var text: String
+    var iconData: SirioIconData?
+    var title: String
+    var text: String?
+    var tag: String?
     var isOpen: Bool
     @Binding var isDisabled: Bool
     var withBorder: Bool = true
-    @State var isHover = false
     
     func makeBody(configuration: Self.Configuration) -> some View {
         VStack {
-            HStack {
-                SirioText(text: text, typography: Typography.Accordion.style)
+            HStack(spacing: Size.s0) {
+                if let iconData = iconData {
+                    SirioIcon(data: iconData)
+                        .frame(width: Size.Accordion.Icon.frame,
+                               height: Size.Accordion.Icon.frame)
+                        .foregroundColor(iconColor)
+                        .padding(.trailing, Size.p16)
+
+                }
+                SirioText(text: title, typography: Typography.Accordion.title)
                     .foregroundColor(textColor)
                     .lineLimit(2)
+                    .if(text == nil || tag == nil) { view in
+                        view.padding(.trailing, Size.p24)
+                    }
                 
                 Spacer()
                 
+                if let tag = tag, !tag.isEmpty {
+                    SirioTag(type: .white, text: tag)
+                        .padding(.horizontal, Size.p12)
+                } else if let text = text, !text.isEmpty {
+                    SirioText(text: text, typography: Typography.Accordion.text)
+                        .foregroundColor(textColor)
+                        .padding(.horizontal, Size.p12)
+                }
+                
                 SirioIcon(data: .init(icon: isOpen ? .angleUp : .angleDown))
-                    .frame(width: Size.Accordion.Icon.frame,
-                           height: Size.Accordion.Icon.frame)
+                    .frame(width: Size.Accordion.Arrow.frame,
+                           height: Size.Accordion.Arrow.frame)
                     .foregroundColor(iconColor)
             }
             .frame(height: Size.Accordion.sectionHeight)
-            .padding(.horizontal, Size.Accordion.paddingHorizontal)
+            .padding(.horizontal, Size.p16)
             .border(borderColor, width: Size.Accordion.borderWidth)
         }
         .background(backgroundColor)
-        .onHover { isHover in
-            self.isHover = isHover
-        }
     }
     
     private var borderColor: Color {
@@ -49,16 +68,15 @@ struct SirioAccordionStyle: ButtonStyle {
     }
     
     private var backgroundColor: Color {
-        let hoverColor: Color = colorScheme == .dark ? Color.Accordion.Background.Hover.dark : Color.Accordion.Background.Hover.light
         let defaultColor: Color = colorScheme == .dark ? Color.Accordion.Background.Default.dark : Color.Accordion.Background.Default.light
         let activeColor: Color = colorScheme == .dark ? Color.Accordion.Background.Active.dark : Color.Accordion.Background.Active.light
 
         if isDisabled {
             return Color.Accordion.Background.disabled
         } else if isOpen {
-            return isHover ? hoverColor : activeColor
+            return activeColor
         } else {
-            return isHover ? hoverColor : defaultColor
+            return defaultColor
         }
     }
     
@@ -77,5 +95,49 @@ struct SirioAccordionStyle: ButtonStyle {
         } else {
             return colorScheme == .dark ? Color.Accordion.Icon.dark : Color.Accordion.Icon.light
         }
+    }
+}
+
+#Preview {
+    VStack {
+        SirioBaseAccordion(data: .init(title: "Accordion Item #1", content: {
+            SirioText(text: .loremIpsum, typography: .label_md_700)
+        }, onTapAccordion: { isOpen in
+            
+        }))
+        
+        
+        // Icon
+        SirioBaseAccordion(data: .init(iconData: SirioIconData(icon: .cube),
+                                       title: "Accordion Item #1",
+                                       content: {
+            SirioText(text: .loremIpsum, typography: .label_md_700)
+        }, onTapAccordion: { isOpen in
+            
+        }))
+        
+        // Tag
+        SirioBaseAccordion(data: .init(title: "Accordion Item #1",
+                                       tag: "Tag",
+                                       content: {
+            SirioText(text: .loremIpsum, typography: .label_md_700)
+        }, onTapAccordion: { isOpen in
+            
+        }))
+        
+        // Text
+        SirioBaseAccordion(data: .init(title: "Accordion Item #1", text: "Text", content: {
+            SirioText(text: .loremIpsum, typography: .label_md_700)
+        }, onTapAccordion: { isOpen in
+            
+        }))
+        
+        SirioBaseAccordion(data: .init(title: "Accordion Item con testo molto molto molto molto molto molto molto molto molto molto molto molto lungo ", content: {
+            SirioText(text: "Lorem ipsum", typography: .label_md_700)
+                .foregroundColor(.black)
+            
+        }))
+        
+        Spacer()
     }
 }
