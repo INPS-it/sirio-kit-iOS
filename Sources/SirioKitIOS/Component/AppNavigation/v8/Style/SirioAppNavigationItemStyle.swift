@@ -1,7 +1,7 @@
 //
 // SirioAppNavigationItemStyle.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -15,7 +15,7 @@ struct SirioAppNavigationItemStyle: ButtonStyle {
     
     func makeBody(configuration: Self.Configuration) -> some View {
         if let item = item {
-            VStack(spacing: 0) {
+            VStack(spacing: Size.zero) {
                 if item.isUserLogged {
                     SirioText(text: item.textProfile.prefix(2).uppercased(), typography: Typography.AppNavigation.profile)
                         .foregroundColor(textColor)

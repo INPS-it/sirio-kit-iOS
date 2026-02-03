@@ -1,7 +1,7 @@
 //
 // SirioAppNavigationSelectionContainerView.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -21,7 +21,7 @@ public struct SirioAppNavigationSelectionContainerView<Content: View>: View {
     }
     
     public var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: Size.zero) {
             SirioAppNavigationSelectionBarView(title: title,
                                           leftItem: leftItem,
                                           rightItems: rightItems)

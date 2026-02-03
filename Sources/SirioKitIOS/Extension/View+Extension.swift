@@ -1,7 +1,7 @@
 //
 // View+Extension.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -30,72 +30,72 @@ extension View {
 }
 
 // MARK: Notification Modifier
-public extension View {
-    /// Use this method to bring up an inline notification.
+extension View {
+    /// Adds an inline notification at the bottom of the view
     /// - Parameters:
-    ///   - isPresented: The condition for showing the notification.
-    ///   - type: The type of notification.
-    ///   - title: The title of notification.
-    ///   - subtitle: The subtitle of notification.
-    ///   - alignment: The alignment of notification (top, bottom). Default is bottom.
-    ///   - direction: The direction of notification (top, bottom). Default is bottom.
-    ///   - life: The notification visibility.
-    ///   - onCloseAction: The action on tap close button.
-    ///   - onTapAction: The action on tap notification.
-    /// - Returns: Either the original `View` or the notification `View` if isPresented  is `true`.
-    func notificationInline(
+    ///   - isPresented: Binding to control the presentation
+    ///   - state: The notification state (alert, info, warning, success)
+    ///   - title: The notification title
+    ///   - subtitle: The notification subtitle
+    ///   - link: Optional link text
+    ///   - showCloseButton: Whether to show close button (default: true)
+    ///   - onCloseAction: Optional callback when closed
+    ///   - onTapLinkAction: Optional callback when link is tapped
+    /// - Returns: A view with the notification modifier applied
+    public func sirioNotificationInline(
         isPresented: Binding<Bool>,
-        type: SirioNotificationType,
+        state: SirioNotificaState,
         title: String,
         subtitle: String,
-        alignment: Alignment = .bottom,
-        direction: SirioNotificationInlineModifier.Direction = .bottom,
-        life: SirioNotificationInlineModifier.Life? = nil,
-        onCloseAction: @escaping () -> Void,
-        onTapAction: @escaping () -> Void
+        link: String? = nil,
+        showCloseButton: Bool = true,
+        onCloseAction: (() -> Void)? = nil,
+        onTapLinkAction: (() -> Void)? = nil
     ) -> some View {
-        return modifier(SirioNotificationInlineModifier(isPresented: isPresented,
-                                                   type: type,
-                                                   title: title,
-                                                   subtitle: subtitle,
-                                                   alignment: alignment,
-                                                   direction: direction,
-                                                   life: life,
-                                                   onCloseAction: onCloseAction,
-                                                   onTapAction: onTapAction))
+        self.modifier(
+            SirioNotificationInlineModifier(
+                isPresented: isPresented,
+                state: state,
+                title: title,
+                subtitle: subtitle,
+                link: link,
+                showCloseButton: showCloseButton,
+                onCloseAction: onCloseAction,
+                onTapLinkAction: onTapLinkAction
+            )
+        )
     }
-    
-    
-    /// Use this method to bring up a notification toast.
+}
+
+
+public extension View {
+    /// Adds a page notification at the bottom of the view
     /// - Parameters:
-    ///   - isPresented: The condition for showing the notification toast.
-    ///   - type: The type of notification toast..
-    ///   - title: The title of notification toast.
-    ///   - subtitle: The subtitle of notification toast.
-    ///   - textButton: The button text inside notification toast.
-    ///   - onCloseAction: The action on tap close button.
-    ///   - onTapAction: The tap action for notification toast.
-    /// - Returns: Either the original `View` or the notification toast `View` if isPresented  is `true`.
-    func notificationToast(
+    ///   - isPresented: Binding to control the presentation
+    ///   - state: The notification state (alert, info, warning, success)
+    ///   - title: The notification title
+    ///   - subtitle: The notification subtitle
+    ///   - link: Optional link text
+    ///   - onTapLinkAction: Optional action triggered when the link is tapped.
+    /// - Returns: A view with the notification modifier applied
+    func sirioNotificaPage(
         isPresented: Binding<Bool>,
-        type: SirioNotificationType,
+        state: SirioNotificaState,
         title: String,
-        subtitle: String?,
-        textButton: String?,
-        alignment: Alignment = .bottom,
-        direction: SirioNotificationToastModifier.Direction = .bottom,
-        onCloseAction: @escaping () -> Void,
-        onTapButtonAction: @escaping () -> Void
+        subtitle: String,
+        link: String? = nil,
+        onTapLinkAction: (() -> Void)? = nil
     ) -> some View {
-        return modifier(SirioNotificationToastModifier(isPresented: isPresented,
-                                                  type: type,
-                                                  title: title,
-                                                  subtitle: subtitle,
-                                                  textButton: textButton,
-                                                  alignment: alignment,
-                                                  direction: direction,
-                                                  onCloseAction: onCloseAction,
-                                                  onTapButtonAction: onTapButtonAction))
+        modifier(
+            SirioNotificaPageModifier(
+                isPresented: isPresented,
+                state: state,
+                title: title,
+                subtitle: subtitle,
+                link: link,
+                onTapLinkAction: onTapLinkAction
+            )
+        )
     }
 }
 
@@ -219,10 +219,12 @@ extension View {
     /// This method uses a `DragGesture` with `minimumDistance: 0` to detect
     func pressAction(onPress: @escaping (() -> Void), onRelease: @escaping (() -> Void)) -> some View {
         self
-            .simultaneousGesture(
-                DragGesture(minimumDistance: 0)
-                    .onChanged({ _ in onPress() })
-                    .onEnded({ _ in onRelease() })
-            )
+            .onLongPressGesture(minimumDuration: .infinity, maximumDistance: .infinity, pressing: { pressing in
+                if pressing {
+                    onPress()
+                } else {
+                    onRelease()
+                }
+            }, perform: {})
     }
 }

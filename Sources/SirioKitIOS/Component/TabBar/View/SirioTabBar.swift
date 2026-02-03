@@ -1,7 +1,7 @@
 //
 // SirioTabBar.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -25,23 +25,27 @@ public struct SirioTabBar: View {
     }
     
     public var body: some View {
-        HStack(spacing: Size.zero) {
-            Spacer()
-            ForEach(items.indices, id: \.self) { index in
-                let item = items[index]
-                Button(action: {
-                    self.selectedIndex = index
-                }, label: {
-                    let isSelected = selectedIndex == index
-                    SirioTabBarItem(itemData: item, isSelected: isSelected)
-                        .environmentObject(OrientationInfo())
-                })
-                .buttonStyle(StaticButtonStyle())
+        VStack(spacing: Size.zero){
+            Rectangle()
+                .fill(Color.aliasBackgroundColorPrimaryLight60)
+                .frame(height: Size.TabBar.dividerHeight)
+            HStack(spacing: Size.zero) {
+                ForEach(items.indices, id: \.self) { index in
+                    let item = items[index]
+                    Button(action: {
+                        self.selectedIndex = index
+                    }, label: {
+                        let isSelected = selectedIndex == index
+                        SirioTabBarItem(itemData: item, isSelected: isSelected)
+                            .environmentObject(OrientationInfo())
+                    })
+                    .buttonStyle(StaticButtonStyle())
+                }
             }
-            Spacer()
+            .padding(.horizontal, Size.p16)
+            .frame(height: Size.TabBar.height)
+            .background(Color.TabBar.background)
         }
-        .frame(height: Size.TabBar.height)
-        .background(Color.TabBar.background)
         .edgesIgnoringSafeArea(.bottom)
     }
 }
@@ -53,7 +57,6 @@ struct TabBarTest: View {
         ZStack(alignment: .bottom) {
             Text("Contenuto principale")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color.red)
                 .ignoresSafeArea()
             
             SirioTabBar(items: SirioTabItemData.previewInps3(),

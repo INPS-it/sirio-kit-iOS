@@ -1,7 +1,7 @@
 //
 // SirioMenuSpallaDrawerItemStyle.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -43,9 +43,7 @@ struct SirioMenuSpallaDrawerItemStyle: ButtonStyle {
         .padding(.horizontal, Size.MenuSpalla.Drawer.Item.paddingHorizontal)
         .padding(.vertical, Size.MenuSpalla.Drawer.Item.paddingVertical)
         .background(backgroundColor)
-        .onHover { isHover in
-            self.isHover = isHover
-        }
+        
         .onChange(of: configuration.isPressed) { isPressed in
             self.isPressed = isPressed
         }

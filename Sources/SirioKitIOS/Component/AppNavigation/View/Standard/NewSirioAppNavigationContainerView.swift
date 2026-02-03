@@ -1,7 +1,7 @@
 //
 // NewSirioAppNavigationContainerView.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -21,7 +21,7 @@ public struct NewSirioAppNavigationContainerView<Content: View>: View {
     }
     
     public var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: Size.zero) {
             NewSirioAppNavigationBarView(title: title,
                                          leftItem: leftItem,
                                          rightItems: rightItems)
@@ -52,7 +52,7 @@ public struct NewSirioAppNavigationContainerView<Content: View>: View {
 #Preview {
     NewSirioAppNavigationContainerView(content: {
         ZStack {
-            Color.green.edgesIgnoringSafeArea(.all)
+            Color.gray.edgesIgnoringSafeArea(.all)
             Text("Hello, world")
                 .foregroundColor(.white)
                 .setAppNavigationBarItems(leftItem: .previewBack,

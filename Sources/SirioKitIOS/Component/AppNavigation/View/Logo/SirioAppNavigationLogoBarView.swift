@@ -1,7 +1,7 @@
 //
 // SirioAppNavigationLogoBarView.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -26,20 +26,28 @@ public struct SirioAppNavigationLogoBarView: View {
     }
     
     public var body: some View {
-        HStack(spacing: Size.zero) {
-            NewSirioAppNavigationItem(item: leftItem)
-            
-            Spacer()
-                        
-            if let rightItems = rightItems {
-                ForEach(rightItems.prefix(2)) { item in
-                    NewSirioAppNavigationItem(item: item)
+        VStack(spacing: Size.zero){
+            HStack(spacing: Size.zero) {
+                NewSirioAppNavigationItem(item: leftItem)
+                
+                Spacer()
+                
+                if let rightItems = rightItems {
+                    ForEach(rightItems.prefix(2)) { item in
+                        NewSirioAppNavigationItem(item: item)
+                    }
                 }
             }
+            .frame(height: Size.NewAppNavigation.height)
+            .background(appNavigationBackgroundColor)
+            .overlay(SirioAppNavigationLogoInps(), alignment: .center)
+            
+            if colorScheme == .light {
+                Rectangle()
+                    .fill(Color.aliasBackgroundColorPrimaryLight60)
+                    .frame(height: 1)
+            }
         }
-        .frame(height: Size.NewAppNavigation.height)
-        .background(appNavigationBackgroundColor)
-        .overlay(SirioAppNavigationLogoInps(), alignment: .center)
     }
 }
 

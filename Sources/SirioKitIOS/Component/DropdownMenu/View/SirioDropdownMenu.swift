@@ -1,7 +1,7 @@
 //
 // SirioDropdownMenu.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -9,12 +9,12 @@
 import SwiftUI
 
 public struct SirioDropdownMenu: View {
-    let items: [SirioDropdownMenuItem]
+    let items: [SirioActionItem]
     @Binding var isOpen: Bool
     
     let nVisibleItems: Int = 3
     
-    public init(items: [SirioDropdownMenuItem], isOpen: Binding<Bool>) {
+    public init(items: [SirioActionItem], isOpen: Binding<Bool>) {
         self.items = items
         self._isOpen = isOpen
     }
@@ -25,7 +25,7 @@ public struct SirioDropdownMenu: View {
                 ForEach(items) { item in
                     Button(action: {
                         item.action?()
-                        isOpen.toggle()
+                        isOpen = false
                     }) {
                         HStack {
                             Text(item.value)

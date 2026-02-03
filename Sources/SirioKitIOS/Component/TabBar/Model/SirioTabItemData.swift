@@ -1,7 +1,7 @@
 //
 // SirioTabItemData.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -17,12 +17,14 @@ public struct SirioTabItemData {
     public let icon: AwesomeIcon
     public let name: String
     public let hasBadge: Bool
+    public let isHighlighted: Bool
     public let accessibilityLabel: String?
     
-    public init(icon: AwesomeIcon, name: String, hasBadge: Bool = false, accessibilityLabel: String? = nil){
+    public init(icon: AwesomeIcon, name: String, hasBadge: Bool = false, isHighlighted: Bool = false, accessibilityLabel: String? = nil){
         self.icon = icon
         self.name = name
         self.hasBadge = hasBadge
+        self.isHighlighted = isHighlighted
         self.accessibilityLabel = accessibilityLabel
     }
     
@@ -48,7 +50,7 @@ public struct SirioTabItemData {
     public static func previewInps3() -> [Self] {
         return [SirioTabItemData(icon: .home, name: "Home", hasBadge: false),
                 SirioTabItemData(icon: .newspaper, name: "News", hasBadge: false),
-                SirioTabItemData(icon: .globe, name: "Mappa", hasBadge: false),
+                SirioTabItemData(icon: .globe, name: "Mappa", hasBadge: false, isHighlighted: true),
                 SirioTabItemData(icon: .commentAlt, name: "Contattaci", hasBadge: false),
                 SirioTabItemData(icon: .gripHorizontal, name: "Servizi", hasBadge: false)]
     }

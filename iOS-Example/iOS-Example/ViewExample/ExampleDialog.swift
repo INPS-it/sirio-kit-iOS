@@ -1,7 +1,7 @@
 //
 // ExampleDialog.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -9,80 +9,84 @@
 import SwiftUI
 import SirioKitIOS
 
+import SwiftUI
+import SirioKitIOS
+
 struct ExampleDialog: View {
+    @Binding var path: NavigationPath
+    
     var body: some View {
-        List {
-            // 1
-            NavigationLink(destination: {
-                Dialog1()
-                    .navigationTitle("Dialog 1")
-                    .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Dialog 1", typography: .label_md_400)
-            })
-            
-            // 2
-            NavigationLink(destination: {
-                Dialog2()
-                    .navigationTitle("Dialog 2")
-                    .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Dialog 2", typography: .label_md_400)
-            })
-            
-            // 3
-            NavigationLink(destination: {
-                Dialog3()
-                    .navigationTitle("Dialog 3")
-                    .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Dialog 3", typography: .label_md_400)
-            })
-            
-            // 4
-            NavigationLink(destination: {
-                Dialog4()
-                    .navigationTitle("Dialog 4")
-                    .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Dialog 4", typography: .label_md_400)
-            })
-            
-            // 5
-            NavigationLink(destination: {
-                Dialog5()
-                    .navigationTitle("Dialog 5")
-                    .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Dialog 5", typography: .label_md_400)
-            })
-            
-            // Warning
-            NavigationLink(destination: {
-                DialogAlert()
-                    .navigationTitle("Dialog Alert")
-                    .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Dialog Alert", typography: .label_md_400)
-            })
-            
-            // Error
-            NavigationLink(destination: {
-                DialogWarning()
-                    .navigationTitle("Dialog Warning")
-                    .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Dialog Warning", typography: .label_md_400)
-            })
+        SirioListItems(items: items)
+            .navigationTitle("Dialog")
+            .scrollContentBackground(.hidden)
+            .background(Color.colorBackground)
+            .navigationDestination(for: Destination.self) { destination in
+                destinationView(for: destination)
+            }
+    }
+}
+
+extension ExampleDialog {
+    
+    enum Destination: Hashable {
+        case dialog1
+        case dialog2
+        case dialog3
+        case dialog4
+        case dialog5
+        case dialogAlert
+        case dialogWarning
+    }
+    
+    var items: [SirioListItemModel] {
+        [
+            .default(title: "Dialog 1", action: { path.append(Destination.dialog1) }),
+            .default(title: "Dialog 2", action: { path.append(Destination.dialog2) }),
+            .default(title: "Dialog 3", action: { path.append(Destination.dialog3) }),
+            .default(title: "Dialog 4", action: { path.append(Destination.dialog4) }),
+            .default(title: "Dialog 5", action: { path.append(Destination.dialog5) }),
+            .default(title: "Dialog Alert", action: { path.append(Destination.dialogAlert) }),
+            .default(title: "Dialog Warning", action: { path.append(Destination.dialogWarning) })
+        ]
+    }
+    
+    @ViewBuilder
+    func destinationView(for destination: Destination) -> some View {
+        switch destination {
+        case .dialog1:
+            Dialog1()
+                .navigationTitle("Dialog 1")
+                .background(Color.colorBackground)
+        case .dialog2:
+            Dialog2()
+                .navigationTitle("Dialog 2")
+                .background(Color.colorBackground)
+        case .dialog3:
+            Dialog3()
+                .navigationTitle("Dialog 3")
+                .background(Color.colorBackground)
+        case .dialog4:
+            Dialog4()
+                .navigationTitle("Dialog 4")
+                .background(Color.colorBackground)
+        case .dialog5:
+            Dialog5()
+                .navigationTitle("Dialog 5")
+                .background(Color.colorBackground)
+        case .dialogAlert:
+            DialogAlert()
+                .navigationTitle("Dialog Alert")
+                .background(Color.colorBackground)
+        case .dialogWarning:
+            DialogWarning()
+                .navigationTitle("Dialog Warning")
+                .background(Color.colorBackground)
         }
-        .background(Color.colorBackground)
-        .navigationTitle("Dialog")
-        .listStyle(GroupedListStyle())
     }
 }
 
 #Preview {
-    ExampleDialog()
+    ExampleDialog(path: .constant(NavigationPath()))
 }
 
 struct Dialog1: View {

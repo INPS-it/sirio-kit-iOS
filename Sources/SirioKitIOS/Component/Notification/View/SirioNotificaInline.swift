@@ -1,7 +1,7 @@
 //
 // SirioNotificInline.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -43,16 +43,18 @@ public struct SirioNotificaInline: View {
         self.onTapLinkAction = onTapLinkAction
     }
     
+    @State private var contentHeight: CGFloat = 0
+    
     public var body: some View {
-        HStack(spacing: Size.zero){
+        HStack(alignment: .top, spacing: Size.zero) {
             Rectangle()
                 .fill(color)
-                .frame(maxHeight: .infinity)
                 .frame(width: Size.Notifica.Inline.rectangleWidth)
+                .frame(height: max(contentHeight, 1))
             
-            VStack(spacing: Size.zero){
+            VStack(alignment: .leading, spacing: Size.zero) {
                 
-                HStack(spacing: Size.zero){
+                HStack(spacing: Size.zero) {
                     SirioIcon(data: .init(icon: icon))
                         .frame(width: Size.Notifica.iconFrame, height: Size.Notifica.iconFrame)
                         .foregroundStyle(color)
@@ -68,56 +70,70 @@ public struct SirioNotificaInline: View {
                     }
                 }
                 .padding(.bottom, Size.Notifica.Inline.paddingBottom)
-
-                HStack {
-                    VStack(alignment: .leading, spacing: Size.zero) {
-                        SirioText(text: title, typography: .headlineSmHeavy)
-                            .lineLimit(0)
-                            .foregroundStyle(Color.aliasTextColorSecondaryDark100)
-                            .padding(.bottom, Size.Notifica.paddingBottom)
-
-                        SirioText(text: subtitle, typography: .bodySmRegular)
-                            .foregroundStyle(Color.aliasTextColorSecondaryDark100)
-                            .padding(.bottom, Size.Notifica.paddingBottom)
-                        
-                        if let link = link {
-                            Button(action: {
-                                onTapLinkAction?()
-                            }, label: {
-                                SirioText(text: link, typography: .link_p_md_01, isUnderlined: true)
-                                    .foregroundStyle(Color.aliasInteractivePrimaryDefault)
-                            })
-                        }
-                        Spacer()
+                
+                VStack(alignment: .leading, spacing: Size.zero) {
+                    SirioText(text: title, typography: .headlineSmHeavy)
+                        .lineLimit(0)
+                        .foregroundStyle(Color.aliasTextColorSecondaryDark100)
+                        .padding(.bottom, Size.Notifica.paddingBottom)
+                    
+                    SirioText(text: subtitle, typography: .bodySmRegular)
+                        .foregroundStyle(Color.aliasTextColorSecondaryDark100)
+                        .padding(.bottom, link != nil ? Size.Notifica.paddingBottom : 0)
+                    
+                    if let link = link {
+                        Button(action: {
+                            onTapLinkAction?()
+                        }, label: {
+                            SirioText(text: link, typography: .link_p_md_01, isUnderlined: true)
+                                .foregroundStyle(Color.aliasInteractivePrimaryDefault)
+                        })
                     }
-                    Spacer()
                 }
             }
-            .padding(.top, Size.Notifica.paddingTop)
+            .padding(.vertical, Size.Notifica.paddingTop)
             .padding(.leading, Size.Notifica.Inline.paddingHorizontalLeading)
             .padding(.trailing, Size.Notifica.Inline.paddingHorizontalTrailing)
+            .overlay(
+                GeometryReader { geometry in
+                    Color.clear
+                        .onAppear {
+                            contentHeight = geometry.size.height
+                        }
+                        .onChange(of: geometry.size.height) { newHeight in
+                            contentHeight = newHeight
+                        }
+                }
+            )
         }
-        .frame(maxHeight: .infinity)
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color.aliasBackgroundColorPrimaryLight0)
-        .cornerRadius(Size.Notifica.Inline.cornerRadius) // Arrotonda il contenuto
+        .cornerRadius(Size.Notifica.Inline.cornerRadius)
         .overlay(
-            RoundedRectangle(cornerRadius: Size.Notifica.Inline.cornerRadius) // Applica un bordo arrotondato
+            RoundedRectangle(cornerRadius: Size.Notifica.Inline.cornerRadius)
                 .stroke(color, lineWidth: Size.Notifica.Inline.lineWidth)
         )
         .setAccessibilityLabel(title + subtitle + (link ?? ""))
     }
-   
+    
+    // Aggiungi questa struct fuori dal body
+    private struct HeightPreferenceKey: PreferenceKey {
+        static var defaultValue: CGFloat = 0
+        static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+            value = nextValue()
+        }
+    }
+    
     var color: Color {
         switch state {
         case .alert:
-            return Color.globalSemanticAlert100 // controllare perche alias background color alert non ci sta nei foundation
+            return Color.globalSemanticAlert100
         case .info:
-            return Color.globalPrimary100 // controllare perche alias background color info non ci sta nei foundation
+            return Color.globalPrimary100
         case .warning:
-            return Color.globalSemanticWarning100 // controllare perche alias background color warning non ci sta nei foundation
+            return Color.globalSemanticWarning100
         case .success:
-            return Color.globalSemanticSuccess100 // controllare perche alias background color success non ci sta nei foundation
+            return Color.globalSemanticSuccess100
         }
     }
     
@@ -136,16 +152,17 @@ public struct SirioNotificaInline: View {
 }
 
 #Preview {
-    ScrollView {
-        VStack(spacing: 10) {
-            SirioNotificaInline(state: .alert, title: "Titolo notifica", subtitle: .loremIpsum, link: "Link opzionale")
-
-            SirioNotificaInline(state: .info, title: "Titolo notifica", subtitle: .loremIpsum, link: "Link opzionale")
-            
-            SirioNotificaInline(state: .warning, title: "Titolo notifica", subtitle: .loremIpsum, link: "Link opzionale")
-            
-            SirioNotificaInline(state: .success, title: "Titolo notifica", subtitle: .loremIpsum, link: "Link opzionale")
-        }
-        .padding()
-    }
+    SirioNotificaInline(state: .alert, title: "Titolo notifica", subtitle: "Sottotitolo")
+//    ScrollView {
+//        VStack(spacing: 10) {
+//            SirioNotificaInline(state: .alert, title: "Titolo notifica", subtitle: "Sottotitolo", link: "Link opzionale")
+//            
+//            SirioNotificaInline(state: .info, title: "Titolo notifica", subtitle: .loremIpsum, link: "Link opzionale")
+//            
+//            SirioNotificaInline(state: .warning, title: "Titolo notifica", subtitle: .loremIpsum, link: "Link opzionale")
+//            
+//            SirioNotificaInline(state: .success, title: "Titolo notifica", subtitle: .loremIpsum, link: "Link opzionale")
+//        }
+//        .padding()
+//    }
 }

@@ -1,7 +1,7 @@
 //
 // SirioMenuSpallaItemStyle.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -11,7 +11,6 @@ import SwiftUI
 struct SirioMenuSpallaItemStyle: ButtonStyle {
     @ObservedObject var item: SirioMenuSpallaItemData
     @Binding var isSelected: Bool
-    @State var isHover = false
     @State var isPressed: Bool = false
     
     func makeBody(configuration: Self.Configuration) -> some View {
@@ -47,9 +46,7 @@ struct SirioMenuSpallaItemStyle: ButtonStyle {
         .frame(maxWidth: .infinity)
         .contentShape(Rectangle())
         .background(backgroundColor)
-        .onHover { isHover in
-            self.isHover = isHover
-        }
+        
     }
     
     private var paddingLeading: CGFloat {
@@ -83,15 +80,10 @@ struct SirioMenuSpallaItemStyle: ButtonStyle {
         let colorDefault = style.text.default
         let colorDisabled = style.text.disabled
         let colorPressed = style.text.pressed
-        let colorHover = style.text.hover
         
         
         if item.isDisabled {
             return colorDisabled
-        }
-        
-        if isHover {
-            return colorHover
         }
         
         if isSelected {
@@ -109,15 +101,10 @@ struct SirioMenuSpallaItemStyle: ButtonStyle {
         let colorDefault = style.background.default
         let colorDisabled = style.background.disabled
         let colorPressed = style.background.pressed
-        let colorHover = style.background.hover
         
         
         if item.isDisabled {
             return colorDisabled
-        }
-        
-        if isHover {
-            return colorHover
         }
         
         if isSelected {
@@ -135,14 +122,9 @@ struct SirioMenuSpallaItemStyle: ButtonStyle {
         let colorDefault = style.vLine.default
         let colorDisabled = style.vLine.disabled
         let colorPressed = style.vLine.pressed
-        let colorHover = style.vLine.hover
         
         if item.isDisabled {
             return colorDisabled
-        }
-        
-        if isHover {
-            return colorHover
         }
         
         if isSelected {
@@ -174,14 +156,9 @@ struct SirioMenuSpallaItemStyle: ButtonStyle {
         let colorDefault = iconStyle.default
         let colorDisabled = iconStyle.disabled
         let colorPressed = iconStyle.pressed
-        let colorHover = iconStyle.hover
         
         if item.isDisabled {
             return colorDisabled
-        }
-        
-        if isHover {
-            return colorHover
         }
         
         if isSelected {

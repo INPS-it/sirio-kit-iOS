@@ -1,18 +1,12 @@
 //
 // SirioTab.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
 
 import SwiftUI
-
-/// SirioTab selection indicator position
-/// - Defines the position of the selection indicator relative to the tab.
-//public enum Position: String, CaseIterable {
-//    case top, bottom
-//}
 
 /// Single tab to be used in [SirioTabGroup]
 /// - Parameters:

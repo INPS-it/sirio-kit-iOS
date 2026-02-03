@@ -1,108 +1,128 @@
 //
 // SirioNotificationInlineModifier.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
 
 import SwiftUI
-import UIKit
 
 /// A modifier that shows an inline notification with icon, title, subtitle and close button
 /// - Parameters:
 ///   - isPresented: The boolean that manages the presentation of the notification
-///   - type: The type of the notification
+///   - state: The state of the notification (alert, info, warning, success)
 ///   - title: The title of the notification
 ///   - subtitle: The subtitle of the notification
-///   - alignment: The alignment of the notification
-///   - direction: The direction in which the notification appears
-///   - life: The time the notification is visible
+///   - link: Optional link text
+///   - showCloseButton: Whether to show the close button
 ///   - onCloseAction: Callback that is executed when the close button is tapped
-///   - onTapAction: Callback that is executed when the notification is tapped
+///   - onTapLinkAction: Callback that is executed when the link is tapped
+///   
 public struct SirioNotificationInlineModifier: ViewModifier {
     var isPresented: Binding<Bool>
-    var type: SirioNotificationType
+    var state: SirioNotificaState
     var title: String
     var subtitle: String
-    var alignment: Alignment
-    var direction: Direction
-    var life: SirioNotificationInlineModifier.Life?
+    var link: String?
+    var showCloseButton: Bool
     var onCloseAction: (() -> Void)?
-    var onTapAction: (() -> Void)?
+    var onTapLinkAction: (() -> Void)?
     
-    public init(isPresented: Binding<Bool>,
-                type: SirioNotificationType,
-                title: String,
-                subtitle: String,
-                alignment: Alignment,
-                direction: Direction,
-                life: Life?,
-                onCloseAction: (() -> Void)?,
-                onTapAction: (() -> Void)?) {
+    public init(
+        isPresented: Binding<Bool>,
+        state: SirioNotificaState,
+        title: String,
+        subtitle: String,
+        link: String? = nil,
+        showCloseButton: Bool = true,
+        onCloseAction: (() -> Void)? = nil,
+        onTapLinkAction: (() -> Void)? = nil
+    ) {
         self.isPresented = isPresented
-        self.type = type
+        self.state = state
         self.title = title
         self.subtitle = subtitle
-        self.alignment = alignment
-        self.direction = direction
-        self.life = life
+        self.link = link
+        self.showCloseButton = showCloseButton
         self.onCloseAction = onCloseAction
-        self.onTapAction = onTapAction
+        self.onTapLinkAction = onTapLinkAction
     }
     
     public func body(content: Content) -> some View {
-        content
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .overlay(notificationContent())
-    }
-    
-    @ViewBuilder private func notificationContent() -> some View {
-        
-        GeometryReader { geometry in
+        VStack(spacing: 0) {
+            content
+            
             if isPresented.wrappedValue {
-                SirioNotificationInline(type: type,
-                                   title: title,
-                                   subtitle: subtitle,
-                                   onCloseAction: { onCloseAction?() },
-                                   onTapAction: { onTapAction?()} )
-                .animation(.spring())
-                .transition(.offset(x: 0,
-                                    y: direction.offset(popupFrame: geometry.frame(in: .global))))
-                .frame(width: geometry.size.width,
-                       height: geometry.size.height, alignment: alignment)
-                .onAppear {
-                    if let life = life {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + life.rawValue) {
-                            withAnimation{
-                                self.isPresented.wrappedValue = false
-                            }
+                SirioNotificaInline(
+                    state: state,
+                    title: title,
+                    subtitle: subtitle,
+                    link: link,
+                    showCloseButton: showCloseButton,
+                    onCloseAction: {
+                        onCloseAction?()
+                        withAnimation {
+                            isPresented.wrappedValue = false
                         }
-                    }
-                }
+                    },
+                    onTapLinkAction: onTapLinkAction
+                )
+                .padding(.horizontal)
+                .transition(.move(edge: .bottom).combined(with: .opacity))
             }
         }
     }
 }
 
-public extension SirioNotificationInlineModifier {
-    enum Direction {
-        case top, bottom
-        
-        func offset(popupFrame: CGRect) -> CGFloat {
-            switch self {
-            case .top:
-                let aboveScreenEdge = -popupFrame.maxY
-                return aboveScreenEdge
-            case .bottom:
-                let belowScreenEdge = UIScreen.main.bounds.height - popupFrame.minY
-                return belowScreenEdge
+// MARK: - Preview
+
+#Preview {
+    NotificationPreviewView()
+}
+
+private struct NotificationPreviewView: View {
+    @State private var showNotification = false
+    
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 20) {
+                Text("Demo Notifica Inline")
+                    .font(.title)
+                    .padding(.top, 40)
+                
+                Spacer()
+                
+                Button(showNotification ? "Nascondi notifica" : "Mostra notifica") {
+                    withAnimation {
+                        showNotification.toggle()
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                
+                Spacer()
+                
+                Text("Contenuto della pagina")
+                    .font(.body)
+                    .foregroundColor(.secondary)
+                
+                Spacer()
             }
         }
-    }
-    
-    enum Life: CGFloat {
-        case short = 4
-        case long = 10
+        .padding()
+        .sirioNotificationInline(
+            isPresented: $showNotification,
+            state: .success,
+            title: "Operazione completata",
+            subtitle: "La richiesta è stata inviata correttamente",
+            link: "Vai ai dettagli",
+            onCloseAction: {
+                print("Notifica chiusa")
+            },
+            onTapLinkAction: {
+                print("Link tappato")
+            }
+        )
+        
     }
 }

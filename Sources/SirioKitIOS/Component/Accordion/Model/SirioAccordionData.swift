@@ -1,7 +1,7 @@
 //
 // SirioAccordionData.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -29,7 +29,6 @@ public class SirioAccordionData: Identifiable, ObservableObject {
     private(set) var text: String?
     private(set) var tag: String?
     private(set) var content: AnyView
-    @Published public var isDisabled: Bool
     @Published public var isOpen: Bool
     private(set) var onTapAccordion: ((Bool) -> Void)?
     private(set) var accessibilityLabel: String?
@@ -37,7 +36,6 @@ public class SirioAccordionData: Identifiable, ObservableObject {
     // Default
     public init<Content>(title: String,
                          @ViewBuilder content: @escaping () -> Content,
-                         isDisabled: Bool = false,
                          isOpen: Bool = false,
                          onTapAccordion: ((Bool) -> Void)? = nil,
                          accessibilityLabel: String? = nil) where Content: View {
@@ -46,7 +44,6 @@ public class SirioAccordionData: Identifiable, ObservableObject {
         self.text = nil
         self.tag = nil
         self.content = AnyView(content())
-        self.isDisabled = isDisabled
         self.isOpen = isOpen
         self.onTapAccordion = onTapAccordion
         self.accessibilityLabel = accessibilityLabel
@@ -56,7 +53,6 @@ public class SirioAccordionData: Identifiable, ObservableObject {
     public init<Content>(title: String,
                          text: String,
                          @ViewBuilder content: @escaping () -> Content,
-                         isDisabled: Bool = false,
                          isOpen: Bool = false,
                          onTapAccordion: ((Bool) -> Void)? = nil,
                          accessibilityLabel: String? = nil) where Content: View {
@@ -65,7 +61,6 @@ public class SirioAccordionData: Identifiable, ObservableObject {
         self.text = text
         self.tag = nil
         self.content = AnyView(content())
-        self.isDisabled = isDisabled
         self.isOpen = isOpen
         self.onTapAccordion = onTapAccordion
         self.accessibilityLabel = accessibilityLabel
@@ -75,7 +70,6 @@ public class SirioAccordionData: Identifiable, ObservableObject {
     public init<Content>(title: String,
                          tag: String,
                          @ViewBuilder content: @escaping () -> Content,
-                         isDisabled: Bool = false,
                          isOpen: Bool = false,
                          onTapAccordion: ((Bool) -> Void)? = nil,
                          accessibilityLabel: String? = nil) where Content: View {
@@ -84,7 +78,6 @@ public class SirioAccordionData: Identifiable, ObservableObject {
         self.text = nil
         self.tag = tag
         self.content = AnyView(content())
-        self.isDisabled = isDisabled
         self.isOpen = isOpen
         self.onTapAccordion = onTapAccordion
         self.accessibilityLabel = accessibilityLabel
@@ -94,7 +87,6 @@ public class SirioAccordionData: Identifiable, ObservableObject {
     public init<Content>(iconData: SirioIconData,
                          title: String,
                          @ViewBuilder content: @escaping () -> Content,
-                         isDisabled: Bool = false,
                          isOpen: Bool = false,
                          onTapAccordion: ((Bool) -> Void)? = nil,
                          accessibilityLabel: String? = nil) where Content: View {
@@ -103,7 +95,6 @@ public class SirioAccordionData: Identifiable, ObservableObject {
         self.text = nil
         self.tag = nil
         self.content = AnyView(content())
-        self.isDisabled = isDisabled
         self.isOpen = isOpen
         self.onTapAccordion = onTapAccordion
         self.accessibilityLabel = accessibilityLabel

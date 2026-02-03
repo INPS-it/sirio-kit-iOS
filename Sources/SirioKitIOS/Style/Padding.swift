@@ -1,7 +1,7 @@
 //
 // Padding.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -16,6 +16,8 @@ public extension Size {
     public static let p10: CGFloat = 10
     public static let p12: CGFloat = 12
     public static let p16: CGFloat = 16
+    public static let p20: CGFloat = 20
     public static let p24: CGFloat = 24
     public static let p32: CGFloat = 32
+    public static let p80: CGFloat = 80
 }

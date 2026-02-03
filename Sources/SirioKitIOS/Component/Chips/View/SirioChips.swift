@@ -1,7 +1,7 @@
 //
 // SirioChipsStyle.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -23,21 +23,25 @@ public struct SirioChips: View {
     var text: String
     var iconData: SirioIconData?
     @Binding var isDisabled: Bool
+    var onTap: (() -> Void)?
     var onTapClose: (() -> Void)?
     var accessibilityLabelText: String?
     var accessibilityLabelClose: String?
     
     @State private var isClosePressed = false
+    @State private var isPressed = false
     
     public init(text: String,
                 iconData: SirioIconData?,
                 isDisabled: Binding<Bool> = .constant(false),
+                onTap: (() -> Void)? = nil,
                 onTapClose: (() -> Void)? = nil,
                 accessibilityLabelText: String? = nil,
                 accessibilityLabelClose: String? = nil) {
         self.text = text
         self.iconData = iconData
         self._isDisabled = isDisabled
+        self.onTap = onTap
         self.onTapClose = onTapClose
         self.accessibilityLabelText = accessibilityLabelText
         self.accessibilityLabelClose = accessibilityLabelClose
@@ -45,12 +49,14 @@ public struct SirioChips: View {
     
     public init(text: String,
                 isDisabled: Binding<Bool> = .constant(false),
+                onTap: (() -> Void)? = nil,
                 onTapClose: (() -> Void)? = nil,
                 accessibilityLabelText: String? = nil,
                 accessibilityLabelClose: String? = nil) {
         self.text = text
         self.iconData = nil
         self._isDisabled = isDisabled
+        self.onTap = onTap
         self.onTapClose = onTapClose
         self.accessibilityLabelText = accessibilityLabelText
         self.accessibilityLabelClose = accessibilityLabelClose
@@ -79,6 +85,14 @@ public struct SirioChips: View {
         .cornerRadius(Size.NewChips.cornerRadius)
         .frame(height: Size.NewChips.height)
         .contentShape(Rectangle())
+        
+        .pressAction(
+            onPress: {
+                isPressed = true
+                onTap?()
+            },
+            onRelease: { isPressed = false }
+        )
     }
     
     private var closeButton: some View {
@@ -106,7 +120,7 @@ public struct SirioChips: View {
     private func getBackgroundColor() -> Color {
         if isDisabled {
             return Color.NewChips.Background.disabled
-        } else if isClosePressed {
+        } else if isClosePressed || isPressed {
             return Color.NewChips.Background.pressed
         }
         return Color.NewChips.Background.default
@@ -115,7 +129,7 @@ public struct SirioChips: View {
     private func getCloseBackgroundColor() -> Color {
         if isDisabled {
             return Color.NewChips.Close.Background.disabled
-        } else if isClosePressed {
+        } else if isClosePressed || isPressed {
             return Color.NewChips.Close.Background.pressed
         } else {
             return Color.NewChips.Close.Background.default
@@ -125,7 +139,7 @@ public struct SirioChips: View {
     private func getCloseIconColor() -> Color {
         if isDisabled {
             return Color.NewChips.Close.Icon.disabled
-        } else if isClosePressed {
+        } else if isClosePressed || isPressed {
             return Color.NewChips.Close.Icon.pressed
         } else {
             return Color.NewChips.Close.Icon.default
@@ -135,7 +149,7 @@ public struct SirioChips: View {
     private func getCloseBorderColor() -> Color {
         if isDisabled {
             return Color.NewChips.Close.Border.disabled
-        } else if isClosePressed {
+        } else if isClosePressed || isPressed {
             return Color.NewChips.Close.Border.pressed
         } else {
             return Color.NewChips.Close.Border.default
@@ -145,7 +159,7 @@ public struct SirioChips: View {
     private func getTextColor() -> Color {
         if isDisabled {
             return Color.NewChips.Text.disabled
-        } else if isClosePressed {
+        } else if isClosePressed || isPressed {
             return Color.NewChips.Text.pressed
         } else {
             return Color.NewChips.Text.default
@@ -155,7 +169,7 @@ public struct SirioChips: View {
     private func getIconColor() -> Color {
         if isDisabled {
             return Color.NewChips.Icon.disabled
-        } else if isClosePressed {
+        } else if isClosePressed || isPressed {
             return Color.NewChips.Icon.pressed
         } else {
             return Color.NewChips.Icon.default

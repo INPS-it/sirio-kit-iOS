@@ -1,7 +1,7 @@
 //
 // ExampleTextArea.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -10,40 +10,43 @@ import SwiftUI
 import SirioKitIOS
 
 struct ExampleTextArea: View {
-    @State var text: String = ""
-    @State var disabled: Bool = false
+    @State private var text: String = ""
+    @State private var disabled: Bool = false
     
     var body: some View {
         ScrollView {
             VStack {
-                ForEach(SemanticTextArea.allCases, id: \.self){ type in
+                ForEach(SemanticTextArea.allCases, id: \.self) { type in
                     VStack(spacing: 10) {
                         SirioText(text: type.rawValue.capitalized, typography: .label_md_600)
-                        SirioTextArea(type: .constant(type),
-                                      textInfo: "Label",
-                                      infoIcon: type == .info ? .infoCircle : nil,
-                                      placeholder: "Text",
-                                      text: $text,
-                                      helperText: "*Helper text",
-                                      isDisabled: $disabled,
-                                      onTapInfoAction: nil)
+                        SirioTextArea(
+                            type: .constant(type),
+                            textInfo: "Label",
+                            infoIcon: type == .info ? .infoCircle : nil,
+                            placeholder: "Text",
+                            text: $text,
+                            helperText: "*Helper text",
+                            isDisabled: $disabled,
+                            onTapInfoAction: nil
+                        )
                         .padding()
                     }
                 }
-                
+            }
+            
+            VStack {
                 SirioText(text: "Disabled", typography: .label_md_600)
-                
-                SirioTextArea(type: .constant(.info),
-                              textInfo: "Label",
-                              infoIcon: .infoCircle,
-                              placeholder: "Text",
-                              text: .constant(""),
-                              helperText: "*Helper text",
-                              isDisabled: .constant(true),
-                              onTapInfoAction: nil)
+                SirioTextArea(
+                    type: .constant(.info),
+                    textInfo: "Label",
+                    infoIcon: .infoCircle,
+                    placeholder: "Text",
+                    text: .constant(""),
+                    helperText: "*Helper text",
+                    isDisabled: .constant(true),
+                    onTapInfoAction: nil
+                )
                 .padding()
-                
-                Spacer()
             }
         }
         .background(Color.colorBackground)

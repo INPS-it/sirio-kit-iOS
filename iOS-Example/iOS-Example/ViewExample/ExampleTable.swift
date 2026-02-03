@@ -1,7 +1,7 @@
 //
 // ExampleTable.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -10,308 +10,681 @@ import SwiftUI
 import SirioKitIOS
 
 struct ExampleTable: View {
+    @Binding var path: NavigationPath
     
     var body: some View {
-        List {
-            ForEach(SirioTableSize.allCases.reversed(), id: \.self) { size in
-                NavigationLink(destination: {
-                    ScrollView(showsIndicators: false, content: {
-                        TestTable(size: size)
-                            .navigationTitle("Table - \(size)")
-                    })
-                }, label: {
-                    SirioText(text: "Table - \(size)", typography: .label_md_400)
-                })
+        SirioListItems(items: items)
+            .navigationTitle("Table")
+            .scrollContentBackground(.hidden)
+            .background(Color.colorBackground)
+            .navigationDestination(for: Destination.self) { destination in
+                destinationView(for: destination)
             }
+    }
+}
+
+extension ExampleTable {
+    
+    enum Destination: Hashable {
+        case tableSmallDark
+        case tableSmallLight
+        case tableSmallDarkMore
+        case tableLargeDark
+        case tableLargeLight
+        case tableLargeDarkLong
+        case tableHorizontalScroll
+        case tableAlternateRows
+        case tableCard
+        case tableDrawer
+        case tableDemo
+    }
+    
+    var items: [SirioListItemModel] {
+        [
+            .default(title: "Table Small Dark", action: { path.append(Destination.tableSmallDark) }),
+            .default(title: "Table Small Light", action: { path.append(Destination.tableSmallLight) }),
+            .default(title: "Table Small Dark - More", action: { path.append(Destination.tableSmallDarkMore) }),
+            .default(title: "Table Large Dark", action: { path.append(Destination.tableLargeDark) }),
+            .default(title: "Table Large Light", action: { path.append(Destination.tableLargeLight) }),
+            .default(title: "Table Large Dark - Long text", action: { path.append(Destination.tableLargeDarkLong) }),
+            .default(title: "Table Horizontal scroll", action: { path.append(Destination.tableHorizontalScroll) }),
+            .default(title: "Table Alternate rows", action: { path.append(Destination.tableAlternateRows) }),
+            .default(title: "Table Card", action: { path.append(Destination.tableCard) }),
+            .default(title: "Table Drawer", action: { path.append(Destination.tableDrawer) }),
+            .default(title: "Table Demo", action: { path.append(Destination.tableDemo) })
+        ]
+    }
+    
+    @ViewBuilder
+    func destinationView(for destination: Destination) -> some View {
+        switch destination {
+        case .tableSmallDark:
+            ExampleTable1(title: "Table Small Dark", schemeColor: .dark, size: .small)
+                .navigationTitle("Table Small Dark")
+                .background(Color.colorBackground)
             
-            NavigationLink(destination: {
-                List {
-                    NavigationLink(destination: {
-                        
-                        VStack {
-                            TestTable1()
-                            Spacer()
-                        }
-                        .navigationTitle("Table 1")
-                    }, label: {
-                        SirioText(text: "Table 1", typography: .label_md_400)
-                    })
-                    
-                    NavigationLink(destination: {
-                        VStack {
-                            TestTable2()
-                            
-                            Spacer()
-                        }
-                        .navigationTitle("Table 2")
-                    }, label: {
-                        SirioText(text: "Table 2", typography: .label_md_400)
-                    })
-                    
-                    NavigationLink(destination: {
-                        VStack {
-                            TestTable3()
-                            
-                            Spacer()
-                        }                            .navigationTitle("Table 3")
-                    }, label: {
-                        SirioText(text: "Table 3", typography: .label_md_400)
-                    })
-                }
-                .listStyle(GroupedListStyle())
-                .navigationTitle("Table")
-                .navigationBarTitleDisplayMode(.inline)
-                
-            }, label: {
-                SirioText(text: "Table", typography: .label_md_400)
-            })
+        case .tableSmallLight:
+            ExampleTable1(title: "Table Small Light", schemeColor: .light, size: .small)
+                .navigationTitle("Table Small Light")
+                .background(Color.colorBackground)
             
-            NavigationLink(destination: {
-                TestTableVertical()
-                    .navigationTitle("Table vertical")
-            }, label: {
-                SirioText(text: "Table vertical", typography: .label_md_400)
-            })
+        case .tableSmallDarkMore:
+            ExampleTable2(title: "Table Small Dark - More", schemeColor: .dark, size: .small)
+                .navigationTitle("Table Small Dark - More")
+                .background(Color.colorBackground)
             
-            NavigationLink(destination: {
-                TestTableDrawer(isExpanded: true)
-                    .navigationTitle("Drawer + bottom bar expanded")
-                    .navigationBarTitleDisplayMode(.inline)
-                
-            }, label: {
-                SirioText(text: "Drawer + bottom bar expanded", typography: .label_md_400)
-            })
+        case .tableLargeDark:
+            ExampleTable3(title: "Table Large Dark", schemeColor: .dark, size: .large)
+                .navigationTitle("Table Large Dark")
+                .background(Color.colorBackground)
             
-            NavigationLink(destination: {
-                TestTableDrawer(isExpanded: false)
-                    .navigationTitle("Drawer + bottom bar collapsed")
-                    .navigationBarTitleDisplayMode(.inline)
-                
-            }, label: {
-                SirioText(text: "Drawer + bottom bar collapsed", typography: .label_md_400)
-            })
+        case .tableLargeLight:
+            ExampleTable3(title: "Table Large Light", schemeColor: .light, size: .large)
+                .navigationTitle("Table Large Light")
+                .background(Color.colorBackground)
             
+        case .tableLargeDarkLong:
+            ExampleTable4(title: "Table Large Dark - Long text", schemeColor: .dark, size: .large)
+                .navigationTitle("Table Large Dark - Long text")
+                .background(Color.colorBackground)
+            
+        case .tableHorizontalScroll:
+            ExampleTable5(title: "Table Horizontal - scroll", schemeColor: .dark, size: .large)
+                .navigationTitle("Table Horizontal scroll")
+                .background(Color.colorBackground)
+            
+        case .tableAlternateRows:
+            ExampleTable6(title: "Table Alternate rows", schemeColor: .dark, size: .large)
+                .navigationTitle("Table Alternate rows")
+                .background(Color.colorBackground)
+             
+        case .tableCard:
+            ExampleTableCard(title: "Table Card", size: .large)
+                .navigationTitle("Table Card")
+                .background(Color.colorBackground)
+            
+        case .tableDrawer:
+            ExampleTableDrawer()
+                .navigationTitle("Table Drawer")
+                .background(Color.colorBackground)
+            
+        case .tableDemo:
+            
+            ExampleTable8(title: "Table Demo", schemeColor: .dark, size: .large)
+                .navigationTitle("Table Demo")
+                .background(Color.colorBackground)
         }
-        .background(Color.colorBackground)
-        .navigationTitle("Table")
-        .listStyle(GroupedListStyle())
     }
 }
 
 #Preview {
-    ExampleToggle()
+    ExampleTable(path: .constant(NavigationPath()))
 }
 
-struct TestTable: View {
-    var nRighe: Int = 8
-    var size: SirioTableSize
+// MARK: - ExampleTable1
+struct ExampleTable1: View {
+    let title: String
+    let schemeColor: SchemeColor
+    let size: SirioTableSize
+    
+    let headers: [SirioTableHeaderData] = (0..<3).map { index in
+            .init(title: "Header", isSortable: true)
+    }
+    
+    @State private var rows: [SirioTableRowData] = (0..<8).map { _ in
+            .init(cells: [
+                .link(text: "Link", onTap: nil),
+                .numberOnly(text: "00"),
+                .textOnly(text: "Lorem ipsum"),
+            ])
+    }
     
     var body: some View {
-        VStack(spacing: 0) {
-            SirioTitleBar(title: "Title", items: [])
-            VStack(spacing: 0){
-                HStack(spacing: 0){
-                    VStack(spacing: 0){
-                        SirioTableHeader(alignment: .leading, size: size, title: "Header", hasCheckBox: true, isChecked: .constant(false), onTapButtonAction: {})
-                        SirioTableCellText(size: size, text: "Text 0", isChecked: .constant(false))
-                        SirioTableCellNumber(size: size, text: "0", isChecked: .constant(false))
-                        SirioTableCellTextOnly(size: size, text: "Text Only 0")
-                        SirioTableCellLink(size: size, text: "Link 0", onTapLinkAction: {})
-                        SirioTableCellAvatar(size: size, title: "Avatar 0", subtitle: "Subtitle", iconData: .init(icon: .addressBook))
-                        SirioTableCellNumberOnly(size: size, text: "0")
-                        SirioTableCellTag(size: size, tagType: .gray, text: "Tag 0")
-                        SirioTableCellMultiIcons(size: size, iconsData: [.init(icon: .filePdf), .init(icon: .download)])
-                    }
-                    
-                    VStack(spacing: 0){
-                        SirioTableHeader(alignment: .leading, size: size, title: "Header", hasCheckBox: true, isChecked: .constant(false), onTapButtonAction: {})
-                        SirioTableCellText(size: size, text: "Text 0", isChecked: .constant(false))
-                        SirioTableCellNumber(size: size, text: "0", isChecked: .constant(false))
-                        SirioTableCellTextOnly(size: size, text: "Text Only 0")
-                        SirioTableCellLink(size: size, text: "Link 0", onTapLinkAction: {})
-                        SirioTableCellAvatar(size: size, title: "Avatar 0", subtitle: "Subtitle", iconData: .init(icon: .addressBook))
-                        SirioTableCellNumberOnly(size: size, text: "0")
-                        SirioTableCellTag(size: size, tagType: .gray, text: "Tag 0")
-                        SirioTableCellMultiIcons(size: size, iconsData: [.init(icon: .filePdf), .init(icon: .download)])
-                    }
-                }
+        VStack {
+            SirioText(text: title, typography: .labelMdMiddle)
+            SirioTable(
+                schemeColor: schemeColor,
+                title: "Titolo tabella",
+                actions: [
+                    .init(value: "Label", iconData: .previewCube, action: {}),
+                    .init(value: "Label", iconData: .previewCube, action: {}),
+                ],
+                size: size,
+                headersData: headers,
+                rows: $rows
+            )
+            .padding()
+            
+            Spacer()
+        }
+    }
+}
+
+// MARK: - ExampleTable2
+struct ExampleTable2: View {
+    let title: String
+    let schemeColor: SchemeColor
+    let size: SirioTableSize
+    
+    let headers: [SirioTableHeaderData] = (0..<3).map { index in
+            .init(title: "Header", isSortable: true)
+    }
+    
+    @State private var rows: [SirioTableRowData] = (0..<8).map { _ in
+            .init(cells: [
+                .link(text: "Link", onTap: nil),
+                .numberOnly(text: "00"),
+                .textOnly(text: "Sed at felis quis urna porttitor aliquam"),
+            ])
+    }
+    
+    var body: some View {
+        VStack {
+            SirioText(text: title, typography: .labelMdMiddle)
+            
+            SirioTable(
+                schemeColor: schemeColor,
+                title: "Titolo tabella",
+                actions: [
+                    .init(value: "Label", iconData: .previewCube, action: {}),
+                    .init(value: "Label", iconData: .previewCube, action: {}),
+                    .init(value: "Label", iconData: .previewCube, action: {}),
+                ],
+                size: size,
+                headersData: headers,
+                rows: $rows
+            )
+            .padding()
+            
+            Spacer()
+        }
+    }
+}
+
+// MARK: - ExampleTable3
+struct ExampleTable3: View {
+    let title: String
+    let schemeColor: SchemeColor
+    let size: SirioTableSize
+    
+    let headers: [SirioTableHeaderData] = (0..<3).enumerated().map { index, _ in
+            .init(title: "Header", isSortable: index < 2)
+    }
+    
+    @State private var rows: [SirioTableRowData] = (0..<18).map { _ in
+            .init(cells: [
+                .text(text: "Title", isChecked: .constant(false), onTapCheckBoxAction: {}),
+                .tag(text: "Label Tag"),
+                .action(items: [
+                    .init(value: "Action #1", action: {}),
+                    .init(value: "Action #2", action: {}),
+                    .init(value: "Action #3", action: {})
+                ])
+            ])
+    }
+    
+    var body: some View {
+        VStack {
+            SirioText(text: title, typography: .labelMdMiddle)
+            SirioTable(
+                schemeColor: schemeColor,
+                title: "Titolo tabella",
+                actions: [
+                    .init(value: "Label", iconData: .previewCube, action: {}),
+                    .init(value: "Label", iconData: .previewCube, action: {}),
+                ],
+                size: size,
+                headersData: headers,
+                rows: $rows
+            )
+            .padding()
+            
+            Spacer()
+        }
+    }
+}
+
+// MARK: - ExampleTable4
+struct ExampleTable4: View {
+    let title: String
+    let schemeColor: SchemeColor
+    let size: SirioTableSize
+    
+    let headers: [SirioTableHeaderData] = (0..<3).enumerated().map { index, _ in
+            .init(title: "Header", isSortable: index < 2)
+    }
+    
+    @State private var rows: [SirioTableRowData] = (0..<8).map { _ in
+            .init(cells: [
+                .text(text: "Vivamus at nunc non arcu", isChecked: .constant(false), onTapCheckBoxAction: {}),
+                .tag(text: "Tag con testo lungo"),
+                .action(items: [.init(value: "", iconData: .previewEye, action: {})])
+            ])
+    }
+    
+    var body: some View {
+        VStack {
+            SirioText(text: title, typography: .labelMdMiddle)
+            SirioTable(
+                schemeColor: schemeColor,
+                title: "Titolo tabella molto molto molto molto lungo su due righe",
+                actions: [
+                    .init(value: "Label", iconData: .previewCube, action: {}),
+                    .init(value: "Label", iconData: .previewCube, action: {}),
+                ],
+                size: size,
+                headersData: headers,
+                rows: $rows
+            )
+            .padding()
+            
+            Spacer()
+        }
+    }
+}
+
+// MARK: - ExampleTable5
+struct ExampleTable5: View {
+    let title: String
+    let schemeColor: SchemeColor
+    let size: SirioTableSize
+    
+    let headers: [SirioTableHeaderData] = (0..<4).enumerated().map {index, _ in
+            .init(title: "Header", isSortable: index < 2)
+    }
+    
+    @State private var rows: [SirioTableRowData] = (0..<18).map { _ in
+            .init(cells: [
+                .textOnly(text: "Lorem ipsum"),
+                .numberOnly(text: "00"),
+                .tag(text: "Label Tag"),
+                .textOnly(text: "Label"),
+            ])
+    }
+    
+    var body: some View {
+        VStack {
+            SirioText(text: title, typography: .labelMdMiddle)
+            SirioTable(
+                schemeColor: schemeColor,
+                title: "Titolo tabella",
+                actions: [
+                    .init(value: "Label", iconData: .previewCube, action: {}),
+                    .init(value: "Label", iconData: .previewCube, action: {}),
+                ],
+                size: size,
+                headersData: headers,
+                rows: $rows,
+                allowHorizontalScroll: true
+            )
+            .padding()
+            
+            Spacer()
+        }
+    }
+}
+
+// MARK: - ExampleTable6
+struct ExampleTable6: View {
+    let title: String
+    let schemeColor: SchemeColor
+    let size: SirioTableSize
+    
+    let headers: [SirioTableHeaderData] = (0..<3).enumerated().map {index, _ in
+            .init(title: "Header", isSortable: index < 2)
+    }
+    
+    @State private var rows: [SirioTableRowData] = (0..<8).map { _ in
+            .init(cells: [
+                .text(text: "Title", isChecked: .constant(false), onTapCheckBoxAction: {}),
+                .tag(text: "Label Tag"),
+                .action(items: [.init(value: "", iconData: .previewEye, action: {})])
+            ])
+    }
+    
+    var body: some View {
+        VStack {
+            SirioText(text: title, typography: .labelMdMiddle)
+            SirioTable(
+                schemeColor: schemeColor,
+                title: "Titolo tabella",
+                actions: [
+                    .init(value: "Label", iconData: .previewCube, action: {}),
+                    .init(value: "Label", iconData: .previewCube, action: {}),
+                ],
+                size: size,
+                headersData: headers,
+                rows: $rows,
+                alternateRowColors: true
+            )
+            .padding()
+            
+            Spacer()
+        }
+    }
+}
+
+// MARK: - ExampleTableCard
+struct ExampleTableCard: View {
+    let title: String
+    let size: SirioTableSize
+    
+    var body: some View {
+        VStack {
+            SirioText(text: title, typography: .labelMdMiddle)
+            
+            SirioTableCards(
+                title: "Titolo tabella",
+                actions: [
+                    .init(value: "Label", iconData: .previewCube, action: {}),
+                    .init(value: "Label", iconData: .previewCube, action: {})
+                ],
+                cards: [
+                    [
+                        .init(content: .text(header: "Header 1", text: "Lorem ipsum sagittis egestas at proin")),
+                        .init(content: .number(header: "Header", text: "00")),
+                        .init(content: .link(header: "Header", text: "Link", onTap: {
+                            print("Link tappato")
+                        })),
+                        .init(content: .tag(header: "Header", text: "Label Tag")),
+                        .init(content: .multiIcons(
+                            icons: [
+                                .init(icon: .filePdf, action: {}),
+                                .init(icon: .download, action: {}),
+                                .init(icon: .trash, action: {})
+                            ]
+                        ))
+                    ],
+                    [
+                        .init(content: .text(header: "Header 1", text: "Lorem ipsum sagittis egestas at proin")),
+                        .init(content: .number(header: "Header", text: "00")),
+                        .init(content: .link(header: "Header", text: "Link", onTap: {
+                            print("Link tappato")
+                        })),
+                        .init(content: .tag(header: "Header", text: "Label Tag")),
+                        .init(content: .multiIcons(
+                            icons: [
+                                .init(icon: .filePdf, action: {}),
+                                .init(icon: .download, action: {}),
+                                .init(icon: .trash, action: {})
+                            ]
+                        ))
+                    ],
+                    [
+                        .init(content: .text(header: "Header 1", text: "Lorem ipsum sagittis egestas at proin")),
+                        .init(content: .number(header: "Header", text: "00")),
+                        .init(content: .link(header: "Header", text: "Link", onTap: {
+                            print("Link tappato")
+                        })),
+                        .init(content: .tag(header: "Header", text: "Label Tag")),
+                        .init(content: .multiIcons(
+                            icons: [
+                                .init(icon: .filePdf, action: {}),
+                                .init(icon: .download, action: {}),
+                                .init(icon: .trash, action: {})
+                            ]
+                        ))
+                    ],
+                ],
+                alternateRowColors: true
+            )
+            .padding()
+            
+            Spacer()
+        }
+    }
+}
+
+// MARK: - ExampleTableDrawer
+struct ExampleTableDrawer: View {
+    @State private var showDrawer = false
+    
+    var body: some View {
+        VStack(spacing: 20) {
+            Button("Apri Drawer") {
+                showDrawer = true
+            }
+        }
+        .sirioTableDrawer(
+            isPresented: $showDrawer,
+            title: "Titolo del Drawer",
+            rows: [
+                .init(content: .link(header: "Header", text: "Link", onTap: {})),
+                .init(content: .number(header: "Header", text: "00")),
+                .init(content: .text(header: "Header", text: "Lorem ipsum")),
+                .init(content: .text(header: "Header", text: "Lorem ipsum")),
+                .init(content: .text(header: "Header", text: "Lorem ipsum")),
+                .init(content: .text(header: "Header", text: "Lorem ipsum")),
+                .init(content: .text(header: "Header", text: "Lorem ipsum")),
+                .init(content: .text(header: "Header", text: "Lorem ipsum")),
+                .init(content: .text(header: "Header", text: "Lorem ipsum")),
+                .init(content: .text(header: "Header", text: "Lorem ipsum")),
+                .init(content: .text(header: "Header", text: "Lorem ipsum")),
+                .init(content: .text(header: "Header", text: "Lorem ipsum")),
+            ],
+            bottomIcons: [
+                .init(icon: .print, action: {}),
+                .init(icon: .download, action: {}),
+                .init(icon: .trash, action: {})
+            ],
+            onTapClose: {
+                print("Chiudi Drawer")
+            }
+        )
+    }
+}
+
+// MARK: - ExampleTable7 (Demo con ordinamento)
+struct ExampleTable7: View {
+
+    // MARK: - Model
+    struct Item: Identifiable {
+        let id = UUID()
+        let text: String
+        let number: Int
+        let letter: String
+        var checked: Bool
+    }
+
+    // MARK: - Props
+    let title: String
+    let schemeColor: SchemeColor
+    let size: SirioTableSize
+
+    // MARK: - State
+    @State private var items: [Item]
+    private let originalItems: [Item]
+
+    // MARK: - Init
+    init(title: String, schemeColor: SchemeColor, size: SirioTableSize) {
+        self.title = title
+        self.schemeColor = schemeColor
+        self.size = size
+
+        let n = 11
+        let nums = (1...n).shuffled()
+        let lets = (0..<n).map { String(UnicodeScalar(65 + $0)!) }.shuffled()
+
+        let generated = (0..<n).map {
+            Item(
+                text: "Title \($0)",
+                number: nums[$0],
+                letter: lets[$0],
+                checked: false
+            )
+        }
+
+        _items = State(initialValue: generated)
+        originalItems = generated
+    }
+
+    // MARK: - Headers
+    private let headers = [
+        SirioTableHeaderData(title: "Checked", isSortable: false),
+        SirioTableHeaderData(title: "Number", isSortable: true),
+        SirioTableHeaderData(title: "Letter", isSortable: true)
+    ]
+
+    // MARK: - Body
+    var body: some View {
+        SirioTable(
+            schemeColor: schemeColor,
+            title: title,
+            actions: [.init(value: "Label", iconData: .previewCube, action: {})],
+            size: size,
+            headersData: headers,
+            rows: .constant(makeRows(from: items)),
+            alternateRowColors: true,
+            sort: .ascending(2),
+            onSortRequest: onSortRequest
+        )
+        .padding()
+    }
+
+    // MARK: - Sorting (USER RESPONSIBILITY)
+    private func onSortRequest(_ sort: SirioTableSort) {
+        guard sort.order != .none else {
+            items = originalItems
+            return
+        }
+
+        let asc = sort.order == .ascending
+
+        items.sort {
+            compare($0, $1, column: sort.columnIndex, ascending: asc)
+        }
+    }
+
+    // MARK: - Helpers
+    private func makeRows(from items: [Item]) -> [SirioTableRowData] {
+        items.map {
+            SirioTableRowData(cells: [
+                .text(text: $0.text, isChecked: .constant($0.checked)),
+                .numberOnly(text: "\($0.number)"),
+                .tag(text: $0.letter)
+            ])
+        }
+    }
+
+    private func compare(
+        _ a: Item,
+        _ b: Item,
+        column: Int,
+        ascending: Bool
+    ) -> Bool {
+        let result: Bool
+
+        switch column {
+        case 0: result = !a.checked && b.checked
+        case 1: result = a.number < b.number
+        case 2: result = a.letter < b.letter
+        default: result = true
+        }
+
+        return ascending ? result : !result
+    }
+}
+
+struct ExampleTable8: View {
+
+    // MARK: - Model
+    struct Item: Identifiable {
+        let id = UUID()
+        let text: String
+        let number: Int
+        let letter: String
+        var checked: Bool
+    }
+
+    // MARK: - Props
+    let title: String
+    let schemeColor: SchemeColor
+    let size: SirioTableSize
+
+    // MARK: - State
+    @State private var items: [Item]
+    @State private var tableSort = SirioTableSort(columnIndex: 0, order: .none)
+
+    private let originalItems: [Item]
+
+    // MARK: - Init
+    init(title: String, schemeColor: SchemeColor, size: SirioTableSize) {
+        self.title = title
+        self.schemeColor = schemeColor
+        self.size = size
+
+        let n = 11
+        let nums = (1...n).shuffled()
+        let lets = (0..<n).map { String(UnicodeScalar(65 + $0)!) }.shuffled()
+
+        let generated = (0..<n).map {
+            Item(
+                text: "Title \($0)",
+                number: nums[$0],
+                letter: lets[$0],
+                checked: false
+            )
+        }
+
+        _items = State(initialValue: generated)
+        originalItems = generated
+    }
+
+    // MARK: - Headers
+    private let headers = [
+        SirioTableHeaderData(title: "Checked", isSortable: false),
+        SirioTableHeaderData(title: "Number", isSortable: true),
+        SirioTableHeaderData(title: "Letter", isSortable: true)
+    ]
+
+    // MARK: - Derived data (AUTOMATIC + STABLE SORT)
+    private var visibleItems: [Item] {
+        items.stableSortedForSirioTable(sort: tableSort) { item, column, _ in
+            switch column {
+            case 1:
+                return .number(Double(item.number))
+            case 2:
+                return .string(item.letter)
+            default:
+                return nil
             }
         }
     }
-}
 
-
-struct TestTableVertical: View {
-    
+    // MARK: - Body
     var body: some View {
-        SirioTableVertical(cells: [
-            SirioTableVerticalCell(schemeColor: .light,
-                                   data: [
-                                    .init(title: "Header", subtitle: "Link", type: .link),
-                                    .init(title: "Header", subtitle: "23/11/2023", type: .date),
-                                    .init(title: "Header", subtitle: "00", type: .number),
-                                    .init(title: "Header", subtitle: "Lorem ipsum", type: .text),
-                                    .init(title: "Header", subtitle: "Label tag", type: .tag)],
-                                   icons: [.previewPdf, .previewDownload, .previewTrash]),
-            SirioTableVerticalCell(schemeColor: .light,
-                                   data: [
-                                    .init(title: "Header", subtitle: "Link", type: .link),
-                                    .init(title: "Header", subtitle: "23/11/2023", type: .date),
-                                    .init(title: "Header", subtitle: "00", type: .number),
-                                    .init(title: "Header", subtitle: "Lorem ipsum", type: .text),
-                                    .init(title: "Header", subtitle: "Label tag", type: .tag)],
-                                   icons: [.previewPdf, .previewDownload, .previewTrash]),
-            SirioTableVerticalCell(schemeColor: .dark,
-                                   data: [
-                                    .init(title: "Header", subtitle: "Link", type: .link),
-                                    .init(title: "Header", subtitle: "23/11/2023", type: .date),
-                                    .init(title: "Header", subtitle: "00", type: .number),
-                                    .init(title: "Header", subtitle: "Lorem ipsum", type: .text),
-                                    .init(title: "Header", subtitle: "Label tag", type: .tag)],
-                                   icons: [.previewPdf, .previewDownload, .previewTrash]),
-            SirioTableVerticalCell(schemeColor: .dark,
-                                   data: [
-                                    .init(title: "Header", subtitle: "Link", type: .link),
-                                    .init(title: "Header", subtitle: "23/11/2023", type: .date),
-                                    .init(title: "Header", subtitle: "00", type: .number),
-                                    .init(title: "Header", subtitle: "Lorem ipsum", type: .text),
-                                    .init(title: "Header", subtitle: "Label tag", type: .tag)],
-                                   icons: [.previewPdf, .previewDownload, .previewTrash])
-            
-        ])
+        SirioTable(
+            schemeColor: schemeColor,
+            title: title,
+            actions: [
+                .init(value: "Label", iconData: .previewCube, action: {})
+            ],
+            size: size,
+            headersData: headers,
+            rows: .constant(makeRows(from: visibleItems)),
+            alternateRowColors: true,
+            sort: tableSort,
+            onSortRequest: onSortRequest
+        )
+        .padding()
     }
-}
 
-struct TestTableDrawer: View {
-    var isExpanded: Bool
-    
-    var body: some View {
-        if isExpanded {
-            SirioTableDrawer(title: "Titolo",
-                             onTapClose: {},
-                             data: [
-                                SirioTableDrawerItemData.init(title: "Titolo", subtitle: "Sottotitolo", type: .text),
-                                SirioTableDrawerItemData.init(title: "Titolo", subtitle: "00", type: .number),
-                                SirioTableDrawerItemData.init(title: "Titolo", subtitle: "11/03/2023", type: .date),
-                                SirioTableDrawerItemData.init(title: "Titolo", subtitle: "Lorem Ipsum dolor sit amet", type: .link),
-                             ], iconsData: [.init(icon: .print), .init(icon: .trash), .init(icon: .download)])
-        } else {
-            SirioTableDrawer(title: "Titolo",
-                             onTapClose: {},
-                             data: [
-                                SirioTableDrawerItemData.init(title: "Titolo", subtitle: "Sottotitolo", type: .text),
-                                SirioTableDrawerItemData.init(title: "Titolo", subtitle: "00", type: .number),
-                                SirioTableDrawerItemData.init(title: "Titolo", subtitle: "11/03/2023", type: .date),
-                                SirioTableDrawerItemData.init(title: "Titolo", subtitle: "Lorem Ipsum dolor sit amet", type: .link),
-                             ], iconsData: [SirioIconData.init(icon: .trash, text: "Elimina"),
-                                            SirioIconData.init(icon: .download, text: "Download"),
-                                            SirioIconData.init(icon: .addressBook, text: "Rubrica"),
-                                            SirioIconData.init(icon: .times, text: "Chiudi")
-                                           ])
+    // MARK: - Sort handling (ANDROID-ALIGNED)
+    private func onSortRequest(_ sort: SirioTableSort) {
+        if sort.order == .none {
+            items = originalItems
         }
+        tableSort = sort
     }
-}
 
-
-struct TestTable1: View {
-    var body: some View {
-        SirioTable(
-            title: "Title",
-            headers: SirioTableRowData(cells: [
-                .header(schemeColor: .dark, alignment: .leading, size: .medium, title: "Title 0", scroll: false, hasCheckBox: false, isChecked: .constant(false), onTapCheckBoxAction: nil, onTapButtonAction: nil),
-                .header(schemeColor: .dark, alignment: .leading, size: .medium, title: "Title 1", scroll: false, hasCheckBox: false, isChecked: .constant(false), onTapCheckBoxAction: nil, onTapButtonAction: nil),
-                .header(schemeColor: .dark, alignment: .leading, size: .medium, title: "Title 2", scroll: false, hasCheckBox: false, isChecked: .constant(false), onTapCheckBoxAction: nil, onTapButtonAction: nil)
-                
-            ]),
-            columns: [
-                
-                SirioTableColumnData(cells: [
-                    .text(size: .medium, text: "Text 0", scroll: false, isChecked: .constant(false)),
-                    .text(size: .medium, text: "Text 1", scroll: false, isChecked: .constant(false)),
-                    .text(size: .medium, text: "Text 2", scroll: false, isChecked: .constant(false)),
-                ]),
-                
-                SirioTableColumnData(cells: [
-                    .numberOnly(size: .medium, text: "0", scroll: false),
-                    .numberOnly(size: .medium, text: "1", scroll: false),
-                    .numberOnly(size: .medium, text: "2", scroll: false)
-                ]),
-                
-                SirioTableColumnData(cells: [
-                    .textOnly(size: .medium, text: "Text 0", scroll: false),
-                    .textOnly(size: .medium, text: "Text 1", scroll: false),
-                    .textOnly(size: .medium, text: "Text 2", scroll: false)
-                ]),
-            ]
-        )
-    }
-}
-
-struct TestTable2: View {
-    var body: some View {
-        SirioTable(
-            title: "Title",
-            headers: SirioTableRowData(cells: [
-                .header(schemeColor: .dark, alignment: .leading, size: .medium, title: "Title 0", scroll: false, hasCheckBox: false, isChecked: .constant(false), onTapCheckBoxAction: nil, onTapButtonAction: nil),
-                .header(schemeColor: .dark, alignment: .leading, size: .medium, title: "Title 1", scroll: false, hasCheckBox: false, isChecked: .constant(false), onTapCheckBoxAction: nil, onTapButtonAction: nil),
-                .header(schemeColor: .dark, alignment: .leading, size: .medium, title: "Title 2", scroll: false, hasCheckBox: false, isChecked: .constant(false), onTapCheckBoxAction: nil, onTapButtonAction: nil)
-                
-            ]),
-            columns: [
-                SirioTableColumnData(cells: [
-                    .link(size: .medium, text: "Link 0", scroll: false, onTapLinkAction: {}),
-                    .link(size: .medium, text: "Link 1", scroll: false, onTapLinkAction: {}),
-                    .link(size: .medium, text: "Link 2", scroll: false, onTapLinkAction: {})
-                ]),
-                
-                SirioTableColumnData(cells: [
-                    .avatar(size: .medium, title: "Avatar 0", subtitle: "Subtitle", iconData: .init(icon: .addressBook)),
-                    
-                        .avatar(size: .medium, title: "Avatar 1", subtitle: "Subtitle", iconData: .init(icon: .addressBook)),
-                    
-                        .avatar(size: .medium, title: "Avatar 2", subtitle: "Subtitle", iconData: .init(icon: .addressBook)),
-                ]),
-                
-                SirioTableColumnData(cells: [
-                    .tag(size: .medium, tagType: .gray, text: "Tag 0", scroll: false),
-                    .tag(size: .medium, tagType: .gray, text: "Tag 1", scroll: false),
-                    .tag(size: .medium, tagType: .gray, text: "Tag 2", scroll: false)
-                ]),
-                
-            ]
-        )
-    }
-}
-
-struct TestTable3: View {
-    var body: some View {
-        SirioTable(
-            title: "Title",
-            headers: SirioTableRowData(cells: [
-                .header(schemeColor: .dark, alignment: .leading, size: .medium, title: "Title 0", scroll: false, hasCheckBox: false, isChecked: .constant(false), onTapCheckBoxAction: nil, onTapButtonAction: nil),
-                .header(schemeColor: .dark, alignment: .leading, size: .medium, title: "Title 1", scroll: false, hasCheckBox: false, isChecked: .constant(false), onTapCheckBoxAction: nil, onTapButtonAction: nil),
-                .header(schemeColor: .dark, alignment: .leading, size: .medium, title: "Title 2", scroll: false, hasCheckBox: false, isChecked: .constant(false), onTapCheckBoxAction: nil, onTapButtonAction: nil)
-                
-            ]),
-            columns: [
-                SirioTableColumnData(cells: [
-                    .textOnly(size: .medium, text: "Text 0", scroll: false),
-                    .textOnly(size: .medium, text: "Text 1", scroll: false),
-                    .textOnly(size: .medium, text: "Text 2", scroll: false)
-                ]),
-                
-                SirioTableColumnData(cells: [
-                    .number(size: .medium, text: "0", scroll: false, isChecked: .constant(false)),
-                    .number(size: .medium, text: "1", scroll: false, isChecked: .constant(false)),
-                    .number(size: .medium, text: "2", scroll: false, isChecked: .constant(false))
-                ]),
-                
-                SirioTableColumnData(cells: [
-                    .multiIcons(size: .medium, scroll: false, iconsData: [.init(icon: .filePdf), .init(icon: .download)]),
-                    .multiIcons(size: .medium, scroll: false, iconsData: [.init(icon: .filePdf), .init(icon: .download)]),
-                    .multiIcons(size: .medium, scroll: false, iconsData: [.init(icon: .filePdf), .init(icon: .download)])
-                ]),
-            ]
-        )
+    // MARK: - Helpers
+    private func makeRows(from items: [Item]) -> [SirioTableRowData] {
+        items.map {
+            SirioTableRowData(cells: [
+                .text(text: $0.text, isChecked: .constant($0.checked)),
+                .numberOnly(text: "\($0.number)"),
+                .tag(text: $0.letter)
+            ])
+        }
     }
 }

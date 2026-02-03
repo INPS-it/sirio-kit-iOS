@@ -1,7 +1,7 @@
 //
 // SirioAppNavigationBigTitle.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -25,7 +25,7 @@ public struct SirioAppNavigationBigTitle: View {
     }
     
     public var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: Size.zero) {
             HStack(spacing: Size.AppNavigation.spacing) {
                 SirioAppNavigationItem(item: leftItem)
                 

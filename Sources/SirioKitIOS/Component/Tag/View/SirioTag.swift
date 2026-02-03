@@ -1,7 +1,7 @@
 //
 // SirioTag.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -11,8 +11,15 @@ import SwiftUI
 // Various type of colored tag
 public enum SirioTagType: CaseIterable {
     case gray, blue, red, orange, green, white
+    
+    public static var baseCases: [Self] {
+        [.white, .gray] // i "base"
+    }
+    
+    public static var semanticCases: [Self] {
+        allCases.filter { !baseCases.contains($0) }
+    }
 }
-
 /// SirioTag component representing a color-coded label
 /// - Parameters:
 ///   - type: The color type of the tag [SirioTagType]

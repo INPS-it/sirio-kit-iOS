@@ -1,7 +1,7 @@
 //
 // SirioTabBarItem.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -43,20 +43,28 @@ public struct SirioTabBarItem: View {
             Rectangle()
                 .fill(indicatorColor)
                 .frame(width: hStackFrame.width, height: Size.TabBar.Item.indicator)
-
+            
             Spacer()
-
+            
             HStack(spacing: Size.TabBar.Item.Landscape.spacing) {
-                SirioIcon(data: .init(icon: itemData.icon))
-                    .frame(width: Size.TabBar.Item.icon, height: Size.TabBar.Item.icon)
-                    .foregroundStyle(iconColor)
-                    .if(itemData.hasBadge, transform: {
-                        $0.overlay(alignment: .topTrailing, content: {
-                            SirioBadge()
-                                .padding(.top, Size.Badge.paddingTop)
-                                .padding(.trailing, Size.Badge.paddingTrailing)
-                        })
+                ZStack {
+                    if itemData.isHighlighted {
+                        Circle()
+                            .fill(Color.aliasTextColorPrimaryLight40)
+                            .frame(width: Size.TabBar.Item.circle, height: Size.TabBar.Item.circle)
+                    }
+                    SirioIcon(data: .init(icon: itemData.icon))
+                        .frame(width: Size.TabBar.Item.icon, height: Size.TabBar.Item.icon)
+                        .foregroundStyle(iconColor)
+                }
+                .if(itemData.hasBadge, transform: {
+                    $0.overlay(alignment: .topTrailing, content: {
+                        SirioBadge()
+                            .padding(.top, Size.Badge.paddingTop)
+                            .padding(.trailing, Size.Badge.paddingTrailing)
                     })
+                })
+                
                 SirioText(text: itemData.name, typography: Typography.TabBar.style)
                     .foregroundColor(textColor)
             }
@@ -65,15 +73,14 @@ public struct SirioTabBarItem: View {
             .readSize { size in
                 hStackFrame = size
             }
-
+            
             Spacer()
         }
         .frame(height: Size.TabBar.height)
-        
     }
+    
     // Variabile di stato per salvare la larghezza dell'HStack
     @State private var hStackFrame: CGSize = .zero
-
     
     private var portrait: some View {
         VStack(spacing: Size.zero) {
@@ -83,16 +90,24 @@ public struct SirioTabBarItem: View {
             Spacer()
             VStack(spacing: Size.TabBar.Item.Portrait.spacing){
                 
-                SirioIcon(data: .init(icon: itemData.icon))
-                    .frame(width: Size.TabBar.Item.icon, height: Size.TabBar.Item.icon)
-                    .foregroundStyle(iconColor)
-                    .if(itemData.hasBadge, transform: {
-                        $0.overlay(alignment: .topTrailing, content: {
-                            SirioBadge()
-                                .padding(.top, Size.Badge.paddingTop)
-                                .padding(.trailing, Size.Badge.paddingTrailing)
-                        })
+                ZStack {
+                    if itemData.isHighlighted {
+                        Circle()
+                            .fill(Color.aliasTextColorPrimaryLight40)
+                            .frame(width: Size.TabBar.Item.circle, height: Size.TabBar.Item.circle)
+                    }
+
+                    SirioIcon(data: .init(icon: itemData.icon))
+                        .frame(width: Size.TabBar.Item.icon, height: Size.TabBar.Item.icon)
+                        .foregroundStyle(iconColor)
+                }
+                .if(itemData.hasBadge, transform: {
+                    $0.overlay(alignment: .topTrailing, content: {
+                        SirioBadge()
+                            .padding(.top, Size.Badge.paddingTop)
+                            .padding(.trailing, Size.Badge.paddingTrailing)
                     })
+                })
                 SirioText(text: itemData.name, typography: Typography.TabBar.style)
                     .foregroundColor(textColor)
                 Spacer()

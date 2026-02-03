@@ -1,7 +1,7 @@
 //
 // Typography.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -340,8 +340,8 @@ extension Typography {
 // MARK: Pagination
 extension Typography {
     public struct Pagination {
-        public static let number: Typography = .label_md_number_400
-        public static let dots: Typography = .label_md_number_400
+        public static let number: Typography = .labelNumberMdRegular
+        public static let dots: Typography = .labelNumberMdRegular
     }
 }
 
@@ -370,14 +370,13 @@ extension Typography {
     public struct Table {
         
         public struct Header {
-            public static let title: Typography = .label_md_600
+            public static let title: Typography = .labelMdHeavy
         }
         
         public struct Cell {
-            public static let number: Typography = .label_md_number_400
-            public static let date: Typography = .label_md_number_400
-            public static let text: Typography = .text_md_400
-            public static let link: Typography = .link_p_md_01
+            public static let number: Typography = .labelNumberMdRegular
+            public static let text: Typography = .labelMdRegular
+            public static let link: Typography = .linkMdHeavy
         }
         
         public struct Drawer {

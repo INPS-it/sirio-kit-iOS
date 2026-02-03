@@ -1,7 +1,7 @@
 //
 // SirioButtonIconOnlyStyle.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -22,19 +22,17 @@ struct SirioButtonIconOnlyStyle: ButtonStyle {
         VStack {
             SirioIcon(data: iconData)
                 .frame(width: iconFrame, height: iconFrame)
-                .foregroundColor(getSirioButtonIconColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed))
+                .foregroundColor(getSirioButtonIconColor(hierarchy: hierarchy, isDisabled: isDisabled, isPressed: isPressed))
         }
         .padding(.horizontal, paddingHorizontal)
         .padding(.vertical, paddingVertical)
-        .background(getSirioButtonBackgroundColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed))
+        .background(getSirioButtonBackgroundColor(hierarchy: hierarchy, isDisabled: isDisabled, isPressed: isPressed))
         .cornerRadius(Size.Button.Border.cornerRadius)
         .overlay(
             RoundedRectangle(cornerRadius: Size.Button.Border.cornerRadius)
-                .stroke(getSirioButtonBorderColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed), lineWidth: Size.Button.Border.width)
+                .stroke(getSirioButtonBorderColor(hierarchy: hierarchy, isDisabled: isDisabled, isPressed: isPressed), lineWidth: Size.Button.Border.width)
         )
-        .onHover { isHover in
-            self.isHover = isHover
-        }
+        
         .onChange(of: configuration.isPressed) { isPressed in
             self.isPressed = isPressed
         }

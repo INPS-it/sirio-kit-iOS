@@ -1,7 +1,7 @@
 //
 // SirioIcon.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -60,8 +60,11 @@ public struct SirioIconData: Identifiable {
     public static let previewArrowLeft = SirioIconData(icon: .arrowLeft)
     public static let previewArrowRight = SirioIconData(icon: .arrowRight)
     public static let previewCube = SirioIconData(icon: .cube)
+    public static let previewEye = SirioIconData(icon: .eye)
     public static let previewBookmark = SirioIconData(icon: .bookmark)
     public static let previewShare = SirioIconData(icon: .shareAlt)
+    public static let previewFilter = SirioIconData(icon: .filter)
+    public static let previewInfo = SirioIconData(icon: .infoCircle)
 }
 
 /// A basic component that represent an icon using the data
@@ -76,7 +79,7 @@ public struct SirioIcon: View {
     }
     
     public var body: some View {
-        VStack(spacing: 0){
+        VStack(spacing: Size.zero){
             if let icon = data.icon {
                 Image(icon.rawValue, bundle: data.bundle)
                     .renderingMode(.template)

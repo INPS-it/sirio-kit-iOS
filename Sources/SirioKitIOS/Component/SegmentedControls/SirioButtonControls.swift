@@ -1,7 +1,7 @@
 //
 // SirioButtonControls.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -26,7 +26,7 @@ struct SirioButtonControls: View {
     }
     
     var body: some View {
-        HStack(spacing: 0) {
+        HStack(spacing: Size.zero) {
             Spacer()
             if let text = text {
                 createTextButton(with: text)

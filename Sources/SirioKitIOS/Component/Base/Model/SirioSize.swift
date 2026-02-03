@@ -1,7 +1,7 @@
 //
 // SirioSize.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -13,10 +13,10 @@ public enum SirioSize: String, CaseIterable {
     case large, medium, small
 }
 
-public enum SirioTableSize: String, CaseIterable {
-    case large, medium, small, xsmall
-}
-
 public enum SirioFloatingActionButtonSize: String, CaseIterable {
     case regular, small
+}
+
+public enum SirioTableSize: String, CaseIterable {
+    case large, small
 }

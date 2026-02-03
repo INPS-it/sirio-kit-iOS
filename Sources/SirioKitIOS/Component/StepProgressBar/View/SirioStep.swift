@@ -1,7 +1,7 @@
 //
 // SirioStep.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -95,7 +95,7 @@ struct StepBar: View {
 
 
 #Preview {
-    VStack(spacing: 0) {
+    VStack(spacing: Size.zero) {
         SirioStep(
             type: .done,
             pointText: "00",

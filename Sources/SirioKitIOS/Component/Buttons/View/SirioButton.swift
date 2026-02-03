@@ -1,7 +1,7 @@
 //
 // SirioButtonTextIcon.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -175,7 +175,8 @@ struct TestSirioButtons: View {
             TestSirioButtons(type: "Tertiary Light", hierarchy: .tertiaryLight)
             TestSirioButtons(type: "Tertiary Dark", hierarchy: .tertiaryDark)
             TestSirioButtons(type: "Danger", hierarchy: .danger)
-            TestSirioButtons(type: "Ghost", hierarchy: .ghost)
+            TestSirioButtons(type: "Ghost Light", hierarchy: .ghostLight)
+            TestSirioButtons(type: "Ghost Dark", hierarchy: .ghostDark)
         }
     })
 }

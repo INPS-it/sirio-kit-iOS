@@ -9,13 +9,16 @@
 /* Begin PBXBuildFile section */
 		7E1C91E82891371F008FE477 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1C91E72891371F008FE477 /* UIColor+Extension.swift */; };
 		7E321194289BB0F200FFB256 /* ExamplePagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E321193289BB0F200FFB256 /* ExamplePagination.swift */; };
-		7E3F3F67288FE387008FF13D /* ExampleSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3F3F66288FE387008FF13D /* ExampleSearchBar.swift */; };
 		7E40AA7E2D3FD76C0028B996 /* ExampleSegmentedControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E40AA7D2D3FD7670028B996 /* ExampleSegmentedControls.swift */; };
 		7E50809D29A8B96500FC8A4D /* ExampleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E50809C29A8B96500FC8A4D /* ExampleCard.swift */; };
+		7E50A6742F30A85F00DF104D /* ExamplePopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E50A6722F30A85F00DF104D /* ExamplePopover.swift */; };
+		7E50A6752F30A85F00DF104D /* ExampleDropdownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E50A66F2F30A85F00DF104D /* ExampleDropdownMenu.swift */; };
+		7E50A6762F30A85F00DF104D /* ExampleListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E50A6702F30A85F00DF104D /* ExampleListItem.swift */; };
+		7E50A6772F30A85F00DF104D /* ExampleSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E50A6732F30A85F00DF104D /* ExampleSearch.swift */; };
+		7E50A6782F30A85F00DF104D /* ExampleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E50A6712F30A85F00DF104D /* ExampleLoader.swift */; };
 		7E5E7AA32B55744D00A7B45A /* ExampleCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5E7AA22B55744D00A7B45A /* ExampleCarousel.swift */; };
 		7E5E7AA52B55756000A7B45A /* ExampleHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5E7AA42B55756000A7B45A /* ExampleHero.swift */; };
 		7E5E7AA72B55757100A7B45A /* ExampleTextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5E7AA62B55757100A7B45A /* ExampleTextArea.swift */; };
-		7E7998812C649C1F00B3C957 /* ExampleTitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7998802C649C1F00B3C957 /* ExampleTitleBar.swift */; };
 		7E7998832C661EAE00B3C957 /* ExampleStepProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7998822C661EAE00B3C957 /* ExampleStepProgressBar.swift */; };
 		7E7FB5E3284E05A100F80FC7 /* iOS_ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB5E2284E05A100F80FC7 /* iOS_ExampleApp.swift */; };
 		7E7FB5E7284E05A100F80FC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E7FB5E6284E05A100F80FC7 /* Assets.xcassets */; };
@@ -55,14 +58,17 @@
 /* Begin PBXFileReference section */
 		7E1C91E72891371F008FE477 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		7E321193289BB0F200FFB256 /* ExamplePagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplePagination.swift; sourceTree = "<group>"; };
-		7E3F3F66288FE387008FF13D /* ExampleSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSearchBar.swift; sourceTree = "<group>"; };
 		7E40AA7D2D3FD7670028B996 /* ExampleSegmentedControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSegmentedControls.swift; sourceTree = "<group>"; };
 		7E50809C29A8B96500FC8A4D /* ExampleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCard.swift; sourceTree = "<group>"; };
+		7E50A66F2F30A85F00DF104D /* ExampleDropdownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleDropdownMenu.swift; sourceTree = "<group>"; };
+		7E50A6702F30A85F00DF104D /* ExampleListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleListItem.swift; sourceTree = "<group>"; };
+		7E50A6712F30A85F00DF104D /* ExampleLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleLoader.swift; sourceTree = "<group>"; };
+		7E50A6722F30A85F00DF104D /* ExamplePopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplePopover.swift; sourceTree = "<group>"; };
+		7E50A6732F30A85F00DF104D /* ExampleSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSearch.swift; sourceTree = "<group>"; };
 		7E541EC22859CF8E002DBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7E5E7AA22B55744D00A7B45A /* ExampleCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleCarousel.swift; sourceTree = "<group>"; };
 		7E5E7AA42B55756000A7B45A /* ExampleHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleHero.swift; sourceTree = "<group>"; };
 		7E5E7AA62B55757100A7B45A /* ExampleTextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTextArea.swift; sourceTree = "<group>"; };
-		7E7998802C649C1F00B3C957 /* ExampleTitleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTitleBar.swift; sourceTree = "<group>"; };
 		7E7998822C661EAE00B3C957 /* ExampleStepProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleStepProgressBar.swift; sourceTree = "<group>"; };
 		7E7FB5DF284E05A100F80FC7 /* SirioKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SirioKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E7FB5E2284E05A100F80FC7 /* iOS_ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_ExampleApp.swift; sourceTree = "<group>"; };
@@ -154,8 +160,6 @@
 		7E7FB5F8284E095A00F80FC7 /* ViewExample */ = {
 			isa = PBXGroup;
 			children = (
-				7E40AA7D2D3FD7670028B996 /* ExampleSegmentedControls.swift */,
-				7EE3708A2D0729F9001023D8 /* ExampleFoundationToken.swift */,
 				7E7FB5FB284E095A00F80FC7 /* ExampleAccordion.swift */,
 				7E7FB5F9284E095A00F80FC7 /* ExampleAppNavigation.swift */,
 				7EEAE0322C342B5000F4D335 /* ExampleAvviso.swift */,
@@ -165,27 +169,32 @@
 				7ED0E580284E4CAB001574D5 /* ExampleCheckBox.swift */,
 				7E7FB5FA284E095A00F80FC7 /* ExampleChips.swift */,
 				7EE5EAF62897FDC9000EC224 /* ExampleDialog.swift */,
+				7E50A66F2F30A85F00DF104D /* ExampleDropdownMenu.swift */,
 				7E7FB5FF284E095A00F80FC7 /* ExampleFab.swift */,
 				7EAF97B92861CAA500B90534 /* ExampleFileUpload.swift */,
+				7E82B10D2C342EE9001F0BFC /* ExampleFiltri.swift */,
+				7EE3708A2D0729F9001023D8 /* ExampleFoundationToken.swift */,
 				7E5E7AA42B55756000A7B45A /* ExampleHero.swift */,
+				7E50A6702F30A85F00DF104D /* ExampleListItem.swift */,
+				7E50A6712F30A85F00DF104D /* ExampleLoader.swift */,
+				7EFB50AE2C3BE51A00C84CBB /* ExampleMenuSpalla.swift */,
 				7EE2188D286F187F0042D288 /* ExampleNotification.swift */,
 				7E321193289BB0F200FFB256 /* ExamplePagination.swift */,
+				7E50A6722F30A85F00DF104D /* ExamplePopover.swift */,
 				7EAF97B72861C9B400B90534 /* ExampleProgressBar.swift */,
 				7ED0E57E284E4119001574D5 /* ExampleRadioButton.swift */,
-				7E3F3F66288FE387008FF13D /* ExampleSearchBar.swift */,
+				7E50A6732F30A85F00DF104D /* ExampleSearch.swift */,
+				7E40AA7D2D3FD7670028B996 /* ExampleSegmentedControls.swift */,
 				7E94CC1F284F78F200AEADC9 /* ExampleSlider.swift */,
+				7E7998822C661EAE00B3C957 /* ExampleStepProgressBar.swift */,
 				7EB4308A2886B16A00CBF196 /* ExampleTab.swift */,
 				7E7FB5FE284E095A00F80FC7 /* ExampleTabBar.swift */,
+				7E8FC8172C524F5800D831F7 /* ExampleTable.swift */,
 				7E7FB5FD284E095A00F80FC7 /* ExampleTags.swift */,
 				7E5E7AA62B55757100A7B45A /* ExampleTextArea.swift */,
 				7ED0D0AE2881A1BB00553662 /* ExampleTextField.swift */,
 				7E94CC1D284F488F00AEADC9 /* ExampleToggle.swift */,
 				7E7FB5FC284E095A00F80FC7 /* SchemeSwitcher.swift */,
-				7E82B10D2C342EE9001F0BFC /* ExampleFiltri.swift */,
-				7EFB50AE2C3BE51A00C84CBB /* ExampleMenuSpalla.swift */,
-				7E8FC8172C524F5800D831F7 /* ExampleTable.swift */,
-				7E7998802C649C1F00B3C957 /* ExampleTitleBar.swift */,
-				7E7998822C661EAE00B3C957 /* ExampleStepProgressBar.swift */,
 			);
 			path = ViewExample;
 			sourceTree = "<group>";
@@ -288,6 +297,11 @@
 				7EAF97B82861C9B400B90534 /* ExampleProgressBar.swift in Sources */,
 				7E7FB5E3284E05A100F80FC7 /* iOS_ExampleApp.swift in Sources */,
 				7E7FB605284E095A00F80FC7 /* ExampleTabBar.swift in Sources */,
+				7E50A6742F30A85F00DF104D /* ExamplePopover.swift in Sources */,
+				7E50A6752F30A85F00DF104D /* ExampleDropdownMenu.swift in Sources */,
+				7E50A6762F30A85F00DF104D /* ExampleListItem.swift in Sources */,
+				7E50A6772F30A85F00DF104D /* ExampleSearch.swift in Sources */,
+				7E50A6782F30A85F00DF104D /* ExampleLoader.swift in Sources */,
 				7E40AA7E2D3FD76C0028B996 /* ExampleSegmentedControls.swift in Sources */,
 				7EE5EAF72897FDC9000EC224 /* ExampleDialog.swift in Sources */,
 				7E7FB601284E095A00F80FC7 /* ExampleChips.swift in Sources */,
@@ -304,11 +318,9 @@
 				7ED0E581284E4CAB001574D5 /* ExampleCheckBox.swift in Sources */,
 				7EE2188E286F187F0042D288 /* ExampleNotification.swift in Sources */,
 				7EA2E88328606914001FE093 /* ExampleButtons.swift in Sources */,
-				7E3F3F67288FE387008FF13D /* ExampleSearchBar.swift in Sources */,
 				7EE5EAF928980092000EC224 /* String+Extension.swift in Sources */,
 				7E94CC1E284F488F00AEADC9 /* ExampleToggle.swift in Sources */,
 				7ED0D0AF2881A1BB00553662 /* ExampleTextField.swift in Sources */,
-				7E7998812C649C1F00B3C957 /* ExampleTitleBar.swift in Sources */,
 				7E5E7AA72B55757100A7B45A /* ExampleTextArea.swift in Sources */,
 				7EEAE0332C342B5000F4D335 /* ExampleAvviso.swift in Sources */,
 				7E5E7AA52B55756000A7B45A /* ExampleHero.swift in Sources */,
@@ -457,7 +469,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -493,7 +505,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

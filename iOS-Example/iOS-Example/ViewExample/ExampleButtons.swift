@@ -1,7 +1,7 @@
 //
 // ExampleButtons.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -9,69 +9,81 @@
 import SwiftUI
 import SirioKitIOS
 
+import SwiftUI
+import SirioKitIOS
+
 struct ExampleButtons: View {
+    @Binding var path: NavigationPath
+    
     var body: some View {
-        List {
-            // Primary
-            NavigationLink(destination: {
-                SirioButtonDemo(hierarchy: .primary)
-                    .background(Color.colorBackground)
-                    .navigationTitle("Primary")
-            }, label: {
-                SirioText(text: "Primary", typography: .label_md_400)
-            })
-            
-            // Secondary
-            NavigationLink(destination: {
-                SirioButtonDemo(hierarchy: .secondary)
-                    .navigationTitle("Secondary")
-                    .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Secondary", typography: .label_md_400)
-            })
-            
-            // Tertiary Light
-            NavigationLink(destination: {
-                SirioButtonDemo(hierarchy: .tertiaryLight)
-                    .navigationTitle("Tertiary Light")
-                    .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Tertiary Light", typography: .label_md_400)
-            })
-            
-            // Tertiary Dark
-            NavigationLink(destination: {
-                SirioButtonDemo(hierarchy: .tertiaryDark)
-                    .navigationTitle("Tertiary Dark")
-                    .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Tertiary Dark", typography: .label_md_400)
-            })
-            
-            // Danger
-            NavigationLink(destination: {
-                SirioButtonDemo(hierarchy: .danger)
-                    .navigationTitle("Danger")
-                    .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Danger", typography: .label_md_400)
-            })
-            
-            // Ghost
-            NavigationLink(destination: {
-                SirioButtonDemo(hierarchy: .ghost)
-                    .navigationTitle("Ghost")
-                    .background(Color.colorBackground)
-                    .onTapGesture {
-                        self.hideKeyboard()
-                    }
-            }, label: {
-                SirioText(text: "Ghost", typography: .label_md_400)
-            })
+        SirioListItems(items: items)
+            .navigationTitle("Buttons")
+            .scrollContentBackground(.hidden)
+            .background(Color.colorBackground)
+            .navigationDestination(for: Destination.self) { destination in
+                destinationView(for: destination)
+            }
+    }
+}
+
+extension ExampleButtons {
+    
+    enum Destination: Hashable {
+        case primary
+        case secondary
+        case tertiaryLight
+        case tertiaryDark
+        case danger
+        case ghostLight
+        case ghostDark
+    }
+    
+    var items: [SirioListItemModel] {
+        [
+            .default(title: "Primary", action: { path.append(Destination.primary) }),
+            .default(title: "Secondary", action: { path.append(Destination.secondary) }),
+            .default(title: "Tertiary Light", action: { path.append(Destination.tertiaryLight) }),
+            .default(title: "Tertiary Dark", action: { path.append(Destination.tertiaryDark) }),
+            .default(title: "Danger", action: { path.append(Destination.danger) }),
+            .default(title: "Ghost Light", action: { path.append(Destination.ghostLight) }),
+            .default(title: "Ghost Dark", action: { path.append(Destination.ghostDark) })
+        ]
+    }
+    
+    @ViewBuilder
+    func destinationView(for destination: Destination) -> some View {
+        switch destination {
+        case .primary:
+            SirioButtonDemo(hierarchy: .primary)
+                .background(Color.colorBackground)
+                .navigationTitle("Primary")
+        case .secondary:
+            SirioButtonDemo(hierarchy: .secondary)
+                .background(Color.colorBackground)
+                .navigationTitle("Secondary")
+        case .tertiaryLight:
+            SirioButtonDemo(hierarchy: .tertiaryLight)
+                .background(Color.colorBackground)
+                .navigationTitle("Tertiary Light")
+        case .tertiaryDark:
+            SirioButtonDemo(hierarchy: .tertiaryDark)
+                .background(Color.colorBackground)
+                .navigationTitle("Tertiary Dark")
+        case .danger:
+            SirioButtonDemo(hierarchy: .danger)
+                .background(Color.colorBackground)
+                .navigationTitle("Danger")
+        case .ghostLight:
+            SirioButtonDemo(hierarchy: .ghostLight)
+                .background(Color.colorBackground)
+                .navigationTitle("Ghost Light")
+                .onTapGesture { self.hideKeyboard() }
+        case .ghostDark:
+            SirioButtonDemo(hierarchy: .ghostDark)
+                .background(Color.colorBackground)
+                .navigationTitle("Ghost Dark")
+                .onTapGesture { self.hideKeyboard() }
         }
-        .background(Color.colorBackground)
-        .navigationTitle("Buttons")
-        .listStyle(GroupedListStyle())
     }
 }
 

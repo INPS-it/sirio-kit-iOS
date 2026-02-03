@@ -1,7 +1,7 @@
 //
 // SirioNotifica.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -100,13 +100,13 @@ public struct SirioNotificaPage: View {
     var color: Color {
         switch state {
         case .alert:
-            return Color.globalSemanticAlert100 // controllare perche alias background color alert non ci sta nei foundation
+            return Color.globalSemanticAlert100
         case .info:
-            return Color.globalPrimary100 // controllare perche alias background color info non ci sta nei foundation
+            return Color.globalPrimary100
         case .warning:
-            return Color.globalSemanticWarning100 // controllare perche alias background color warning non ci sta nei foundation
+            return Color.globalSemanticWarning100
         case .success:
-            return Color.globalSemanticSuccess100 // controllare perche alias background color success non ci sta nei foundation
+            return Color.globalSemanticSuccess100
         }
     }
     

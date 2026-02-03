@@ -3,7 +3,7 @@
 //  SirioKitIOS
 //
 // Do not edit directly
-// Generated on Wed, 04 Dec 2025 14:52:39 GMT
+// Generated on Wed, 04 Dec 2026 14:52:39 GMT
 
 import UIKit
 

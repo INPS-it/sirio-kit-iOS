@@ -1,7 +1,7 @@
 //
 // SirioBaseAccordion.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -26,13 +26,11 @@ struct SirioBaseAccordion: View {
     }
     
     var body: some View {
-        VStack(spacing: 0){
+        VStack(spacing: Size.zero){
             Button(action: {
-                if !self.data.isDisabled {
-                    withAnimation(Animation.interactiveSpring()){
-                        self.data.isOpen.toggle()
-                        self.data.onTapAccordion?(self.data.isOpen)
-                    }
+                withAnimation(Animation.interactiveSpring()){
+                    self.data.isOpen.toggle()
+                    self.data.onTapAccordion?(self.data.isOpen)
                 }
             }, label: {
                 // Inside style
@@ -41,7 +39,6 @@ struct SirioBaseAccordion: View {
                                                text: data.text,
                                                tag: data.tag,
                                                isOpen: data.isOpen,
-                                               isDisabled: $data.isDisabled,
                                                withBorder: withBorder))
             .setAccessibilityLabel(data.accessibilityLabel)
             
@@ -73,7 +70,7 @@ struct SirioBaseAccordion: View {
                                        content: {
             SirioText(text: .loremIpsum, typography: .bodyMdRegular)
                 .foregroundStyle(Color.aliasTextColorSecondaryDark100)
-        }, isDisabled: true, onTapAccordion: { isOpen in
+        }, onTapAccordion: { isOpen in
             
         }))
         

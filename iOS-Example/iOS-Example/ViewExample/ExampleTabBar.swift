@@ -1,7 +1,7 @@
 //
 // ExampleTabBar.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -10,13 +10,15 @@ import SwiftUI
 import SirioKitIOS
 
 struct ExampleTabBar: View {
-    let items = [
+    @State private var selectedIndex: Int = 0
+    
+    private let items = [
         SirioTabItemData(icon: .home, name: "Home", hasBadge: false),
         SirioTabItemData(icon: .bell, name: "News", hasBadge: true),
         SirioTabItemData(icon: .globe, name: "Maps", hasBadge: false),
         SirioTabItemData(icon: .commentAlt, name: "Contacts", hasBadge: false),
-        SirioTabItemData(icon: .gripHorizontal, name: "Services", hasBadge: false)]
-    @State var selectedIndex: Int = 0
+        SirioTabItemData(icon: .gripHorizontal, name: "Services", hasBadge: false, isHighlighted: true)
+    ]
     
     var body: some View {
         VStack(spacing: 2) {
@@ -39,15 +41,14 @@ struct ExampleTabBar: View {
                 }
                 Spacer()
             }
-
             SirioTabBar(items: items, selectedIndex: $selectedIndex)
                 .navigationBarTitle("Tab Bar", displayMode: .automatic)
         }
-        
+        .background(Color.colorBackground)
+        .navigationTitle("Tab Bar")
     }
 }
 
 #Preview {
     ExampleTabBar()
 }
-

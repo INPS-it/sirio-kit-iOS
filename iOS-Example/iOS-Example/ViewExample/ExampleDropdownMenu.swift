@@ -1,7 +1,7 @@
 //
 // ExampleDropdownMenu.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -10,49 +10,67 @@ import SwiftUI
 import SirioKitIOS
 
 struct ExampleDropdownMenu: View {
-
+    @Binding var path: NavigationPath
+    
     var body: some View {
-        List {
-            NavigationLink(destination: {
-                SirioDropdownMenu(items: [.init(value: "Action #1", action: {}),
-                                          .init(value: "Action #2", action: {}),
-                                          .init(value: "Action #3", action: {})], isOpen: .constant(true))
-                .navigationTitle("Dropdown Menu")
-                .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Dropdown Menu", typography: .label_md_400)
-            })
+        SirioListItems(items: items)
+            .navigationTitle("Dropdown Menu")
+            .scrollContentBackground(.hidden)
+            .background(Color.colorBackground)
+            .navigationDestination(for: Destination.self) { destination in
+                destinationView(for: destination)
+            }
+    }
+}
+
+extension ExampleDropdownMenu {
+    
+    enum Destination: Hashable {
+        case dropdownMenu
+        case playground1
+        case playground2
+    }
+    
+    var items: [SirioListItemModel] {
+        [
+            .default(title: "Dropdown Menu", action: { path.append(Destination.dropdownMenu) }),
+            .default(title: "Playground 1", action: { path.append(Destination.playground1) }),
+            .default(title: "Playground 2", action: { path.append(Destination.playground2) })
+        ]
+    }
+    
+    @ViewBuilder
+    func destinationView(for destination: Destination) -> some View {
+        switch destination {
+        case .dropdownMenu:
+            SirioDropdownMenu(
+                items: [
+                    .init(value: "Action #1", action: {}),
+                    .init(value: "Action #2", action: {}),
+                    .init(value: "Action #3", action: {})
+                ],
+                isOpen: .constant(true)
+            )
+            .navigationTitle("Dropdown Menu")
+            .background(Color.colorBackground)
             
-            NavigationLink(destination: {
-                ExampleDropdownMenuPlayground1()
+        case .playground1:
+            ExampleDropdownMenuPlayground1()
                 .navigationTitle("Dropdown Menu - Playground 1")
                 .navigationBarTitleDisplayMode(.inline)
                 .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Playground 1", typography: .label_md_400)
-            })
             
-            NavigationLink(destination: {
-                ExampleDropdownMenuPlayground1(text: "Label")
-                    .navigationTitle("Dropdown Menu - Playground 2")
-                    .navigationBarTitleDisplayMode(.inline)
+        case .playground2:
+            ExampleDropdownMenuPlayground1(text: "Label")
+                .navigationTitle("Dropdown Menu - Playground 2")
+                .navigationBarTitleDisplayMode(.inline)
                 .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Playground 2", typography: .label_md_400)
-            })
         }
-        .background(Color.colorBackground)
-        .navigationTitle("Dropdown Menu")
-        .listStyle(GroupedListStyle())
     }
 }
 
 #Preview {
-    ExampleAvviso()
-}
-
-#Preview {
-    ExampleDropdownMenuPlayground1()
+    ExampleDropdownMenu(path: .constant(NavigationPath()))
 }
 
 struct ExampleDropdownMenuPlayground1: View {

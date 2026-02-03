@@ -1,7 +1,7 @@
 //
 // ColorState.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -12,6 +12,5 @@ import SwiftUI
 public struct ColorState {
     public var `default`: Color
     public var disabled: Color
-    public var hover: Color // Deprecated
     public var pressed: Color
 }

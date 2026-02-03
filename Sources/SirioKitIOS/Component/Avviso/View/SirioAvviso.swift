@@ -1,7 +1,7 @@
 //
 // Avviso.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -43,7 +43,6 @@ public struct SirioAvviso: View {
                     .foregroundColor(iconColor)
                 SirioText(text: title, typography: .headlineSmHeavy)
                     .foregroundColor(titleColor)
-                    .lineLimit(1)
                 
                 Spacer()
             }
@@ -91,7 +90,7 @@ public struct SirioAvviso: View {
 
 #Preview {
     
-    SirioAvviso(title: "Titolo avviso", text: .loremIpsum)
+    SirioAvviso(title: "Titolo avviso molto molto molto lungo", text: .loremIpsum)
         .padding()
     
     SirioAvviso(title: "Titolo avviso", text: .loremIpsum, link: "Link opzionale")

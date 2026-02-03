@@ -1,7 +1,7 @@
 //
 // SirioCheckboxStyle.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -25,7 +25,7 @@ struct SirioCheckboxStyle: ButtonStyle {
                     .overlay(isChecked ? checked : nil, alignment: .center)
             }
             
-            if let text = text {
+            if let text = text, !text.isEmpty {
                 SirioText(text: text, typography: Typography.CheckBox.style)
                     .foregroundColor(getColor(for: .text))
             }

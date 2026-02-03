@@ -1,7 +1,7 @@
 //
 // ButtonTextOnlyStyle.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -25,7 +25,7 @@ struct SirioButtonTextOnlyStyle: ButtonStyle {
             }
             
             SirioText(text: text, typography: .label_md_700)
-                .foregroundColor(getSirioButtonTextColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed))
+                .foregroundColor(getSirioButtonTextColor(hierarchy: hierarchy, isDisabled: isDisabled, isPressed: isPressed))
                 .lineLimit(1)
             
             if isFullSize {
@@ -36,15 +36,13 @@ struct SirioButtonTextOnlyStyle: ButtonStyle {
         //.padding(.vertical, paddingVertical)
         .frame(height: height)
         .contentShape(Rectangle())
-        .background(getSirioButtonBackgroundColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed))
+        .background(getSirioButtonBackgroundColor(hierarchy: hierarchy, isDisabled: isDisabled, isPressed: isPressed))
         .cornerRadius(Size.Button.Border.cornerRadius)
         .overlay(
             RoundedRectangle(cornerRadius: Size.Button.Border.cornerRadius)
-                .stroke(getSirioButtonBorderColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed), lineWidth: Size.Button.Border.width)
+                .stroke(getSirioButtonBorderColor(hierarchy: hierarchy, isDisabled: isDisabled, isPressed: isPressed), lineWidth: Size.Button.Border.width)
         )
-        .onHover { isHover in
-            self.isHover = isHover
-        }
+        
         .onChange(of: configuration.isPressed) { isPressed in
             self.isPressed = isPressed
         }

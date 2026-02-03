@@ -1,7 +1,7 @@
 //
 // SirioAppNavigationLogoContainerView.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -21,7 +21,7 @@ struct SirioAppNavigationLogoContainerView<Content: View>: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: Size.zero) {
             SirioAppNavigationLogoBarView(
                                  leftItem: leftItem,
                                  rightItems: rightItems)
@@ -46,7 +46,7 @@ struct SirioAppNavigationLogoContainerView<Content: View>: View {
 #Preview {
     SirioAppNavigationLogoContainerView(content: {
         ZStack {
-            Color.green.edgesIgnoringSafeArea(.all)
+            Color.gray.edgesIgnoringSafeArea(.all)
             Text("Hello, world")
                 .foregroundColor(.white)
             

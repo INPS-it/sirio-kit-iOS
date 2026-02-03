@@ -1,189 +1,258 @@
 //
-//  SirioCarousel.swift
+// SirioCarousel.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
 
 import SwiftUI
 
-public enum SirioCarouselBackground {
-    case light
-    case medium
-}
-
-/// A custom carousel (image slider) view that allows users to swipe through items horizontally, with visual indicators and interactive controls.
+/// A custom carousel (image slider) view that allows users to swipe through items horizontally,
+/// with visual indicators and interactive controls.
 ///
 /// - Parameters:
-///   - items: An array of items that conform to the `Identifiable` protocol. These items will be displayed in the carousel.
-///   - content: A closure that takes each item and returns a `View` that represents how each item should be displayed in the carousel.
-///   - spacing: The space between carousel items. Default is 15.
-///   - trailingSpace: The amount of space to the right of the last item. Default is 80.
-///   - background: The background color style of the carousel, either `.light` or `.medium`. Default is `.light`.
 ///   - index: A `Binding` that reflects the current index of the selected item in the carousel.
+///   - items: An array of items that conform to the `Identifiable` protocol.
+///   - content: A closure that takes each item and returns a `View` for that item.
+///   - contentHeight: The fixed height for the carousel content (optional).
 
 public struct SirioCarousel<Content: View, T: Identifiable>: View {
-    private var items: [T]
-    private var content: (T) -> Content
-    private var spacing: CGFloat
-    private var trailingSpace: CGFloat
-    private var background: SirioCarouselBackground
-    @Binding private var index: Int
-    @State private var frameSize: CGSize = .zero
-    @GestureState private var offset: CGFloat = 0
-    @State private var currentIndex: Int = 0
+    // MARK: - Properties
     
-    public init(spacing: CGFloat = 15,
-                trailingSpace: CGFloat = 80,
-                index: Binding<Int>,
+    private let items: [T]
+    private let content: (T) -> Content
+    private let spacing: CGFloat = Size.s16
+    private let maxItems: Int = 6
+    private let contentHeight: CGFloat?
+    @Binding private var index: Int
+    private let showIndicator: Bool
+    
+    @State private var dragOffset: CGFloat = 0.0
+    @State private var maxContentHeight: CGFloat = 10.0
+    
+    // MARK: - Init
+    
+    public init(index: Binding<Int>,
                 items: [T],
-                background: SirioCarouselBackground = .light,
-                @ViewBuilder content: @escaping (T) -> Content) {
-        if items.count > 6 {
-            print("Warning: The items have been limited to a maximum of 6.")
+                @ViewBuilder content: @escaping (T) -> Content,
+                contentHeight: CGFloat? = nil,
+                showIndicator: Bool = true) {
+        
+        if items.count > maxItems {
+            #if DEBUG
+            print("SirioCarousel warning: items have been limited to a maximum of \(maxItems).")
+            #endif
         }
-        self.spacing = spacing
-        self.trailingSpace = trailingSpace
+        
+        let limitedItems = items.count > maxItems ? Array(items.prefix(maxItems)) : items
+        
         self._index = index
-        self.items = items.count > 6 ? Array(items.prefix(6)) : items
-        self.background = background
+        self.items = limitedItems
         self.content = content
+        self.contentHeight = contentHeight
+        self.showIndicator = showIndicator && !limitedItems.isEmpty
+        
+        // Normalizzazione dell’indice in init
+        if !limitedItems.isEmpty && index.wrappedValue > limitedItems.count - 1 {
+            index.wrappedValue = limitedItems.count - 1
+        }
+        if limitedItems.isEmpty {
+            index.wrappedValue = 0
+        }
     }
+    
+    // MARK: - Body
     
     public var body: some View {
-        VStack(alignment: .center) {
-            GeometryReader { proxy in
-                let width = proxy.size.width - (trailingSpace - spacing)
-                
-                HStack(spacing: spacing) {
-                    ForEach(0..<items.count, id: \.self) { i in
-                        content(items[i])
-                            .frame(width: proxy.size.width - trailingSpace)
-                            .readSize { size in
-                                frameSize = size
-                            }
-                    }
+        VStack(spacing: Size.zero) {
+            if items.isEmpty {
+                // Evitiamo di calcolare layout inutilmente
+                EmptyView()
+                    .frame(height: 0)
+            } else {
+                GeometryReader { reader in
+                    buildCarousel(in: reader)
                 }
-                .padding(.horizontal, spacing)
-                .offset(x: calculateOffset(width: width))
-                .gesture(
-                    DragGesture()
-                        .updating($offset) { value, out, _ in
-                            let translationWidth = value.translation.width
-                            // Trascinamento bloccato agli estremi
-                            if (currentIndex == 0 && translationWidth > 0) || (currentIndex == items.count - 1 && translationWidth < 0) {
-                                out = 0
-                            } else {
-                                out = translationWidth
-                            }
-                        }
-                        .onEnded { value in
-                            updateIndex(value: value, width: width)
-                        }
-                        .onChanged { value in
-                            updateOngoingIndex(value: value, width: width)
-                        }
-                )
+                .frame(height: contentHeight ?? max(maxContentHeight, 10))
+                .padding(.vertical, Size.p16)
             }
-            .frame(height: frameSize.height)
-            .animation(.interpolatingSpring(stiffness: 200, damping: 20), value: currentIndex)
             
-            indicator()
-        }
-        .padding(.top)
-        .onChange(of: items.count) { newCount in
-            if currentIndex >= newCount {
-                withAnimation {
-                    currentIndex = max(0, newCount - 1)
-                    index = currentIndex
-                }
+            if showIndicator, items.count > 1 {
+                indicatorView
             }
         }
-        .background(background == .light ? Color.Carousel.Background.light : Color.Carousel.Background.medium)
+        .background(Color.globalPrimary000)
     }
     
-    private func calculateOffset(width: CGFloat) -> CGFloat {
-        (CGFloat(currentIndex) * -width) + offset
+    // MARK: - Carousel content
+    
+    private func buildCarousel(in reader: GeometryProxy) -> some View {
+        let availableWidth = reader.size.width
+        
+        let peekAmount: CGFloat = 8.0
+        let sidePadding = spacing + peekAmount
+        
+        let cardWidth = max(availableWidth - (sidePadding * 2), 0)
+        let pageWidth = cardWidth + spacing
+        
+        let maxIndex = max(items.count - 1, 0)
+        let safeIndex = clamp(index, min: 0, max: maxIndex)
+        
+        let baseOffset = -CGFloat(safeIndex) * pageWidth
+        
+        var alignmentShift: CGFloat = 0
+        if safeIndex == 0 {
+            alignmentShift = -peekAmount
+        } else if safeIndex == maxIndex {
+            alignmentShift = peekAmount
+        }
+        
+        let totalOffset = baseOffset + alignmentShift + dragOffset
+        
+        return HStack(spacing: spacing) {
+            ForEach(items) { item in
+                content(item)
+                    .frame(width: cardWidth)
+                    .background(
+                        GeometryReader { proxy in
+                            Color.clear
+                                .onAppear {
+                                    updateMaxHeight(proxy.size.height)
+                                }
+                                .onChange(of: proxy.size.height) { newHeight in
+                                    updateMaxHeight(newHeight)
+                                }
+                        }
+                    )
+                    .frame(height: contentHeight)
+            }
+        }
+        .padding(.horizontal, sidePadding)
+        .offset(x: totalOffset)
+        .contentShape(Rectangle())
+        .gesture(dragGesture(cardWidth: cardWidth))
+        // Hai già withAnimation nel dragGesture; qui può bastare l’animazione esplicita
+        .animation(.snappy(duration: 0.4, extraBounce: 0.2), value: safeIndex)
     }
     
-    private func updateIndex(value: DragGesture.Value, width: CGFloat) {
-        let offsetX = value.translation.width
-        let progress = -offsetX / width
-        let newIndex = (progress > 0 ? ceil(progress) : floor(progress)) + CGFloat(currentIndex)
-        currentIndex = max(min(Int(newIndex), items.count - 1), 0)
-        index = currentIndex
+    // MARK: - Drag gesture
+    
+    private func dragGesture(cardWidth: CGFloat) -> some Gesture {
+        DragGesture()
+            .onChanged { value in
+                guard !items.isEmpty else { return }
+                
+                let translation = value.translation.width
+                let isFirst = index == 0 && translation > 0
+                let isLast = index == items.count - 1 && translation < 0
+                
+                if isFirst || isLast {
+                    dragOffset = translation / 3
+                } else {
+                    dragOffset = translation
+                }
+            }
+            .onEnded { value in
+                guard !items.isEmpty else {
+                    withAnimation(.snappy(duration: 0.4, extraBounce: 0.2)) {
+                        dragOffset = 0
+                    }
+                    return
+                }
+                
+                guard cardWidth > 0 else {
+                    withAnimation(.snappy(duration: 0.4, extraBounce: 0.2)) {
+                        dragOffset = 0
+                    }
+                    return
+                }
+                
+                let translation = value.translation.width
+                let predicted = value.predictedEndTranslation.width
+                let threshold = cardWidth / 2.0
+                
+                let currentIndex = clamp(index, min: 0, max: items.count - 1)
+                var newIndex = currentIndex
+                
+                if translation < -threshold || predicted < -threshold {
+                    newIndex = min(currentIndex + 1, items.count - 1)
+                } else if translation > threshold || predicted > threshold {
+                    newIndex = max(currentIndex - 1, 0)
+                }
+                
+                withAnimation(.snappy(duration: 0.4, extraBounce: 0.2)) {
+                    index = newIndex
+                    dragOffset = 0
+                }
+            }
     }
     
-    private func updateOngoingIndex(value: DragGesture.Value, width: CGFloat) {
-        let offsetX = value.translation.width
-        let progress = -offsetX / width
-        let newIndex = (progress > 0 ? ceil(progress) : floor(progress)) + CGFloat(currentIndex)
-        index = max(min(Int(newIndex), items.count - 1), 0)
-    }
+    // MARK: - Indicator
     
     @ViewBuilder
-    private func indicator() -> some View {
-        HStack(alignment: .center, spacing: Size.Carousel.Indicator.spacing) {
-            ForEach(items.indices, id: \.self) { index in
-                Button(action: {
-                    withAnimation(.easeInOut) {
-                        self.currentIndex = index
-                        self.index = index
-                    }
-                }) {
-                    Capsule()
-                        .fill(currentIndex == index ? Color.Carousel.Dot.selected : Color.Carousel.Dot.unselected)
-                        .frame(width: currentIndex == index ? Size.Carousel.Indicator.currentIndexWidth : Size.Carousel.Indicator.defaultWidth,
-                               height: Size.Carousel.Indicator.height)
-                        .id(index)
-                }
+    private var indicatorView: some View {
+        HStack(alignment: .center, spacing: Size.zero) {
+            ForEach(items.indices, id: \.self) { i in
+                Capsule()
+                    .fill(index == i
+                          ? Color.Carousel.Dot.selected
+                          : Color.Carousel.Dot.unselected)
+                    .frame(
+                        width: index == i
+                        ? Size.Carousel.Indicator.currentIndexWidth
+                        : Size.Carousel.Indicator.defaultWidth,
+                        height: Size.Carousel.Indicator.height
+                    )
+                    .padding(Size.p4)
             }
         }
-        .padding(.horizontal, Size.Carousel.Indicator.paddingHorizontal)
+        .background(Color.globalPrimary000)
+        .padding(.bottom, Size.p16)
+    }
+    
+    // MARK: - Helpers
+    
+    private func clamp(_ value: Int, min: Int, max: Int) -> Int {
+        Swift.min(Swift.max(value, min), max)
+    }
+    
+    private func updateMaxHeight(_ newHeight: CGFloat) {
+        guard newHeight > 0 else { return }
+        if newHeight > maxContentHeight {
+            maxContentHeight = newHeight
+        }
+    }
+}
+
+// MARK: - Test View
+
+struct SirioCarouselTest: View {
+    struct Item: Identifiable {
+        let id = UUID()
+    }
+    
+    static let preview: [Item] = Array(repeating: Item(), count: 10)
+    @State var index: Int = 0
+    
+    var body: some View {
+        SirioCarousel(
+            index: $index,
+            items: SirioCarouselTest.preview
+        ) { _ in
+            SirioProcessCard(
+                schemeColor: .light,
+                title: "Title",
+                text: .loremIpsum,
+                type: .standard(firstButtonText: "Text", onTapFirstButtonAction: {})
+            )
+        }
     }
 }
 
 #Preview {
-    SirioCarouselPreview()
-}
-
-struct SirioCarouselPreview: View {
-    
-    struct News: Identifiable {
-        var id = UUID()
-        var icon: AwesomeIcon = .infoCircle
-        var title: String
-        var subtitle: String
-        var text: String
-        var textButton: String
-        
-        
-        static var preview: [News] = [
-            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
-            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
-            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
-            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
-            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
-            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
-            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
-            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
-            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
-            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
-            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
-            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button"),
-            .init(title: "Title", subtitle: "Subtitle", text: .loremIpsum, textButton: "Button")
-        ]
-    }
-    
-    @State var index = 0
-    var items: [News] = []
-    
-    var body: some View {
-        SirioCarousel(index: $index,
-                      items: News.preview,
-                      content: { item in
-//            SirioProcessCard(schemeColor: .light, title: item.title, subtitle: item.subtitle, text: item.text, textButton: item.textButton, onTapButtonAction: { })
-        })
+    ZStack {
+        Color.gray.opacity(0.3)
+        SirioCarouselTest()
     }
 }

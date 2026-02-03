@@ -1,7 +1,7 @@
 //
 // ExampleFoundationToken.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -10,43 +10,60 @@ import SwiftUI
 import SirioKitIOS
 
 struct ExampleFoundationToken: View {
+    @Binding var path: NavigationPath
     
     var body: some View {
-        List {
-            NavigationLink(destination: {
-                ExampleFoundationColor()
-                .navigationTitle("Color")
-                .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Color", typography: .label_md_400)
+        SirioListItems(items: items)
+            .navigationTitle("Foundation")
+            .scrollContentBackground(.hidden)
+            .background(Color.colorBackground)
+            .navigationDestination(for: Destination.self) { destination in
+                destinationView(for: destination)
+            }
+    }
+}
+
+extension ExampleFoundationToken {
+    
+    enum Destination: Hashable {
+        case color
+        case typography
+    }
+    
+    var items: [SirioListItemModel] {
+        [
+            .default(title: "Color", action: {
+                path.append(Destination.color)
+            }),
+            .default(title: "Typography", action: {
+                path.append(Destination.typography)
             })
-            
-            NavigationLink(destination: {
-                ExampleFoundationTypography()
-                .navigationTitle("Typography")
-                .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Typography", typography: .label_md_400)
-            })
+        ]
+    }
+    
+    @ViewBuilder
+    func destinationView(for destination: Destination) -> some View {
+        switch destination {
+        case .color:
+            ExampleFoundationColor()
+        case .typography:
+            ExampleFoundationTypography()
         }
-        .background(Color.colorBackground)
-        .navigationTitle("Foundation")
-        .listStyle(GroupedListStyle())
     }
 }
 
 #Preview {
-    ExampleFoundationToken()
+    ExampleFoundationToken(path: .constant(NavigationPath()))
 }
 
 struct ExampleFoundationTypography: View {
     @State private var searchText: String = ""
     var body: some View {
         VStack {
-            SirioSearchBar(label: "", helperText: nil, placeholder: "Cerca una typography", searchText: $searchText, queries: .constant([]), onTapSearch: {}, onQueryAdded: { _ in })
+            SirioSearchBarOld(label: "", placeholder: "Cerca una typography", searchText: $searchText, queries: .constant([]), onTapSearch: {}, onQueryAdded: { _ in })
                 .padding(.horizontal)
                 .padding(.bottom)
-
+            
             ScrollView {
                 ForEach(
                     Typography.mapOfFoundationTypography.keys
@@ -83,10 +100,10 @@ struct ExampleFoundationColor: View {
     
     var body: some View {
         VStack {
-            SirioSearchBar(label: "", helperText: nil, placeholder: "Cerca un colore", searchText: $searchText, queries: .constant([]), onTapSearch: {}, onQueryAdded: { _ in })
+            SirioSearchBarOld(label: "", placeholder: "Cerca un colore", searchText: $searchText, queries: .constant([]), onTapSearch: {}, onQueryAdded: { _ in })
                 .padding(.horizontal)
                 .padding(.bottom)
-
+            
             ScrollView {
                 ForEach(
                     Color.mapOfFoundationColor.keys

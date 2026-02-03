@@ -1,7 +1,7 @@
 //
 // SirioAccordionGroup.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -24,9 +24,9 @@ public struct SirioAccordionGroup: View {
     }
     
     public var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: Size.zero) {
             ForEach(data.indices, id: \.self) { i in
-                VStack(spacing: 0) {
+                VStack(spacing: Size.zero) {
                     SirioBaseAccordion(data: data[i], withBorder: false)
                     
                     if i < data.count - 1 { // The separator is shown only if it isn't the last item
@@ -61,7 +61,7 @@ extension SirioAccordionGroup {
             .init(title: "Accordion #3", content: {
                 SirioText(text: .loremIpsum, typography: .label_md_700)
                     .foregroundColor(.black)
-            }, isDisabled: true)
+            })
         ])
         Spacer()
     }

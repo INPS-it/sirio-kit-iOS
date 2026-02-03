@@ -1,7 +1,7 @@
 //
 // NewSirioAppNavigationItemStyle.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -19,7 +19,7 @@ struct NewSirioAppNavigationItemStyle: ButtonStyle {
                 VStack(spacing: Size.zero) {
                     if item.isUserLogged {
                         SirioText(text: item.textProfile.prefix(2).uppercased(), typography: Typography.NewAppNavigation.profile)
-                            .foregroundColor(textColor)
+                            .foregroundColor(Color.aliasInteractivePrimaryDefault)
                             .lineLimit(1)
                     } else {
                         SirioIcon(data: .init(icon: item.icon))
@@ -53,9 +53,9 @@ struct NewSirioAppNavigationItemStyle: ButtonStyle {
         }
         
         if item.isUserLogged && configuration.isPressed {
-            return backgroundColor
+            return Color.aliasOverlay15Secondary100 // MC pressed
         } else if item.isUserLogged {
-            return iconBackgroundColor
+            return Color.aliasBackgroundColorPrimaryLight50 // MC default
         }
         return backgroundColor
     }
@@ -72,42 +72,6 @@ extension NewSirioAppNavigationItemStyle {
             return Color.aliasInteractivePrimary000Default
         @unknown default:
             return Color.aliasAppInteractiveSecondaryDefault
-        }
-    }
-    
-    // TEXT COLOR
-    private var textColor: Color {
-        switch colorScheme {
-        case .light:
-            return Color.aliasInteractivePrimaryDefault
-        case .dark:
-            return Color.aliasInteractivePrimary000Default
-        @unknown default:
-            return Color.aliasInteractivePrimaryDefault
-        }
-    }
-    
-    // CIRCLE BACKGROUND COLOR FOR USER LOGGED
-    private var userLoggedBackgroundColor: Color {
-        switch colorScheme {
-        case .light:
-            return Color.aliasBackgroundColorPrimaryLight50
-        case .dark:
-            return Color.aliasBackgroundColorPrimaryDark115
-        @unknown default:
-            return Color.aliasBackgroundColorPrimaryLight50
-        }
-    }
-    
-    // CIRCLE BACKGROUND COLOR FOR ICON
-    private var iconBackgroundColor: Color {
-        switch colorScheme {
-        case .light:
-            return Color.aliasOverlay15Secondary100
-        case .dark:
-            return Color.aliasOverlay25Primary000
-        @unknown default:
-            return Color.aliasOverlay15Secondary100
         }
     }
 }

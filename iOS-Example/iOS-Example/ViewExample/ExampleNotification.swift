@@ -1,7 +1,7 @@
 //
 // ExampleNotification.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -10,32 +10,52 @@ import SwiftUI
 import SirioKitIOS
 
 struct ExampleNotification: View {
+    @Binding var path: NavigationPath
+    
     var body: some View {
-        List {
+        SirioListItems(items: items)
+            .navigationTitle("Notifiche")
+            .scrollContentBackground(.hidden)
+            .background(Color.colorBackground)
+            .navigationDestination(for: Destination.self) { destination in
+                destinationView(for: destination)
+            }
+    }
+}
+
+extension ExampleNotification {
+    
+    enum Destination: Hashable {
+        case inline
+        case page
+    }
+    
+    var items: [SirioListItemModel] {
+        [
+            .default(title: "Notifica in linea", action: { path.append(Destination.inline) }),
+            .default(title: "Notifica pagina", action: { path.append(Destination.page) })
+        ]
+    }
+    
+    @ViewBuilder
+    func destinationView(for destination: Destination) -> some View {
+        switch destination {
+        case .inline:
+            ExampleNotificaInline()
+                .navigationTitle("Notifica in linea")
+                .background(Color.colorBackground)
             
-            NavigationLink(destination: {
-                ExampleNotificaInline()
-            }, label: {
-                SirioText(text: "Notifica in linea", typography: .label_md_400)
-            })
-            
-            
-            NavigationLink(destination: {
-                ExampleNotificaPage()
-            }, label: {
-                SirioText(text: "Notifica pagina", typography: .label_md_400)
-            })
+        case .page:
+            ExampleNotificaPage()
+                .navigationTitle("Notifica pagina")
+                .background(Color.colorBackground)
         }
-        .background(Color.colorBackground)
-        .navigationTitle("Notifiche")
-        .listStyle(GroupedListStyle())
     }
 }
 
 #Preview {
-    ExampleNotification()
+    ExampleNotification(path: .constant(NavigationPath()))
 }
-
 struct ExampleNotificaInline: View {
 
     var body: some View {

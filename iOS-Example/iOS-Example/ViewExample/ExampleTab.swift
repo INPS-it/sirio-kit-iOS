@@ -1,7 +1,7 @@
 //
 // ExampleTab.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -10,36 +10,52 @@ import SwiftUI
 import SirioKitIOS
 
 struct ExampleTab: View {
+    @Binding var path: NavigationPath
+    
     var body: some View {
-        List {
-            // Tab
-            NavigationLink(destination: {
-                ExampleTabSingle()
-                    .navigationTitle("Tab Single")
-                    .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Tab Single", typography: .label_md_400)
-            })
+        SirioListItems(items: items)
+            .navigationTitle("Tab")
+            .scrollContentBackground(.hidden)
+            .background(Color.colorBackground)
+            .navigationDestination(for: Destination.self) { destination in
+                destinationView(for: destination)
+            }
+    }
+}
+
+extension ExampleTab {
+    
+    enum Destination: Hashable {
+        case tabSingle
+        case tabGroup
+    }
+    
+    var items: [SirioListItemModel] {
+        [
+            .default(title: "Tab Single", action: { path.append(Destination.tabSingle) }),
+            .default(title: "Tab Group", action: { path.append(Destination.tabGroup) })
+        ]
+    }
+    
+    @ViewBuilder
+    func destinationView(for destination: Destination) -> some View {
+        switch destination {
+        case .tabSingle:
+            ExampleTabSingle()
+                .navigationTitle("Tab Single")
+                .background(Color.colorBackground)
             
-            // Tab Group
-            NavigationLink(destination: {
-                ExampleTabGroup()
-                    .navigationTitle("Tab Group")
-                    .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Tab Group", typography: .label_md_400)
-            })
+        case .tabGroup:
+            ExampleTabGroup()
+                .navigationTitle("Tab Group")
+                .background(Color.colorBackground)
         }
-        .background(Color.colorBackground)
-        .navigationTitle("Tab")
-        .listStyle(GroupedListStyle())
     }
 }
 
 #Preview {
-    ExampleTab()
+    ExampleTab(path: .constant(NavigationPath()))
 }
-
 
 // Tab Single
 struct ExampleTabSingle: View {

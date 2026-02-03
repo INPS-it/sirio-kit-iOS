@@ -1,16 +1,12 @@
 //
 // TabStyle.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
 
 import SwiftUI
-
-#Preview {
-    ExampleTabGroup()
-}
 
 // A struct that defines the style for Tab component
 struct TabStyle: ButtonStyle {
@@ -35,51 +31,25 @@ struct TabStyle: ButtonStyle {
                 
                 SirioText(text: item.text, typography: typography)
                     .foregroundColor(textColor)
+                    .fixedSize(horizontal: true, vertical: false)
             }
             .padding(.horizontal, Size.p8)
             
             Spacer()
             
-            Rectangle()
-                .frame(height: Size.Tab.rectangleHeight)
-                .foregroundColor(rectangleColor)
-                .cornerRadius(3, corners: [.topLeft, .topRight])
+            ZStack {
+                Rectangle()
+                    .foregroundColor(rectangleColor)
+                    .frame(height: Size.Tab.rectangleHeight * 2)
+                    .cornerRadius(Size.Tab.cornerRadius, corners: [.topLeft, .topRight])
+            }
+            .frame(height: Size.Tab.rectangleHeight, alignment: .top)
+            .clipped()
         }
         .frame(height: Size.Tab.height)
+        .frame(maxWidth: .infinity)
         .background(backgroundColor)
-        .fixedSize()
-
     }
-    
-//    func tabOnBottom(configuration: Self.Configuration) -> some View {
-//        VStack(spacing: Size.zero){
-//            
-//            Spacer()
-//            
-//            HStack(spacing: Size.Tab.spacingHorizontal){
-//                if let icon = item.icon {
-//                    SirioIcon(data: .init(icon: icon))
-//                        .frame(width: Size.Tab.Icon.frame, height: Size.Tab.Icon.frame)
-//                        .foregroundColor(iconColor)
-//                }
-//                
-//                SirioText(text: item.text, typography: typography)
-//                    .foregroundColor(textColor)
-//            }
-//            .padding(.horizontal, item.icon == nil ? Size.Tab.paddingHorizontal : Size.Tab.paddingHorizontalWithIcon)
-//            
-//            Spacer()
-//            
-//            Rectangle()
-//                .frame(height: Size.Tab.Rectangle.height)
-//                .foregroundColor(rectangleColor)
-//        }
-//        .frame(height: Size.Tab.height)
-//        .background(backgroundColor)
-//        .onHover { isHover in
-//            self.isHover = isHover
-//        }
-//    }
     
      private var rectangleColor: Color {
          if item.isDisabled {
@@ -122,4 +92,8 @@ struct TabStyle: ButtonStyle {
      private var typography: Typography {
          isSelected ? Typography.Tab.selected : Typography.Tab.unselected
      }
+}
+
+#Preview {
+    ExampleTabGroup()
 }

@@ -1,7 +1,7 @@
 //
 // SirioDropdown.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -42,7 +42,7 @@ public struct SirioDropdown: View {
                 placeholder: String,
                 text: Binding<String>,
                 listItem: [String],
-                helperText: String?,
+                helperText: String? = nil,
                 isDisabled: Binding<Bool> = .constant(false),
                 onTapDismiss: (() -> Void)? = nil,
                 onTapOpen: (() -> Void)? = nil,

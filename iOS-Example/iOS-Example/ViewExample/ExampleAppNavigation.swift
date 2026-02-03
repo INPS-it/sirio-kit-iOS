@@ -1,7 +1,7 @@
 //
 // ExampleAppNavigation.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -11,65 +11,84 @@ import SirioKitIOS
 
 
 struct ExampleAppNavigation: View {
+    @Binding var path: NavigationPath
+    
     var body: some View {
-        List {
-            // LOGO
-            NavigationLink(destination: {
-                VSchemeSwitcher {
-                    ExampleAppNavigationLogoView()
-                }
-                .navigationTitle("Logo")
-                .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Logo", typography: .label_md_400)
-                
+        SirioListItems(items: items)
+            .navigationTitle("App Navigation")
+            .scrollContentBackground(.hidden)
+            .background(Color.colorBackground)
+            .navigationDestination(for: Destination.self) { destination in
+                destinationView(for: destination)
+            }
+    }
+}
+
+extension ExampleAppNavigation {
+    
+    enum Destination: Hashable {
+        case logo
+        case standard
+        case selection
+        case search
+    }
+    
+    var items: [SirioListItemModel] {
+        [
+            .default(title: "Logo", action: {
+                path.append(Destination.logo)
+            }),
+            .default(title: "Standard", action: {
+                path.append(Destination.standard)
+            }),
+            .default(title: "Selection", action: {
+                path.append(Destination.selection)
+            }),
+            .default(title: "Search", action: {
+                path.append(Destination.search)
             })
+        ]
+    }
+    
+    @ViewBuilder
+    func destinationView(for destination: Destination) -> some View {
+        switch destination {
+        case .logo:
+            VSchemeSwitcher {
+                ExampleAppNavigationLogoView()
+            }
+            .navigationTitle("Logo")
+            .background(Color.colorBackground)
             
-            // STANDARD TITLE
-            NavigationLink(destination: {
-                VSchemeSwitcher {
-                    ExampleAppNavigationView()
-                }
-                .navigationTitle("Standard")
-                .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Standard", typography: .label_md_400)
-            })
+        case .standard:
+            VSchemeSwitcher {
+                ExampleAppNavigationView()
+            }
+            .navigationTitle("Standard")
+            .background(Color.colorBackground)
             
+        case .selection:
+            VSchemeSwitcher {
+                ExampleAppNavigationSelectionView()
+            }
+            .navigationTitle("Selection")
+            .background(Color.colorBackground)
             
-            // SELECTION
-            NavigationLink(destination: {
-                VSchemeSwitcher {
-                    ExampleAppNavigationSelectionView()
-                }
-                .navigationTitle("Selection")
-                .background(Color.colorBackground)
-            }, label: {
-                SirioText(text: "Selection", typography: .label_md_400)
-            })
-            
-            // SEARCH
-            NavigationLink(destination: {
-                VSchemeSwitcher {
-                    ExampleAppNavigationSearchView()
-                }
-                .navigationTitle("Search")
-                .background(Color.colorBackground)
-                .onTapGesture {
-                    self.hideKeyboard()
-                }
-            }, label: {
-                SirioText(text: "Search", typography: .label_md_400)
-            })
+        case .search:
+            VSchemeSwitcher {
+                ExampleAppNavigationSearchView()
+            }
+            .navigationTitle("Search")
+            .background(Color.colorBackground)
+            .onTapGesture {
+                self.hideKeyboard()
+            }
         }
-        .background(Color.colorBackground)
-        .navigationTitle("App Navigation")
-        .listStyle(GroupedListStyle())
     }
 }
 
 #Preview {
-    ExampleAppNavigation()
+    ExampleAppNavigation(path: .constant(NavigationPath()))
 }
 
 struct ExampleAppNavigationView: View {

@@ -1,7 +1,7 @@
 //
 // ExampleProgressBar.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -12,7 +12,7 @@ import SirioKitIOS
 struct ExampleProgressBar: View {
     
     var body: some View {
-        ScrollView(showsIndicators: false){
+        ScrollView(showsIndicators: false) {
             VStack(spacing: 16) {
                 Group {
                     SirioProgressBar(text: "Label", currentValue: .constant(0))

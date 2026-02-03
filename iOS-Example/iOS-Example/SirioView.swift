@@ -1,7 +1,7 @@
 //
 // SirioView.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -10,198 +10,151 @@ import SwiftUI
 import SirioKitIOS
 
 struct SirioView: View {
+    @State private var path = NavigationPath()
     
     var body: some View {
-        NavigationView {
-            List {
-                NavigationLink(destination: {
-                    ExampleFoundationToken()
-                }, label: {
-                    SirioText(text: "Foundation", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleAccordion()
-                }, label: {
-                    SirioText(text: "Accordion", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleAppNavigation()
-                }, label: {
-                    SirioText(text: "App Navigation", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleAvviso()
-                }, label: {
-                    SirioText(text: "Avviso", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleButtons()
-                }, label: {
-                    SirioText(text: "Buttons", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleCard()
-                }, label: {
-                    SirioText(text: "Card", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleCarousel()
-                }, label: {
-                    SirioText(text: "Carousel", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleCheckBox()
-                }, label: {
-                    SirioText(text: "CheckBox", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleChips()
-                }, label: {
-                    SirioText(text: "Chips", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleDialog()
-                }, label: {
-                    SirioText(text: "Dialog", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleFab()
-                }, label: {
-                    SirioText(text: "Fab", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleFileUpload()
-                }, label: {
-                    SirioText(text: "File Upload", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleFiltri()
-                }, label: {
-                    SirioText(text: "Filtri", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleHero()
-                }, label: {
-                    SirioText(text: "Hero", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleMenuSpalla()
-                }, label: {
-                    SirioText(text: "Menu Spalla", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleNotification()
-                }, label: {
-                    SirioText(text: "Notifiche", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExamplePagination()
-                }, label: {
-                    SirioText(text: "Pagination", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleProgressBar()
-                }, label: {
-                    SirioText(text: "ProgressBar", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleRadioButton()
-                }, label: {
-                    SirioText(text: "Radio Button", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleSearchBar()
-                }, label: {
-                    SirioText(text: "SearchBar", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleSegmentedControls()
-                }, label: {
-                    SirioText(text: "Segmented Controls", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleSlider()
-                }, label: {
-                    SirioText(text: "Slider", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleStepProgressBar()
-                }, label: {
-                    SirioText(text: "Step Progress Bar", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleTab()
-                }, label: {
-                    SirioText(text: "Tab", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleTabBar()
-                }, label: {
-                    SirioText(text: "Tab Bar", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleTable()
-                }, label: {
-                    SirioText(text: "Table", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleTag()
-                }, label: {
-                    SirioText(text: "Tag", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleTextArea()
-                }, label: {
-                    SirioText(text: "TextArea", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleTextField()
-                }, label: {
-                    SirioText(text: "TextField", typography: .label_md_400)
-                })
-                NavigationLink(destination: {
-                    ExampleTitleBar()
-                }, label: {
-                    SirioText(text: "TitleBar", typography: .label_md_400)
-                })
-                
-                NavigationLink(destination: {
-                    ExampleToggle()
-                }, label: {
-                    SirioText(text: "Toggle", typography: .label_md_400)
-                })
-            }
-            .navigationTitle("INPS Sirio Kit")
-            .listStyle(GroupedListStyle())
+        NavigationStack(path: $path) {
+            SirioListItems(items: items)
+                .navigationTitle("INPS Sirio Kit")
+                .navigationDestination(for: Destination.self) { destination in
+                    destinationView(for: destination)
+                }
         }
+    }
+}
+
+extension SirioView {
+    // Enum che rappresenta le varie destinazioni
+    enum Destination: Hashable {
+        case foundation,
+             accordion, appNavigation, avviso,
+             buttons,
+             card, carousel, checkBox, chips,
+             dialog, dropdownMenu,
+             fab, fileUpload, filtri,
+             hero,
+             listItem, loader,
+             menuSpalla,
+             notification,
+             pagination, popover, progressBar,
+             radioButton,
+             search, segmentedControls, slider, stepProgressBar,
+             tab, tabBar, table, tag, textArea, textField, toggle
+    }
+        
+        @ViewBuilder
+    func destinationView(for destination: Destination) -> some View {
+        switch destination {
+        case .foundation:
+            ExampleFoundationToken(path: $path)
+        case .accordion:
+            ExampleAccordion(path: $path)
+        case .appNavigation:
+            ExampleAppNavigation(path: $path)
+        case .avviso:
+            ExampleAvviso()
+        case .buttons:
+            ExampleButtons(path: $path)
+        case .card:
+            ExampleCard(path: $path)
+        case .carousel:
+            ExampleCarousel()
+        case .checkBox:
+            ExampleCheckBox()
+        case .chips:
+            ExampleChips()
+        case .dialog:
+            ExampleDialog(path: $path)
+        case .dropdownMenu:
+            ExampleDropdownMenu(path: $path)
+        case .fab:
+            ExampleFab()
+        case .fileUpload:
+            ExampleFileUpload()
+        case .filtri:
+            ExampleFiltri(path: $path)
+        case .hero:
+            ExampleHero()
+        case .listItem:
+            ExampleListItem(path: $path)
+        case .loader:
+            ExampleLoader()
+        case .menuSpalla:
+            ExampleMenuSpalla(path: $path)
+        case .notification:
+            ExampleNotification(path: $path)
+        case .pagination:
+            ExamplePagination()
+        case .popover:
+            ExamplePopover(path: $path)
+        case .progressBar:
+            ExampleProgressBar()
+        case .radioButton:
+            ExampleRadioButton()
+        case .search:
+            ExampleSearch(path: $path)
+        case .segmentedControls:
+            ExampleSegmentedControls(path: $path)
+        case .slider:
+            ExampleSlider()
+        case .stepProgressBar:
+            ExampleStepProgressBar()
+        case .tab:
+            ExampleTab(path: $path)
+        case .tabBar:
+            ExampleTabBar()
+        case .table:
+            ExampleTable(path: $path)
+        case .tag:
+            ExampleTag()
+        case .textArea:
+            ExampleTextArea()
+        case .textField:
+            ExampleTextField()
+        case .toggle:
+            ExampleToggle()
+        }
+    }
+
+    
+    // Lista dei modelli per SirioListItems
+    var items: [SirioListItemModel] {
+        [
+            .default(title: "Foundation", action: { path.append(Destination.foundation) }),
+            .default(title: "Accordion",action: { path.append(Destination.accordion) }),
+            .default(title: "App Navigation", action: { path.append(Destination.appNavigation) }),
+            .default(title: "Avviso", action: { path.append(Destination.avviso) }),
+            .default(title: "Buttons", action: { path.append(Destination.buttons) }),
+            .default(title: "Card", action: { path.append(Destination.card) }),
+            .default(title: "Carousel", action: { path.append(Destination.carousel) }),
+            .default(title: "CheckBox", action: { path.append(Destination.checkBox) }),
+            .default(title: "Chips", action: { path.append(Destination.chips) }),
+            .default(title: "Dialog",   action: { path.append(Destination.dialog) }),
+            .default(title: "Dropdown Menu", action: { path.append(Destination.dropdownMenu) }),
+            .default(title: "Fab", action: { path.append(Destination.fab) }),
+            .default(title: "File Upload", action: { path.append(Destination.fileUpload) }),
+            .default(title: "Filtri", action: { path.append(Destination.filtri) }),
+            .default(title: "Hero", action: { path.append(Destination.hero) }),
+            .default(title: "List Item", action: { path.append(Destination.listItem) }),
+            .default(title: "Loader", action: { path.append(Destination.loader) }),
+            .default(title: "Menu Spalla", action: { path.append(Destination.menuSpalla) }),
+            .default(title: "Notifiche", action: { path.append(Destination.notification) }),
+            .default(title: "Pagination", action: { path.append(Destination.pagination) }),
+            .default(title: "Popover", action: { path.append(Destination.popover) }),
+            .default(title: "ProgressBar", action: { path.append(Destination.progressBar) }),
+            .default(title: "Radio Button", action: { path.append(Destination.radioButton) }),
+            .default(title: "Search", action: { path.append(Destination.search) }),
+            .default(title: "Segmented Controls", action: { path.append(Destination.segmentedControls) }),
+            .default(title: "Slider", action: { path.append(Destination.slider) }),
+            .default(title: "Step Progress Bar", action: { path.append(Destination.stepProgressBar) }),
+            .default(title: "Tab", action: { path.append(Destination.tab) }),
+            .default(title: "Tab Bar", action: { path.append(Destination.tabBar) }),
+            .default(title: "Table", action: { path.append(Destination.table) }),
+            .default(title: "Tag", action: { path.append(Destination.tag) }),
+            .default(title: "TextArea", action: { path.append(Destination.textArea) }),
+            .default(title: "TextField", action: { path.append(Destination.textField) }),
+            .default(title: "Toggle", action: { path.append(Destination.toggle) })
+        ]
     }
 }
 

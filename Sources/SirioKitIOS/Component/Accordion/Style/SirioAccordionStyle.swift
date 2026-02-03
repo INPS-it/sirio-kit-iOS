@@ -1,7 +1,7 @@
 //
 // SirioAccordionStyle.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -16,7 +16,6 @@ struct SirioAccordionStyle: ButtonStyle {
     var text: String?
     var tag: String?
     var isOpen: Bool
-    @Binding var isDisabled: Bool
     var withBorder: Bool = true
     
     func makeBody(configuration: Self.Configuration) -> some View {
@@ -40,10 +39,10 @@ struct SirioAccordionStyle: ButtonStyle {
                 Spacer()
                 
                 if let tag = tag, !tag.isEmpty {
-                    SirioTag(type: .white, text: tag)
+                    SirioTag(type: colorScheme == .dark ? .white : .gray, text: tag)
                         .padding(.horizontal, Size.p12)
                 } else if let text = text, !text.isEmpty {
-                    SirioText(text: text, typography: Typography.Accordion.text)
+                    SirioText(text: "( \(text) )", typography: Typography.Accordion.text)
                         .foregroundColor(textColor)
                         .padding(.horizontal, Size.p12)
                 }
@@ -71,9 +70,7 @@ struct SirioAccordionStyle: ButtonStyle {
         let defaultColor: Color = colorScheme == .dark ? Color.Accordion.Background.Default.dark : Color.Accordion.Background.Default.light
         let activeColor: Color = colorScheme == .dark ? Color.Accordion.Background.Active.dark : Color.Accordion.Background.Active.light
 
-        if isDisabled {
-            return Color.Accordion.Background.disabled
-        } else if isOpen {
+        if isOpen {
             return activeColor
         } else {
             return defaultColor
@@ -81,20 +78,11 @@ struct SirioAccordionStyle: ButtonStyle {
     }
     
     private var textColor: Color {
-        if isDisabled {
-            return Color.Accordion.Text.disabled
-        } else {
-            return colorScheme == .dark ? Color.Accordion.Text.dark : Color.Accordion.Text.light
-        }
-        
+        return colorScheme == .dark ? Color.Accordion.Text.dark : Color.Accordion.Text.light
     }
     
     private var iconColor: Color {
-        if isDisabled {
-            return Color.Accordion.Icon.disabled
-        } else {
-            return colorScheme == .dark ? Color.Accordion.Icon.dark : Color.Accordion.Icon.light
-        }
+        return colorScheme == .dark ? Color.Accordion.Icon.dark : Color.Accordion.Icon.light
     }
 }
 

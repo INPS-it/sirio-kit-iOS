@@ -1,7 +1,7 @@
 //
 // SirioEditorialCard.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -32,14 +32,26 @@ public struct SirioEditorialCard: View {
     var bundle: Bundle?
     var category: String?
     var date: String
-    var title: String
+    var title: String?
     var subtitle: String?
-    var text: String
+    var text: String?
     var iconsData: [SirioIconData]?
     var onTapCardAction: (() -> Void)?
     
-    // Without immagine
-    public init(category: String? = nil, date: String, title: String, subtitle: String? = nil, text: String, iconsData: [SirioIconData]? = nil, onTapCardAction: (() -> Void)? = nil) {
+    // MARK: - Init without image
+    public init(
+        category: String? = nil,
+        date: String,
+        title: String?,
+        subtitle: String? = nil,
+        text: String?,
+        iconsData: [SirioIconData]? = nil,
+        onTapCardAction: (() -> Void)? = nil
+    ) {
+        guard Self.hasValidContent(title: title, subtitle: subtitle, text: text) else {
+            fatalError("⚠️ SirioEditorialCard init failed: at least one of title, subtitle or text must be non-empty.")
+        }
+        
         self.url = nil
         self.imageName = nil
         self.bundle = nil
@@ -51,12 +63,24 @@ public struct SirioEditorialCard: View {
         self.iconsData = iconsData
         self.onTapCardAction = onTapCardAction
         
-        // Inizialize plugin for svg images
         SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
     }
-    
-    // With url image
-    public init(url: URL, category: String? = nil, date: String, title: String, subtitle: String? = nil, text: String, iconsData: [SirioIconData]? = nil, onTapCardAction: (() -> Void)? = nil) {
+
+    // MARK: - Init with url image
+    public init(
+        url: URL,
+        category: String? = nil,
+        date: String,
+        title: String?,
+        subtitle: String? = nil,
+        text: String?,
+        iconsData: [SirioIconData]? = nil,
+        onTapCardAction: (() -> Void)? = nil
+    ) {
+        guard Self.hasValidContent(title: title, subtitle: subtitle, text: text) else {
+            fatalError("⚠️ SirioEditorialCard init failed: at least one of title, subtitle or text must be non-empty.")
+        }
+        
         self.url = url
         self.imageName = nil
         self.bundle = nil
@@ -68,12 +92,25 @@ public struct SirioEditorialCard: View {
         self.iconsData = iconsData
         self.onTapCardAction = onTapCardAction
         
-        // Inizialize plugin for svg images
         SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
     }
-    
-    // With assets image
-    public init(imageName: String, bundle: Bundle, category: String? = nil, date: String, title: String, subtitle: String? = nil, text: String, iconsData: [SirioIconData]? = nil, onTapCardAction: (() -> Void)? = nil) {
+
+    // MARK: - Init with assets image
+    public init(
+        imageName: String,
+        bundle: Bundle,
+        category: String? = nil,
+        date: String,
+        title: String?,
+        subtitle: String? = nil,
+        text: String?,
+        iconsData: [SirioIconData]? = nil,
+        onTapCardAction: (() -> Void)? = nil
+    ) {
+        guard Self.hasValidContent(title: title, subtitle: subtitle, text: text) else {
+            fatalError("⚠️ SirioEditorialCard init failed: at least one of title, subtitle or text must be non-empty.")
+        }
+        
         self.url = nil
         self.imageName = imageName
         self.bundle = bundle
@@ -85,8 +122,14 @@ public struct SirioEditorialCard: View {
         self.iconsData = iconsData
         self.onTapCardAction = onTapCardAction
         
-        // Inizialize plugin for svg images
         SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
+    }
+    
+    private static func hasValidContent(title: String?, subtitle: String?, text: String?) -> Bool {
+        let isEmpty: (String?) -> Bool = { str in
+            str?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true
+        }
+        return !(isEmpty(title) && isEmpty(subtitle) && isEmpty(text))
     }
     
     private var existImage: Bool {
@@ -104,23 +147,26 @@ public struct SirioEditorialCard: View {
 
                 firstSection
                 
-                SirioText(text: title, typography: Typography.Card.Editorial.title, isUnderlined: true)
-                    .foregroundColor(Color.Card.Editorial.Text.title)
-                    .lineLimit(1)
-                    .padding(.top, Size.p12)
+                if let title = title {
+                    SirioText(text: title, typography: Typography.Card.Editorial.title, isUnderlined: true)
+                        .foregroundColor(Color.Card.Editorial.Text.title)
+                        .lineLimit(2)
+                        .padding(.top, Size.p12)
+                }
                 
                 if let subtitle = subtitle {
                     SirioText(text: subtitle, typography: Typography.Card.Editorial.subtitle)
                         .foregroundColor(Color.Card.Editorial.Text.subtitle)
                         .lineLimit(1)
-                        .padding(.top, Size.p4)
+                        .padding(.top, Size.p8)
                 }
                 
-                SirioText(text: text, typography: Typography.Card.Editorial.body)
-                    .foregroundColor(Color.Card.Editorial.Text.body)
-                    .lineLimit(3)
-                    .padding(.top, Size.p4)
-                
+                if let text = text {
+                    SirioText(text: text, typography: Typography.Card.Editorial.body)
+                        .foregroundColor(Color.Card.Editorial.Text.body)
+                        .lineLimit(3)
+                        .padding(.top, Size.p4)
+                }
                 if let items = iconsData?.prefix(2), items.count > 0 {
                     HStack(spacing: Size.s16) {
                         Spacer()

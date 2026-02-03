@@ -1,7 +1,7 @@
 //
 // SirioDialog.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -156,7 +156,7 @@ public struct SirioDialog: View {
                         }
                     }
                 }
-                .padding(.bottom, Size.p12)
+                .padding(.bottom, Size.p24)
 
                 if let title = title {
                     SirioText(text: title, typography: Typography.Dialog.title)
@@ -202,8 +202,8 @@ public struct SirioDialog: View {
                 
             } // Dialog View
             .frame(maxHeight: Size.Dialog.maxHeight)
-            .padding(.horizontal, Size.p16)
-            .padding(.top, Size.p16)
+            .padding(.horizontal, Size.p24)
+            .padding(.top, Size.p24)
             .padding(.bottom, Size.p32)
             .background(Color.Dialog.Background.default)
             .cornerRadius(Size.Dialog.cornerRadius, corners: [.topLeft, .topRight])
@@ -244,11 +244,11 @@ struct ViewTextField: View {
            let placeholder = textfield.placeholder,
            let _ = textfield.text {
             VStack(alignment: .leading, spacing: Size.s16) {
-                SirioTextField(type: $textfield.type.toUnwrapped(defaultValue: .info),
+                SirioGenericTextField(type: $textfield.type.toUnwrapped(defaultValue: .info),
                                textInfo: label,
                                placeholder: placeholder,
-                               text: $textfield.text.toUnwrapped(defaultValue: ""),
-                               icon: nil,
+                               value: $textfield.text.toUnwrapped(defaultValue: ""),
+                               iconData: nil,
                                helperText: nil,
                                isDisabled: .constant(false),
                                onTapInfoAction: nil,
@@ -262,14 +262,30 @@ struct ViewTextField: View {
     SirioDialog(type: .warning,
            title: "Title",
            subtitle: .loremIpsum,
+           textfield1: .init(),
+           textfield2: .init(),
+           textFirstButton: "Text",
+           actionFirstButton: nil,
+           textSecondButton: "Text",
+           actionSecondButton: nil,
+           onTapInfoAction: nil,
+           onTapCloseAction: nil,
+           isVisibleInfoIcon: true)
+}
+
+
+#Preview {
+    SirioDialog(type: .info,
+           title: "Title",
+           subtitle: .loremIpsum,
            textfield1: .init(type: .info,
                              label: "Label",
                              placeholder: "Placeholder",
-                             text: ""),
+                             text: "text"),
            textfield2: .init(type: .info,
                              label: "Label",
                              placeholder: "Placeholder",
-                             text: ""),
+                             text: "text"),
            textFirstButton: "Text",
            actionFirstButton: nil,
            textSecondButton: "Text",

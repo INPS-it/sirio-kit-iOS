@@ -1,7 +1,7 @@
 //
 // SirioCardItemData.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -59,4 +59,40 @@ public struct SirioProcessCardItemData: Identifiable {
         self.onTapFirstButtonAction = onTapFirstButtonAction
         self.menuItems = menuItems
     }
+}
+
+
+public protocol SirioProcessCardItemDataProtocol {
+    var firstButtonText: String? { get }
+    var onTapFirstButtonAction: (() -> Void)? { get }
+}
+
+public struct SirioProcessCardItemDataStandard: SirioProcessCardItemDataProtocol, Identifiable {
+    public var id = UUID()
+    public var firstButtonText: String?
+    public var onTapFirstButtonAction: (() -> Void)?
+    public var isFullWidth: Bool = false
+}
+
+public struct SirioProcessCardItemDataCTAInline: SirioProcessCardItemDataProtocol, Identifiable {
+    public var id = UUID()
+    public var firstButtonText: String?
+    public var onTapFirstButtonAction: (() -> Void)?
+    public var secondButtonText: String
+    public var onTapSecondButtonAction: () -> Void
+}
+
+public struct SirioProcessCardItemDataCTABlock: SirioProcessCardItemDataProtocol, Identifiable {
+    public var id = UUID()
+    public var firstButtonText: String?
+    public var onTapFirstButtonAction: (() -> Void)?
+    public var secondButtonText: String
+    public var onTapSecondButtonAction: () -> Void
+}
+
+public struct SirioProcessCardItemDataMoreAction: SirioProcessCardItemDataProtocol, Identifiable {
+    public var id = UUID()
+    public var firstButtonText: String?
+    public var onTapFirstButtonAction: (() -> Void)?
+    public var menuItems: [SirioActionItem]
 }

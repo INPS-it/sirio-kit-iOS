@@ -5,9 +5,9 @@ struct OptionsStyle: ButtonStyle {
     var text: String
 
     func makeBody(configuration: Self.Configuration) -> some View {
-        VStack(spacing: 0) {
+        VStack(spacing: Size.zero) {
             HStack {
-                SirioText(text: text, typography: .label_md_400)
+                SirioText(text: text, typography: .labelMdRegular)
                     .foregroundColor(getTextColor(configuration: configuration))
                     .lineLimit(2)
                 Spacer()
@@ -17,7 +17,7 @@ struct OptionsStyle: ButtonStyle {
             .background(getBackgroundColor(configuration: configuration))
             
             Divider()
-                .background(StyleDictionaryColor.specificDataEntryBorderColorDefault.color)
+                .background(Color.aliasBackgroundColorPrimaryDark110)
         }
     }
 

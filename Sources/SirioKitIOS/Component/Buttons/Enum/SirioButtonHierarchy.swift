@@ -1,7 +1,7 @@
 //
 // SirioButtonHierarchy.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -9,13 +9,16 @@
 import SwiftUI
 
 /// This struct defines the various hierarchies for buttons provided by Sirio.
-public enum SirioButtonHierarchy: CaseIterable {
+public enum SirioButtonHierarchy {
     case primary
     case secondary
     case tertiaryLight
     case tertiaryDark
     case danger
+    @available(*, deprecated, renamed: "ghostLight", message: "Use 'ghostLight' or 'ghostDark' instead.")
     case ghost
+    case ghostLight
+    case ghostDark
     
     var theme: SirioButtonTheme {
         switch self {
@@ -41,10 +44,17 @@ public enum SirioButtonHierarchy: CaseIterable {
             return SirioButtonTheme(background: Color.SirioButton.Danger.Background.state,
                          icon: Color.SirioButton.Danger.Icon.state,
                          text: Color.SirioButton.Danger.Text.state)
-        case .ghost:
-            return SirioButtonTheme(background: Color.SirioButton.Ghost.Background.state,
-                         icon: Color.SirioButton.Ghost.Icon.state,
-                         text: Color.SirioButton.Ghost.Text.state)
+        case .ghost, .ghostLight:
+            return SirioButtonTheme(background: Color.SirioButton.GhostLight.Background.state,
+                         icon: Color.SirioButton.GhostLight.Icon.state,
+                         text: Color.SirioButton.GhostLight.Text.state)
+            
+        case .ghostDark:
+            return SirioButtonTheme(
+                background: Color.SirioButton.GhostDark.Background.state,
+                         icon: Color.SirioButton.GhostDark.Icon.state,
+                         text: Color.SirioButton.GhostDark.Text.state)
+            
         }
     }
     
@@ -53,5 +63,20 @@ public enum SirioButtonHierarchy: CaseIterable {
         var border: ColorState? = nil
         var icon: ColorState
         var text: ColorState
+    }
+}
+
+// MARK: - Manual CaseIterable con esclusione del case deprecato
+extension SirioButtonHierarchy: CaseIterable {
+    public static var allCases: [SirioButtonHierarchy] {
+        [
+            .primary,
+            .secondary,
+            .tertiaryLight,
+            .tertiaryDark,
+            .danger,
+            .ghostLight,
+            .ghostDark
+        ]
     }
 }

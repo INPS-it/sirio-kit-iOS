@@ -1,7 +1,7 @@
 //
 // SirioPagination.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -22,113 +22,148 @@ public struct SirioPagination: View {
     @Binding var selectedPage: Int
     var numberOfPages: Int
     @ObservedObject var paginationViewModel: SirioPaginationViewModel
-    @Binding var isDisabled: Bool // All component
-    @State private var isDisabledButtonLeft: Bool = false // Left button
-    @State private var isDisabledButtonRight: Bool = false // Right button
+    @Binding var isDisabled: Bool
+    
     var accessibilityLabelLeftButton: String?
     var accessibilityLabelTile: String?
     var accessibilityLabelRightButton: String?
+
     
+    @State private var isDisabledButtonLeft: Bool = false
+    @State private var isDisabledButtonRight: Bool = false
+    
+    // Misura del container esterno
+    @State private var containerWidth: CGFloat = 0
+
+    // Spazio utile = total - padding esterni - spacer minimi - bottoni fissi
+    private var usableTilesWidth: CGFloat {
+        let horizontalPadding = 2 * Size.Pagination.paddingHorizontal
+        let sideSpacers       = 2 * Size.Pagination.paddingHorizontalButton
+        let buttons           = 2 * Size.Pagination.Button.width
+        return max(0, containerWidth - horizontalPadding - sideSpacers - buttons)
+    }
+
     public init(selectedPage: Binding<Int>,
                 numberOfPages: Int,
                 isDisabled: Binding<Bool> = .constant(false),
                 accessibilityLabelLeftButton: String? = nil,
                 accessibilityLabelTile: String? = nil,
-                accessibilityLabelRightButton: String? = nil){
+                accessibilityLabelRightButton: String? = nil) {
         self._selectedPage = selectedPage
         self.numberOfPages = numberOfPages
         self._isDisabled = isDisabled
-        self.paginationViewModel = SirioPaginationViewModel(selectedPage: selectedPage.wrappedValue, numberOfPages: numberOfPages)
+        self.paginationViewModel = SirioPaginationViewModel(
+            selectedPage: selectedPage.wrappedValue,
+            numberOfPages: numberOfPages,
+            itemWidth: 38,
+            itemSpacing: 4                              // oppure Size.Pagination.itemSpacing
+        )
         self.accessibilityLabelLeftButton = accessibilityLabelLeftButton
         self.accessibilityLabelTile = accessibilityLabelTile
         self.accessibilityLabelRightButton = accessibilityLabelRightButton
     }
-    
+
+    private var leftButton: some View {
+        SirioButton(
+            hierarchy: .ghost,
+            size: .large,
+            text: nil,
+            iconData: .init(icon: .angleLeft),
+            isDisabled: $isDisabledButtonLeft,
+            action: { if selectedPage > 0 { selectedPage -= 1 } },
+            accessibilityLabel: accessibilityLabelLeftButton
+        )
+        .frame(width: Size.Pagination.Button.width)
+    }
+
+    private var rightButton: some View {
+        SirioButton(
+            hierarchy: .ghost,
+            size: .large,
+            text: nil,
+            iconData: .init(icon: .angleRight),
+            isDisabled: $isDisabledButtonRight,
+            action: { if selectedPage < numberOfPages - 1 { selectedPage += 1 } },
+            accessibilityLabel: accessibilityLabelRightButton
+        )
+        .frame(width: Size.Pagination.Button.width)
+    }
+
     public var body: some View {
         VStack {
             HStack {
-                SirioButton(hierarchy: .ghost,
-                            size: .large,
-                            text: nil,
-                            iconData: .init(icon: .angleLeft),
-                            isDisabled: $isDisabledButtonLeft,
-                            action: {
-                    if selectedPage > 0 {
-                        selectedPage -= 1
-                    }
-                }, accessibilityLabel: accessibilityLabelLeftButton)
-                
-                Spacer()
-                
-                HStack(alignment: .center, spacing: Size.zero){
-                    if paginationViewModel.availableWidth == 0 {
+                leftButton
+                Spacer(minLength: Size.Pagination.paddingHorizontalButton)
+
+                // Usa LO SPACING dell’HStack (niente padding per-item)
+                HStack(alignment: .center, spacing: Size.Pagination.spacing) {
+                    if paginationViewModel.availableWidth <= 0 {
                         Spacer()
-                    } else if paginationViewModel.availableWidth > 0 {
-                        ForEach(paginationViewModel.generatePages(), id: \.self) { current in
+                    } else {
+                        let pages = paginationViewModel.generatePages()
+                        ForEach(Array(pages.enumerated()), id: \.offset) { _, current in
                             if current == -1 {
                                 dots
                             } else {
-                                let number = current + 1
-                                SirioPaginationTile(number: number,
-                                                    isSelected: selectedPage == current ,
-                                                    isDisabled: isDisabled,
-                                                    action: {
-                                    if !isDisabled && selectedPage != current {
-                                        self.selectedPage = current
-                                    }
-                                }, accessibilityLabel: accessibilityLabelTile)
+                                SirioPaginationTile(
+                                    number: current + 1,
+                                    isSelected: selectedPage == current,
+                                    isDisabled: isDisabled,
+                                    action: {
+                                        if !isDisabled && selectedPage != current {
+                                            selectedPage = current
+                                        }
+                                    },
+                                    accessibilityLabel: accessibilityLabelTile
+                                )
                             }
                         }
                     }
                 }
+                .frame(maxWidth: usableTilesWidth)
+                .clipped()
                 .readSize { size in
-                    paginationViewModel.availableWidth = size.width
-                }
-                
-                Spacer()
-                
-                SirioButton(hierarchy: .ghost,
-                            size: .large,
-                            text: nil,
-                            iconData: .init(icon: .angleRight),
-                            isDisabled: $isDisabledButtonRight,
-                            action: {
-                    if selectedPage < numberOfPages - 1 {
-                        selectedPage += 1
+                    let clamped = min(size.width, usableTilesWidth)
+                    if abs(paginationViewModel.availableWidth - clamped) > 0.5 {
+                        withTransaction(Transaction(animation: nil)) {
+                            paginationViewModel.availableWidth = clamped
+                        }
                     }
-                }, accessibilityLabel: accessibilityLabelRightButton)
+                }
+
+                Spacer(minLength: Size.Pagination.paddingHorizontalButton)
+                rightButton
             }
             .padding(.horizontal, Size.Pagination.paddingHorizontal)
         }
-        .onChange(of: selectedPage, perform: { newValue in
-            print("On Change ->  \(newValue)")
-            if !isDisabled {
-                if newValue <= 0 {
-                    self.isDisabledButtonLeft = true
-                } else if newValue >= numberOfPages - 1 {
-                    self.isDisabledButtonRight = true
-                } else {
-                    self.isDisabledButtonLeft = false
-                    self.isDisabledButtonRight = false
-                }
+        .background(
+            GeometryReader { proxy in
+                Color.clear
+                    .onAppear { containerWidth = proxy.size.width }
+                    .onChange(of: proxy.size.width) { w in containerWidth = w }
             }
-        })
+        )
+        .onChange(of: selectedPage) { newValue in
+            if !isDisabled {
+                isDisabledButtonLeft  = newValue <= 0
+                isDisabledButtonRight = newValue >= numberOfPages - 1
+            }
+        }
         .onAppear {
-            // Left and Right buttons management
             DispatchQueue.main.async {
-                if self.$isDisabled.wrappedValue {
-                    self.isDisabledButtonLeft = self.$isDisabled.wrappedValue
-                    self.isDisabledButtonRight = self.$isDisabled.wrappedValue
+                if isDisabled {
+                    isDisabledButtonLeft = true
+                    isDisabledButtonRight = true
                 } else {
-                    self.isDisabledButtonLeft = self.$selectedPage.wrappedValue == 0
-                    self.isDisabledButtonRight = self.$selectedPage.wrappedValue == self.numberOfPages-1
+                    isDisabledButtonLeft  = selectedPage == 0
+                    isDisabledButtonRight = selectedPage == numberOfPages - 1
                 }
             }
         }
         .frame(height: Size.Pagination.height)
         .background(Color.Pagination.Background.default)
     }
-    
+
     private var dots: some View {
         SirioText(text: "..", typography: Typography.Pagination.dots)
             .frame(width: Size.Pagination.Dots.width, height: Size.Pagination.Dots.height)
@@ -136,12 +171,17 @@ public struct SirioPagination: View {
     }
 }
 
+// MARK: - Example
 struct ExamplePagination: View {
     @State var selectedPage: Int = 0
     @State var isDisabled: Bool = false
-    
+
     var body: some View {
-        SirioPagination(selectedPage: $selectedPage, numberOfPages: 10, isDisabled: $isDisabled)
+        SirioPagination(
+            selectedPage: $selectedPage,
+            numberOfPages: 10,
+            isDisabled: $isDisabled
+        )
     }
 }
 

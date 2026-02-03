@@ -1,7 +1,7 @@
 //
 // SirioButtonStyle.swift
 //
-// SPDX-FileCopyrightText: 2025 Istituto Nazionale Previdenza Sociale
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
 //
 // SPDX-License-Identifier: BSD-3-Clause
 //
@@ -89,7 +89,6 @@ struct SirioButtonStyle: ButtonStyle {
             }
         }
         .padding(.horizontal, paddingHorizontal)
-        //.padding(.vertical, paddingVertical)
         .frame(height: height)
         .if(!isOnlyIcon, transform: { view in
             view.frame(minWidth: minWidth)
@@ -101,19 +100,20 @@ struct SirioButtonStyle: ButtonStyle {
             RoundedRectangle(cornerRadius: Size.SirioButton.cornerRadius)
                 .stroke(colorBorder, lineWidth: Size.SirioButton.borderWidth)
         )
-        .onHover { isHover in
-            self.isHover = isHover
-        }
+        
         .onChange(of: configuration.isPressed) { isPressed in
             self.isPressed = isPressed
-            self.colorText = getSirioButtonTextColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed)
-            self.colorIcon = getSirioButtonIconColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed)
-            self.colorBackground = getSirioButtonBackgroundColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed)
-            self.colorBorder = getSirioButtonBorderColor(hierarchy: hierarchy, isDisabled: isDisabled, isHover: isHover, isPressed: isPressed)
+            self.colorText = getSirioButtonTextColor(hierarchy: hierarchy, isDisabled: isDisabled, isPressed: isPressed)
+            self.colorIcon = getSirioButtonIconColor(hierarchy: hierarchy, isDisabled: isDisabled, isPressed: isPressed)
+            self.colorBackground = getSirioButtonBackgroundColor(hierarchy: hierarchy, isDisabled: isDisabled, isPressed: isPressed)
+            self.colorBorder = getSirioButtonBorderColor(hierarchy: hierarchy, isDisabled: isDisabled, isPressed: isPressed)
         }
         .onChange(of: isDisabled) { isDisabled in
             self.setColor(isDisabled: isDisabled)
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityIdentifier(text ?? "SirioButton")
     }
     
     private var typography: Typography {
