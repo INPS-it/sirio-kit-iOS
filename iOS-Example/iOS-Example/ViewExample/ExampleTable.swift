@@ -289,7 +289,7 @@ struct ExampleTable5: View {
     let schemeColor: SchemeColor
     let size: SirioTableSize
     
-    let headers: [SirioTableHeaderData] = (0..<4).enumerated().map {index, _ in
+    let headers: [SirioTableHeaderData] = (0..<5).enumerated().map {index, _ in
             .init(title: "Header", isSortable: index < 2)
     }
     
@@ -299,6 +299,7 @@ struct ExampleTable5: View {
                 .numberOnly(text: "00"),
                 .tag(text: "Label Tag"),
                 .textOnly(text: "Label"),
+                .textOnly(text: "Label 2"),
             ])
     }
     

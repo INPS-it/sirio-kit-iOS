@@ -15,7 +15,6 @@ public struct PopoverDynamicContainer: View {
     let textButton: String?
     let onTapButton: (() -> Void)?
     let infoIconFrame: CGRect
-    let inputFieldFrame: CGRect
     let componentFrame: CGRect
     let effectiveBottom: CGFloat
     let screenWidth: CGFloat
@@ -58,8 +57,8 @@ public struct PopoverDynamicContainer: View {
         guard measuredSize.width > 0 else { return 0 }
         let screenWidth = UIScreen.main.bounds.width
         
-        let leftMargin = inputFieldFrame.minX
-        let rightMargin = screenWidth - inputFieldFrame.maxX
+        let leftMargin = UIScreen.main.bounds.minX + 16
+        let rightMargin = screenWidth - UIScreen.main.bounds.maxX + 16
         
         let iconCenterX = infoIconFrame.midX
         let halfPopoverWidth = measuredSize.width / 2
@@ -79,11 +78,11 @@ public struct PopoverDynamicContainer: View {
     }
     
     private func calculateYOffset() -> CGFloat {
-        let baseBelowY = inputFieldFrame.minY
+        let baseBelowY = infoIconFrame.maxY + 8
         let exitsBottom = (baseBelowY + measuredSize.height) > effectiveBottom
         
         if exitsBottom {
-            return componentFrame.minY - measuredSize.height
+            return componentFrame.minY - measuredSize.height - 8
         } else {
             return baseBelowY
         }

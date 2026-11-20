@@ -28,7 +28,7 @@ public struct Typography {
     
     // Font name
     public var name: String {
-        return "\(fontFamily.rawValue) \(fontWeight.rawValue)"
+        return "\(fontFamily.rawValue)-\(fontWeight.rawValue)"
     }
     
     // Font
@@ -41,23 +41,66 @@ public struct Typography {
         return UIFont(name: name, size: fontSize) ?? .systemFont(ofSize: fontSize)
     }
     
-    public enum FontFamily: String {
-        case RobotoMono = "Roboto Mono"
-        case TitilliumWeb = "Titillium Web"
+    public enum FontFamily: String, CaseIterable {
+        
+        case RobotoMono = "RobotoMono"
+        case TitilliumWeb = "TitilliumWeb"
         case Lora = "Lora"
+        
+        var supportedWeights: [Typography.FontWeight] {
+            switch self {
+                
+            case .TitilliumWeb:
+                return [
+                    .Regular,
+                    .Italic,
+                    .SemiBold,
+                    .SemiBoldItalic,
+                    .Bold,
+                    .Black
+                ]
+                
+            case .Lora:
+                return [
+                    .Regular,
+                    .Italic,
+                    .Medium,
+                    .MediumItalic,
+                    .SemiBold,
+                    .SemiBoldItalic,
+                    .Bold,
+                    .BoldItalic
+                ]
+                
+            case .RobotoMono:
+                return [
+                    .Regular,
+                    .Italic,
+                    .Light,
+                    .LightItalic,
+                    .Medium,
+                    .MediumItalic,
+                    .SemiBold,
+                    .SemiBoldItalic,
+                    .Bold,
+                    .BoldItalic
+                ]
+            }
+        }
     }
     
-    public enum FontWeight: String {
+    public enum FontWeight: String, CaseIterable {
+        case Black = "Black"
         case Bold = "Bold"
-        case BoldItalic = "Bold Italic"
+        case BoldItalic = "BoldItalic"
         case Italic = "Italic"
         case Light = "Light"
-        case LightItalic = "Light Italic"
+        case LightItalic = "LightItalic"
         case Medium = "Medium"
-        case MediumItalic = "Medium Italic"
+        case MediumItalic = "MediumItalic"
         case Regular = "Regular"
         case SemiBold = "SemiBold"
-        case SemiBoldItalic = "SemiBold Italic"
+        case SemiBoldItalic = "SemiBoldItalic"
     }
 }
 

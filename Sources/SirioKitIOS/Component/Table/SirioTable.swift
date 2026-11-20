@@ -75,7 +75,6 @@ public struct SirioTable: View {
     var headersData: [SirioTableHeaderData]
     @Binding var rows: [SirioTableRowData]
     @State private var originalRows: [SirioTableRowData] = []
-    @State private var rowHeights: [Int: CGFloat] = [:]
     @State private var colWidths: [Int: CGFloat] = [:]
     private var allowHorizontalScroll: Bool
     @State private var contentTableHeight: CGFloat = 0
@@ -159,41 +158,40 @@ public struct SirioTable: View {
                 Group {
                     if allowHorizontalScroll {
                         if #available(iOS 18.0, *) {
-                            horizontalTable18(widths: widths, screenWidth: screenWidth)
+                            horizontalTable18(widths: widths, screenWidth: screenWidth, height: proxy.size.height)
                         } else {
                             horizontalTable16(widths: widths, screenWidth: screenWidth)
                         }
                     } else {
                         ScrollView(.vertical) {
-                            contentTable(widths: widths, screenWidth: screenWidth)
-                                .overlay(
-                                    GeometryReader { proxy in
-                                        Color.clear
-                                            .preference(
-                                                key: ContentHeightKey.self,
-                                                value: proxy.size.height
-                                            )
-                                    }
-                                )
+                            measuredContentTable(widths: widths, screenWidth: screenWidth)
                         }
-                        .onPreferenceChange(ContentHeightKey.self) { newHeight in
-                            contentTableHeight = newHeight
-                        }
-                        .frame(maxHeight: contentTableHeight)
+                        .frame(maxHeight: tableHeight)
                     }
                 }
+                .onPreferenceChange(ContentHeightKey.self) { newHeight in
+                    if abs(newHeight - contentTableHeight) > 0.5 {
+                        contentTableHeight = newHeight
+                    }
+                }
+                .background(alignment: .topLeading) {
+                    columnsMeasurer(screenWidth: screenWidth)
+                }
             }
+            .frame(idealHeight: tableHeight, maxHeight: tableHeight)
         }
     }
     
     @available(iOS 18.0, *)
     @ViewBuilder
-    func horizontalTable18(widths: [Int: CGFloat], screenWidth: CGFloat) -> some View {
+    func horizontalTable18(widths: [Int: CGFloat], screenWidth: CGFloat, height: CGFloat) -> some View {
         ZStack(alignment: .top) {
             ScrollView(.horizontal) {
                 ScrollView(.vertical) {
-                    contentTable(widths: widths, screenWidth: screenWidth)
+                    measuredContentTable(widths: widths, screenWidth: screenWidth)
                 }
+                // Senza un'altezza fissa lo scroll verticale diventa alto quanto il contenuto e non scorre
+                .frame(height: height)
             }
             .onScrollGeometryChange(for: ScrollGeometry.self) { geometry in
                 ScrollGeometry(
@@ -207,14 +205,13 @@ public struct SirioTable: View {
                     contentSize: newValue.contentSize,
                     containerSize: newValue.containerSize
                 )
-                contentTableHeight = newValue.contentSize.height
             }
             
             if canScrollLeft {
                 Rectangle()
                     .fill(Color.aliasInteractiveAccentDefault)
                     .frame(width: Size.Table.scrollingTableWidth,
-                           height: contentTableHeight)
+                           height: height)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             
@@ -222,7 +219,7 @@ public struct SirioTable: View {
                 Rectangle()
                     .fill(Color.aliasInteractiveAccentDefault)
                     .frame(width: Size.Table.scrollingTableWidth,
-                           height: contentTableHeight)
+                           height: height)
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }
         }
@@ -233,7 +230,7 @@ public struct SirioTable: View {
         ZStack(alignment: .top) {
             ScrollView(.vertical) {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    contentTable(widths: widths, screenWidth: screenWidth)
+                    measuredContentTable(widths: widths, screenWidth: screenWidth)
                 }
                 .coordinateSpace(name: "scrollView")
                 .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
@@ -247,11 +244,9 @@ public struct SirioTable: View {
                     GeometryReader { proxy in
                         Color.clear
                             .onAppear {
-                                contentTableHeight = proxy.size.height
                                 containerSize = proxy.size
                             }
-                            .onChange(of: proxy.size.height) { newHeight in
-                                contentTableHeight = newHeight
+                            .onChange(of: proxy.size.height) { _ in
                                 containerSize = proxy.size
                             }
                     }
@@ -275,12 +270,28 @@ public struct SirioTable: View {
         }
     }
     
+    // Contenuto della tabella che comunica la propria altezza a `contentTableHeight`
+    func measuredContentTable(widths: [Int: CGFloat], screenWidth: CGFloat) -> some View {
+        contentTable(widths: widths, screenWidth: screenWidth)
+            .overlay(
+                GeometryReader { proxy in
+                    Color.clear
+                        .preference(
+                            key: ContentHeightKey.self,
+                            value: proxy.size.height
+                        )
+                }
+            )
+    }
+    
     @ViewBuilder
     func contentTable(widths: [Int: CGFloat], screenWidth: CGFloat) -> some View {
-        Grid(alignment: .topLeading, horizontalSpacing: Size.zero, verticalSpacing: Size.zero) {
-            // Header row
-            GridRow {
-                ForEach(headersData.indices, id: \.self) { col in
+        // Le righe sono lazy: vengono create solo quelle visibili.
+        // Le larghezze delle colonne arrivano da `columnsMeasurer`, l'altezza è gestita da ogni riga.
+        LazyVStack(alignment: .leading, spacing: Size.zero) {
+            if !widths.isEmpty {
+                // Header row
+                SirioTableRow(columns: headersData.count, widths: widths) { col, width, height in
                     let order = currentSort.columnIndex == col ? currentSort.order : .none
                     SirioTableHeader(
                         schemeColor: schemeColor,
@@ -293,51 +304,20 @@ public struct SirioTable: View {
                             print(sort)
                             onSortRequest?(sort)
                         },
-                        width: widths[col] ?? 0,
-                        height: rowHeights[-1] ?? 0,
+                        width: width,
+                        height: height,
                         withSeparator: col != headersData.indices.last
                     )
-                    .background(
-                        GeometryReader { geo in
-                            Color.clear.onAppear {
-                                let size = geo.size
-                                if rowHeights[-1, default: 0] < size.height {
-                                    rowHeights[-1] = size.height
-                                }
-                                if colWidths[col, default: 0] < size.width {
-                                    colWidths[col] = size.width
-                                }
-                            }
-                        }
-                    )
                 }
-            }
-            // Data rows
-            ForEach(Array(rows.enumerated()), id: \.element.id) { rowIndex, rowData in
-                GridRow {
-                    ForEach(Array(rowData.cells.enumerated()), id: \.offset) { colIndex, cellContent in
-                        let width = widths[colIndex] ?? 0
-                        let height = rowHeights[rowIndex] ?? 0
-                        
+                // Data rows
+                ForEach(Array(rows.enumerated()), id: \.element.id) { rowIndex, rowData in
+                    SirioTableRow(columns: rowData.cells.count, widths: widths) { colIndex, width, height in
                         SirioTableCell(
-                            content: cellContent,
+                            content: rowData.cells[colIndex],
                             size: size,
                             parity: alternateRowColors ? rowIndex % 2 == 0 ? .even : .odd : .odd,
                             width: width,
                             height: height
-                        )
-                        .background(
-                            GeometryReader { geo in
-                                Color.clear.onAppear {
-                                    let size = geo.size
-                                    if rowHeights[rowIndex, default: 0] < size.height {
-                                        rowHeights[rowIndex] = size.height
-                                    }
-                                    if colWidths[colIndex, default: 0] < size.width {
-                                        colWidths[colIndex] = size.width
-                                    }
-                                }
-                            }
                         )
                         .overlay(
                             Group {
@@ -356,8 +336,59 @@ public struct SirioTable: View {
                 }
             }
         }
-        .frame(minWidth: screenWidth)
-        
+        // Se cambiano le larghezze le righe vanno rimisurate da zero
+        .id(widths)
+        .frame(minWidth: screenWidth, alignment: .topLeading)
+    }
+    
+    /// Griglia nascosta con l'header e le righe più significative (tutte, se sono poche):
+    /// calcola le larghezze delle colonne senza dover costruire tutte le righe.
+    @ViewBuilder
+    func columnsMeasurer(screenWidth: CGFloat) -> some View {
+        let measuredRows = measuredRows
+        Grid(alignment: .topLeading, horizontalSpacing: Size.zero, verticalSpacing: Size.zero) {
+            GridRow {
+                ForEach(headersData.indices, id: \.self) { col in
+                    SirioTableHeader(
+                        schemeColor: schemeColor,
+                        size: size,
+                        data: headersData[col],
+                        withSeparator: col != headersData.indices.last
+                    )
+                    .background(columnWidthReader(col))
+                }
+            }
+            ForEach(measuredRows) { rowData in
+                GridRow {
+                    ForEach(Array(rowData.cells.enumerated()), id: \.offset) { col, cellContent in
+                        SirioTableCell(
+                            content: cellContent,
+                            size: size,
+                            parity: .odd,
+                            width: Size.zero,
+                            height: Size.zero
+                        )
+                        .background(columnWidthReader(col))
+                    }
+                }
+            }
+        }
+        .fixedSize(horizontal: allowHorizontalScroll, vertical: true)
+        .frame(width: allowHorizontalScroll ? nil : screenWidth, alignment: .topLeading)
+        .hidden()
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
+        .onPreferenceChange(ColumnWidthsKey.self) { newWidths in
+            if newWidths != colWidths {
+                colWidths = newWidths
+            }
+        }
+    }
+    
+    private func columnWidthReader(_ col: Int) -> some View {
+        GeometryReader { geo in
+            Color.clear.preference(key: ColumnWidthsKey.self, value: [col: geo.size.width])
+        }
     }
     
 }
@@ -404,6 +435,87 @@ extension SirioTable {
     
     private var borderColor: Color {
         Color.Table.border
+    }
+    
+    // Altezza minima di 1 per far partire il layout delle righe lazy
+    private var tableHeight: CGFloat {
+        max(contentTableHeight, 1)
+    }
+    
+    // Righe usate per misurare le colonne: tutte se sono poche,
+    // altrimenti quelle con le celle più lunghe di ogni colonna.
+    private var measuredRows: [SirioTableRowData] {
+        let maxRows = 32
+        let perColumn = 8
+        guard rows.count > maxRows else { return rows }
+        
+        var longest: [[(row: Int, weight: Int)]] = Array(repeating: [], count: headersData.count)
+        for (rowIndex, row) in rows.enumerated() {
+            for (col, cell) in row.cells.enumerated() {
+                let weight = cell.measureWeight
+                if longest[col].count < perColumn {
+                    longest[col].append((rowIndex, weight))
+                } else if let minIndex = longest[col].indices.min(by: { longest[col][$0].weight < longest[col][$1].weight }),
+                          longest[col][minIndex].weight < weight {
+                    longest[col][minIndex] = (rowIndex, weight)
+                }
+            }
+        }
+        let indexes = Set(longest.joined().map(\.row)).sorted()
+        return indexes.map { rows[$0] }
+    }
+}
+
+private extension SirioTableCell.Content {
+    var measureWeight: Int {
+        switch self {
+        case .text(let text, _, _), .textOnly(let text), .numberOnly(let text), .tag(let text, _), .link(let text, _):
+            return text.utf8.count
+        case .action(let items):
+            return items.count
+        }
+    }
+}
+
+/// Riga della tabella: colonne a larghezza fissa e celle tutte alte quanto la più alta.
+private struct SirioTableRow<Cell: View>: View {
+    let columns: Int
+    let widths: [Int: CGFloat]
+    @ViewBuilder let cell: (_ col: Int, _ width: CGFloat, _ height: CGFloat) -> Cell
+    @State private var height: CGFloat = 0
+    
+    var body: some View {
+        HStack(alignment: .top, spacing: Size.zero) {
+            ForEach(0..<columns, id: \.self) { col in
+                let width = widths[col] ?? 0
+                cell(col, width, height)
+                    .frame(width: width, alignment: .topLeading)
+            }
+        }
+        .background(
+            GeometryReader { geo in
+                Color.clear.preference(key: RowHeightKey.self, value: geo.size.height)
+            }
+        )
+        .onPreferenceChange(RowHeightKey.self) { newHeight in
+            if abs(newHeight - height) > 0.5 {
+                height = newHeight
+            }
+        }
+    }
+}
+
+private struct RowHeightKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = max(value, nextValue())
+    }
+}
+
+private struct ColumnWidthsKey: PreferenceKey {
+    static var defaultValue: [Int: CGFloat] = [:]
+    static func reduce(value: inout [Int: CGFloat], nextValue: () -> [Int: CGFloat]) {
+        value.merge(nextValue(), uniquingKeysWith: max)
     }
 }
 

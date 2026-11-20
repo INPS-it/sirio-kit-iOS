@@ -83,6 +83,7 @@ extension ExampleCard {
     var viewProcessCardStandard: some View {
         VStack {
             SirioText(text: "Standard", typography: .labelMdHeavy)
+            
             SirioProcessCard(schemeColor: .light,
                              title: "Titolo della card molto molto molto molto lungo",
                              text: .loremIpsum,
@@ -100,6 +101,17 @@ extension ExampleCard {
                              text: .loremIpsum,
                              type: .standard(firstButtonText: "Text", onTapFirstButtonAction: {}),
                              onTapCardAction: {})
+            
+            SirioProcessCard(schemeColor: .light,
+                             iconData: .previewInfo,
+                             color: Color.globalSemanticWarning90,
+                             title: "Titolo della card molto molto molto molto lungo",
+                             subtitle: "Subtitle",
+                             text: .loremIpsum,
+                             type: .standard(hierarchy: .ghostDark,
+                                             firstButtonText: "Text",
+                                             onTapFirstButtonAction: {},
+                                             isFullWidth: false))
         }
     }
     

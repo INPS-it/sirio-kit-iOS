@@ -77,6 +77,7 @@ public extension View {
     ///   - subtitle: The notification subtitle
     ///   - link: Optional link text
     ///   - onTapLinkAction: Optional action triggered when the link is tapped.
+    ///   - onCloseAction: Optional action triggered when the close button is tapped.
     /// - Returns: A view with the notification modifier applied
     func sirioNotificaPage(
         isPresented: Binding<Bool>,
@@ -84,7 +85,8 @@ public extension View {
         title: String,
         subtitle: String,
         link: String? = nil,
-        onTapLinkAction: (() -> Void)? = nil
+        onTapLinkAction: (() -> Void)? = nil,
+        onCloseAction: (() -> Void)?
     ) -> some View {
         modifier(
             SirioNotificaPageModifier(
@@ -93,7 +95,8 @@ public extension View {
                 title: title,
                 subtitle: subtitle,
                 link: link,
-                onTapLinkAction: onTapLinkAction
+                onTapLinkAction: onTapLinkAction,
+                onCloseAction: onCloseAction,
             )
         )
     }
@@ -210,6 +213,7 @@ extension View {
 }
 
 extension View {
+    
     /// Adds a press action to the view, triggering separate closures when the view is pressed and released.
     ///
     /// - Parameters:

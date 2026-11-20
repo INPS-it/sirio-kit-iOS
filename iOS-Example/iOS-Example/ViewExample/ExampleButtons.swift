@@ -33,9 +33,12 @@ extension ExampleButtons {
         case secondary
         case tertiaryLight
         case tertiaryDark
-        case danger
         case ghostLight
         case ghostDark
+        case danger
+        case dangerTertiary
+        case dangerGhost
+        
     }
     
     var items: [SirioListItemModel] {
@@ -44,9 +47,12 @@ extension ExampleButtons {
             .default(title: "Secondary", action: { path.append(Destination.secondary) }),
             .default(title: "Tertiary Light", action: { path.append(Destination.tertiaryLight) }),
             .default(title: "Tertiary Dark", action: { path.append(Destination.tertiaryDark) }),
-            .default(title: "Danger", action: { path.append(Destination.danger) }),
             .default(title: "Ghost Light", action: { path.append(Destination.ghostLight) }),
-            .default(title: "Ghost Dark", action: { path.append(Destination.ghostDark) })
+            .default(title: "Ghost Dark", action: { path.append(Destination.ghostDark) }),
+            .default(title: "Danger", action: { path.append(Destination.danger) }),
+            .default(title: "Danger Tertiary", action: { path.append(Destination.dangerTertiary) }),
+            .default(title: "Danger Ghost", action: { path.append(Destination.dangerGhost) }),
+
         ]
     }
     
@@ -69,10 +75,6 @@ extension ExampleButtons {
             SirioButtonDemo(hierarchy: .tertiaryDark)
                 .background(Color.colorBackground)
                 .navigationTitle("Tertiary Dark")
-        case .danger:
-            SirioButtonDemo(hierarchy: .danger)
-                .background(Color.colorBackground)
-                .navigationTitle("Danger")
         case .ghostLight:
             SirioButtonDemo(hierarchy: .ghostLight)
                 .background(Color.colorBackground)
@@ -83,6 +85,21 @@ extension ExampleButtons {
                 .background(Color.colorBackground)
                 .navigationTitle("Ghost Dark")
                 .onTapGesture { self.hideKeyboard() }
+            
+        case .danger:
+            SirioButtonDemo(hierarchy: .danger)
+                .background(Color.colorBackground)
+                .navigationTitle("Danger")
+            
+        case .dangerTertiary:
+            SirioButtonDemo(hierarchy: .dangerTertiary)
+                .background(Color.colorBackground)
+                .navigationTitle("Danger")
+            
+        case .dangerGhost:
+            SirioButtonDemo(hierarchy: .dangerGhost)
+                .background(Color.colorBackground)
+                .navigationTitle("Danger")
         }
     }
 }

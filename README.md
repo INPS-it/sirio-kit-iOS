@@ -4,14 +4,14 @@ sirio-kit-iOS is a library containing the iOS implementation of the Sirio design
 
 ## Requirements
 
-- iOS 16.0+ 
-- Xcode 14+
-- Swift 4+
+- iOS 16.0+
+- Xcode 16.0+
+- Swift 5.9+
 
 ## Usage
 1. Add the following to your Package.swift:
 ```swift
-.package(url: "https://github.com/INPS-it/sirio-kit-iOS", .upToNextMajor(from: "11.0.0"))
+.package(url: "https://github.com/INPS-it/sirio-kit-iOS", .upToNextMajor(from: "11.1.0"))
 ```
 2. Declare `import SirioKitIOS` to use the components where you want to use them.
 

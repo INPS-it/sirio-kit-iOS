@@ -56,7 +56,7 @@ public struct SirioFiltriActive: View {
 
         switch filterTypes[index].content {
 
-        case .chips(let texts, var selectedTypes, let isDisabled, let active):
+        case .chips(let texts, var selectedTypes, let selectionMode, let isDisabled, let active):
             // Se non ho un value specifico, ripristino tutto come prima
             guard let value else {
                 filterTypes[index] = initialFilter
@@ -64,12 +64,13 @@ public struct SirioFiltriActive: View {
             }
 
             // Rimuovo solo la chip chiusa
-            selectedTypes?.removeAll { $0 == value }
-            if selectedTypes?.isEmpty == true { selectedTypes = nil }
+            selectedTypes.removeAll { $0 == value }
+            if selectedTypes.isEmpty { selectedTypes = [] }
 
             filterTypes[index].content = .chips(
                 texts: texts,
                 selectedTypes: selectedTypes,
+                selectionMode: selectionMode,
                 isDisabled: isDisabled,
                 active: active
             )
@@ -84,9 +85,9 @@ public struct SirioFiltriActive: View {
         switch filterType.content {
 
         // 🔹 Chips (multi)
-        case .chips(_, let selectedTypes, _, _):
-            guard let selectedTypes, !selectedTypes.isEmpty else {
-                return nil
+        case .chips(_, let selectedTypes, _, _, _):
+            if selectedTypes.isEmpty {
+                return []
             }
             return selectedTypes
 

@@ -47,39 +47,42 @@ public struct SirioFiltriDrawer: View {
                             SirioFiltriTitle(title: title, subtitle: subtitle)
 
                         // MARK: - Chips
-                        case .chips(let texts, let selectedType, let isDisabled, _):
+                        case .chips(let texts, let selectedTypes, let selectionMode, let isDisabled, _):
                             SirioFiltriChips(
                                 texts: texts,
+                                selectionMode: selectionMode,
                                 selectedTypes: Binding(
                                     get: {
-                                        if case .chips(_, let selected, _, _) = type.content {
+                                        if case .chips(_, let selected, _, _, _) = type.content {
                                             return selected
                                         }
-                                        return selectedType
+                                        return selectedTypes
                                     },
                                     set: { newValue in
                                         type.content = .chips(
                                             texts: texts,
                                             selectedTypes: newValue,
+                                            selectionMode: selectionMode,
                                             isDisabled: isDisabled,
-                                            active: !(newValue?.isEmpty ?? true)
+                                            active: !newValue.isEmpty
                                         )
                                     }
                                 ),
                                 isDisabled: Binding(
                                     get: {
-                                        if case .chips(_, _, let disabled, _) = type.content {
+                                        if case .chips(_, _, _, let disabled, _) = type.content {
                                             return disabled
                                         }
                                         return false
                                     },
                                     set: { newValue in
-                                        if case .chips(_, let selected, _, _) = type.content {
+                                        if case .chips(_, let selected, let mode, _, _) = type.content {
                                             type.content = .chips(
                                                 texts: texts,
                                                 selectedTypes: selected,
+                                                selectionMode: mode,
                                                 isDisabled: newValue,
-                                                active: !(selected?.isEmpty ?? true)
+                                                active: !selected.isEmpty
                                             )
                                         }
                                     }

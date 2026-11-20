@@ -96,7 +96,8 @@ struct SirioFiltriTest: View {
         .init(content: .sectionTitle(title: "Section Title", subtitle: .loremIpsum)),
         .init(content: .chips(
             texts: ["Valore selezionato", "Valore 1", "Valore 2", "Valore 3"],
-            selectedTypes: nil,
+            selectedTypes: [],
+            selectionMode: .single,
             isDisabled: false,
             active: false
         )),
@@ -216,8 +217,8 @@ struct SirioFiltriTest: View {
                     filter += ["Date"]
                 }
                 
-            case .chips(_, let selected, _, _):
-                if let selected = selected, !selected.isEmpty {
+            case .chips(_, let selected, _, _, _):
+                if !selected.isEmpty {
                     filter += ["Chips"]
                 }
             default:

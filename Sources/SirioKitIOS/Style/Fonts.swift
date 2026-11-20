@@ -7,29 +7,37 @@
 //
 
 import SwiftUI
+import UIKit
+import CoreText
 
 public struct Fonts {
     
     // This method registers fonts in your app, use it in your AppDelegate
     public static func registerFonts() {
-        Fonts.TitilliumWeb.allCases.forEach {
-            registerFont(bundle: .module, fontName: $0.rawValue, fontExtension: "ttf")
-        }
-        
-        Fonts.Lora.allCases.forEach {
-            registerFont(bundle: .module, fontName: $0.rawValue, fontExtension: "ttf")
-        }
-        
-        Fonts.RobotoMono.allCases.forEach {
-            registerFont(bundle: .module, fontName: $0.rawValue, fontExtension: "ttf")
+        Typography.FontFamily.allCases.forEach { family in
+            family.supportedWeights.forEach { weight in
+                
+                let fontName = "\(family.rawValue)-\(weight.rawValue)"
+                registerFont(bundle: .module,
+                             fontName: fontName,
+                             fontExtension: "ttf")
+            }
         }
     }
     
     fileprivate static func registerFont(bundle: Bundle, fontName: String, fontExtension: String) {
+        // Se il font è già registrato, esci
+        if UIFont(name: fontName, size: 12) != nil {
+            print("Font already registered: \(fontName)")
+            return
+        }
+        
         guard let fontURL = bundle.url(forResource: fontName, withExtension: fontExtension),
               let fontDataProvider = CGDataProvider(url: fontURL as CFURL),
               let font = CGFont(fontDataProvider) else {
-            fatalError("Couldn't create font from filename: \(fontName) with extension \(fontExtension)")
+            print("❌ Could not load font: \(fontName)")
+            return
+            
         }
         
         var error: Unmanaged<CFError>?
@@ -43,33 +51,35 @@ public struct Fonts {
 
 public extension Fonts {
     enum TitilliumWeb: String, CaseIterable {
-        case regular = "Titillium Web Regular"
-        case italic = "Titillium Web Italic"
-        case semiBold = "Titillium Web SemiBold"
-        case bold = "Titillium Web Bold"
+        case regular = "TitilliumWeb-Regular"
+        case italic = "TitilliumWeb-Italic"
+        case italicSemiBold = "TitilliumWeb-SemiBoldItalic"
+        case semiBold = "TitilliumWeb-SemiBold"
+        case bold = "TitilliumWeb-Bold"
+        case black = "TitilliumWeb-Black"
     }
     
     enum Lora: String, CaseIterable {
-        case boldItalic = "Lora Bold Italic"
-        case bold = "Lora Bold"
-        case mediumItalic = "Lora Medium Italic"
-        case italic = "Lora Italic"
-        case medium = "Lora Medium"
-        case regular = "Lora Regular"
-        case semiboldItalic = "Lora SemiBold Italic"
-        case semibold = "Lora SemiBold"
+        case boldItalic = "Lora-BoldItalic"
+        case bold = "Lora-Bold"
+        case mediumItalic = "Lora-MediumItalic"
+        case italic = "Lora-Italic"
+        case medium = "Lora-Medium"
+        case regular = "Lora-Regular"
+        case semiboldItalic = "Lora-SemiBoldItalic"
+        case semibold = "Lora-SemiBold"
     }
     
     enum RobotoMono: String, CaseIterable {
-        case boldItalic = "RobotoMono Bold Italic"
-        case bold = "RobotoMono Bold"
-        case italic = "RobotoMono Italic"
-        case lightItalic = "RobotoMono Light Italic"
-        case light = "RobotoMono Light"
-        case mediumItalic = "RobotoMono Medium Italic"
-        case medium = "RobotoMono Medium"
-        case regular = "RobotoMono Regular"
-        case semiboldItalic = "RobotoMono SemiBold Italic"
-        case semibold = "RobotoMono SemiBold"
+        case boldItalic = "RobotoMono-BoldItalic"
+        case bold = "RobotoMono-Bold"
+        case italic = "RobotoMono-Italic"
+        case lightItalic = "RobotoMono-LightItalic"
+        case light = "RobotoMono-Light"
+        case mediumItalic = "RobotoMono-MediumItalic"
+        case medium = "RobotoMono-Medium"
+        case regular = "RobotoMono-Regular"
+        case semiboldItalic = "RobotoMono-SemiBoldItalic"
+        case semibold = "RobotoMono-SemiBold"
     }
 }

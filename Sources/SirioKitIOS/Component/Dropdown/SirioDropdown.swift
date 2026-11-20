@@ -25,7 +25,7 @@ import SwiftUI
 
 public struct SirioDropdown: View {
     
-    @Binding var type: SemanticTextField
+    @Binding var type: SirioSemantic
     var textInfo: String?
     var placeholder: String
     @Binding var text: String
@@ -37,7 +37,7 @@ public struct SirioDropdown: View {
     var onTapOpen: (() -> Void)?
     var onTapDismiss: (() -> Void)?
     
-    public init(type: Binding<SemanticTextField> = .constant(.info),
+    public init(type: Binding<SirioSemantic> = .constant(.info),
                 textInfo: String? = nil,
                 placeholder: String,
                 text: Binding<String>,

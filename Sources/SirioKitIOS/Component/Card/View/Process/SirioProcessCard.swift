@@ -48,6 +48,8 @@ public enum SirioProcessCardType {
     }
     
     public static func moreAction(
+        iconData: SirioIconData? = nil,
+        color: Color? = nil,
         firstButtonText: String,
         onTapFirstButtonAction: @escaping () -> Void,
         menuItems: [SirioActionItem]
@@ -62,6 +64,8 @@ public enum SirioProcessCardType {
 ///
 /// - Parameters:
 ///   - schemeColor: Defines the color scheme of the card, either light or dark.
+///   - iconData: The icon of the card.
+///   - color: The color of the icon.
 ///   - title: The title of the card.
 ///   - subtitle: An optional subtitle displayed above the title.
 ///   - text: An optional body text describing the process.
@@ -76,6 +80,8 @@ public enum SirioProcessCardType {
 
 public struct SirioProcessCard: View {
     var schemeColor: SchemeColor
+    var iconData: SirioIconData?
+    var color: Color?
     var title: String
     var subtitle: String?
     var text: String?
@@ -86,12 +92,16 @@ public struct SirioProcessCard: View {
     @State var isOpenMoreAction: Bool = false
     
     public init(schemeColor: SchemeColor,
+                iconData: SirioIconData? = nil,
+                color: Color? = nil,
                 title: String,
                 subtitle: String? = nil,
                 text: String?,
                 type: SirioProcessCardType,
                 onTapCardAction: (() -> Void)? = nil) {
         self.schemeColor = schemeColor
+        self.iconData = iconData
+        self.color = color
         self.title = title
         self.subtitle = subtitle
         self.text = text
@@ -101,16 +111,28 @@ public struct SirioProcessCard: View {
     
     public var body: some View {
         VStack(alignment: .leading, spacing: Size.s4) {
-            // MARK: - Title & Icon
+            // MARK: - Icon
+            if let iconData = iconData, let color {
+                HStack(alignment: .firstTextBaseline) {
+                    SirioIcon(data: iconData)
+                        .frame(width: Size.s24, height: Size.s24)
+                        .foregroundStyle(color)
+                }
+                .padding(.bottom, Size.p4)
+            }
+            
+            // MARK: - Title
             HStack(alignment: .firstTextBaseline) {
                 SirioText(text: title, typography: Typography.Card.Process.title)
                     .foregroundColor(schemeColor == .light ? Color.Card.Process.Text.Title.light : Color.Card.Process.Text.Title.dark)
                     .lineLimit(2)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             
             // MARK: - Subtitle
             if let subtitle = subtitle {
                 SirioText(text: subtitle, typography: Typography.Card.Process.subtitle)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(schemeColor == .light ? Color.Card.Process.Text.Subtitle.light : Color.Card.Process.Text.Subtitle.dark)
                     .lineLimit(1)
             }
@@ -118,6 +140,7 @@ public struct SirioProcessCard: View {
             // MARK: - Body Text
             if let text = text {
                 SirioText(text: text, typography: Typography.Card.Process.body)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(schemeColor == .light ? Color.Card.Process.Text.Body.light : Color.Card.Process.Text.Body.dark)
             }
             
@@ -201,6 +224,7 @@ public struct SirioProcessCard: View {
                 .padding(.top, Size.p12)
             }
         }
+        .frame(maxWidth: .infinity)
         .padding(.horizontal, Size.p12)
         .padding(.vertical, Size.p16)
         .background(schemeColor == .light ? Color.Card.Process.Background.light : Color.Card.Process.Background.dark)
@@ -221,6 +245,8 @@ public struct SirioProcessCard: View {
 #Preview("Standard") {
     ScrollView {
         SirioProcessCard(schemeColor: .light,
+                         iconData: .previewInfo,
+                         color: Color.globalSemanticWarning90,
                          title: "Titolo della card molto molto molto molto lungo",
                          subtitle: "Subtitle",
                          text: .loremIpsum,

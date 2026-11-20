@@ -16,6 +16,7 @@ public struct SirioNotificaPageModifier: ViewModifier {
     var subtitle: String
     var link: String?
     var onTapLinkAction: (() -> Void)?
+    var onCloseAction: (() -> Void)?
     
     public init(
         isPresented: Binding<Bool>,
@@ -23,7 +24,8 @@ public struct SirioNotificaPageModifier: ViewModifier {
         title: String,
         subtitle: String,
         link: String? = nil,
-        onTapLinkAction: (() -> Void)? = nil
+        onTapLinkAction: (() -> Void)? = nil,
+        onCloseAction: (() -> Void)?
     ) {
         self.isPresented = isPresented
         self.state = state
@@ -31,6 +33,7 @@ public struct SirioNotificaPageModifier: ViewModifier {
         self.subtitle = subtitle
         self.link = link
         self.onTapLinkAction = onTapLinkAction
+        self.onCloseAction = onCloseAction
     }
     
     public func body(content: Content) -> some View {
@@ -48,9 +51,7 @@ public struct SirioNotificaPageModifier: ViewModifier {
                 subtitle: subtitle,
                 link: link,
                 onCloseAction: {
-                    withAnimation {
-                        isPresented.wrappedValue = false
-                    }
+                    onCloseAction?()
                 },
                 onTapLinkAction: onTapLinkAction
             )
@@ -104,6 +105,10 @@ private struct NotificationPreviewView: View {
                            link: "Vai ai dettagli",
                            onTapLinkAction: {
             print("Link tappato")
+        }, onCloseAction: {
+            withAnimation {
+                self.showNotification = false
+            }
         }
         )
         

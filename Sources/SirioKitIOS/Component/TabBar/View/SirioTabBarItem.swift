@@ -91,12 +91,10 @@ public struct SirioTabBarItem: View {
             VStack(spacing: Size.TabBar.Item.Portrait.spacing){
                 
                 ZStack {
-                    if itemData.isHighlighted {
-                        Circle()
-                            .fill(Color.aliasTextColorPrimaryLight40)
-                            .frame(width: Size.TabBar.Item.circle, height: Size.TabBar.Item.circle)
-                    }
-
+                    Circle()
+                        .fill(itemData.isHighlighted ? Color.aliasTextColorPrimaryLight40 : Color.clear)
+                        .frame(width: Size.TabBar.Item.circle, height: Size.TabBar.Item.circle)
+                    
                     SirioIcon(data: .init(icon: itemData.icon))
                         .frame(width: Size.TabBar.Item.icon, height: Size.TabBar.Item.icon)
                         .foregroundStyle(iconColor)
@@ -138,7 +136,7 @@ extension SirioTabBarItem {
     VStack {
         HStack(spacing: 10) {
             SirioTabBarItem(itemData: SirioTabItemData.preview, isSelected: true)
-            SirioTabBarItem(itemData: SirioTabItemData.preview, isSelected: false)
+            SirioTabBarItem(itemData: SirioTabItemData.previewHighlighted, isSelected: false)
             
         }
     }

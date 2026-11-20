@@ -1,3 +1,11 @@
+//
+// SirioFiltri.swift
+//
+// SPDX-FileCopyrightText: 2026 Istituto Nazionale Previdenza Sociale
+//
+// SPDX-License-Identifier: BSD-3-Clause
+//
+
 import SwiftUI
 
 // MARK: - Type Filtri
@@ -6,7 +14,8 @@ public struct SirioFiltriType: Identifiable, Equatable {
         case sectionTitle(title: String, subtitle: String)
         case chips(
             texts: [String],
-            selectedTypes: [String]?,
+            selectedTypes: [String],
+            selectionMode: SirioChipsSelectionMode,
             isDisabled: Bool,
             active: Bool
         )
@@ -19,8 +28,8 @@ public struct SirioFiltriType: Identifiable, Equatable {
         // MARK: - Determina se il filtro è attivo
         var isActive: Bool {
             switch self {
-            case .chips(_, let selectedTypes, _, let active):
-                return active || (selectedTypes?.isEmpty == false)
+            case .chips(_, let selectedTypes, _, _, let active):
+                return active || (selectedTypes.isEmpty == false)
             case .select(_, _, let value, _, _, let active):
                 return active || !value.isEmpty
             case .date(_, _, let value, _, let active):
@@ -44,7 +53,6 @@ public struct SirioFiltriType: Identifiable, Equatable {
         self.content = content
     }
     
-    // Puoi lasciare anche questa Equatable sul wrapper, ma non è più necessaria
     public static func == (lhs: SirioFiltriType, rhs: SirioFiltriType) -> Bool {
         lhs.content == rhs.content
     }
@@ -56,14 +64,16 @@ extension SirioFiltriType.Content: Equatable {
         switch (lhs, rhs) {
         case (.sectionTitle(let lt, let ls), .sectionTitle(let rt, let rs)):
             return lt == rt && ls == rs
-            
-        case (.chips(let lTexts, let lSel, let lDis, let lAct),
-              .chips(let rTexts, let rSel, let rDis, let rAct)):
+      
+        case (
+            .chips(texts: let lTexts, selectedTypes: let lSelectedTypes, selectionMode: let lMode, isDisabled: let lDisabled, active: let lActive),
+            .chips(texts: let rTexts, selectedTypes: let rSelectedTypes, selectionMode: let rMode, isDisabled: let rDisabled, active: let rActive)
+        ):
             return lTexts == rTexts &&
-                   lSel == rSel &&
-                   lDis == rDis &&
-                   lAct == rAct
-            
+                   lSelectedTypes == rSelectedTypes &&
+                   lMode == rMode &&
+                   lDisabled == rDisabled &&
+                   lActive == rActive
         case (.select(let lText, let lPlaceholder, let lVal, let lList, let lDis, let lAct),
               .select(let rText, let rPlaceholder, let rVal, let rList, let rDis, let rAct)):
             return lText == rText && lPlaceholder == rPlaceholder && lVal == rVal && lList == rList && lDis == rDis && lAct == rAct
@@ -216,7 +226,8 @@ struct SirioFiltriTest: View {
         .init(content: .sectionTitle(title: "Section Title", subtitle: .loremIpsum)),
         .init(content: .chips(
             texts: ["Valore selezionato", "Valore 1", "Valore 2", "Valore 3"],
-            selectedTypes: nil,
+            selectedTypes: [],
+            selectionMode: .multiple,
             isDisabled: false,
             active: false
         )),
@@ -332,8 +343,8 @@ struct SirioFiltriTest: View {
                     filter += ["Date"]
                 }
                 
-            case .chips(_, let selected, _, _):
-                if let selected = selected, !selected.isEmpty {
+            case .chips(_, let selected, _, _, _):
+                if !selected.isEmpty {
                     filter += ["Chips"]
                 }
             default:

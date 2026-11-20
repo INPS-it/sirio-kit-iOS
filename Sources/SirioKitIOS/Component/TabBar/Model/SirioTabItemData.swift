@@ -29,6 +29,7 @@ public struct SirioTabItemData {
     }
     
     static let preview = SirioTabItemData(icon: .bell, name: "Notifications", hasBadge: true)
+    static let previewHighlighted = SirioTabItemData(icon: .bell, name: "Notifications", hasBadge: false, isHighlighted: true)
     
     static func previewInps1() -> [Self] {
         return [ SirioTabItemData(icon: .home, name: "Home", hasBadge: false),

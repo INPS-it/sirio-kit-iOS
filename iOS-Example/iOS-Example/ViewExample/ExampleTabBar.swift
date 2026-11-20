@@ -14,10 +14,10 @@ struct ExampleTabBar: View {
     
     private let items = [
         SirioTabItemData(icon: .home, name: "Home", hasBadge: false),
-        SirioTabItemData(icon: .bell, name: "News", hasBadge: true),
-        SirioTabItemData(icon: .globe, name: "Maps", hasBadge: false),
-        SirioTabItemData(icon: .commentAlt, name: "Contacts", hasBadge: false),
-        SirioTabItemData(icon: .gripHorizontal, name: "Services", hasBadge: false, isHighlighted: true)
+        SirioTabItemData(icon: .newspaper, name: "Notizie", hasBadge: true),
+        SirioTabItemData(icon: .gripHorizontal, name: "Servizi", hasBadge: false, isHighlighted: true),
+        SirioTabItemData(icon: .commentAlt, name: "Contatti", hasBadge: false),
+        SirioTabItemData(icon: .list, name: "Opzioni", hasBadge: false),
     ]
     
     var body: some View {
@@ -29,13 +29,13 @@ struct ExampleTabBar: View {
                 case 0:
                     SirioText(text: "Home", typography: .label_md_400)
                 case 1:
-                    SirioText(text: "News", typography: .label_md_400)
+                    SirioText(text: "Notizie", typography: .label_md_400)
                 case 2:
-                    SirioText(text: "Maps", typography: .label_md_400)
+                    SirioText(text: "Servizi", typography: .label_md_400)
                 case 3:
-                    SirioText(text: "Contacts", typography: .label_md_400)
+                    SirioText(text: "Contatti", typography: .label_md_400)
                 case 4:
-                    SirioText(text: "Services", typography: .label_md_400)
+                    SirioText(text: "Opzioni", typography: .label_md_400)
                 default:
                     EmptyView()
                 }

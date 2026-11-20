@@ -15,6 +15,9 @@ struct iOS_ExampleApp: App {
     
     init() {
         setDependencies()
+#if DEBUG
+        FontValidator.validateAllFonts()
+#endif
     }
     
     var body: some Scene {

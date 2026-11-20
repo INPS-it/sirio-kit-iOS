@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 /// The model used for representing a navigation item with flexible button configurations.
 /// - Parameters:
@@ -63,12 +64,16 @@ public struct SirioProcessCardItemData: Identifiable {
 
 
 public protocol SirioProcessCardItemDataProtocol {
+    var iconData: SirioIconData? { get }
+    var color: Color? { get }
     var firstButtonText: String? { get }
     var onTapFirstButtonAction: (() -> Void)? { get }
 }
 
 public struct SirioProcessCardItemDataStandard: SirioProcessCardItemDataProtocol, Identifiable {
     public var id = UUID()
+    public var iconData: SirioIconData? = nil
+    public var color: Color? = nil
     public var firstButtonText: String?
     public var onTapFirstButtonAction: (() -> Void)?
     public var isFullWidth: Bool = false
@@ -76,6 +81,8 @@ public struct SirioProcessCardItemDataStandard: SirioProcessCardItemDataProtocol
 
 public struct SirioProcessCardItemDataCTAInline: SirioProcessCardItemDataProtocol, Identifiable {
     public var id = UUID()
+    public var iconData: SirioIconData? = nil
+    public var color: Color? = nil
     public var firstButtonText: String?
     public var onTapFirstButtonAction: (() -> Void)?
     public var secondButtonText: String
@@ -84,6 +91,8 @@ public struct SirioProcessCardItemDataCTAInline: SirioProcessCardItemDataProtoco
 
 public struct SirioProcessCardItemDataCTABlock: SirioProcessCardItemDataProtocol, Identifiable {
     public var id = UUID()
+    public var iconData: SirioIconData? = nil
+    public var color: Color? = nil
     public var firstButtonText: String?
     public var onTapFirstButtonAction: (() -> Void)?
     public var secondButtonText: String
@@ -92,6 +101,8 @@ public struct SirioProcessCardItemDataCTABlock: SirioProcessCardItemDataProtocol
 
 public struct SirioProcessCardItemDataMoreAction: SirioProcessCardItemDataProtocol, Identifiable {
     public var id = UUID()
+    public var iconData: SirioIconData? = nil
+    public var color: Color? = nil
     public var firstButtonText: String?
     public var onTapFirstButtonAction: (() -> Void)?
     public var menuItems: [SirioActionItem]

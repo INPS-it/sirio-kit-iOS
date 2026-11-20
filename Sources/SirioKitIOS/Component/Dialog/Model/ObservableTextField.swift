@@ -15,12 +15,12 @@ import SwiftUI
 ///   - placeholder: The placeholder of textfield
 ///   - text: The text of textfield
 public class ObservableTextField: ObservableObject {
-    @Published public var type: SemanticTextField?
+    @Published public var type: SirioSemantic?
     @Published public var label: String?
     @Published public var placeholder: String?
     @Published public var text: String?
     
-    public init(type: SemanticTextField? = .info,
+    public init(type: SirioSemantic? = .info,
                 label: String? = nil,
                 placeholder: String? = nil,
                 text: String? = nil){

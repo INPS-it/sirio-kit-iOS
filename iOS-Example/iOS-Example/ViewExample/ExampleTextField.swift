@@ -16,7 +16,7 @@ struct ExampleTextField: View {
     var body: some View {
         ScrollView {
             VStack {
-                ForEach(SemanticTextField.allCases, id: \.self) { type in
+                ForEach(SirioSemantic.allCases, id: \.self) { type in
                     VStack(spacing: 10) {
                         SirioText(text: type.rawValue.capitalized, typography: .label_md_600)
                         SirioGenericTextField(
@@ -57,7 +57,7 @@ struct ExampleTextField: View {
         .navigationTitle("TextField")
     }
     
-    private func getIconBy(type: SemanticTextField) -> SirioIconData {
+    private func getIconBy(type: SirioSemantic) -> SirioIconData {
         switch type {
         case .warning:
             return .init(icon: .exclamationCircle)

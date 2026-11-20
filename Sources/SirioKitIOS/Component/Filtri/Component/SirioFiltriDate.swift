@@ -83,7 +83,6 @@ public struct SirioFiltriDate: View {
                 .clipped()
                 .onChange(of: date) { _ in
                     value = formattedDate
-                    toggleDatePicker(false, reader: reader)
                 }
                 .labelsHidden()
                 .id(datePickerId)

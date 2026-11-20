@@ -12,7 +12,7 @@ import SwiftUI
 /// - Parameters:
 ///   - items: An array of [SirioTabItemData] representing the tabs. Must contain at least 3 and no more than 5 items.
 ///   - selectedIndex: A binding to the currently selected tab index
-///   
+///
 public struct SirioTabBar: View {
     private var items: [SirioTabItemData]
     @Binding private var selectedIndex: Int
@@ -46,7 +46,10 @@ public struct SirioTabBar: View {
             .frame(height: Size.TabBar.height)
             .background(Color.TabBar.background)
         }
-        .edgesIgnoringSafeArea(.bottom)
+        .background(
+            Color.TabBar.background
+                .ignoresSafeArea(edges: .bottom)
+        )
     }
 }
 

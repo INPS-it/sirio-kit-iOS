@@ -641,6 +641,7 @@ public enum AwesomeIcon: String, CaseIterable {
     case headphonesAlt = "headphones-alt"
     case headset = "headset"
     case heart = "heart"
+    case heartEmpty = "heart-empty"
     case heartBroken = "heart-broken"
     case heartbeat = "heartbeat"
     case helicopter = "helicopter"
